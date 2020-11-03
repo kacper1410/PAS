@@ -2,12 +2,14 @@ package pl.pas.model;
 
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 public class TicketTest {
     @Test
     public void ticketTest() {
-        Movie movie = new Movie("Harry Portier");
+        Movie movie = new Movie("Harry Portier", 90, new Date(), 20);
         Ticket ticket = new Ticket(movie, 5, 12.20);
 
         assertEquals(ticket.getMovie(), movie);
