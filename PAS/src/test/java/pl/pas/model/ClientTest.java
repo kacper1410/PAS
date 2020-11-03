@@ -10,32 +10,39 @@ import static org.junit.Assert.assertEquals;
 public class ClientTest {
     @Test
     public void clientTest() {
-        Client client = new Client("Jan Kowalski", 20, 5);
+        Client client = new NormalClient("Jan Kowalski", 20);
         assertEquals(client.getName(), "Jan Kowalski");
         assertEquals(client.getAge(), 20);
-        assertEquals(client.getMaxTickets(), 5);
+        assertEquals(client.getMaxTickets(), 2);
+
+        client = new PremiumClient("Jan Kowalski", 20);
+        assertEquals(client.getMaxTickets(), 10);
     }
 
     @Test
     public void clientWithTicketTest() {
-        Client client = new Client("Adam Nowak", 25, 1);
+        Client client = new NormalClient("Adam Nowak", 25);
         Ticket ticket1 = new Ticket(new Movie("Harry Potter", 90, new Date(), 10), 5, 12.50);
         Ticket ticket2 = new Ticket(new Movie("Potter Harry", 90, new Date(), 9), 6, 9.50);
+        Ticket ticket3 = new Ticket(new Movie("Harter Potry", 90, new Date(), 9), 7, 19.50);
 
-        // Add one ticket
+
         client.addTicket(ticket1);
-        assertEquals(client.getClientTickets().size(), 1);
-        assertEquals(client.getClientTicket(ticket1), ticket1);
-
-        // Add more ticket's then Client can buy
         client.addTicket(ticket2);
-        Assert.assertEquals(client.getClientTickets().size(), 1);
-        Assert.assertEquals(client.getClientTicket(ticket1), ticket1);
-        Assert.assertNull(client.getClientTicket(ticket2));
+        assertEquals(client.getClientTickets().size(), 2);
+        assertEquals(client.getClientTicket(ticket1), ticket1);
+        assertEquals(client.getClientTicket(ticket2), ticket2);
 
-        // Remove ticket
+
+        client.addTicket(ticket3);
+        Assert.assertEquals(client.getClientTickets().size(), 2);
+        Assert.assertEquals(client.getClientTicket(ticket1), ticket1);
+        Assert.assertEquals(client.getClientTicket(ticket2), ticket2);
+        Assert.assertNull(client.getClientTicket(ticket3));
+
+
         client.removeTicket(ticket1);
-        Assert.assertEquals(client.getClientTickets().size(), 0);
+        Assert.assertEquals(client.getClientTickets().size(), 1);
         Assert.assertNull(client.getClientTicket(ticket1));
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class Client {
+public abstract class Client {
     private UUID id;
     private String name;
     private int age;
@@ -17,7 +17,7 @@ public class Client {
         this.maxTickets = maxTickets;
 
         this.id = UUID.randomUUID();
-        this.clientTickets = new ArrayList<Ticket>();
+        this.clientTickets = new ArrayList<>();
     }
 
     public UUID getId() {
