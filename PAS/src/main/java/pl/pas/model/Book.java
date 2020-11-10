@@ -4,13 +4,13 @@ public class Book {
     private long ISBN;
     private String title;
     private int publishYear;
-    private boolean isAvailable;
+    private boolean available;
 
-    public Book(long ISBN, String title, int publishYear, boolean isAvailable) {
+    public Book(long ISBN, String title, int publishYear, boolean available) {
         this.ISBN = ISBN;
         this.title = title;
         this.publishYear = publishYear;
-        this.isAvailable = isAvailable;
+        this.available = available;
     }
 
     public long getISBN() {
@@ -38,11 +38,11 @@ public class Book {
     }
 
     public boolean isAvailable() {
-        return isAvailable;
+        return available;
     }
 
     public void setAvailable(boolean available) {
-        isAvailable = available;
+        this.available = available;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Book {
                 "ISBN=" + ISBN +
                 ", title='" + title + '\'' +
                 ", publishYear=" + publishYear +
-                ", isAvailable=" + isAvailable +
+                ", isAvailable=" + available +
                 '}';
     }
 }

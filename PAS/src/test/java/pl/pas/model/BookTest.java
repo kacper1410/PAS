@@ -15,6 +15,6 @@ public class BookTest {
         assertEquals(book.getPublishYear(), 2000);
         assertTrue(book.isAvailable());
 
-        System.out.println(book.toString());
+        System.out.println(book);
     }
 }

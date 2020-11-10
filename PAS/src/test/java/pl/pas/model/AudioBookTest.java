@@ -15,6 +15,6 @@ public class AudioBookTest {
         assertEquals(audioBook.getLength(), 270);
         assertTrue(audioBook.isAvailable());
 
-        System.out.println(audioBook.toString());
+        System.out.println(audioBook);
     }
 }
