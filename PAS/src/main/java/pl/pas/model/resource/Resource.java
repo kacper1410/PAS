@@ -1,4 +1,4 @@
-package pl.pas.model;
+package pl.pas.model.resource;
 
 public abstract class Resource {
     private long ISBN;

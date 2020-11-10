@@ -1,6 +1,7 @@
 package pl.pas.model;
 
 import org.junit.Test;
+import pl.pas.model.user.Employee;
 
 import static org.junit.Assert.*;
 

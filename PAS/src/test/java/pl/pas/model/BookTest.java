@@ -1,6 +1,7 @@
 package pl.pas.model;
 
 import org.junit.Test;
+import pl.pas.model.resource.Book;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

@@ -1,4 +1,4 @@
-package pl.pas.model;
+package pl.pas.model.user;
 
 public class Client extends User {
     private String name;

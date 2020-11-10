@@ -1,4 +1,4 @@
-package pl.pas.model;
+package pl.pas.model.user;
 
 public abstract class User {
     private long userId;

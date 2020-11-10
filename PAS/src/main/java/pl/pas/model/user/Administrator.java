@@ -1,4 +1,4 @@
-package pl.pas.model;
+package pl.pas.model.user;
 
 public class Administrator extends Employee {
 
