@@ -1,22 +1,24 @@
 package pl.pas.model.user;
 
+import java.util.UUID;
+
 public abstract class User {
-    private long userId;
+    final private UUID userId;
     private String login;
+    private String name;
+    private String lastName;
     private boolean active;
 
-    public User(long userId, String login) {
-        this.userId = userId;
+    public User(String login, String name, String lastName) {
+        this.userId = UUID.randomUUID();
         this.login = login;
         this.active = true;
+        this.name = name;
+        this.lastName = lastName;
     }
 
-    public long getUserId() {
+    public UUID getUserId() {
         return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
     }
 
     public String getLogin() {
@@ -35,11 +37,31 @@ public abstract class User {
         this.active = active;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof User) {
+            User user = (User) obj;
+            return this.userId.equals(user.getUserId());
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
                 ", login='" + login + '\'' +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", active=" + active +
                 '}';
     }

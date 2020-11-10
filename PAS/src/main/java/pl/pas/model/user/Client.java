@@ -1,21 +1,11 @@
 package pl.pas.model.user;
 
 public class Client extends User {
-    private String name;
     private int age;
 
-    public Client(long userId, String login, String name, int age) {
-        super(userId, login);
-        this.name = name;
+    public Client(String login, String name, String lastName, int age) {
+        super(login, name, lastName);
         this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getAge() {
@@ -28,9 +18,8 @@ public class Client extends User {
 
     @Override
     public String toString() {
-        return super.toString() + " Client{" +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        return "Client{" +
+                "age=" + age +
+                "} " + super.toString();
     }
 }

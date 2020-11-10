@@ -8,9 +8,9 @@ import static org.junit.Assert.*;
 public class EmployeeTest {
     @Test
     public void employeeTest() {
-        Employee employee = new Employee(2, "nice_employee", "Anastazjusz", "Meczyziomek");
+        Employee employee = new Employee("nice_employee", "Anastazjusz", "Meczyziomek");
 
-        assertEquals(employee.getUserId(), 2);
+        assertTrue(employee.getUserId().toString().matches("[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}"));
         assertEquals(employee.getLogin(), "nice_employee");
         assertEquals(employee.getName(), "Anastazjusz");
         assertEquals(employee.getLastName(), "Meczyziomek");
