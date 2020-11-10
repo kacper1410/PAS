@@ -9,7 +9,6 @@ public class Administrator extends Employee {
     //TODO
     // Methods for administrator
 
-
     @Override
     public String toString() {
         return super.toString();
