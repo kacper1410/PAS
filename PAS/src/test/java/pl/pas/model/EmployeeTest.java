@@ -17,5 +17,7 @@ public class EmployeeTest {
 
         employee.setActive(false);
         assertFalse(employee.isActive());
+
+        System.out.println(employee);
     }
 }

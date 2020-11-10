@@ -17,5 +17,7 @@ public class AdministratorTest {
 
         administrator.setActive(false);
         assertFalse(administrator.isActive());
+
+        System.out.println(administrator);
     }
 }
