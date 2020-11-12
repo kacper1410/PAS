@@ -2,7 +2,7 @@ package pl.pas.model;
 
 import org.junit.Test;
 
-public class BorrowDate {
+public class BorrowTest {
     @Test
     public void borrowTest() {
 

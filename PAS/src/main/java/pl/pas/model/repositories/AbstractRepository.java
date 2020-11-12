@@ -1,2 +1,4 @@
-package pl.pas.model.repositories;public class AbstractRepository {
+package pl.pas.model.repositories;
+
+public class AbstractRepository {
 }
