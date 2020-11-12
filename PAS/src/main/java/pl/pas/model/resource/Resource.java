@@ -1,14 +1,18 @@
 package pl.pas.model.resource;
 
+import java.util.UUID;
+
 public abstract class Resource {
     private long ISBN;
     private String title;
     private boolean available;
+    final private UUID resourceId;
 
-    public Resource(long ISBN, String title, boolean available) {
+    public Resource(long ISBN, String title) {
         this.ISBN = ISBN;
         this.title = title;
-        this.available = available;
+        this.available = true;
+        this.resourceId = UUID.randomUUID();
     }
 
     public long getISBN() {
@@ -33,6 +37,20 @@ public abstract class Resource {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public UUID getResourceId() {
+        return resourceId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof Resource) {
+            Resource resource = (Resource) obj;
+            return this.resourceId.equals(resource.getResourceId());
+        }
+        return false;
     }
 
     @Override

@@ -2,15 +2,19 @@ package pl.pas.model;
 
 import pl.pas.model.resource.Resource;
 import pl.pas.model.user.Client;
+
 import java.util.Date;
+import java.util.UUID;
 
 public class Borrow {
+    final private UUID borrowId;
     private Client client;
     private Resource resource;
     private Date borrowDate;
     private Date returnDate;
 
     public Borrow(Client client, Resource resource) {
+        this.borrowId = UUID.randomUUID();
         this.client = client;
         this.resource = resource;
         this.borrowDate = new Date();
@@ -47,6 +51,20 @@ public class Borrow {
 
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
+    }
+
+    public UUID getBorrowId() {
+        return borrowId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof Borrow) {
+            Borrow borrow = (Borrow) obj;
+            return this.borrowId.equals(borrow.getBorrowId());
+        }
+        return false;
     }
 
     @Override
