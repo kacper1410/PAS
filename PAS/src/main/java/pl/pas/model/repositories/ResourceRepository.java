@@ -5,10 +5,6 @@ import java.util.UUID;
 
 public class ResourceRepository extends Repository<Resource> {
 
-    ResourceRepository() {
-        super();
-    }
-
     @Override
     public Resource get(UUID uuid) {
         for (Resource res: getAll()) {
