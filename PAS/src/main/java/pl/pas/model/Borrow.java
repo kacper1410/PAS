@@ -21,6 +21,14 @@ public class Borrow {
         this.returnDate = null;
     }
 
+    public Borrow(Client client, Resource resource, Date date) {
+        this.borrowId = UUID.randomUUID();
+        this.client = client;
+        this.resource = resource;
+        this.borrowDate = date;
+        this.returnDate = null;
+    }
+
     public Client getClient() {
         return client;
     }
@@ -55,6 +63,10 @@ public class Borrow {
 
     public UUID getBorrowId() {
         return borrowId;
+    }
+
+    public void endBorrow() {
+        this.returnDate = new Date();
     }
 
     @Override
