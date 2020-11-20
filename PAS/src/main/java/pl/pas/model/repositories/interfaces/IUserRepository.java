@@ -8,6 +8,7 @@ import java.util.UUID;
 public interface IUserRepository {
     boolean addUser(User user);
     User getUser(UUID uuid);
+    User getUser(String login);
     List<User> getAllUsers();
-    boolean updateUser(User oldUser, User newUser);
+    void updateUser(User oldUser, User newUser);
 }
