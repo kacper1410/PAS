@@ -49,11 +49,11 @@ public class Manager {
     }
 
     public boolean updateUser(User oldUser, String login,  String name, String lastName, UserType userType) {
-        return userRepository.update(oldUser.getUserId(), createUser(login, name, lastName, userType));
+        return userRepository.update(oldUser, createUser(login, name, lastName, userType));
     }
 
     public boolean updateUser(User oldUser, String login,  String name, String lastName, int age, UserType userType) {
-        return userRepository.update(oldUser.getUserId(), createUser(login, name, lastName, age, userType));
+        return userRepository.update(oldUser, createUser(login, name, lastName, age, userType));
     }
 
     private User createUser(String login,  String name, String lastName, UserType userType) {
