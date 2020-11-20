@@ -8,7 +8,7 @@ import java.util.Date;
 
 import static org.junit.Assert.*;
 
-public class BorrowDate {
+public class BorrowTest {
     @Test
     public void borrowTest() {
         Client client = new Client("niezly_login", "Igrek", "Iksinski", 23);
