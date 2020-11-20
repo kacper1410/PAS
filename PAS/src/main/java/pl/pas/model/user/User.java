@@ -3,7 +3,7 @@ package pl.pas.model.user;
 import java.util.UUID;
 
 public abstract class User {
-    final private UUID userId;
+    private UUID userId;
     private String login;
     private String name;
     private String lastName;
@@ -15,6 +15,10 @@ public abstract class User {
         this.active = true;
         this.name = name;
         this.lastName = lastName;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 
     public UUID getUserId() {

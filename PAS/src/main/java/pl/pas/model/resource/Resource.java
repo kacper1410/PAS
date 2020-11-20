@@ -6,13 +6,17 @@ public abstract class Resource {
     private long ISBN;
     private String title;
     private boolean available;
-    final private UUID resourceId;
+    private UUID resourceId;
 
     public Resource(long ISBN, String title) {
         this.ISBN = ISBN;
         this.title = title;
         this.available = true;
         this.resourceId = UUID.randomUUID();
+    }
+
+    public void setResourceId(UUID resourceId) {
+        this.resourceId = resourceId;
     }
 
     public long getISBN() {
