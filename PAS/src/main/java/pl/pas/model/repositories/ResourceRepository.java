@@ -23,9 +23,21 @@ public class ResourceRepository extends Repository<Resource> {
     }
 
     @Override
+    public boolean remove(UUID id) {
+        for (int i = 0; i < getRepository().size(); i++) {
+            if (getRepository().get(i).getResourceId().equals(id)) {
+                getRepository().set(i, null);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public boolean update(UUID id, Resource element) {
         if (getRepository().contains(get(id)) && element != null) {
             element.setResourceId(id);
+
             for (int i = 0; i < getRepository().size(); i++) {
                 if (getRepository().get(i).getResourceId().equals(id)) {
                     getRepository().set(i, element);

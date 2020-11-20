@@ -33,6 +33,17 @@ public class UserRepository extends Repository<User> {
     }
 
     @Override
+    public boolean remove(UUID id) {
+        for (int i = 0; i < getRepository().size(); i++) {
+            if (getRepository().get(i).getUserId().equals(id)) {
+                getRepository().set(i, null);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public boolean update(UUID id, User element) {
         if (getRepository().contains(get(id)) && element != null) {
             element.setUserId(id);

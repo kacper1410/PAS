@@ -45,4 +45,6 @@ public abstract class Repository<T> {
     }
 
     public abstract T get(UUID uuid);
+
+    public abstract boolean remove(UUID id);
 }
