@@ -9,5 +9,5 @@ public interface IBorrowRepository {
     boolean addBorrow(Borrow borrow);
     Borrow getBorrow(UUID uuid);
     List<Borrow> getAllBorrows();
-    boolean updateBorrow(Borrow oldBorrow, Borrow newBorrow);
+    void updateBorrow(Borrow oldBorrow, Borrow newBorrow);
 }
