@@ -1,46 +1,35 @@
 package pl.pas.model.repositories;
 
+import pl.pas.model.repositories.interfaces.IResourcesRepository;
 import pl.pas.model.resource.Resource;
+
+import java.util.List;
 import java.util.UUID;
 
-public class ResourceRepository extends Repository<Resource> {
+public class ResourceRepository implements IResourcesRepository {
 
-    public ResourceRepository() {
-        super();
+    @Override
+    public boolean addResource(Resource resource) {
+        return false;
     }
 
     @Override
-    public Resource get(UUID uuid) {
-        for (Resource res: getAll()) {
-            if (res.getResourceId().equals(uuid)) return res;
-        }
+    public Resource getResource(UUID uuid) {
         return null;
     }
 
     @Override
-    public String toString() {
-        return "ResourceRepository{ " + super.toString() + " }";
+    public List<Resource> getAllResources() {
+        return null;
     }
 
     @Override
-    public boolean update(Resource newElem, Resource oldElem) {
-        if (getAll().contains(oldElem) && (newElem != null) && oldElem.getClass().equals(newElem.getClass())) {
-            newElem.setResourceId(oldElem.getResourceId());
-            getAll().set(getAll().indexOf(oldElem), newElem);
-            return true;
-        }
+    public boolean updateResource(Resource oldResource, Resource newResource) {
         return false;
     }
 
     @Override
-    public boolean remove(UUID id) {
-        if (getAll().contains(get(id))) {
-            getAll().remove(get(id));
-            return true;
-        }
+    public boolean deleteResource(UUID uuid) {
         return false;
     }
-
-
-
 }

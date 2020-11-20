@@ -1,44 +1,30 @@
 package pl.pas.model.repositories;
 
 import pl.pas.model.Borrow;
+import pl.pas.model.repositories.interfaces.IBorrowRepository;
 
+import java.util.List;
 import java.util.UUID;
 
-public class BorrowRepository extends Repository<Borrow> {
-
-    public BorrowRepository() {
-        super();
-    }
+public class BorrowRepository implements IBorrowRepository {
 
     @Override
-    public boolean update(Borrow newElem, Borrow oldElem) {
-        if (getAll().contains(oldElem) && (newElem != null) && oldElem.getClass().equals(newElem.getClass())) {
-            newElem.setBorrowId(oldElem.getBorrowId());
-            getAll().set(getAll().indexOf(oldElem), newElem);
-            return true;
-        }
+    public boolean addBorrow(Borrow borrow) {
         return false;
     }
 
-
     @Override
-    public Borrow get(UUID uuid) {
-        for (Borrow borrow: getAll()) {
-            if (borrow.getBorrowId().equals(uuid)) {
-                return borrow;
-            }
-        }
+    public Borrow getBorrow(UUID uuid) {
         return null;
     }
 
     @Override
-    public boolean remove(UUID id) {
-        if (getAll().contains(get(id))) {
-            getAll().remove(get(id));
-            return true;
-        }
-        return false;
+    public List<Borrow> getAllBorrows() {
+        return null;
     }
 
-
+    @Override
+    public boolean updateBorrow(Borrow oldBorrow, Borrow newBorrow) {
+        return false;
+    }
 }
