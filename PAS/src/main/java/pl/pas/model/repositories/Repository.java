@@ -40,7 +40,7 @@ public abstract class Repository<T> {
         return false;
     }
 
-    public ArrayList<T> getRepository() {
+    public ArrayList<T> getAll() {
         return repository;
     }
 

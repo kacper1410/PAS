@@ -11,7 +11,7 @@ public class ResourceRepository extends Repository<Resource> {
 
     @Override
     public Resource get(UUID uuid) {
-        for (Resource res: getRepository()) {
+        for (Resource res: getAll()) {
             if (res.getResourceId().equals(uuid)) return res;
         }
         return null;
@@ -24,9 +24,9 @@ public class ResourceRepository extends Repository<Resource> {
 
     @Override
     public boolean remove(UUID id) {
-        for (int i = 0; i < getRepository().size(); i++) {
-            if (getRepository().get(i).getResourceId().equals(id)) {
-                getRepository().set(i, null);
+        for (int i = 0; i < getAll().size(); i++) {
+            if (getAll().get(i).getResourceId().equals(id)) {
+                getAll().set(i, null);
                 return true;
             }
         }
@@ -35,12 +35,12 @@ public class ResourceRepository extends Repository<Resource> {
 
     @Override
     public boolean update(UUID id, Resource element) {
-        if (getRepository().contains(get(id)) && element != null) {
+        if (getAll().contains(get(id)) && element != null) {
             element.setResourceId(id);
 
-            for (int i = 0; i < getRepository().size(); i++) {
-                if (getRepository().get(i).getResourceId().equals(id)) {
-                    getRepository().set(i, element);
+            for (int i = 0; i < getAll().size(); i++) {
+                if (getAll().get(i).getResourceId().equals(id)) {
+                    getAll().set(i, element);
                     return true;
                 }
             }

@@ -11,7 +11,7 @@ public class UserRepository extends Repository<User> {
 
     @Override
     public User get(UUID uuid) {
-        for (User user: this.getRepository()) {
+        for (User user: this.getAll()) {
             if (user.getUserId().equals(uuid)) return user;
         }
         return null;
@@ -34,9 +34,9 @@ public class UserRepository extends Repository<User> {
 
     @Override
     public boolean remove(UUID id) {
-        for (int i = 0; i < getRepository().size(); i++) {
-            if (getRepository().get(i).getUserId().equals(id)) {
-                getRepository().set(i, null);
+        for (int i = 0; i < getAll().size(); i++) {
+            if (getAll().get(i).getUserId().equals(id)) {
+                getAll().set(i, null);
                 return true;
             }
         }
@@ -45,11 +45,11 @@ public class UserRepository extends Repository<User> {
 
     @Override
     public boolean update(UUID id, User element) {
-        if (getRepository().contains(get(id)) && element != null) {
+        if (getAll().contains(get(id)) && element != null) {
             element.setUserId(id);
-            for (int i = 0; i < getRepository().size(); i++) {
-                if (getRepository().get(i).getUserId().equals(id)) {
-                    getRepository().set(i, element);
+            for (int i = 0; i < getAll().size(); i++) {
+                if (getAll().get(i).getUserId().equals(id)) {
+                    getAll().set(i, element);
                     return true;
                 }
             }
@@ -58,14 +58,14 @@ public class UserRepository extends Repository<User> {
     }
 
     public User get(String login) {
-        for (User user: this.getRepository()) {
+        for (User user: this.getAll()) {
             if (user.getLogin().equals(login)) return user;
         }
         return null;
     }
 
     public boolean setActive(User user, boolean active) {
-        if (user != null  && getRepository().contains(user)) {
+        if (user != null  && getAll().contains(user)) {
             user.setActive(active);
             return update(user.getUserId(), user);
         }
