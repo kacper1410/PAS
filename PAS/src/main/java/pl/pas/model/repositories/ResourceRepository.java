@@ -5,6 +5,10 @@ import java.util.UUID;
 
 public class ResourceRepository extends Repository<Resource> {
 
+    public ResourceRepository() {
+        super();
+    }
+
     @Override
     public Resource get(UUID uuid) {
         for (Resource res: getAll()) {
@@ -19,29 +23,24 @@ public class ResourceRepository extends Repository<Resource> {
     }
 
     @Override
-    public boolean remove(UUID id) {
-        for (int i = 0; i < getAll().size(); i++) {
-            if (getAll().get(i).getResourceId().equals(id)) {
-                getAll().set(i, null);
-                return true;
-            }
+    public boolean update(Resource newElem, Resource oldElem) {
+        if (getAll().contains(oldElem) && (newElem != null) && oldElem.getClass().equals(newElem.getClass())) {
+            newElem.setResourceId(oldElem.getResourceId());
+            getAll().set(getAll().indexOf(oldElem), newElem);
+            return true;
         }
         return false;
     }
 
     @Override
-    public boolean update(UUID id, Resource element) {
-        if (getAll().contains(get(id)) && element != null) {
-            element.setResourceId(id);
-
-            for (int i = 0; i < getAll().size(); i++) {
-                if (getAll().get(i).getResourceId().equals(id)) {
-                    getAll().set(i, element);
-                    return true;
-                }
-            }
+    public boolean remove(UUID id) {
+        if (getAll().contains(get(id))) {
+            getAll().remove(get(id));
+            return true;
         }
         return false;
     }
+
+
 
 }

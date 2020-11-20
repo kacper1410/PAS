@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Borrow {
-    final private UUID borrowId;
+    private UUID borrowId;
     private Client client;
     private Resource resource;
     private Date borrowDate;
@@ -27,6 +27,10 @@ public class Borrow {
         this.resource = resource;
         this.borrowDate = date;
         this.returnDate = null;
+    }
+
+    public void setBorrowId(UUID borrowId) {
+        this.borrowId = borrowId;
     }
 
     public Client getClient() {

@@ -26,19 +26,7 @@ public abstract class Repository<T> {
         return repository.remove(element);
     }
 
-    public T get(int index) {
-        return repository.get(index);
-    }
-
-    public abstract boolean update(UUID id, T element);
-
-    public boolean remove(int index) {
-        if (index >= 0 && index < repository.size()) {
-            repository.remove(index);
-            return true;
-        }
-        return false;
-    }
+    public abstract boolean update(T newElem, T oldElem);
 
     public ArrayList<T> getAll() {
         return repository;
