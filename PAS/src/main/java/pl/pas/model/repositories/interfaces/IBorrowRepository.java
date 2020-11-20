@@ -8,6 +8,9 @@ import java.util.UUID;
 public interface IBorrowRepository {
     boolean addBorrow(Borrow borrow);
     Borrow getBorrow(UUID uuid);
+    List<Borrow> getBorrowsByUser(UUID uuid);
+    List<Borrow> getBorrowsByResource(UUID uuid);
     List<Borrow> getAllBorrows();
     void updateBorrow(Borrow oldBorrow, Borrow newBorrow);
+    void endBorrow(UUID uuid);
 }
