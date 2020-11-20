@@ -10,23 +10,29 @@ public abstract class Repository<T> {
         repository = new ArrayList<>();
     }
 
+    @Override
+    public String toString() {
+        return repository.toString();
+    }
+
     public boolean add(T element) {
         if (element != null) {
-            repository.add(element);
-            return true;
+            return repository.add(element);
         }
         return false;
     }
 
     public boolean remove(T element) {
-        if (element != null) {
-            repository.remove(element);
-            return true;
-        }
-        return false;
+        return repository.remove(element);
     }
 
-    public boolean removeByIndex(int index) {
+    public T get(int index) {
+        return repository.get(index);
+    }
+
+    public abstract boolean update(UUID id, T element);
+
+    public boolean remove(int index) {
         if (index >= 0 && index < repository.size()) {
             repository.remove(index);
             return true;
@@ -38,5 +44,5 @@ public abstract class Repository<T> {
         return repository;
     }
 
-    public abstract T getByUUID(UUID uuid);
+    public abstract T get(UUID uuid);
 }
