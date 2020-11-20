@@ -16,7 +16,7 @@ public abstract class Repository<T> {
     }
 
     public boolean add(T element) {
-        if (element != null) {
+        if (element != null && !repository.contains(element)) {
             return repository.add(element);
         }
         return false;
