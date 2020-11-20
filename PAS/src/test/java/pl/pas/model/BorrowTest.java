@@ -16,8 +16,8 @@ public class BorrowTest {
         Borrow borrow = new Borrow(client, book);
 
         assertTrue(borrow.getBorrowId().toString().matches("[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}"));
-        assertEquals(borrow.getClient(), client);
-        assertEquals(borrow.getResource(), book);
+        assertEquals(client, borrow.getClient());
+        assertEquals(book, borrow.getResource());
         assertNull(borrow.getReturnDate());
 
         borrow.endBorrow();

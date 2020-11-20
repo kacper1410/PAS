@@ -8,6 +8,11 @@ public class Book extends Resource {
         this.publishYear = publishYear;
     }
 
+    public Book() {
+        super(123123L, "A");
+
+    }
+
     public int getPublishYear() {
         return publishYear;
     }

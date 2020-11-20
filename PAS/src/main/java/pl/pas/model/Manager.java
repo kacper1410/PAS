@@ -8,7 +8,7 @@ import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
 import pl.pas.model.user.User;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Manager {
@@ -36,7 +36,7 @@ public class Manager {
         return userRepository.add(createUser(login, name, lastName, age, userType));
     }
 
-    public ArrayList<User> getAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.getAll();
     }
 
