@@ -1,10 +1,12 @@
 package pl.pas.model.managers;
 
+import pl.pas.model.entities.Borrow;
 import pl.pas.model.repositories.BorrowRepository;
 import pl.pas.model.repositories.ResourceRepository;
 import pl.pas.model.repositories.UserRepository;
 import pl.pas.model.entities.user.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,6 +40,46 @@ public class UserManager {
 
     public User getUser(String login) {
         return userRepository.getUser(login);
+    }
+
+    public List<User> getAllClients() {
+        ArrayList<User> clients = new ArrayList<>();
+        for (User user : userRepository.getAllUsers()) {
+            if (user instanceof Client) {
+                clients.add(user);
+            }
+        }
+        return clients;
+    }
+
+    public List<User> getAllEmployees() {
+        ArrayList<User> employees = new ArrayList<>();
+        for (User user : userRepository.getAllUsers()) {
+            if (user instanceof Employee) {
+                employees.add(user);
+            }
+        }
+        return employees;
+    }
+
+    public List<User> getAllAdministrators() {
+        ArrayList<User> administrators = new ArrayList<>();
+        for (User user : userRepository.getAllUsers()) {
+            if (user instanceof Administrator) {
+                administrators.add(user);
+            }
+        }
+        return administrators;
+    }
+
+    public List<User> getAllActiveUsers() {
+        ArrayList<User> users = new ArrayList<>();
+        for (User user : userRepository.getAllUsers()) {
+            if (user.isActive()) {
+                users.add(user);
+            }
+        }
+        return users;
     }
 
     public boolean updateUser(User oldUser, String login,  String name, String lastName, UserType userType) {
