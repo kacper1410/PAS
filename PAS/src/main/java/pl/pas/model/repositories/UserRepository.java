@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class UserRepository implements IUserRepository {
-
     private List<User> users;
 
     public UserRepository() {

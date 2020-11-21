@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class BorrowRepository implements IBorrowRepository {
-    List<Borrow> borrows;
+    private List<Borrow> borrows;
 
     public BorrowRepository() {
         borrows = new ArrayList<>();

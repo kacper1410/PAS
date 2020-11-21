@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class ResourceRepository implements IResourceRepository {
-    List<Resource> resources;
+    private List<Resource> resources;
 
     public ResourceRepository() {
         resources = new ArrayList<>();
