@@ -1,33 +1,49 @@
 package pl.pas.model.managers;
 
-import pl.pas.model.entities.Borrow;
-import pl.pas.model.repositories.BorrowRepository;
-import pl.pas.model.repositories.ResourceRepository;
-import pl.pas.model.repositories.UserRepository;
 import pl.pas.model.entities.user.*;
+import pl.pas.model.repositories.interfaces.IBorrowRepository;
+import pl.pas.model.repositories.interfaces.IResourceRepository;
+import pl.pas.model.repositories.interfaces.IUserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class UserManager {
-    UserRepository userRepository;
-    ResourceRepository resourceRepository;
-    BorrowRepository borrowRepository;
+    IUserRepository userRepository;
+    IResourceRepository resourceRepository;
+    IBorrowRepository borrowRepository;
+    public final static int LOGIN_FIELD = 0;
+    public final static int NAME_FIELD = 1;
+    public final static int LASTNAME_FIELD = 2;
+    public final static int AGE_FIELD = 3;
 
-    public UserManager(UserRepository userRepository, ResourceRepository resourceRepository, BorrowRepository borrowRepository) {
+    public UserManager(IUserRepository userRepository, IResourceRepository resourceRepository, IBorrowRepository borrowRepository) {
         this.userRepository = userRepository;
         this.resourceRepository = resourceRepository;
         this.borrowRepository = borrowRepository;
     }
 
 
-    public boolean addUser(String login, String name, String lastName, UserType userType) {
-        return userRepository.addUser(createUser(login, name, lastName, userType), UUID.randomUUID());
+    public boolean addAdministrator(String login, String name, String lastName) {
+        if (login == null || name == null || lastName == null) {
+            return false;
+        }
+        return userRepository.addUser(new Administrator(login, name, lastName), UUID.randomUUID());
     }
 
-    public boolean addUser(String login, String name, String lastName, int age, UserType userType) {
-        return userRepository.addUser(createUser(login, name, lastName, age, userType), UUID.randomUUID());
+    public boolean addEmployee(String login, String name, String lastName) {
+        if (login == null || name == null || lastName == null) {
+            return false;
+        }
+        return userRepository.addUser(new Employee(login, name, lastName), UUID.randomUUID());
+    }
+
+    public boolean addClient(String login, String name, String lastName, int age) {
+        if (login == null || name == null || lastName == null || age > 0) {
+            return false;
+        }
+        return userRepository.addUser(new Client(login, name, lastName, age), UUID.randomUUID());
     }
 
     public List<User> getAllUsers() {
@@ -82,48 +98,30 @@ public class UserManager {
         return users;
     }
 
-    public boolean updateUser(User oldUser, String login,  String name, String lastName, UserType userType) {
-        User newUser = createUser(login, name, lastName, userType);
-        if (newUser == null && userRepository.getUser(oldUser.getUserId()) == null) {
-            return false;
-        }
-        userRepository.updateUser(oldUser, newUser);
-        return true;
-    }
-
-    public boolean updateUser(User oldUser, String login,  String name, String lastName, int age, UserType userType) {
-        User newUser = createUser(login, name, lastName, age, userType);
-        if (newUser == null && userRepository.getUser(oldUser.getUserId()) == null) {
-            return false;
-        }
-        userRepository.updateUser(oldUser, newUser);
-        return true;
-    }
-
-    private User createUser(String login,  String name, String lastName, UserType userType) {
-        if (userType == UserType.CLIENT) {
-            return null;
-        }
-
-        return createUser(login, name, lastName, 1, userType);
-    }
-
-    private User createUser(String login,  String name, String lastName, int age, UserType userType) {
+    public boolean updateClient(User oldUser, String login, String name, String lastName, int age) {
         if (login == null || name == null || lastName == null || age > 0) {
-            return null;
+            return false;
         }
-
-        switch (userType) {
-            case CLIENT:
-                return new Client(login, name, lastName, age);
-            case EMPLOYEE:
-                return new Employee(login, name, lastName);
-            case ADMINISTRATOR:
-                return new Administrator(login, name, lastName);
-        }
-
-        return null;
+        userRepository.updateUser(oldUser, new Client(login, name, lastName, age));
+        return true;
     }
+
+    public boolean updateEmployee(User oldUser, String login, String name, String lastName) {
+        if (login == null || name == null || lastName == null) {
+            return false;
+        }
+        userRepository.updateUser(oldUser, new Employee(login, name, lastName));
+        return true;
+    }
+
+    public boolean updateAdministrator(User oldUser, String login, String name, String lastName) {
+        if (login == null || name == null || lastName == null) {
+            return false;
+        }
+        userRepository.updateUser(oldUser, new Administrator(login, name, lastName));
+        return true;
+    }
+
 
 
 
