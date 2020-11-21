@@ -1,7 +1,7 @@
 package pl.pas.model.repositories;
 
 import pl.pas.model.repositories.interfaces.IUserRepository;
-import pl.pas.model.user.User;
+import pl.pas.model.entities.user.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

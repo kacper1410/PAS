@@ -1,4 +1,4 @@
-package pl.pas.model.resource;
+package pl.pas.model.entities.resource;
 
 import java.util.UUID;
 

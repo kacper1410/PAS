@@ -1,6 +1,6 @@
 package pl.pas.model.repositories.interfaces;
 
-import pl.pas.model.Borrow;
+import pl.pas.model.entities.Borrow;
 
 import java.util.List;
 import java.util.UUID;

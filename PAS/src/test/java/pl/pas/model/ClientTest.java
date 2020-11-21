@@ -1,7 +1,7 @@
 package pl.pas.model;
 
 import org.junit.Test;
-import pl.pas.model.user.Client;
+import pl.pas.model.entities.user.Client;
 
 import static org.junit.Assert.*;
 

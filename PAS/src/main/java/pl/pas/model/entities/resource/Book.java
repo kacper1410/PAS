@@ -1,4 +1,4 @@
-package pl.pas.model.resource;
+package pl.pas.model.entities.resource;
 
 public class Book extends Resource {
     private int publishYear;

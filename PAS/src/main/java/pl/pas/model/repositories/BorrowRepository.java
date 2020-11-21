@@ -1,6 +1,6 @@
 package pl.pas.model.repositories;
 
-import pl.pas.model.Borrow;
+import pl.pas.model.entities.Borrow;
 import pl.pas.model.repositories.interfaces.IBorrowRepository;
 
 import java.util.ArrayList;

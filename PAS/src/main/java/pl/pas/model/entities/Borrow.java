@@ -1,7 +1,7 @@
-package pl.pas.model;
+package pl.pas.model.entities;
 
-import pl.pas.model.resource.Resource;
-import pl.pas.model.user.Client;
+import pl.pas.model.entities.resource.Resource;
+import pl.pas.model.entities.user.Client;
 
 import java.util.Date;
 import java.util.UUID;

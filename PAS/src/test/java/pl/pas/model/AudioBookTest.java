@@ -1,7 +1,7 @@
 package pl.pas.model;
 
 import org.junit.Test;
-import pl.pas.model.resource.AudioBook;
+import pl.pas.model.entities.resource.AudioBook;
 
 import static org.junit.Assert.*;
 

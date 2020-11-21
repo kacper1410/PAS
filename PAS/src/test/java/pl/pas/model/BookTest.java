@@ -1,7 +1,7 @@
 package pl.pas.model;
 
 import org.junit.Test;
-import pl.pas.model.resource.Book;
+import pl.pas.model.entities.resource.Book;
 import static org.junit.Assert.*;
 
 public class BookTest {

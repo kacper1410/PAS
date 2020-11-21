@@ -1,8 +1,8 @@
 package pl.pas.model.repositories;
 
 import org.junit.Test;
-import pl.pas.model.resource.AudioBook;
-import pl.pas.model.resource.Book;
+import pl.pas.model.entities.resource.AudioBook;
+import pl.pas.model.entities.resource.Book;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;

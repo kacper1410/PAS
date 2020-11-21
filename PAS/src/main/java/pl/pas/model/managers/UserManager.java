@@ -1,59 +1,61 @@
-package pl.pas.model;
+package pl.pas.model.managers;
 
 import pl.pas.model.repositories.BorrowRepository;
 import pl.pas.model.repositories.ResourceRepository;
 import pl.pas.model.repositories.UserRepository;
-import pl.pas.model.user.Administrator;
-import pl.pas.model.user.Client;
-import pl.pas.model.user.Employee;
-import pl.pas.model.user.User;
+import pl.pas.model.entities.user.*;
 
 import java.util.List;
 import java.util.UUID;
 
-public class Manager {
+public class UserManager {
     UserRepository userRepository;
     ResourceRepository resourceRepository;
     BorrowRepository borrowRepository;
 
-    public enum UserType {
-        CLIENT,
-        EMPLOYEE,
-        ADMINISTRATOR
+    public UserManager(UserRepository userRepository, ResourceRepository resourceRepository, BorrowRepository borrowRepository) {
+        this.userRepository = userRepository;
+        this.resourceRepository = resourceRepository;
+        this.borrowRepository = borrowRepository;
     }
 
-    public Manager() {
-        this.userRepository = new UserRepository();
-        this.resourceRepository = new ResourceRepository();
-        this.borrowRepository = new BorrowRepository();
-    }
 
     public boolean addUser(String login, String name, String lastName, UserType userType) {
-        return userRepository.add(createUser(login, name, lastName, userType));
+        return userRepository.addUser(createUser(login, name, lastName, userType));
     }
 
     public boolean addUser(String login, String name, String lastName, int age, UserType userType) {
-        return userRepository.add(createUser(login, name, lastName, age, userType));
+        return userRepository.addUser(createUser(login, name, lastName, age, userType));
     }
 
     public List<User> getAllUsers() {
-        return userRepository.getAll();
+        return userRepository.getAllUsers();
     }
 
     public User getUser(UUID id) {
-        return userRepository.get(id);
+        return userRepository.getUser(id);
     }
 
     public User getUser(String login) {
-        return userRepository.get(login);
+        return userRepository.getUser(login);
     }
 
     public boolean updateUser(User oldUser, String login,  String name, String lastName, UserType userType) {
-        return userRepository.update(oldUser, createUser(login, name, lastName, userType));
+        User newUser = createUser(login, name, lastName, userType);
+        if (newUser == null && userRepository.getUser(oldUser.getUserId()) == null) {
+            return false;
+        }
+        userRepository.updateUser(oldUser, newUser);
+        return true;
     }
 
     public boolean updateUser(User oldUser, String login,  String name, String lastName, int age, UserType userType) {
-        return userRepository.update(oldUser, createUser(login, name, lastName, age, userType));
+        User newUser = createUser(login, name, lastName, age, userType);
+        if (newUser == null && userRepository.getUser(oldUser.getUserId()) == null) {
+            return false;
+        }
+        userRepository.updateUser(oldUser, newUser);
+        return true;
     }
 
     private User createUser(String login,  String name, String lastName, UserType userType) {
@@ -61,11 +63,11 @@ public class Manager {
             return null;
         }
 
-        return createUser(login, name, lastName, 0, userType);
+        return createUser(login, name, lastName, 1, userType);
     }
 
     private User createUser(String login,  String name, String lastName, int age, UserType userType) {
-        if (login == null || name == null || lastName == null) {
+        if (login == null || name == null || lastName == null || age > 0) {
             return null;
         }
 
