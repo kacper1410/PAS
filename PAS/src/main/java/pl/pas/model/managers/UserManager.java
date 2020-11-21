@@ -51,10 +51,16 @@ public class UserManager {
     }
 
     public User getUser(UUID id) {
+        if (id == null) {
+            return null;
+        }
         return userRepository.getUser(id);
     }
 
     public User getUser(String login) {
+        if (login == null) {
+            return null;
+        }
         return userRepository.getUser(login);
     }
 
@@ -99,7 +105,8 @@ public class UserManager {
     }
 
     public boolean updateClient(User oldUser, String login, String name, String lastName, int age) {
-        if (login == null || name == null || lastName == null || age > 0) {
+        if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
+                || login == null || name == null || lastName == null || age > 0) {
             return false;
         }
         userRepository.updateUser(oldUser, new Client(login, name, lastName, age));
@@ -107,7 +114,8 @@ public class UserManager {
     }
 
     public boolean updateEmployee(User oldUser, String login, String name, String lastName) {
-        if (login == null || name == null || lastName == null) {
+        if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
+                || login == null || name == null || lastName == null) {
             return false;
         }
         userRepository.updateUser(oldUser, new Employee(login, name, lastName));
@@ -115,14 +123,28 @@ public class UserManager {
     }
 
     public boolean updateAdministrator(User oldUser, String login, String name, String lastName) {
-        if (login == null || name == null || lastName == null) {
+        if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
+                || login == null || name == null || lastName == null ) {
             return false;
         }
         userRepository.updateUser(oldUser, new Administrator(login, name, lastName));
         return true;
     }
 
+    public boolean activateUser(User user) {
+        if (user == null) {
+            return false;
+        }
+        user.setActive(true);
+        return true;
+    }
 
-
+    public boolean deactivateUser(User user) {
+        if (user == null) {
+            return false;
+        }
+        user.setActive(false);
+        return true;
+    }
 
 }
