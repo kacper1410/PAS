@@ -1,4 +1,4 @@
-package pl.pas.model;
+package pl.pas.model.entities;
 
 import org.junit.Test;
 import pl.pas.model.entities.resource.Book;
