@@ -1,6 +1,6 @@
 package pl.pas.model.repositories.interfaces;
 
-import pl.pas.model.resource.Resource;
+import pl.pas.model.entities.resource.Resource;
 
 import java.util.List;
 import java.util.UUID;

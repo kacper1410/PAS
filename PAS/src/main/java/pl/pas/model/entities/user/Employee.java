@@ -1,4 +1,4 @@
-package pl.pas.model.user;
+package pl.pas.model.entities.user;
 
 public class Employee extends User {
 

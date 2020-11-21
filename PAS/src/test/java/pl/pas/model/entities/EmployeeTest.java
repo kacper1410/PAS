@@ -1,7 +1,7 @@
-package pl.pas.model;
+package pl.pas.model.entities;
 
 import org.junit.Test;
-import pl.pas.model.user.Employee;
+import pl.pas.model.entities.user.Employee;
 
 import static org.junit.Assert.*;
 

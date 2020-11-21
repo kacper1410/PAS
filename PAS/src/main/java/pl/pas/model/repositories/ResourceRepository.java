@@ -1,7 +1,7 @@
 package pl.pas.model.repositories;
 
 import pl.pas.model.repositories.interfaces.IResourcesRepository;
-import pl.pas.model.resource.Resource;
+import pl.pas.model.entities.resource.Resource;
 
 import java.util.ArrayList;
 import java.util.List;

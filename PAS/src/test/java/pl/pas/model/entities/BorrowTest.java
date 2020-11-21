@@ -1,8 +1,9 @@
-package pl.pas.model;
+package pl.pas.model.entities;
 
 import org.junit.Test;
-import pl.pas.model.resource.Book;
-import pl.pas.model.user.Client;
+import pl.pas.model.entities.Borrow;
+import pl.pas.model.entities.resource.Book;
+import pl.pas.model.entities.user.Client;
 
 import java.util.Date;
 
