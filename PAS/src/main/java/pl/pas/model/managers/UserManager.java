@@ -29,21 +29,21 @@ public class UserManager {
         if (login == null || name == null || lastName == null) {
             return false;
         }
-        return userRepository.addUser(new Administrator(login, name, lastName));
+        return userRepository.addUser(new Administrator(login, name, lastName), UUID.randomUUID());
     }
 
     public boolean addEmployee(String login, String name, String lastName) {
         if (login == null || name == null || lastName == null) {
             return false;
         }
-        return userRepository.addUser(new Employee(login, name, lastName));
+        return userRepository.addUser(new Employee(login, name, lastName), UUID.randomUUID());
     }
 
     public boolean addClient(String login, String name, String lastName, int age) {
         if (login == null || name == null || lastName == null || age > 0) {
             return false;
         }
-        return userRepository.addUser(new Client(login, name, lastName, age));
+        return userRepository.addUser(new Client(login, name, lastName, age), UUID.randomUUID());
     }
 
     public List<User> getAllUsers() {
