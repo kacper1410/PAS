@@ -10,7 +10,6 @@ public class AdministratorTest {
     public void administratorTest() {
         Administrator administrator = new Administrator("nice_administrator", "Anastazjusz", "Meczyziomek");
 
-        assertTrue(administrator.getUserId().toString().matches("[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}"));
         assertEquals("nice_administrator", administrator.getLogin());
         assertEquals("Anastazjusz", administrator.getName());
         assertEquals("Meczyziomek", administrator.getLastName());

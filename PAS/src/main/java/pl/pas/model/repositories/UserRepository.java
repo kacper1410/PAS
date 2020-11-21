@@ -1,7 +1,8 @@
 package pl.pas.model.repositories;
 
-import pl.pas.model.repositories.interfaces.IUserRepository;
 import pl.pas.model.entities.user.User;
+import pl.pas.model.repositories.interfaces.IUserRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -42,7 +43,12 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public void updateUser(User oldUser, User newUser) {
-        users.set(users.indexOf(oldUser), newUser);
+    public void updateUser(UUID uuid, User newUser) {
+        for (User u : users) {
+            if (u.getUserId().equals(uuid)) {
+                newUser.setUserId(uuid);
+                users.set(users.indexOf(u), newUser);
+            }
+        }
     }
 }

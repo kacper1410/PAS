@@ -109,7 +109,7 @@ public class UserManager {
                 || login == null || name == null || lastName == null || age > 0) {
             return false;
         }
-        userRepository.updateUser(oldUser, new Client(login, name, lastName, age));
+        userRepository.updateUser(oldUser.getUserId(), new Client(login, name, lastName, age));
         return true;
     }
 
@@ -118,7 +118,7 @@ public class UserManager {
                 || login == null || name == null || lastName == null) {
             return false;
         }
-        userRepository.updateUser(oldUser, new Employee(login, name, lastName));
+        userRepository.updateUser(oldUser.getUserId(), new Employee(login, name, lastName));
         return true;
     }
 
@@ -127,7 +127,7 @@ public class UserManager {
                 || login == null || name == null || lastName == null ) {
             return false;
         }
-        userRepository.updateUser(oldUser, new Administrator(login, name, lastName));
+        userRepository.updateUser(oldUser.getUserId(), new Administrator(login, name, lastName));
         return true;
     }
 

@@ -78,7 +78,7 @@ public class Borrow {
         if (this == obj) return true;
         if (obj instanceof Borrow) {
             Borrow borrow = (Borrow) obj;
-            return this.borrowId.equals(borrow.getBorrowId());
+            return this.borrowId.equals(borrow.getBorrowId()) && this.client.equals(borrow.getClient()) && this.resource.equals(borrow.getResource());
         }
         return false;
     }

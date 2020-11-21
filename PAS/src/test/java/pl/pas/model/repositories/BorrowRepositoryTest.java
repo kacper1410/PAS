@@ -16,8 +16,8 @@ public class BorrowRepositoryTest {
         BorrowRepository borrowRepository = new BorrowRepository();
         ResourceRepository resourceRepository = new ResourceRepository();
         UserRepository userRepository = new UserRepository();
-        Book book = new Book(432345345, "Book", 2000);
-        AudioBook audioBook = new AudioBook(432345345, "Audio Book", 200);
+        Book book = new Book(432345345, "Book", "Author", 2000);
+        AudioBook audioBook = new AudioBook(432345345, "Audio Book", "Author", 200);
         resourceRepository.addResource(book, UUID.randomUUID());
         resourceRepository.addResource(audioBook, UUID.randomUUID());
         Client client = new Client("cLogin", "Kacper", "Swiercz", 21);

@@ -54,7 +54,7 @@ public abstract class User {
         if (this == obj) return true;
         if (obj instanceof User) {
             User user = (User) obj;
-            return this.userId.equals(user.getUserId());
+            return this.userId.equals(user.getUserId()) && this.login.equals(user.getLogin());
         }
         return false;
     }

@@ -2,6 +2,7 @@ package pl.pas.model.repositories;
 
 import pl.pas.model.entities.Borrow;
 import pl.pas.model.repositories.interfaces.IBorrowRepository;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -56,8 +57,13 @@ public class BorrowRepository implements IBorrowRepository {
     }
 
     @Override
-    public void updateBorrow(Borrow oldBorrow, Borrow newBorrow) {
-        borrows.set(borrows.indexOf(oldBorrow), newBorrow);
+    public void updateBorrow(UUID uuid, Borrow newBorrow) {
+        for (Borrow b : borrows) {
+            if (b.getBorrowId().equals(uuid)) {
+                newBorrow.setBorrowId(uuid);
+                borrows.set(borrows.indexOf(b), newBorrow);
+            }
+        }
     }
 
     @Override

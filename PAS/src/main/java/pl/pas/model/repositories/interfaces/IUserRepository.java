@@ -13,5 +13,5 @@ public interface IUserRepository {
     User getUser(UUID uuid);
     User getUser(String login);
     List<User> getAllUsers();
-    void updateUser(User oldUser, User newUser);
+    void updateUser(UUID uuid, User newUser);
 }

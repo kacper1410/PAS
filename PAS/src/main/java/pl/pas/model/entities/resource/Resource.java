@@ -37,6 +37,14 @@ public abstract class Resource {
         this.title = title;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public boolean isAvailable() {
         return available;
     }
@@ -54,7 +62,7 @@ public abstract class Resource {
         if (this == obj) return true;
         if (obj instanceof Resource) {
             Resource resource = (Resource) obj;
-            return this.resourceId.equals(resource.getResourceId());
+            return this.resourceId.equals(resource.getResourceId()) && this.ISBN == resource.ISBN;
         }
         return false;
     }

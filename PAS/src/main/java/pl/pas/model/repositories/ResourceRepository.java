@@ -37,8 +37,13 @@ public class ResourceRepository implements IResourceRepository {
     }
 
     @Override
-    public void updateResource(Resource oldResource, Resource newResource) {
-        resources.set(resources.indexOf(oldResource), newResource);
+    public void updateResource(UUID uuid, Resource newResource) {
+        for (Resource r : resources) {
+            if (r.getResourceId().equals(uuid)) {
+                newResource.setResourceId(uuid);
+                resources.set(resources.indexOf(r), newResource);
+            }
+        }
     }
 
     @Override

@@ -6,17 +6,16 @@ import pl.pas.model.entities.resource.Book;
 
 import java.util.UUID;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class ResourceRepositoryTest {
     @Test
     public void repositoryTest() {
         ResourceRepository resourceRepository = new ResourceRepository();
-        Book book = new Book(432345345, "Book", 2000);
-        Book newBook = new Book(432345345, "New Book", 2005);
-        AudioBook audioBook = new AudioBook(432345345, "Audio Book", 200);
-        AudioBook newAudioBook = new AudioBook(432345345, "New Audio Book", 205);
+        Book book = new Book(432345345, "Book", "Author", 2000);
+        Book newBook = new Book(3232, "New Book", "Author", 2005);
+        AudioBook audioBook = new AudioBook(432345345, "Audio Book", "Author", 200);
+        AudioBook newAudioBook = new AudioBook(32323, "New Audio Book", "Author", 205);
 
         resourceRepository.addResource(book, UUID.randomUUID());
         resourceRepository.addResource(audioBook, UUID.randomUUID());
@@ -26,12 +25,12 @@ public class ResourceRepositoryTest {
 
         assertEquals(2, resourceRepository.getAllResources().size());
 
-        resourceRepository.updateResource(book, newBook);
-        assertNull(resourceRepository.getResource(book.getResourceId()));
+        resourceRepository.updateResource(book.getResourceId(), newBook);
+        assertNotEquals(book, resourceRepository.getResource(book.getResourceId()));
         assertEquals(newBook, resourceRepository.getResource(newBook.getResourceId()));
 
-        resourceRepository.updateResource(audioBook, newAudioBook);
-        assertNull(resourceRepository.getResource(audioBook.getResourceId()));
+        resourceRepository.updateResource(audioBook.getResourceId(), newAudioBook);
+        assertNotEquals(audioBook, resourceRepository.getResource(audioBook.getResourceId()));
         assertEquals(newAudioBook, resourceRepository.getResource(newAudioBook.getResourceId()));
 
         resourceRepository.deleteResource(newBook.getResourceId());

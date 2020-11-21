@@ -12,6 +12,6 @@ public interface IResourceRepository {
     boolean addResource(Resource resource, UUID uuid);
     Resource getResource(UUID uuid);
     List<Resource> getAllResources();
-    void updateResource(Resource oldResource, Resource newResource);
+    void updateResource(UUID uuid, Resource newResource);
     boolean deleteResource(UUID uuid);
 }
