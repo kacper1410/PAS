@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IBorrowRepository {
-    boolean addBorrow(Borrow borrow);
+    // TODO
+    // UUID in addBorrow method
+
+    boolean addBorrow(Borrow borrow, UUID uuid);
     Borrow getBorrow(UUID uuid);
     List<Borrow> getBorrowsByUser(UUID uuid);
     List<Borrow> getBorrowsByResource(UUID uuid);

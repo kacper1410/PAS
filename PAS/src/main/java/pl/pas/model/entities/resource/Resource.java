@@ -12,7 +12,7 @@ public abstract class Resource {
         this.ISBN = ISBN;
         this.title = title;
         this.available = true;
-        this.resourceId = UUID.randomUUID();
+        this.resourceId = null;
     }
 
     public void setResourceId(UUID resourceId) {

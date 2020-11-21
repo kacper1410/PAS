@@ -14,7 +14,7 @@ public class Borrow {
     private Date returnDate;
 
     public Borrow(Client client, Resource resource) {
-        this.borrowId = UUID.randomUUID();
+        this.borrowId = null;
         this.client = client;
         this.resource = resource;
         this.borrowDate = new Date();

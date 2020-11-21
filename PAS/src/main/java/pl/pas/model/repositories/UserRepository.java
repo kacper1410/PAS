@@ -15,7 +15,8 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public boolean addUser(User user) {
+    public boolean addUser(User user, UUID uuid) {
+        user.setUserId(uuid);
         return users.add(user);
     }
 

@@ -2,7 +2,6 @@ package pl.pas.model.repositories;
 
 import pl.pas.model.entities.Borrow;
 import pl.pas.model.repositories.interfaces.IBorrowRepository;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +15,8 @@ public class BorrowRepository implements IBorrowRepository {
     }
 
     @Override
-    public boolean addBorrow(Borrow borrow) {
+    public boolean addBorrow(Borrow borrow, UUID uuid) {
+        borrow.setBorrowId(uuid);
         return borrows.add(borrow);
     }
 

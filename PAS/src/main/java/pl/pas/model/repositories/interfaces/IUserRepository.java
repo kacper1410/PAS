@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IUserRepository {
-    boolean addUser(User user);
+    // TODO
+    // UUID in addUser method
+
+    boolean addUser(User user, UUID uuid);
     User getUser(UUID uuid);
     User getUser(String login);
     List<User> getAllUsers();

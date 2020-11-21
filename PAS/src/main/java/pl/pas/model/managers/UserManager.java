@@ -23,11 +23,11 @@ public class UserManager {
 
 
     public boolean addUser(String login, String name, String lastName, UserType userType) {
-        return userRepository.addUser(createUser(login, name, lastName, userType));
+        return userRepository.addUser(createUser(login, name, lastName, userType), UUID.randomUUID());
     }
 
     public boolean addUser(String login, String name, String lastName, int age, UserType userType) {
-        return userRepository.addUser(createUser(login, name, lastName, age, userType));
+        return userRepository.addUser(createUser(login, name, lastName, age, userType), UUID.randomUUID());
     }
 
     public List<User> getAllUsers() {
