@@ -5,7 +5,7 @@ import pl.pas.model.entities.resource.Resource;
 import java.util.List;
 import java.util.UUID;
 
-public interface IResourcesRepository {
+public interface IResourceRepository {
     boolean addResource(Resource resource);
     Resource getResource(UUID uuid);
     List<Resource> getAllResources();

@@ -1,21 +1,20 @@
 package pl.pas.model.managers;
 
-import pl.pas.model.entities.Borrow;
-import pl.pas.model.repositories.BorrowRepository;
-import pl.pas.model.repositories.ResourceRepository;
-import pl.pas.model.repositories.UserRepository;
 import pl.pas.model.entities.user.*;
+import pl.pas.model.repositories.interfaces.IBorrowRepository;
+import pl.pas.model.repositories.interfaces.IResourceRepository;
+import pl.pas.model.repositories.interfaces.IUserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class UserManager {
-    UserRepository userRepository;
-    ResourceRepository resourceRepository;
-    BorrowRepository borrowRepository;
+    IUserRepository userRepository;
+    IResourceRepository resourceRepository;
+    IBorrowRepository borrowRepository;
 
-    public UserManager(UserRepository userRepository, ResourceRepository resourceRepository, BorrowRepository borrowRepository) {
+    public UserManager(IUserRepository userRepository, IResourceRepository resourceRepository, IBorrowRepository borrowRepository) {
         this.userRepository = userRepository;
         this.resourceRepository = resourceRepository;
         this.borrowRepository = borrowRepository;

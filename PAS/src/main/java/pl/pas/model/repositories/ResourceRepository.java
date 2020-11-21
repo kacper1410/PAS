@@ -1,13 +1,13 @@
 package pl.pas.model.repositories;
 
-import pl.pas.model.repositories.interfaces.IResourcesRepository;
+import pl.pas.model.repositories.interfaces.IResourceRepository;
 import pl.pas.model.entities.resource.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class ResourceRepository implements IResourcesRepository {
+public class ResourceRepository implements IResourceRepository {
     List<Resource> resources;
 
     public ResourceRepository() {
