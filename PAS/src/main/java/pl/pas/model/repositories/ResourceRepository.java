@@ -43,11 +43,6 @@ public class ResourceRepository implements IResourceRepository {
 
     @Override
     public boolean deleteResource(UUID uuid) {
-        for (Resource r : resources) {
-            if (r.getResourceId().equals(uuid)) {
-                return resources.remove(r);
-            }
-        }
-        return false;
+        return resources.remove(getResource(uuid));
     }
 }

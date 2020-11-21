@@ -5,12 +5,14 @@ import java.util.UUID;
 public abstract class Resource {
     private long ISBN;
     private String title;
+    private String author;
     private boolean available;
     private UUID resourceId;
 
-    public Resource(long ISBN, String title) {
+    public Resource(long ISBN, String title, String author) {
         this.ISBN = ISBN;
         this.title = title;
+        this.author = author;
         this.available = true;
         this.resourceId = null;
     }
