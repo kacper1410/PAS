@@ -10,7 +10,7 @@ public abstract class User {
     private boolean active;
 
     public User(String login, String name, String lastName) {
-        this.userId = UUID.randomUUID();
+        this.userId = null;
         this.login = login;
         this.active = true;
         this.name = name;

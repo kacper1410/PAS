@@ -3,15 +3,11 @@ package pl.pas.model.entities.resource;
 public class Book extends Resource {
     private int publishYear;
 
-    public Book(long ISBN, String title, int publishYear) {
-        super(ISBN, title);
+    public Book(long ISBN, String title, String author, int publishYear) {
+        super(ISBN, title, author);
         this.publishYear = publishYear;
     }
 
-    public Book() {
-        super(123123L, "A");
-
-    }
 
     public int getPublishYear() {
         return publishYear;

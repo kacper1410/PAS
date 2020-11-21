@@ -15,7 +15,8 @@ public class ResourceRepository implements IResourceRepository {
     }
 
     @Override
-    public boolean addResource(Resource resource) {
+    public boolean addResource(Resource resource, UUID uuid) {
+        resource.setResourceId(uuid);
         return resources.add(resource);
     }
 
@@ -42,11 +43,6 @@ public class ResourceRepository implements IResourceRepository {
 
     @Override
     public boolean deleteResource(UUID uuid) {
-        for (Resource r : resources) {
-            if (r.getResourceId().equals(uuid)) {
-                return resources.remove(r);
-            }
-        }
-        return false;
+        return resources.remove(getResource(uuid));
     }
 }
