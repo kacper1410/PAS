@@ -8,6 +8,7 @@ import pl.pas.model.repositories.interfaces.IBorrowRepository;
 import pl.pas.model.repositories.interfaces.IResourceRepository;
 import pl.pas.model.repositories.interfaces.IUserRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,14 +24,18 @@ public class BorrowManager {
     }
 
     public boolean borrowResource(UUID resourceId, UUID clientId) {
+        return borrowResource(resourceId, clientId, new Date());
+    }
+
+    public boolean borrowResource(UUID resourceId, UUID clientId, Date date) {
         Resource resource = resourceRepository.getResource(resourceId);
         User user = userRepository.getUser(clientId);
-        if(resource == null || user == null) {
+        if (resource == null || user == null) {
             return false;
         }
 
         if (resource.isAvailable() && user instanceof Client && user.isActive()) {
-            borrowRepository.addBorrow(new Borrow((Client) user, resource), UUID.randomUUID());
+            borrowRepository.addBorrow(new Borrow((Client) user, resource, date), UUID.randomUUID());
             resource.setAvailable(false);
             return true;
         }
@@ -83,7 +88,7 @@ public class BorrowManager {
             return false;
         }
 
-        return  borrowRepository.deleteBorrow(borrow.getBorrowId());
+        return borrowRepository.deleteBorrow(borrow.getBorrowId());
     }
 
 }

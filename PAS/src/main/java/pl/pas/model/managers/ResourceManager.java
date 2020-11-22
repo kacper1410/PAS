@@ -85,7 +85,23 @@ public class ResourceManager {
         return resourceRepository.addResource(new Book(isbn, title, author, length), UUID.randomUUID());
     }
 
+    public boolean updateBook(Resource oldResource, long ISBN, String title, String author, int publishYear) {
+        if (oldResource == null || ISBN <= 0 || title == null || author == null
+                || publishYear > Calendar.getInstance().get(Calendar.YEAR)
+                || !resourceRepository.getAllResources().contains(oldResource) || !(oldResource instanceof Book)) {
+            return false;
+        }
+        resourceRepository.updateResource(oldResource.getResourceId(), new Book(ISBN, title, author, publishYear));
+        return true;
+    }
 
-
+    public boolean updateAudioBook(Resource oldResource, long ISBN, String title, String author, int length) {
+        if (oldResource == null || ISBN <= 0 || title == null || author == null || length > 0
+                || !resourceRepository.getAllResources().contains(oldResource) || !(oldResource instanceof AudioBook)) {
+            return false;
+        }
+        resourceRepository.updateResource(oldResource.getResourceId(), new AudioBook(ISBN, title, author, length));
+        return true;
+    }
 
 }
