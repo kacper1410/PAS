@@ -10,7 +10,8 @@ import pl.pas.model.repositories.UserRepository;
 import static org.junit.Assert.*;
 
 public class ResourceManagerTest {
-    ResourceManager resourceManager;
+    private ResourceManager resourceManager;
+    private static int SIZE;
 
     public ResourceManagerTest() {
         ResourceRepository resourceRepository = new ResourceRepository();
@@ -19,6 +20,7 @@ public class ResourceManagerTest {
         FillRepositories fillRepositories = new FillRepositories(resourceRepository, userRepository, borrowRepository);
         fillRepositories.fill();
         resourceManager = new ResourceManager(resourceRepository, borrowRepository, userRepository);
+        SIZE = resourceRepository.getAllResources().size();
     }
 
     @Test
@@ -29,7 +31,7 @@ public class ResourceManagerTest {
 
     @Test
     public void testGetAllResources() {
-        assertEquals(8, resourceManager.getAllResources().size());
+        assertEquals(SIZE, resourceManager.getAllResources().size());
     }
 
     @Test
@@ -48,24 +50,46 @@ public class ResourceManagerTest {
 
         assertFalse(unavailableResource.isAvailable());
         assertFalse(resourceManager.removeResource(unavailableResource.getResourceId()));
-        assertEquals(8, resourceManager.getAllResources().size());
+        assertEquals(SIZE, resourceManager.getAllResources().size());
 
         Resource availableResource = resourceManager.getAllBooks().get(4);
 
         assertTrue(availableResource.isAvailable());
         assertTrue(resourceManager.removeResource(availableResource.getResourceId()));
-        assertEquals(7, resourceManager.getAllResources().size());
+        assertEquals(SIZE - 1, resourceManager.getAllResources().size());
     }
 
     @Test
     public void testAddBook() {
         assertTrue(resourceManager.addBook(432345345, "Harry Potter", "Author", 2000));
-        assertEquals(9, resourceManager.getAllResources().size());
+        assertEquals(SIZE + 1, resourceManager.getAllResources().size());
     }
 
     @Test
     public void testAddAudioBook() {
         assertTrue(resourceManager.addAudioBook(432345345, "Harry Potter", "Author", 90));
-        assertEquals(9, resourceManager.getAllResources().size());
+        assertEquals(SIZE + 1, resourceManager.getAllResources().size());
+    }
+
+    @Test
+    public void testUpdateBook() {
+        Resource book = resourceManager.getAllResources().get(7);
+        Resource audioBook = resourceManager.getAllResources().get(6);
+
+        assertFalse(resourceManager.updateBook(audioBook, 123, "New", "New", 111));
+        assertTrue(resourceManager.updateBook(book, 123, "New", "New", 111));
+
+        assertNotEquals(book, resourceManager.getResource(book.getResourceId()));
+    }
+
+    @Test
+    public void testUpdateAudioBook() {
+        Resource book = resourceManager.getAllResources().get(7);
+        Resource audioBook = resourceManager.getAllResources().get(6);
+
+        assertFalse(resourceManager.updateAudioBook(book, 123, "New", "New", 111));
+        assertTrue(resourceManager.updateAudioBook(audioBook, 123, "New", "New", 111));
+
+        assertNotEquals(audioBook, resourceManager.getResource(audioBook.getResourceId()));
     }
 }
