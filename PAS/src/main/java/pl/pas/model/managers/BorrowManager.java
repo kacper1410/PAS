@@ -38,6 +38,13 @@ public class BorrowManager {
         return false;
     }
 
+    public Borrow getBorrow(UUID uuid) {
+        if (uuid != null) {
+            return borrowRepository.getBorrow(uuid);
+        }
+        return null;
+    }
+
     public List<Borrow> getAllBorrows() {
         return borrowRepository.getAllBorrows();
     }
