@@ -25,7 +25,7 @@ public class BorrowManager {
     public boolean borrowResource(UUID resourceId, UUID clientId) {
         Resource resource = resourceRepository.getResource(resourceId);
         User user = userRepository.getUser(clientId);
-        if(resource == null || user == null) {
+        if (resource == null || user == null) {
             return false;
         }
 
@@ -76,7 +76,7 @@ public class BorrowManager {
             return false;
         }
 
-        return  borrowRepository.deleteBorrow(borrow.getBorrowId());
+        return borrowRepository.deleteBorrow(borrow.getBorrowId());
     }
 
 }

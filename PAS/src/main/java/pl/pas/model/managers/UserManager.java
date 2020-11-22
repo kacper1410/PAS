@@ -106,7 +106,7 @@ public class UserManager {
 
     public boolean updateClient(User oldUser, String login, String name, String lastName, int age) {
         if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
-                || login == null || name == null || lastName == null || age > 0) {
+                || login == null || name == null || lastName == null || age > 0 || !(oldUser instanceof Client)) {
             return false;
         }
         userRepository.updateUser(oldUser.getUserId(), new Client(login, name, lastName, age));
@@ -115,7 +115,7 @@ public class UserManager {
 
     public boolean updateEmployee(User oldUser, String login, String name, String lastName) {
         if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
-                || login == null || name == null || lastName == null) {
+                || login == null || name == null || lastName == null || !(oldUser instanceof Employee)) {
             return false;
         }
         userRepository.updateUser(oldUser.getUserId(), new Employee(login, name, lastName));
@@ -124,7 +124,7 @@ public class UserManager {
 
     public boolean updateAdministrator(User oldUser, String login, String name, String lastName) {
         if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
-                || login == null || name == null || lastName == null ) {
+                || login == null || name == null || lastName == null || !(oldUser instanceof Administrator)) {
             return false;
         }
         userRepository.updateUser(oldUser.getUserId(), new Administrator(login, name, lastName));
