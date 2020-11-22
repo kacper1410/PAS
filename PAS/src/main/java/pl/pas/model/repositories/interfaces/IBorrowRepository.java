@@ -15,5 +15,6 @@ public interface IBorrowRepository {
     List<Borrow> getBorrowsByResource(UUID uuid);
     List<Borrow> getAllBorrows();
     void updateBorrow(UUID uuid, Borrow newBorrow);
+    boolean deleteBorrow(UUID uuid);
     void endBorrow(UUID uuid);
 }

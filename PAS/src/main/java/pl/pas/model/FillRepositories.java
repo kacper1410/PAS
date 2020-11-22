@@ -34,7 +34,7 @@ public class FillRepositories {
         Resource book3 = new Book(12355231, "Latarnik", "Henryk Sienkiewicz", 1947);
         Resource audioBook2 = new AudioBook(8123123, "Zemsta", "Aleksander Fredro", 782);
         Resource book4 = new Book(345235211, "Potop", "Henryk Sienkiewicz", 1828);
-        Resource audioBook3 = new AudioBook(242311287, "W pustyResource = ni i w puszczy", "Henryk Sienkiewicz", 1080);
+        Resource audioBook3 = new AudioBook(242311287, "W pustyni i w puszczy", "Henryk Sienkiewicz", 1080);
         Resource book5 = new Book(643532, "Krzyżacy", "Henryk Sienkiewicz", 1900);
 
         resourceRepository.addResource(book1, UUID.randomUUID());
@@ -48,7 +48,7 @@ public class FillRepositories {
 
         User user1 = new Administrator("login", "Jan", "Kowalski");
         User user2 = new Employee("tomcio123", "Tomasz", "Tomaszewski");
-        User user3 = new Client("tomasz_hajto", "Adam", "Walczak", 13);
+        User user3 = new Client("tomasz_halto", "Adam", "Walczak", 13);
         User user4 = new Client("janna", "Joanna", "Andrzejewska", 22);
         User user5 = new Client("hast", "Hanna", "Strzelec", 15);
 

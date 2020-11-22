@@ -67,6 +67,11 @@ public class BorrowRepository implements IBorrowRepository {
     }
 
     @Override
+    public boolean deleteBorrow(UUID uuid) {
+        return borrows.remove(getBorrow(uuid));
+    }
+
+    @Override
     public void endBorrow(UUID uuid) {
         getBorrow(uuid).setReturnDate(new Date());
     }
