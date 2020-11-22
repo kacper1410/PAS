@@ -48,7 +48,7 @@ public class FillRepositories {
 
         User user1 = new Administrator("login", "Jan", "Kowalski");
         User user2 = new Employee("tomcio123", "Tomasz", "Tomaszewski");
-        User user3 = new Client("tomasz_halto", "Adam", "Walczak", 13);
+        User user3 = new Client("tomasz_hajto", "Adam", "Walczak", 13);
         User user4 = new Client("janna", "Joanna", "Andrzejewska", 22);
         User user5 = new Client("hast", "Hanna", "Strzelec", 15);
 
