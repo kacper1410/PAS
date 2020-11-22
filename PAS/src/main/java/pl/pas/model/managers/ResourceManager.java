@@ -10,12 +10,12 @@ import pl.pas.model.repositories.interfaces.IUserRepository;
 
 import java.util.*;
 
-public class ResourcesManager {
+public class ResourceManager {
     IResourceRepository resourceRepository;
     IBorrowRepository borrowRepository;
     IUserRepository userRepository;
 
-    public ResourcesManager(IResourceRepository resourceRepository, IBorrowRepository borrowRepository, IUserRepository userRepository) {
+    public ResourceManager(IResourceRepository resourceRepository, IBorrowRepository borrowRepository, IUserRepository userRepository) {
         this.resourceRepository = resourceRepository;
         this.borrowRepository = borrowRepository;
         this.userRepository = userRepository;
