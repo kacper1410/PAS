@@ -33,23 +33,11 @@ public class ResourceManager {
     }
 
     public List<Resource> getAllBooks() {
-        ArrayList<Resource> books = new ArrayList<>();
-        for (Resource resource : resourceRepository.getAllResources()) {
-            if (resource instanceof Book) {
-                books.add(resource);
-            }
-        }
-        return books;
+        return resourceRepository.getAllBooks();
     }
 
     public List<Resource> getAllAudioBooks() {
-        ArrayList<Resource> audioBooks = new ArrayList<>();
-        for (Resource resource : resourceRepository.getAllResources()) {
-            if (resource instanceof AudioBook) {
-                audioBooks.add(resource);
-            }
-        }
-        return audioBooks;
+        return resourceRepository.getAllAudioBooks();
     }
 
     public boolean removeResource(Resource resource) {

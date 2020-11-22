@@ -1,5 +1,8 @@
 package pl.pas.model.repositories;
 
+import pl.pas.model.entities.user.Administrator;
+import pl.pas.model.entities.user.Client;
+import pl.pas.model.entities.user.Employee;
 import pl.pas.model.entities.user.User;
 import pl.pas.model.repositories.interfaces.IUserRepository;
 
@@ -51,5 +54,45 @@ public class UserRepository implements IUserRepository {
                 users.set(users.indexOf(u), newUser);
             }
         }
+    }
+
+    public List<User> getAllClients() {
+        ArrayList<User> clients = new ArrayList<>();
+        for (User user : users) {
+            if (user instanceof Client) {
+                clients.add(user);
+            }
+        }
+        return clients;
+    }
+
+    public List<User> getAllEmployees() {
+        ArrayList<User> employees = new ArrayList<>();
+        for (User user : users) {
+            if (user instanceof Employee) {
+                employees.add(user);
+            }
+        }
+        return employees;
+    }
+
+    public List<User> getAllAdministrators() {
+        ArrayList<User> administrators = new ArrayList<>();
+        for (User user : users) {
+            if (user instanceof Administrator) {
+                administrators.add(user);
+            }
+        }
+        return administrators;
+    }
+
+    public List<User> getAllActiveUsers() {
+        ArrayList<User> activeUsers = new ArrayList<>();
+        for (User user : users) {
+            if (user.isActive()) {
+                activeUsers.add(user);
+            }
+        }
+        return activeUsers;
     }
 }

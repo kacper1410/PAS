@@ -65,43 +65,19 @@ public class UserManager {
     }
 
     public List<User> getAllClients() {
-        ArrayList<User> clients = new ArrayList<>();
-        for (User user : userRepository.getAllUsers()) {
-            if (user instanceof Client) {
-                clients.add(user);
-            }
-        }
-        return clients;
+        return userRepository.getAllClients();
     }
 
     public List<User> getAllEmployees() {
-        ArrayList<User> employees = new ArrayList<>();
-        for (User user : userRepository.getAllUsers()) {
-            if (user instanceof Employee) {
-                employees.add(user);
-            }
-        }
-        return employees;
+        return userRepository.getAllEmployees();
     }
 
     public List<User> getAllAdministrators() {
-        ArrayList<User> administrators = new ArrayList<>();
-        for (User user : userRepository.getAllUsers()) {
-            if (user instanceof Administrator) {
-                administrators.add(user);
-            }
-        }
-        return administrators;
+        return userRepository.getAllAdministrators();
     }
 
     public List<User> getAllActiveUsers() {
-        ArrayList<User> users = new ArrayList<>();
-        for (User user : userRepository.getAllUsers()) {
-            if (user.isActive()) {
-                users.add(user);
-            }
-        }
-        return users;
+        return userRepository.getAllActiveUsers();
     }
 
     public boolean updateClient(User oldUser, String login, String name, String lastName, int age) {

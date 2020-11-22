@@ -1,5 +1,7 @@
 package pl.pas.model.repositories;
 
+import pl.pas.model.entities.resource.AudioBook;
+import pl.pas.model.entities.resource.Book;
 import pl.pas.model.repositories.interfaces.IResourceRepository;
 import pl.pas.model.entities.resource.Resource;
 
@@ -49,5 +51,25 @@ public class ResourceRepository implements IResourceRepository {
     @Override
     public boolean deleteResource(UUID uuid) {
         return resources.remove(getResource(uuid));
+    }
+
+    public List<Resource> getAllBooks() {
+        ArrayList<Resource> books = new ArrayList<>();
+        for (Resource resource : resources) {
+            if (resource instanceof Book) {
+                books.add(resource);
+            }
+        }
+        return books;
+    }
+
+    public List<Resource> getAllAudioBooks() {
+        ArrayList<Resource> audioBooks = new ArrayList<>();
+        for (Resource resource : resources) {
+            if (resource instanceof AudioBook) {
+                audioBooks.add(resource);
+            }
+        }
+        return audioBooks;
     }
 }
