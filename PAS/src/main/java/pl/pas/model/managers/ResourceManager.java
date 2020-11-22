@@ -76,7 +76,8 @@ public class ResourceManager {
     public boolean updateBook(Resource oldResource, long ISBN, String title, String author, int publishYear) {
         if (oldResource == null || ISBN <= 0 || title == null || author == null
                 || publishYear > Calendar.getInstance().get(Calendar.YEAR)
-                || !resourceRepository.getAllResources().contains(oldResource) || !(oldResource instanceof Book)) {
+                || !resourceRepository.getAllResources().contains(oldResource) || !(oldResource instanceof Book)
+                || !oldResource.isAvailable()) {
             return false;
         }
         resourceRepository.updateResource(oldResource.getResourceId(), new Book(ISBN, title, author, publishYear));
@@ -84,8 +85,9 @@ public class ResourceManager {
     }
 
     public boolean updateAudioBook(Resource oldResource, long ISBN, String title, String author, int length) {
-        if (oldResource == null || ISBN <= 0 || title == null || author == null || length > 0
-                || !resourceRepository.getAllResources().contains(oldResource) || !(oldResource instanceof AudioBook)) {
+        if (oldResource == null || ISBN <= 0 || title == null || author == null || length < 0
+                || !resourceRepository.getAllResources().contains(oldResource) || !(oldResource instanceof AudioBook)
+                || !oldResource.isAvailable()) {
             return false;
         }
         resourceRepository.updateResource(oldResource.getResourceId(), new AudioBook(ISBN, title, author, length));
