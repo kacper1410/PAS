@@ -11,9 +11,24 @@
         <link rel="stylesheet" type="text/css" href="styles.css" />
     </h:head>
     <h:body>
-<!--        Add links-->
-        <div>Users</div>
-        <div>Resources</div>
-        <div>Borrow</div>
+        <h1>
+            Fill Repositories
+            <h:form>
+                <h:commandButton value="Fill" action="#{fillRepositories.fill()}"/>
+                <h:outputLabel value="#{userController.userManager.allUsers}" />
+            </h:form>
+        </h1>
+        <div class="flex-container">
+            <!-- TODO Change LINKs -->
+            <div class="flex-item">
+                <h:link outcome="users.xhtml">Users</h:link>
+            </div>
+            <div class="flex-item">
+                <h:link outcome="resources.xhtml">Resources</h:link>
+            </div>
+            <div class="flex-item">
+                <h:link outcome="borrows.xhtml">Borrows</h:link>
+            </div>
+        </div>
     </h:body>
 </html>

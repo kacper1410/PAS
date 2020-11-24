@@ -1,4 +1,4 @@
-body {
+.flex-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -6,7 +6,7 @@ body {
     width: 95vw;
 }
 
-div {
+.flex-item {
     display: flex;
     width: 400px;
     height: 200px;
@@ -17,7 +17,15 @@ div {
     font-size: 1.3rem;
 }
 
-div:hover {
+h1 {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.flex-item:hover {
     background-color: aliceblue;
     font-size: 1.4rem;
 }
