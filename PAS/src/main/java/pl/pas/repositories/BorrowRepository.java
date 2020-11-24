@@ -14,7 +14,7 @@ import java.util.UUID;
 @Named
 @ApplicationScoped
 public class BorrowRepository implements IBorrowRepository, Serializable {
-    private List<Borrow> borrows;
+    private final List<Borrow> borrows;
 
     public BorrowRepository() {
         borrows = new ArrayList<>();
@@ -22,62 +22,78 @@ public class BorrowRepository implements IBorrowRepository, Serializable {
 
     @Override
     public boolean addBorrow(Borrow borrow, UUID uuid) {
-        borrow.setBorrowId(uuid);
-        return borrows.add(borrow);
+        synchronized (borrows) {
+            borrow.setBorrowId(uuid);
+            return borrows.add(borrow);
+        }
     }
 
     @Override
     public Borrow getBorrow(UUID uuid) {
-        for (Borrow b : borrows) {
-            if (b.getBorrowId().equals(uuid)) return b;
+        synchronized (borrows) {
+            for (Borrow b : borrows) {
+                if (b.getBorrowId().equals(uuid)) return b;
+            }
+            return null;
         }
-        return null;
     }
 
     @Override
     public List<Borrow> getBorrowsByUser(UUID uuid) {
-        List<Borrow> clientsBorrows = new ArrayList<>();
-        for (Borrow b: borrows) {
-            if (b.getClient().getUserId().equals(uuid)) {
-                clientsBorrows.add(b);
+        synchronized (borrows) {
+            List<Borrow> clientsBorrows = new ArrayList<>();
+            for (Borrow b: borrows) {
+                if (b.getClient().getUserId().equals(uuid)) {
+                    clientsBorrows.add(b);
+                }
             }
+            return clientsBorrows;
         }
-        return clientsBorrows;
     }
 
     @Override
     public List<Borrow> getBorrowsByResource(UUID uuid) {
-        List<Borrow> resourceBorrows = new ArrayList<>();
-        for (Borrow b: borrows) {
-            if (b.getResource().getResourceId().equals(uuid)) {
-                resourceBorrows.add(b);
+        synchronized (borrows) {
+            List<Borrow> resourceBorrows = new ArrayList<>();
+            for (Borrow b: borrows) {
+                if (b.getResource().getResourceId().equals(uuid)) {
+                    resourceBorrows.add(b);
+                }
             }
+            return resourceBorrows;
         }
-        return resourceBorrows;
     }
 
     @Override
     public List<Borrow> getAllBorrows() {
-        return borrows;
+        synchronized (borrows) {
+            return borrows;
+        }
     }
 
     @Override
     public void updateBorrow(UUID uuid, Borrow newBorrow) {
-        for (Borrow b : borrows) {
-            if (b.getBorrowId().equals(uuid)) {
-                newBorrow.setBorrowId(uuid);
-                borrows.set(borrows.indexOf(b), newBorrow);
+        synchronized (borrows) {
+            for (Borrow b : borrows) {
+                if (b.getBorrowId().equals(uuid)) {
+                    newBorrow.setBorrowId(uuid);
+                    borrows.set(borrows.indexOf(b), newBorrow);
+                }
             }
         }
     }
 
     @Override
     public boolean deleteBorrow(UUID uuid) {
-        return borrows.remove(getBorrow(uuid));
+        synchronized (borrows) {
+            return borrows.remove(getBorrow(uuid));
+        }
     }
 
     @Override
     public void endBorrow(UUID uuid) {
-        getBorrow(uuid).setReturnDate(new Date());
+        synchronized (borrows) {
+            getBorrow(uuid).setReturnDate(new Date());
+        }
     }
 }
