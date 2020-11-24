@@ -3,12 +3,17 @@ package pl.pas.model.repositories;
 import pl.pas.model.entities.Borrow;
 import pl.pas.model.repositories.interfaces.IBorrowRepository;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public class BorrowRepository implements IBorrowRepository {
+@Named
+@ApplicationScoped
+public class BorrowRepository implements IBorrowRepository, Serializable {
     private List<Borrow> borrows;
 
     public BorrowRepository() {

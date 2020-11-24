@@ -2,14 +2,19 @@ package pl.pas.model.repositories;
 
 import pl.pas.model.entities.resource.AudioBook;
 import pl.pas.model.entities.resource.Book;
-import pl.pas.model.repositories.interfaces.IResourceRepository;
 import pl.pas.model.entities.resource.Resource;
+import pl.pas.model.repositories.interfaces.IResourceRepository;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class ResourceRepository implements IResourceRepository {
+@Named
+@ApplicationScoped
+public class ResourceRepository implements IResourceRepository, Serializable {
     private List<Resource> resources;
 
     public ResourceRepository() {

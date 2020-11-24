@@ -12,13 +12,25 @@ import pl.pas.model.repositories.interfaces.IBorrowRepository;
 import pl.pas.model.repositories.interfaces.IResourceRepository;
 import pl.pas.model.repositories.interfaces.IUserRepository;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.UUID;
 
+@Named
+@ApplicationScoped
 public class FillRepositories {
+    @Inject
     private IResourceRepository resourceRepository;
+    @Inject
     private IUserRepository userRepository;
+    @Inject
     private IBorrowRepository borrowRepository;
+    @Inject
     private BorrowManager borrowManager;
+
+    public FillRepositories() {
+    }
 
     public FillRepositories(IResourceRepository resourceRepository, IUserRepository userRepository, IBorrowRepository borrowRepository) {
         this.resourceRepository = resourceRepository;

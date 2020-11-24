@@ -6,10 +6,14 @@ import pl.pas.model.entities.user.Employee;
 import pl.pas.model.entities.user.User;
 import pl.pas.model.repositories.interfaces.IUserRepository;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Named
+@ApplicationScoped
 public class UserRepository implements IUserRepository {
     private List<User> users;
 

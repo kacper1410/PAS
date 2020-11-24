@@ -1,22 +1,35 @@
 package pl.pas.model.managers;
 
-import pl.pas.model.entities.user.*;
+import pl.pas.model.entities.user.Administrator;
+import pl.pas.model.entities.user.Client;
+import pl.pas.model.entities.user.Employee;
+import pl.pas.model.entities.user.User;
 import pl.pas.model.repositories.interfaces.IBorrowRepository;
 import pl.pas.model.repositories.interfaces.IResourceRepository;
 import pl.pas.model.repositories.interfaces.IUserRepository;
 
-import java.util.ArrayList;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 import java.util.UUID;
 
+@Named
+@ApplicationScoped
 public class UserManager {
-    IUserRepository userRepository;
-    IResourceRepository resourceRepository;
-    IBorrowRepository borrowRepository;
+    @Inject
+    private IUserRepository userRepository;
+    @Inject
+    private IResourceRepository resourceRepository;
+    @Inject
+    private IBorrowRepository borrowRepository;
     public final static int LOGIN_FIELD = 0;
     public final static int NAME_FIELD = 1;
     public final static int LASTNAME_FIELD = 2;
     public final static int AGE_FIELD = 3;
+
+    public UserManager() {
+    }
 
     public UserManager(IUserRepository userRepository, IResourceRepository resourceRepository, IBorrowRepository borrowRepository) {
         this.userRepository = userRepository;

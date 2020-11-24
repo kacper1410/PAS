@@ -8,12 +8,25 @@ import pl.pas.model.repositories.interfaces.IBorrowRepository;
 import pl.pas.model.repositories.interfaces.IResourceRepository;
 import pl.pas.model.repositories.interfaces.IUserRepository;
 
-import java.util.*;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.Calendar;
+import java.util.List;
+import java.util.UUID;
 
+@Named
+@ApplicationScoped
 public class ResourceManager {
-    IResourceRepository resourceRepository;
-    IBorrowRepository borrowRepository;
-    IUserRepository userRepository;
+    @Inject
+    private IResourceRepository resourceRepository;
+    @Inject
+    private IBorrowRepository borrowRepository;
+    @Inject
+    private IUserRepository userRepository;
+
+    public ResourceManager() {
+    }
 
     public ResourceManager(IResourceRepository resourceRepository, IBorrowRepository borrowRepository, IUserRepository userRepository) {
         this.resourceRepository = resourceRepository;
