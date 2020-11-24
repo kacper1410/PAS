@@ -1,0 +1,23 @@
+body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 95vh;
+    width: 95vw;
+}
+
+div {
+    display: flex;
+    width: 400px;
+    height: 200px;
+    border: 2px dotted cornflowerblue;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+div:hover {
+    background-color: aliceblue;
+    font-size: 1.4rem;
+}
