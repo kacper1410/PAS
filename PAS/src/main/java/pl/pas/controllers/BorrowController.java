@@ -1,34 +1,20 @@
 package pl.pas.controllers;
 
 import pl.pas.managers.BorrowManager;
-import pl.pas.model.resource.Resource;
-import pl.pas.model.user.Client;
-import javax.faces.bean.SessionScoped;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 
-@Named(value = "borrowController")
-@SessionScoped
+@Named
+@ApplicationScoped
 public class BorrowController implements Serializable {
 
+    @Inject
     private BorrowManager borrowManager;
-    private Client currentClient;
-    private Resource selectedResource;
 
-    public BorrowController() {}
-
-    public void setCurrentClient(Client client) {
-        this.currentClient = client;
+    public BorrowManager getBorrowManager() {
+        return borrowManager;
     }
-
-    public void setSelectedResource(Resource resource) {
-        this.selectedResource = resource;
-    }
-
-    void rentResource() {
-        borrowManager.borrowResource(selectedResource.getResourceId(), currentClient.getUserId());
-    }
-
-
-
 }

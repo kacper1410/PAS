@@ -2,19 +2,18 @@ package pl.pas.controllers;
 
 import pl.pas.managers.ResourceManager;
 
-import javax.ejb.EJB;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.UUID;
 
-@Named(value = "resourceController")
-@SessionScoped
-public class ResourceController {
+@Named
+@ApplicationScoped
+public class ResourceController implements Serializable {
 
-    @EJB
+    @Inject
     private ResourceManager resourceManager;
-
-    public ResourceController() {}
 
     public void getResource(UUID uuid) {
         resourceManager.getResource(uuid);
