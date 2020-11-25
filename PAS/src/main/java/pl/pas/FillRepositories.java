@@ -63,6 +63,7 @@ public class FillRepositories {
         User user3 = new Client("tomasz_hajto", "Adam", "Walczak", 13);
         User user4 = new Client("janna", "Joanna", "Andrzejewska", 22);
         User user5 = new Client("hast", "Hanna", "Strzelec", 15);
+        user5.setActive(false);
 
         userRepository.addUser(user1, UUID.randomUUID());
         userRepository.addUser(user2, UUID.randomUUID());
