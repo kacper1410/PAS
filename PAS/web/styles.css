@@ -26,7 +26,7 @@
     border: 1px dotted cornflowerblue;
 }
 
-.table-header-resources {
+.table-header-resources, .table-header-borrows {
     width: 20%;
     border: 1px dotted cornflowerblue;
 }

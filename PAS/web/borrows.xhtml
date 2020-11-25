@@ -10,5 +10,42 @@
         <link rel="stylesheet" type="text/css" href="styles.css" />
     </h:head>
     <h:body>
+<!--        private UUID borrowId;-->
+<!--        private Client client;-->
+<!--        private Resource resource;-->
+<!--        private Date borrowDate;-->
+<!--        private Date returnDate;-->
+        <br/>
+        <h1>All borrows</h1>
+        <h:dataTable value="#{borrowController.borrowManager.allBorrows}" var="borrow"
+                     styleClass="table"
+                     rowClasses="table-row"
+                     headerClass="table-header-borrows">
+
+            <h:column>
+                <f:facet name="header">Borrow Id</f:facet>
+                #{borrow.borrowId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Client Id</f:facet>
+                #{borrow.client.userId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Resource Id</f:facet>
+                #{borrow.resource.resourceId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Borrow Date</f:facet>
+                #{borrow.borrowDate}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Return Date</f:facet>
+                #{borrow.returnDate}
+            </h:column>
+        </h:dataTable>
     </h:body>
 </html>
