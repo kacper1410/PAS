@@ -15,7 +15,7 @@
         <h:dataTable value="#{userController.userManager.allUsers}" var="user"
                      styleClass="table"
                      rowClasses="table-row"
-                     headerClass="table-header">
+                     headerClass="table-header-users">
             <h:column>
                 <f:facet name="header">User Id</f:facet>
                 #{user.userId}
@@ -42,7 +42,7 @@
         <h:dataTable value="#{userController.userManager.allAdministrators}" var="user"
                      styleClass="table"
                      rowClasses="table-row"
-                     headerClass="table-header">
+                     headerClass="table-header-users">
             <h:column>
                 <f:facet name="header">User Id</f:facet>
                 #{user.userId}
@@ -69,7 +69,7 @@
         <h:dataTable value="#{userController.userManager.allEmployees}" var="user"
                      styleClass="table"
                      rowClasses="table-row"
-                     headerClass="table-header">
+                     headerClass="table-header-users">
             <h:column>
                 <f:facet name="header">User Id</f:facet>
                 #{user.userId}
@@ -96,7 +96,7 @@
         <h:dataTable value="#{userController.userManager.allClients}" var="user"
                      styleClass="table"
                      rowClasses="table-row"
-                     headerClass="table-header">
+                     headerClass="table-header-users">
             <h:column>
                 <f:facet name="header">User Id</f:facet>
                 #{user.userId}
@@ -123,7 +123,7 @@
         <h:dataTable value="#{userController.userManager.allActiveUsers}" var="user"
                      styleClass="table"
                      rowClasses="table-row"
-                     headerClass="table-header">
+                     headerClass="table-header-users">
             <h:column>
                 <f:facet name="header">User Id</f:facet>
                 #{user.userId}

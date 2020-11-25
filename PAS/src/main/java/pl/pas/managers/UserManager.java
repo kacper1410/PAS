@@ -11,12 +11,13 @@ import pl.pas.repositories.interfaces.IUserRepository;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
 @Named
 @ApplicationScoped
-public class UserManager {
+public class UserManager implements Serializable {
     @Inject
     private IUserRepository userRepository;
     @Inject

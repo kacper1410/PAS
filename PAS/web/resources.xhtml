@@ -10,5 +10,103 @@
         <link rel="stylesheet" type="text/css" href="styles.css" />
     </h:head>
     <h:body>
+        <br/>
+        <h1>All resources</h1>
+        <h:dataTable value="#{resourceController.resourceManager.allResources}" var="res"
+                     styleClass="table"
+                     rowClasses="table-row"
+                     headerClass="table-header-resources">
+
+            <h:column>
+                <f:facet name="header">Resource Id</f:facet>
+                #{res.resourceId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">ISBN</f:facet>
+                #{res.ISBN}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                #{res.title}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Author</f:facet>
+                #{res.author}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Available</f:facet>
+                #{res.available}
+            </h:column>
+        </h:dataTable>
+
+        <br/>
+        <h1>All books</h1>
+        <h:dataTable value="#{resourceController.resourceManager.allResources}" var="res"
+                     styleClass="table"
+                     rowClasses="table-row"
+                     headerClass="table-header-resources">
+
+            <h:column>
+                <f:facet name="header">Resource Id</f:facet>
+                #{res.resourceId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">ISBN</f:facet>
+                #{res.ISBN}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                #{res.title}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Author</f:facet>
+                #{res.author}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Available</f:facet>
+                #{res.available}
+            </h:column>
+        </h:dataTable>
+
+        <br/>
+        <h1>All audio books</h1>
+        <h:dataTable value="#{resourceController.resourceManager.allAudioBooks}" var="res"
+                     styleClass="table"
+                     rowClasses="table-row"
+                     headerClass="table-header-resources">
+
+            <h:column>
+                <f:facet name="header">Resource Id</f:facet>
+                #{res.resourceId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">ISBN</f:facet>
+                #{res.ISBN}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                #{res.title}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Author</f:facet>
+                #{res.author}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Available</f:facet>
+                #{res.available}
+            </h:column>
+        </h:dataTable>
     </h:body>
 </html>

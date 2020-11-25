@@ -11,13 +11,14 @@ import pl.pas.repositories.interfaces.IUserRepository;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
 @Named
 @ApplicationScoped
-public class ResourceManager {
+public class ResourceManager implements Serializable {
     @Inject
     private IResourceRepository resourceRepository;
     @Inject

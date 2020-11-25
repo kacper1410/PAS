@@ -15,6 +15,7 @@ import java.util.UUID;
 @Named
 @ApplicationScoped
 public class ResourceRepository implements IResourceRepository, Serializable {
+
     private final List<Resource> resources;
 
     public ResourceRepository() {

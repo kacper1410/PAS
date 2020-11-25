@@ -14,6 +14,7 @@ import java.util.UUID;
 @Named
 @ApplicationScoped
 public class BorrowRepository implements IBorrowRepository, Serializable {
+
     private final List<Borrow> borrows;
 
     public BorrowRepository() {
