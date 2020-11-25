@@ -8,13 +8,26 @@
 
     <h:head>
         <title>Wypozyczalnia ksiazek</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
     </h:head>
     <h:body>
-        <h1>Testowy nagłówek!</h1>
-        <h:form>
-            <h:commandButton value="No weź no kliknij" action="#{fillRepositories.fill()}"/>
-<!--            <h:commandButton value="No weź no wypisz" action="#{resourceManager.allAudioBooks}"/>-->
-            <h:outputText value="#{resourceManager.allResources}" />
-        </h:form>
+        <h1>
+            Fill Repositories
+            <h:form>
+                <h:commandButton value="Fill" action="#{fillRepositories.fill()}"/>
+            </h:form>
+        </h1>
+        <div class="flex-container-menu">
+            <!-- TODO Change LINKs -->
+            <div class="flex-item">
+                <h:link outcome="users.xhtml">Users</h:link>
+            </div>
+            <div class="flex-item">
+                <h:link outcome="resources.xhtml">Resources</h:link>
+            </div>
+            <div class="flex-item">
+                <h:link outcome="borrows.xhtml">Borrows</h:link>
+            </div>
+        </div>
     </h:body>
 </html>

@@ -15,7 +15,7 @@ import java.util.UUID;
 @Named
 @ApplicationScoped
 public class ResourceRepository implements IResourceRepository, Serializable {
-    private List<Resource> resources;
+    private final List<Resource> resources;
 
     public ResourceRepository() {
         resources = new ArrayList<>();
@@ -23,58 +23,74 @@ public class ResourceRepository implements IResourceRepository, Serializable {
 
     @Override
     public boolean addResource(Resource resource, UUID uuid) {
-        resource.setResourceId(uuid);
-        return resources.add(resource);
+        synchronized (resources) {
+            resource.setResourceId(uuid);
+            return resources.add(resource);
+        }
     }
 
     @Override
     public Resource getResource(UUID uuid) {
-        for (Resource r : resources) {
-            if (r.getResourceId().equals(uuid)) {
-                return r;
+        synchronized (resources) {
+            for (Resource r : resources) {
+                if (r.getResourceId().equals(uuid)) {
+                    return r;
+                }
             }
-        }
 
-        return null;
+            return null;
+        }
     }
 
     @Override
     public List<Resource> getAllResources() {
-        return resources;
+        synchronized (resources) {
+            return resources;
+        }
     }
 
     @Override
     public void updateResource(UUID uuid, Resource newResource) {
-        for (Resource r : resources) {
-            if (r.getResourceId().equals(uuid)) {
-                newResource.setResourceId(uuid);
-                resources.set(resources.indexOf(r), newResource);
+        synchronized (resources) {
+            for (Resource r : resources) {
+                if (r.getResourceId().equals(uuid)) {
+                    newResource.setResourceId(uuid);
+                    resources.set(resources.indexOf(r), newResource);
+                }
             }
         }
     }
 
     @Override
     public boolean deleteResource(UUID uuid) {
-        return resources.remove(getResource(uuid));
+        synchronized (resources) {
+            return resources.remove(getResource(uuid));
+        }
     }
 
+    @Override
     public List<Resource> getAllBooks() {
-        ArrayList<Resource> books = new ArrayList<>();
-        for (Resource resource : resources) {
-            if (resource instanceof Book) {
-                books.add(resource);
+        synchronized (resources) {
+            ArrayList<Resource> books = new ArrayList<>();
+            for (Resource resource : resources) {
+                if (resource instanceof Book) {
+                    books.add(resource);
+                }
             }
+            return books;
         }
-        return books;
     }
 
+    @Override
     public List<Resource> getAllAudioBooks() {
-        ArrayList<Resource> audioBooks = new ArrayList<>();
-        for (Resource resource : resources) {
-            if (resource instanceof AudioBook) {
-                audioBooks.add(resource);
+        synchronized (resources) {
+            ArrayList<Resource> audioBooks = new ArrayList<>();
+            for (Resource resource : resources) {
+                if (resource instanceof AudioBook) {
+                    audioBooks.add(resource);
+                }
             }
+            return audioBooks;
         }
-        return audioBooks;
     }
 }

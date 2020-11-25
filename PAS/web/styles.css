@@ -1,0 +1,44 @@
+.flex-container-menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 33vh;
+    width: 95vw;
+}
+
+.flex-item {
+    display: flex;
+    width: 400px;
+    height: 200px;
+    border: 2px dotted cornflowerblue;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+.table {
+    width: 100%;
+}
+
+.table-header {
+    width: 25%;
+    border: 1px dotted cornflowerblue;
+}
+
+.table-row {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.flex-item:hover {
+    background-color: aliceblue;
+    font-size: 1.4rem;
+}
