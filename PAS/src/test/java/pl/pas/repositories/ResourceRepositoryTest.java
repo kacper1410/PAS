@@ -4,8 +4,6 @@ import org.junit.Test;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 
-import java.util.UUID;
-
 import static org.junit.Assert.*;
 
 public class ResourceRepositoryTest {
@@ -17,8 +15,8 @@ public class ResourceRepositoryTest {
         AudioBook audioBook = new AudioBook(432345345, "Audio Book", "Author", 200);
         AudioBook newAudioBook = new AudioBook(32323, "New Audio Book", "Author", 205);
 
-        resourceRepository.addResource(book, UUID.randomUUID());
-        resourceRepository.addResource(audioBook, UUID.randomUUID());
+        resourceRepository.addResource(book);
+        resourceRepository.addResource(audioBook);
 
         assertEquals(book, resourceRepository.getResource(book.getResourceId()));
         assertEquals(audioBook, resourceRepository.getResource(audioBook.getResourceId()));

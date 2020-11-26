@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class UserRepositoryTest {
 
     @Test
-    public void addUser() {
+    public void testAddUser() {
         UserRepository userRepository = new UserRepository();
         Client client1 = new Client("abraxas", "Michał", "Majchrowski", 21);
         Client client2 = new Client("kacper1410", "Kacper", "Świercz", 21);
@@ -20,15 +20,10 @@ public class UserRepositoryTest {
 
         assertEquals(userRepository.getAllUsers().size(), 0);
 
-        UUID uuid1 = UUID.randomUUID();
-        UUID uuid2 = UUID.randomUUID();
-        UUID uuid3 = UUID.randomUUID();
-        UUID uuid4 = UUID.randomUUID();
-
-        userRepository.addUser(client1, uuid1);
-        userRepository.addUser(client2, uuid2);
-        userRepository.addUser(employee, uuid3);
-        userRepository.addUser(administrator, uuid4);
+        userRepository.addUser(client1);
+        userRepository.addUser(client2);
+        userRepository.addUser(employee);
+        userRepository.addUser(administrator);
 
         assertEquals(userRepository.getAllUsers().size(), 4);
         assertEquals(userRepository.getAllUsers().get(0), client1);
@@ -38,56 +33,38 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void getUser() {
+    public void testGetUserForID() {
         // Get User by UUID
         UserRepository userRepository = new UserRepository();
         Client client1 = new Client("abraxas", "Michał", "Majchrowski", 21);
         Client client2 = new Client("kacper1410", "Kacper", "Świercz", 21);
         Employee employee = new Employee("Martiego", "Patryk", "Kolanek");
         Administrator administrator = new Administrator("nero7410", "Daniel", "Łondka");
-        UUID uuid1 = UUID.randomUUID();
-        UUID uuid2 = UUID.randomUUID();
-        UUID uuid3 = UUID.randomUUID();
-        UUID uuid4 = UUID.randomUUID();
 
-        client1.setUserId(uuid1);
-        client2.setUserId(uuid2);
-        employee.setUserId(uuid3);
-        administrator.setUserId(uuid4);
+        userRepository.addUser(client1);
+        userRepository.addUser(client2);
+        userRepository.addUser(employee);
+        userRepository.addUser(administrator);
 
-        userRepository.getAllUsers().add(client1);
-        userRepository.getAllUsers().add(client2);
-        userRepository.getAllUsers().add(employee);
-        userRepository.getAllUsers().add(administrator);
-
-        assertEquals(userRepository.getUser(uuid1), client1);
-        assertEquals(userRepository.getUser(uuid2), client2);
-        assertEquals(userRepository.getUser(uuid3), employee);
-        assertEquals(userRepository.getUser(uuid4), administrator);
+        assertEquals(userRepository.getUser(client1.getUserId()), client1);
+        assertEquals(userRepository.getUser(client2.getUserId()), client2);
+        assertEquals(userRepository.getUser(employee.getUserId()), employee);
+        assertEquals(userRepository.getUser(administrator.getUserId()), administrator);
     }
 
     @Test
-    public void testGetUser() {
+    public void testGetUserForLogin() {
         // Get User by login
         UserRepository userRepository = new UserRepository();
         Client client1 = new Client("abraxas", "Michał", "Majchrowski", 21);
         Client client2 = new Client("kacper1410", "Kacper", "Świercz", 21);
         Employee employee = new Employee("Martiego", "Patryk", "Kolanek");
         Administrator administrator = new Administrator("nero7410", "Daniel", "Łondka");
-        UUID uuid1 = UUID.randomUUID();
-        UUID uuid2 = UUID.randomUUID();
-        UUID uuid3 = UUID.randomUUID();
-        UUID uuid4 = UUID.randomUUID();
 
-        client1.setUserId(uuid1);
-        client2.setUserId(uuid2);
-        employee.setUserId(uuid3);
-        administrator.setUserId(uuid4);
-
-        userRepository.getAllUsers().add(client1);
-        userRepository.getAllUsers().add(client2);
-        userRepository.getAllUsers().add(employee);
-        userRepository.getAllUsers().add(administrator);
+        userRepository.addUser(client1);
+        userRepository.addUser(client2);
+        userRepository.addUser(employee);
+        userRepository.addUser(administrator);
 
         assertEquals(userRepository.getUser("abraxas"), client1);
         assertEquals(userRepository.getUser("kacper1410"), client2);
@@ -96,7 +73,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void getAllUsers() {
+    public void testGetAllUsers() {
 
         UserRepository userRepository = new UserRepository();
         Client client1 = new Client("abraxas", "Michał", "Majchrowski", 21);
@@ -104,50 +81,29 @@ public class UserRepositoryTest {
         Employee employee = new Employee("Martiego", "Patryk", "Kolanek");
         Administrator administrator = new Administrator("nero7410", "Daniel", "Łondka");
 
-        UUID uuid1 = UUID.randomUUID();
-        UUID uuid2 = UUID.randomUUID();
-        UUID uuid3 = UUID.randomUUID();
-        UUID uuid4 = UUID.randomUUID();
-
-        client1.setUserId(uuid1);
-        client2.setUserId(uuid2);
-        employee.setUserId(uuid3);
-        administrator.setUserId(uuid4);
-
         assertEquals(userRepository.getAllUsers().size(), 0);
 
-        userRepository.getAllUsers().add(client1);
-        userRepository.getAllUsers().add(client2);
-        userRepository.getAllUsers().add(employee);
-        userRepository.getAllUsers().add(administrator);
+        userRepository.addUser(client1);
+        userRepository.addUser(client2);
+        userRepository.addUser(employee);
+        userRepository.addUser(administrator);
 
         assertEquals(userRepository.getAllUsers().size(), 4);
     }
 
 
     @Test
-    public void updateUser() {
+    public void testUpdateUser() {
         UserRepository userRepository = new UserRepository();
         Client client1 = new Client("abraxas", "Michał", "Majchrowski", 21);
         Client client2 = new Client("kacper1410", "Kacper", "Świercz", 21);
         Employee employee = new Employee("Martiego", "Patryk", "Kolanek");
         Administrator administrator = new Administrator("nero7410", "Daniel", "Łondka");
 
-        UUID uuid1 = UUID.randomUUID();
-        UUID uuid2 = UUID.randomUUID();
-        UUID uuid3 = UUID.randomUUID();
-        UUID uuid4 = UUID.randomUUID();
-
-        client1.setUserId(uuid1);
-        client2.setUserId(uuid2);
-        employee.setUserId(uuid3);
-        administrator.setUserId(uuid4);
-
-        userRepository.getAllUsers().add(client1);
-        userRepository.getAllUsers().add(client2);
-        userRepository.getAllUsers().add(employee);
-        userRepository.getAllUsers().add(administrator);
-
+        userRepository.addUser(client1);
+        userRepository.addUser(client2);
+        userRepository.addUser(employee);
+        userRepository.addUser(administrator);
 
         // Test login change
         assertEquals(userRepository.getAllUsers().get(1).getLogin(), "kacper1410");
@@ -157,7 +113,7 @@ public class UserRepositoryTest {
 
         Client clientUpdated1 = new Client("Brudero", "Kacper", "Świercz", 21);
 
-        userRepository.updateUser(uuid2, clientUpdated1);
+        userRepository.updateUser(client2.getUserId(), clientUpdated1);
 
         assertEquals(userRepository.getAllUsers().get(1).getLogin(), "Brudero");
         assertEquals(userRepository.getAllUsers().get(1).getName(), "Kacper");
@@ -171,7 +127,7 @@ public class UserRepositoryTest {
         assertEquals(userRepository.getAllUsers().get(3).getLastName(), "Łondka");
 
         Administrator administratorUpdate = new Administrator("nero7410", "Jacek", "Łondka");
-        userRepository.updateUser(uuid4, administratorUpdate);
+        userRepository.updateUser(administrator.getUserId(), administratorUpdate);
 
         assertEquals(userRepository.getAllUsers().get(3).getLogin(), "nero7410");
         assertEquals(userRepository.getAllUsers().get(3).getName(), "Jacek");
@@ -184,7 +140,7 @@ public class UserRepositoryTest {
         assertEquals(userRepository.getAllUsers().get(2).getLastName(), "Kolanek");
 
         Employee employeeUpdate3 = new Employee("Martiego", "Patryk", "Janiak");
-        userRepository.updateUser(uuid3, employeeUpdate3);
+        userRepository.updateUser(employee.getUserId(), employeeUpdate3);
 
         assertEquals(userRepository.getAllUsers().get(2).getLogin(), "Martiego");
         assertEquals(userRepository.getAllUsers().get(2).getName(), "Patryk");
@@ -197,7 +153,7 @@ public class UserRepositoryTest {
         assertEquals(((Client)userRepository.getAllUsers().get(0)).getAge(), 21);
 
         Client clientUpdate2 = new Client("abraxas", "Michał", "Majchrowski", 69);
-        userRepository.updateUser(uuid1, clientUpdate2);
+        userRepository.updateUser(client1.getUserId(), clientUpdate2);
 
         assertEquals(userRepository.getAllUsers().get(0).getLogin(), "abraxas");
         assertEquals(userRepository.getAllUsers().get(0).getName(), "Michał");
