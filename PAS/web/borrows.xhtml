@@ -10,11 +10,6 @@
         <link rel="stylesheet" type="text/css" href="styles.css" />
     </h:head>
     <h:body>
-<!--        private UUID borrowId;-->
-<!--        private Client client;-->
-<!--        private Resource resource;-->
-<!--        private Date borrowDate;-->
-<!--        private Date returnDate;-->
         <br/>
         <h1>All borrows</h1>
         <h:form>
@@ -48,6 +43,13 @@
             <h:column>
                 <f:facet name="header">Return Date</f:facet>
                 #{borrow.returnDate}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Return</f:facet>
+                <h:form>
+                    <h:commandButton value="Return" action="#{borrowController.borrowManager.endBorrow(borrow)}"/>
+                </h:form>
             </h:column>
         </h:dataTable>
     </h:body>

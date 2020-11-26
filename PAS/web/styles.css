@@ -21,13 +21,8 @@
     width: 100%;
 }
 
-.table-header-users {
-    width: 25%;
-    border: 1px dotted cornflowerblue;
-}
-
-.table-header-resources, .table-header-borrows {
-    width: 20%;
+.table-header-resources, .table-header-borrows, .table-header-users {
+    width: 16%;
     border: 1px dotted cornflowerblue;
 }
 
