@@ -77,14 +77,14 @@ public class ResourceManager implements Serializable {
         if (isbn == 0 || title == null || author == null || publishYear > Calendar.getInstance().get(Calendar.YEAR)) {
             return false;
         }
-        return resourceRepository.addResource(new Book(isbn, title, author, publishYear), UUID.randomUUID());
+        return resourceRepository.addResource(new Book(isbn, title, author, publishYear));
     }
 
     public boolean addAudioBook(long isbn, String title, String author, int length) {
         if (isbn == 0 || title == null || author == null || length <= 0) {
             return false;
         }
-        return resourceRepository.addResource(new Book(isbn, title, author, length), UUID.randomUUID());
+        return resourceRepository.addResource(new Book(isbn, title, author, length));
     }
 
     public boolean updateBook(Resource oldResource, long ISBN, String title, String author, int publishYear) {

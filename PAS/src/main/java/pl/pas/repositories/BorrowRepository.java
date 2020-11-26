@@ -22,9 +22,9 @@ public class BorrowRepository implements IBorrowRepository, Serializable {
     }
 
     @Override
-    public boolean addBorrow(Borrow borrow, UUID uuid) {
+    public boolean addBorrow(Borrow borrow) {
         synchronized (borrows) {
-            borrow.setBorrowId(uuid);
+            borrow.setBorrowId(UUID.randomUUID());
             return borrows.add(borrow);
         }
     }
@@ -68,7 +68,7 @@ public class BorrowRepository implements IBorrowRepository, Serializable {
     @Override
     public List<Borrow> getAllBorrows() {
         synchronized (borrows) {
-            return borrows;
+            return new ArrayList<>(borrows);
         }
     }
 

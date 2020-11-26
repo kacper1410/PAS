@@ -16,7 +16,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.UUID;
 
 @Named
 @ApplicationScoped
@@ -50,14 +49,14 @@ public class FillRepositories implements Serializable {
         Resource audioBook3 = new AudioBook(242311287, "W pustyni i w puszczy", "Henryk Sienkiewicz", 1080);
         Resource book5 = new Book(643532, "Krzyżacy", "Henryk Sienkiewicz", 1900);
 
-        resourceRepository.addResource(book1, UUID.randomUUID());
-        resourceRepository.addResource(audioBook1, UUID.randomUUID());
-        resourceRepository.addResource(book2, UUID.randomUUID());
-        resourceRepository.addResource(book3, UUID.randomUUID());
-        resourceRepository.addResource(audioBook2, UUID.randomUUID());
-        resourceRepository.addResource(book4, UUID.randomUUID());
-        resourceRepository.addResource(audioBook3, UUID.randomUUID());
-        resourceRepository.addResource(book5, UUID.randomUUID());
+        resourceRepository.addResource(book1);
+        resourceRepository.addResource(audioBook1);
+        resourceRepository.addResource(book2);
+        resourceRepository.addResource(book3);
+        resourceRepository.addResource(audioBook2);
+        resourceRepository.addResource(book4);
+        resourceRepository.addResource(audioBook3);
+        resourceRepository.addResource(book5);
 
         User user1 = new Administrator("login", "Jan", "Kowalski");
         User user2 = new Employee("tomcio123", "Tomasz", "Tomaszewski");
@@ -66,11 +65,11 @@ public class FillRepositories implements Serializable {
         User user5 = new Client("hast", "Hanna", "Strzelec", 15);
         user5.setActive(false);
 
-        userRepository.addUser(user1, UUID.randomUUID());
-        userRepository.addUser(user2, UUID.randomUUID());
-        userRepository.addUser(user3, UUID.randomUUID());
-        userRepository.addUser(user4, UUID.randomUUID());
-        userRepository.addUser(user5, UUID.randomUUID());
+        userRepository.addUser(user1);
+        userRepository.addUser(user2);
+        userRepository.addUser(user3);
+        userRepository.addUser(user4);
+        userRepository.addUser(user5);
 
         borrowManager.borrowResource(book1.getResourceId(), user3.getUserId());
         borrowManager.borrowResource(audioBook1.getResourceId(), user3.getUserId());

@@ -23,9 +23,9 @@ public class ResourceRepository implements IResourceRepository, Serializable {
     }
 
     @Override
-    public boolean addResource(Resource resource, UUID uuid) {
+    public boolean addResource(Resource resource) {
         synchronized (resources) {
-            resource.setResourceId(uuid);
+            resource.setResourceId(UUID.randomUUID());
             return resources.add(resource);
         }
     }
@@ -46,7 +46,7 @@ public class ResourceRepository implements IResourceRepository, Serializable {
     @Override
     public List<Resource> getAllResources() {
         synchronized (resources) {
-            return resources;
+            return new ArrayList<>(resources);
         }
     }
 

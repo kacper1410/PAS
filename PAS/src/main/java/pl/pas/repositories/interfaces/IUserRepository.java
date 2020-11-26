@@ -9,7 +9,7 @@ public interface IUserRepository {
     // TODO
     // UUID in addUser method
 
-    boolean addUser(User user, UUID uuid);
+    boolean addUser(User user);
     User getUser(UUID uuid);
     User getUser(String login);
     List<User> getAllUsers();

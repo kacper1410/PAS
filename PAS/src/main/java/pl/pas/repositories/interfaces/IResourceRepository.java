@@ -8,7 +8,7 @@ public interface IResourceRepository {
     // TODO
     // UUID in addResource method
 
-    boolean addResource(Resource resource, UUID uuid);
+    boolean addResource(Resource resource);
     Resource getResource(UUID uuid);
     List<Resource> getAllResources();
     void updateResource(UUID uuid, Resource newResource);

@@ -43,21 +43,21 @@ public class UserManager implements Serializable {
         if (login == null || name == null || lastName == null) {
             return false;
         }
-        return userRepository.addUser(new Administrator(login, name, lastName), UUID.randomUUID());
+        return userRepository.addUser(new Administrator(login, name, lastName));
     }
 
     public boolean addEmployee(String login, String name, String lastName) {
         if (login == null || name == null || lastName == null) {
             return false;
         }
-        return userRepository.addUser(new Employee(login, name, lastName), UUID.randomUUID());
+        return userRepository.addUser(new Employee(login, name, lastName));
     }
 
     public boolean addClient(String login, String name, String lastName, int age) {
         if (login == null || name == null || lastName == null || age > 0) {
             return false;
         }
-        return userRepository.addUser(new Client(login, name, lastName, age), UUID.randomUUID());
+        return userRepository.addUser(new Client(login, name, lastName, age));
     }
 
     public List<User> getAllUsers() {

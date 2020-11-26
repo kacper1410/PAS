@@ -47,7 +47,7 @@ public class BorrowManager implements Serializable {
         }
 
         if (resource.isAvailable() && user instanceof Client && user.isActive()) {
-            borrowRepository.addBorrow(new Borrow((Client) user, resource, date), UUID.randomUUID());
+            borrowRepository.addBorrow(new Borrow((Client) user, resource, date));
             resource.setAvailable(false);
             return true;
         }

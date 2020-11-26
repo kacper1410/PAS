@@ -24,11 +24,11 @@ public class UserRepository implements IUserRepository, Serializable {
     }
 
     @Override
-    public boolean addUser(User user, UUID uuid) {
+    public boolean addUser(User user) {
         synchronized (users) {
             if (users.contains(getUser(user.getLogin()))) return false;
 
-            user.setUserId(uuid);
+            user.setUserId(UUID.randomUUID());
             return users.add(user);
         }
     }
@@ -56,7 +56,7 @@ public class UserRepository implements IUserRepository, Serializable {
     @Override
     public List<User> getAllUsers() {
         synchronized (users) {
-            return users;
+            return new ArrayList<>(users);
         }
     }
 

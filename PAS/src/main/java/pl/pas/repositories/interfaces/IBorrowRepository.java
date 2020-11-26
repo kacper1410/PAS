@@ -9,7 +9,7 @@ public interface IBorrowRepository {
     // TODO
     // UUID in addBorrow method
 
-    boolean addBorrow(Borrow borrow, UUID uuid);
+    boolean addBorrow(Borrow borrow);
     Borrow getBorrow(UUID uuid);
     List<Borrow> getBorrowsByUser(UUID uuid);
     List<Borrow> getBorrowsByResource(UUID uuid);
