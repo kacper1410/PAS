@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class BorrowRepositoryTest {
 
     @Test
-    public void addBorrow() {
+    public void testAddBorrow() {
         BorrowRepository borrowRepository = new BorrowRepository();
         ResourceRepository resourceRepository = new ResourceRepository();
         UserRepository userRepository = new UserRepository();

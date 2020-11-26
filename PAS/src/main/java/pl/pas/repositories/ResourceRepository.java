@@ -70,12 +70,12 @@ public class ResourceRepository implements IResourceRepository, Serializable {
     }
 
     @Override
-    public List<Resource> getAllBooks() {
+    public List<Book> getAllBooks() {
         synchronized (resources) {
-            ArrayList<Resource> books = new ArrayList<>();
+            ArrayList<Book> books = new ArrayList<>();
             for (Resource resource : resources) {
                 if (resource instanceof Book) {
-                    books.add(resource);
+                    books.add((Book) resource);
                 }
             }
             return books;
@@ -83,12 +83,12 @@ public class ResourceRepository implements IResourceRepository, Serializable {
     }
 
     @Override
-    public List<Resource> getAllAudioBooks() {
+    public List<AudioBook> getAllAudioBooks() {
         synchronized (resources) {
-            ArrayList<Resource> audioBooks = new ArrayList<>();
+            ArrayList<AudioBook> audioBooks = new ArrayList<>();
             for (Resource resource : resources) {
                 if (resource instanceof AudioBook) {
-                    audioBooks.add(resource);
+                    audioBooks.add((AudioBook) resource);
                 }
             }
             return audioBooks;

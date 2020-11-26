@@ -46,11 +46,11 @@ public class ResourceManager implements Serializable {
         return resourceRepository.getAllResources();
     }
 
-    public List<Resource> getAllBooks() {
+    public List<Book> getAllBooks() {
         return resourceRepository.getAllBooks();
     }
 
-    public List<Resource> getAllAudioBooks() {
+    public List<AudioBook> getAllAudioBooks() {
         return resourceRepository.getAllAudioBooks();
     }
 
