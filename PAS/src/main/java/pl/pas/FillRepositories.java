@@ -12,7 +12,10 @@ import pl.pas.repositories.interfaces.IBorrowRepository;
 import pl.pas.repositories.interfaces.IResourceRepository;
 import pl.pas.repositories.interfaces.IUserRepository;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Initialized;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -37,6 +40,11 @@ public class FillRepositories implements Serializable {
         this.userRepository = userRepository;
         this.borrowRepository = borrowRepository;
         this.borrowManager = new BorrowManager(this.resourceRepository, this.borrowRepository, this.userRepository);
+    }
+
+    @PostConstruct
+    public void fill(@Observes @Initialized( ApplicationScoped.class ) Object init) {
+        fill();
     }
 
     public void fill() {
@@ -79,5 +87,8 @@ public class FillRepositories implements Serializable {
         borrowManager.borrowResource(audioBook2.getResourceId(), user4.getUserId());
 
         borrowManager.borrowResource(book4.getResourceId(), user5.getUserId());
+    }
+
+    public void doNothing() {
     }
 }
