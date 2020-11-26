@@ -12,6 +12,9 @@
     <h:body>
         <br/>
         <h1>All resources</h1>
+        <h:form>
+            <h:commandButton action="main"  value="Back"/>
+        </h:form>
         <h:dataTable value="#{resourceController.resourceManager.allResources}" var="res"
                      styleClass="table"
                      rowClasses="table-row"

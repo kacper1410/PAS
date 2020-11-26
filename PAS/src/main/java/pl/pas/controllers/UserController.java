@@ -17,4 +17,8 @@ public class UserController implements Serializable {
     public UserManager getUserManager() {
         return userManager;
     }
+
+    public String getAllUsers() {
+        return "users";
+    }
 }

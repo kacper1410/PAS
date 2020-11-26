@@ -17,6 +17,9 @@
 <!--        private Date returnDate;-->
         <br/>
         <h1>All borrows</h1>
+        <h:form>
+            <h:commandButton action="main"  value="Back"/>
+        </h:form>
         <h:dataTable value="#{borrowController.borrowManager.allBorrows}" var="borrow"
                      styleClass="table"
                      rowClasses="table-row"

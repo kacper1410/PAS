@@ -12,6 +12,9 @@
     <h:body>
         <br/>
         <h1>All users</h1>
+        <h:form>
+            <h:commandButton action="main"  value="Back"/>
+        </h:form>
         <h:dataTable value="#{userController.userManager.allUsers}" var="user"
                      styleClass="table"
                      rowClasses="table-row"

@@ -5,7 +5,7 @@
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
   <!-- TODO LINKs -->
   <navigation-rule>
-    <from-view-id>/index.xhtml</from-view-id>
+    <from-view-id/>
     <navigation-case>
       <from-outcome>users</from-outcome>
       <to-view-id>/users.xhtml</to-view-id>
@@ -15,8 +15,12 @@
       <to-view-id>/resources.xhtml</to-view-id>
     </navigation-case>
     <navigation-case>
-      <from-outcome>borrow</from-outcome>
+      <from-outcome>borrows</from-outcome>
       <to-view-id>/borrows.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>main</from-outcome>
+      <to-view-id>/index.xhtml</to-view-id>
     </navigation-case>
   </navigation-rule>
 </faces-config>
