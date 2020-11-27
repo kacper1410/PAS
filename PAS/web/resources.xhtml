@@ -14,8 +14,9 @@
         <h1>All resources</h1>
         <h:form>
             <h:commandButton action="main"  value="Back"/>
+            <h:commandButton action="#{resourceController.updateList}"  value="Refresh" />
         </h:form>
-        <h:dataTable value="#{resourceController.resourceManager.allResources}" var="res"
+        <h:dataTable value="#{resourceController.allResource}" var="res"
                      styleClass="table"
                      rowClasses="table-row"
                      headerClass="table-header-resources">
@@ -48,14 +49,14 @@
             <h:column>
                 <f:facet name="header">Remove</f:facet>
                 <h:form>
-                    <h:commandButton value="Remove" action="#{resourceController.resourceManager.removeResource(res.resourceId)}"/>
+                    <h:commandButton value="Remove" action="#{resourceController.removeResource(res)}"/>
                 </h:form>
             </h:column>
         </h:dataTable>
 
         <br/>
         <h1>All books</h1>
-        <h:dataTable value="#{resourceController.resourceManager.allResources}" var="res"
+        <h:dataTable value="#{resourceController.resourceManager.allBooks}" var="res"
                      styleClass="table"
                      rowClasses="table-row"
                      headerClass="table-header-resources">

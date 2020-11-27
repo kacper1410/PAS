@@ -7,20 +7,24 @@
   <navigation-rule>
     <from-view-id/>
     <navigation-case>
-      <from-outcome>users</from-outcome>
+      <from-outcome>userList</from-outcome>
       <to-view-id>/users.xhtml</to-view-id>
+      <redirect/>
     </navigation-case>
     <navigation-case>
-      <from-outcome>resources</from-outcome>
+      <from-outcome>resourceList</from-outcome>
       <to-view-id>/resources.xhtml</to-view-id>
+      <redirect/>
     </navigation-case>
     <navigation-case>
       <from-outcome>borrows</from-outcome>
       <to-view-id>/borrows.xhtml</to-view-id>
+      <redirect/>
     </navigation-case>
     <navigation-case>
       <from-outcome>main</from-outcome>
       <to-view-id>/index.xhtml</to-view-id>
+      <redirect/>
     </navigation-case>
   </navigation-rule>
 </faces-config>
