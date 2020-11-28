@@ -1,6 +1,7 @@
 package pl.pas.controllers;
 
 import pl.pas.managers.ResourceManager;
+import pl.pas.model.resource.Book;
 import pl.pas.model.resource.Resource;
 
 import javax.annotation.PostConstruct;
@@ -15,10 +16,29 @@ import java.util.List;
 @SessionScoped
 public class ResourceController implements Serializable {
 
+    private Book newBook;
+
     private List<Resource> currentResource;
 
     @Inject
     private ResourceManager resourceManager;
+
+    public ResourceController() {
+        newBook = new Book();
+    }
+
+    public void processNewBook() {
+        this.resourceManager.addBook(newBook.getISBN(), newBook.getTitle(), newBook.getAuthor(), newBook.getPublishYear());
+        this.newBook = new Book();
+    }
+
+    public Book getNewBook() {
+        return newBook;
+    }
+
+    public void setNewBook(Book newBook) {
+        this.newBook = newBook;
+    }
 
     public ResourceManager getResourceManager() {
         return resourceManager;

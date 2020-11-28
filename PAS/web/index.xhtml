@@ -11,21 +11,26 @@
         <link rel="stylesheet" type="text/css" href="styles.css" />
     </h:head>
     <h:body>
-<!--        <h1>-->
-<!--            Fill Repositories-->
-<!--            <h:form>-->
-<!--                <h:commandButton value="Fill" action="#{fillRepositories.doNothing()}"/>-->
-<!--            </h:form>-->
-<!--        </h1>-->
         <div class="flex-container-menu">
             <div class="flex-item">
-                <h:link outcome="#{userController.userList()}">Users</h:link>
+                <h:link outcome="users">Users</h:link>
             </div>
             <div class="flex-item">
-                <h:link outcome="#{resourceController.resourceList()}">Resources</h:link>
+                <h:link outcome="resources">Resources</h:link>
             </div>
             <div class="flex-item">
                 <h:link outcome="borrows">Borrows</h:link>
+            </div>
+        </div>
+        <div class="flex-container-menu">
+            <div class="flex-item">
+                <h:link outcome="addUser">Add user</h:link>
+            </div>
+            <div class="flex-item">
+                <h:link outcome="addResource">Add resource</h:link>
+            </div>
+            <div class="flex-item">
+                <h:link outcome="addBorrow">Add borrow</h:link>
             </div>
         </div>
     </h:body>

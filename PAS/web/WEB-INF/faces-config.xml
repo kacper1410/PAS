@@ -3,7 +3,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-  <!-- TODO LINKs -->
   <navigation-rule>
     <from-view-id/>
     <navigation-case>
@@ -19,6 +18,21 @@
     <navigation-case>
       <from-outcome>borrows</from-outcome>
       <to-view-id>/borrows.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>addUser</from-outcome>
+      <to-view-id>/adduser.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>addResource</from-outcome>
+      <to-view-id>/addresource.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>addBorrow</from-outcome>
+      <to-view-id>/addborrow.xhtml</to-view-id>
       <redirect/>
     </navigation-case>
     <navigation-case>

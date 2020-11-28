@@ -9,6 +9,9 @@ public abstract class Resource {
     private boolean available;
     private UUID resourceId;
 
+    public Resource() {
+    }
+
     public Resource(long ISBN, String title, String author) {
         this.ISBN = ISBN;
         this.title = title;

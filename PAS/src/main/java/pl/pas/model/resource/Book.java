@@ -3,6 +3,10 @@ package pl.pas.model.resource;
 public class Book extends Resource {
     private int publishYear;
 
+    public Book() {
+        super();
+    }
+
     public Book(long ISBN, String title, String author, int publishYear) {
         super(ISBN, title, author);
         this.publishYear = publishYear;
