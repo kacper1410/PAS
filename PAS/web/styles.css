@@ -3,7 +3,7 @@
     justify-content: space-around;
     align-items: center;
     height: 33vh;
-    width: 95vw;
+    width: 100%;
 }
 
 .flex-item {
@@ -41,4 +41,22 @@ a {
 .flex-item:hover {
     background-color: aliceblue;
     font-size: 1.4rem;
+}
+
+.header, .footer {
+    width: 100%;
+    height: 15vh;
+    float: left;
+}
+
+.left {
+    width: 20%;
+    height: 65vh;
+    float: left;
+}
+
+.right {
+    width: 80%;
+    height: 65vh;
+    float: left;
 }
