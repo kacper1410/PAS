@@ -57,5 +57,20 @@
       <to-view-id>/client.xhtml</to-view-id>
       <redirect/>
     </navigation-case>
+    <navigation-case>
+      <from-outcome>user</from-outcome>
+      <to-view-id>/user.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>book</from-outcome>
+      <to-view-id>/book.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>audiobook</from-outcome>
+      <to-view-id>/audiobook.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
   </navigation-rule>
 </faces-config>

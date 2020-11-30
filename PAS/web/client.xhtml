@@ -29,6 +29,12 @@
             </h:column>
 
             <h:column>
+                <f:facet name="header">Login</f:facet>
+                #{userController.currentClient.login}
+            </h:column>
+
+
+            <h:column>
                 <f:facet name="header">Name</f:facet>
                 #{userController.currentClient.name}
             </h:column>

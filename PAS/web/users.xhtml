@@ -14,14 +14,34 @@
     </ui:define>
 
     <ui:define name="right">
+
+        <h:form>
+            ID:
+            <h:inputText value="#{userController.userId}"/>
+            <h:commandButton value="Search" action="#{userController.searchId()}"/>
+        </h:form>
+
+        <h:form>
+            Login:
+            <h:inputText value="#{userController.login}"/>
+            <h:commandButton value="Search" action="#{userController.searchLogin()}"/>
+        </h:form>
+
+        <br/>
         <h1>All administrators</h1>
         <h:dataTable value="#{userController.userManager.allAdministrators}" var="user"
                      styleClass="table"
                      rowClasses="table-row"
                      headerClass="table-header-users">
+
             <h:column>
                 <f:facet name="header">User Id</f:facet>
                 #{user.userId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Login</f:facet>
+                #{user.login}
             </h:column>
 
             <h:column>
@@ -60,6 +80,11 @@
             </h:column>
 
             <h:column>
+                <f:facet name="header">Login</f:facet>
+                #{user.login}
+            </h:column>
+
+            <h:column>
                 <f:facet name="header">Name</f:facet>
                 #{user.name}
             </h:column>
@@ -91,8 +116,12 @@
                      headerClass="table-header-users">
             <h:column>
                 <f:facet name="header">User Id</f:facet>
-
                 <h:outputFormat value="#{client.userId}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Login</f:facet>
+                #{client.login}
             </h:column>
 
             <h:column>
