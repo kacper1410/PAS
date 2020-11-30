@@ -44,18 +44,13 @@
             </h:column>
 
             <h:column>
-                <f:facet name="header">Activate</f:facet>
+                <f:facet name="header">Actions</f:facet>
                 <h:form>
-                    <h:commandButton value="Activate" action="#{userController.userManager.activateUser(userController.currentClient)}"/>
+                    <h:commandButton value="Change activity" action="#{userController.changeActivity(userController.currentClient)}"/>
+                    <h:commandButton action="#{userController.viewClient(userController.currentClient)}" value="Show"/>
                 </h:form>
             </h:column>
 
-            <h:column>
-                <f:facet name="header">Deactivate</f:facet>
-                <h:form>
-                    <h:commandButton value="Deactivate" action="#{userController.userManager.deactivateUser(userController.currentClient)}"/>
-                </h:form>
-            </h:column>
         </h:dataTable>
 
         <h:dataTable value="#{borrowController.borrowManager.getAllBorrowsForClient(userController.currentClient.userId)}" var="borrow"
