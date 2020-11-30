@@ -7,6 +7,14 @@ public abstract class User {
     private String lastName;
     private boolean active;
 
+    public User() {
+        userId = 0;
+        login = "";
+        name = "";
+        lastName = "";
+        active = true;
+    }
+
     public User(String login, String name, String lastName) {
         this.userId = 0;
         this.login = login;
@@ -17,6 +25,14 @@ public abstract class User {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public long getUserId() {

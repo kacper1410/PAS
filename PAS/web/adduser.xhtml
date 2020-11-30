@@ -1,11 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
-</html>
+<ui:composition template="WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="header">
+        <h1>Nawigacja</h1>
+    </ui:define>
+
+    <ui:define name="left">
+        <h:form>
+            <h:commandButton action="main"  value="Back"/>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="right">
+        Add Client
+        <h:form>
+            *Login: <h:inputText required="true" value="#{userController.newClient.login}"/><br/>
+            *Name: <h:inputText required="true" value="#{userController.newClient.name}"/><br/>
+            *Last Name: <h:inputText required="true" value="#{userController.newClient.lastName}"/><br/>
+            *Age: <h:inputText required="true" value="#{userController.newClient.age}"/><br/>
+            <h:commandButton value="OK" action="#{userController.processNewClient()}" />
+            <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewClient()}" />
+        </h:form>
+        <br/>
+        <br/>
+
+        Add Employee
+        <h:form>
+            *Login: <h:inputText required="true" value="#{userController.newEmployee.login}"/><br/>
+            *Name: <h:inputText required="true" value="#{userController.newEmployee.name}"/><br/>
+            *Last Name: <h:inputText required="true" value="#{userController.newEmployee.lastName}"/><br/>
+            <h:commandButton value="OK" action="#{userController.processNewEmployee()}" />
+            <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewEmployee()}" />
+        </h:form>
+        <br/>
+        <br/>
+
+        Add Administrator
+        <h:form>
+            *Login: <h:inputText required="true" value="#{userController.newAdministrator.login}"/><br/>
+            *Name: <h:inputText required="true" value="#{userController.newAdministrator.name}"/><br/>
+            *Last Name: <h:inputText required="true" value="#{userController.newAdministrator.lastName}"/><br/>
+            <h:commandButton value="OK" action="#{userController.processNewAdministrator()}" />
+            <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewAdministrator()}" />
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+
