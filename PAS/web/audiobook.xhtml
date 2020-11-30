@@ -62,6 +62,45 @@
 
         </h:dataTable>
 
+        <h:form>
+            <h:dataTable value="#{resourceController.currentBook}" var="res"
+                         styleClass="table"
+                         rowClasses="table-row"
+                         headerClass="table-header-resources">
+
+                <h:column>
+                    <f:facet name="header">Resource Id</f:facet>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">ISBN</f:facet>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Title*</f:facet>
+                    <h:inputText value="#{resourceController.currentAudioBook.title}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Author*</f:facet>
+                    <h:inputText value="#{resourceController.currentAudioBook.author}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Available</f:facet>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Length*</f:facet>
+                    <h:inputText value="#{resourceController.currentAudioBook.length}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Remove</f:facet>
+                    <h:commandButton value="Update" action="#{resourceController.updateAudioBook}" />
+                </h:column>
+            </h:dataTable>
+        </h:form>
     </ui:define>
 
 </ui:composition>

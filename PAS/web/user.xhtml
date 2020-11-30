@@ -54,9 +54,43 @@
                     <h:commandButton value="Change activity" action="#{userController.changeActivity(userController.currentClient)}"/>
                 </h:form>
             </h:column>
-
         </h:dataTable>
 
+        <h:form>
+            <h:dataTable value="#{userController.currentUser}"
+                         styleClass="table"
+                         rowClasses="table-row"
+                         headerClass="table-header-users">
+
+                <h:column>
+                    <f:facet name="header">Client Id</f:facet>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Login</f:facet>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Name*</f:facet>
+                    <h:inputText value="#{userController.currentUser.name}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Last Name*</f:facet>
+                    <h:inputText value="#{userController.currentUser.lastName}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Active</f:facet>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                        <h:commandButton value="Update" action="#{userController.updateUser}"/>
+                </h:column>
+            </h:dataTable>
+
+        </h:form>
     </ui:define>
 
 </ui:composition>

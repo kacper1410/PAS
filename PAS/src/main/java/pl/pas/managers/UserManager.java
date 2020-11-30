@@ -99,23 +99,19 @@ public class UserManager implements Serializable {
         return true;
     }
 
-    public boolean updateEmployee(User oldUser, String login, String name, String lastName) {
+    public boolean updateUser(User oldUser, String login, String name, String lastName) {
         if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
-                || login == null || name == null || lastName == null || !(oldUser instanceof Employee)) {
+                || login == null || name == null || lastName == null) {
             return false;
         }
-        userRepository.updateUser(oldUser.getUserId(), new Employee(login, name, lastName));
+        if (oldUser instanceof Employee) {
+            userRepository.updateUser(oldUser.getUserId(), new Employee(login, name, lastName));
+        } else if (oldUser instanceof Administrator) {
+            userRepository.updateUser(oldUser.getUserId(), new Administrator(login, name, lastName));
+        }
         return true;
     }
 
-    public boolean updateAdministrator(User oldUser, String login, String name, String lastName) {
-        if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
-                || login == null || name == null || lastName == null || !(oldUser instanceof Administrator)) {
-            return false;
-        }
-        userRepository.updateUser(oldUser.getUserId(), new Administrator(login, name, lastName));
-        return true;
-    }
 
     public boolean activateUser(User user) {
         if (user == null) {

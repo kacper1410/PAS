@@ -59,6 +59,42 @@
 
         </h:dataTable>
 
+        <h:form>
+            <h:dataTable value="#{userController.currentClient}"
+                         styleClass="table"
+                         rowClasses="table-row"
+                         headerClass="table-header-users">
+
+                <h:column>
+                    <f:facet name="header">Client Id</f:facet>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Login</f:facet>
+                </h:column>
+
+
+                <h:column>
+                    <f:facet name="header">Name*</f:facet>
+                    <h:inputText value="#{userController.currentClient.name}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Last Name*</f:facet>
+                    <h:inputText value="#{userController.currentClient.lastName}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Active</f:facet>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                        <h:commandButton value="Update" action="#{userController.updateClient}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
         <h:dataTable value="#{borrowController.borrowManager.getAllBorrowsForClient(userController.currentClient.userId)}" var="borrow"
                      styleClass="table"
                      rowClasses="table-row"
