@@ -46,6 +46,16 @@ public class ResourceController implements Serializable {
         return "main";
     }
 
+    public String cancelNewBook() {
+        newBook = new Book();
+        return "main";
+    }
+
+    public String cancelNewAudioBook() {
+        newAudioBook = new AudioBook();
+        return "main";
+    }
+
     public Book getNewBook() {
         return newBook;
     }
