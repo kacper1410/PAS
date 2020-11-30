@@ -8,6 +8,10 @@ public abstract class Resource {
     private long resourceId;
 
     public Resource() {
+        this.ISBN = 0;
+        this.title = "";
+        this.author = "";
+        this.resourceId = 0;
     }
 
     public Resource(long ISBN, String title, String author) {

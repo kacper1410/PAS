@@ -53,15 +53,15 @@ a {
 }
 
 .left {
-    width: 20%;
+    width: 10%;
     height: 68vh;
     float: left;
     text-align: center;
 }
 
 .right {
-    width: 80%;
-    height: 65vh;
+    width: 90%;
+    height: 68vh;
     float: left;
     overflow-y: auto;
 }

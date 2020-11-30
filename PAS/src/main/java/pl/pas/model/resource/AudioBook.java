@@ -3,6 +3,11 @@ package pl.pas.model.resource;
 public class AudioBook extends Resource {
     private int length;
 
+    public AudioBook() {
+        super();
+        this.length = 0;
+    }
+
     public AudioBook(long ISBN, String title, String author, int length) {
         super(ISBN, title, author);
         this.length = length;

@@ -18,6 +18,7 @@ import java.util.List;
 public class ResourceController implements Serializable {
 
     private Book newBook;
+    private AudioBook newAudioBook;
 
     private List<Resource> currentResources;
     private List<Book> currentBooks;
@@ -28,11 +29,19 @@ public class ResourceController implements Serializable {
 
     public ResourceController() {
         newBook = new Book();
+        newAudioBook = new AudioBook();
     }
 
-    public void processNewBook() {
+    public String processNewBook() {
         this.resourceManager.addBook(newBook.getISBN(), newBook.getTitle(), newBook.getAuthor(), newBook.getPublishYear());
         this.newBook = new Book();
+        return "main";
+    }
+
+    public String processNewAudioBook() {
+        this.resourceManager.addAudioBook(newAudioBook.getISBN(), newAudioBook.getTitle(), newAudioBook.getAuthor(), newAudioBook.getLength());
+        this.newAudioBook = new AudioBook();
+        return "main";
     }
 
     public Book getNewBook() {
@@ -41,6 +50,14 @@ public class ResourceController implements Serializable {
 
     public void setNewBook(Book newBook) {
         this.newBook = newBook;
+    }
+
+    public AudioBook getNewAudioBook() {
+        return newAudioBook;
+    }
+
+    public void setNewAudioBook(AudioBook newAudioBook) {
+        this.newAudioBook = newAudioBook;
     }
 
     public ResourceManager getResourceManager() {
