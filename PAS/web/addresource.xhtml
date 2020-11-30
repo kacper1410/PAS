@@ -13,23 +13,23 @@
     <ui:define name="right">
         Add Book
         <h:form>
-            *ISBN: <h:inputText value="#{resourceController.newBook.ISBN}"/><br/>
-            *Title: <h:inputText value="#{resourceController.newBook.title}"/><br/>
-            *Author: <h:inputText value="#{resourceController.newBook.author}"/><br/>
-            *Publish Year: <h:inputText value="#{resourceController.newBook.publishYear}"/><br/>
+            *ISBN: <h:inputText required="true" value="#{resourceController.newBook.ISBN}"/><br/>
+            *Title: <h:inputText required="true" value="#{resourceController.newBook.title}"/><br/>
+            *Author: <h:inputText required="true" value="#{resourceController.newBook.author}"/><br/>
+            *Publish Year: <h:inputText required="true" value="#{resourceController.newBook.publishYear}"/><br/>
             <h:commandButton value="OK" action="#{resourceController.processNewBook()}" />
-            <h:commandButton value="Cancel" action="main" />
+            <h:commandButton value="Cancel" immediate="true" action="main" />
         </h:form>
         <br/>
         <br/>
         Add Audio Book
         <h:form>
-            *ISBN: <h:inputText value="#{resourceController.newAudioBook.ISBN}"/><br/>
-            *Title: <h:inputText value="#{resourceController.newAudioBook.title}"/><br/>
-            *Author: <h:inputText value="#{resourceController.newAudioBook.author}"/><br/>
-            *Length: <h:inputText value="#{resourceController.newAudioBook.length}"/><br/>
+            *ISBN: <h:inputText required="true" value="#{resourceController.newAudioBook.ISBN}"/><br/>
+            *Title: <h:inputText required="true" value="#{resourceController.newAudioBook.title}"/><br/>
+            *Author: <h:inputText required="true" value="#{resourceController.newAudioBook.author}"/><br/>
+            *Length: <h:inputText required="true" value="#{resourceController.newAudioBook.length}"/><br/>
             <h:commandButton value="OK" action="#{resourceController.processNewAudioBook()}" />
-            <h:commandButton value="Cancel" action="main" />
+            <h:commandButton value="Cancel" immediate="true" action="main" />
         </h:form>
     </ui:define>
 </ui:composition>

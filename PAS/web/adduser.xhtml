@@ -22,7 +22,7 @@
             *Last Name: <h:inputText required="true" value="#{userController.newClient.lastName}"/><br/>
             *Age: <h:inputText required="true" value="#{userController.newClient.age}"/><br/>
             <h:commandButton value="OK" action="#{userController.processNewClient()}" />
-            <h:commandButton value="Cancel" action="#{userController.cancelNewClient()}" />
+            <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewClient()}" />
         </h:form>
         <br/>
         <br/>
@@ -33,7 +33,7 @@
             *Name: <h:inputText required="true" value="#{userController.newEmployee.name}"/><br/>
             *Last Name: <h:inputText required="true" value="#{userController.newEmployee.lastName}"/><br/>
             <h:commandButton value="OK" action="#{userController.processNewEmployee()}" />
-            <h:commandButton value="Cancel" action="#{userController.cancelNewEmployee()}" />
+            <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewEmployee()}" />
         </h:form>
         <br/>
         <br/>
@@ -44,7 +44,7 @@
             *Name: <h:inputText required="true" value="#{userController.newAdministrator.name}"/><br/>
             *Last Name: <h:inputText required="true" value="#{userController.newAdministrator.lastName}"/><br/>
             <h:commandButton value="OK" action="#{userController.processNewAdministrator()}" />
-            <h:commandButton value="Cancel" action="#{userController.cancelNewAdministrator()}" />
+            <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewAdministrator()}" />
         </h:form>
 
     </ui:define>

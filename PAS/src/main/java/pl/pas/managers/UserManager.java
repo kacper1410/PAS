@@ -53,7 +53,7 @@ public class UserManager implements Serializable {
     }
 
     public boolean addClient(String login, String name, String lastName, int age) {
-        if (login == null || name == null || lastName == null || age > 0) {
+        if (login == null || name == null || lastName == null || age < 0) {
             return false;
         }
         return userRepository.addUser(new Client(login, name, lastName, age));

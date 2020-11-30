@@ -5,7 +5,6 @@ import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
 import pl.pas.model.user.User;
-
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -68,11 +67,8 @@ public class UserController implements Serializable {
     public String viewClient(Client client) {
         setCurrentClient(client);
         System.out.println(client);
-        return "client";
-    }
 
-    public UserManager getUserManager() {
-        return userManager;
+        return "client";
     }
 
     public String userList() {
@@ -81,6 +77,7 @@ public class UserController implements Serializable {
 
     public String processNewClient() {
         userManager.addClient(newClient.getLogin(), newClient.getName(), newClient.getLastName(), newClient.getAge());
+        System.out.println(userManager.getAllClients());
         newClient = new Client();
         return "main";
     }

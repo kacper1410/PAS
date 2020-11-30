@@ -42,7 +42,6 @@ public class FillRepositories implements Serializable {
         this.borrowManager = new BorrowManager(this.resourceRepository, this.borrowRepository, this.userRepository);
     }
 
-    @PostConstruct
     public void fill(@Observes @Initialized( ApplicationScoped.class ) Object init) {
         fill();
     }
