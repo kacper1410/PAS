@@ -6,55 +6,14 @@
     <ui:define name="header">
         <h1>Nawigacja</h1>
     </ui:define>
+
     <ui:define name="left">
         <h:form>
             <h:commandButton action="main"  value="Back"/>
         </h:form>
     </ui:define>
+
     <ui:define name="right">
-        <br/>
-
-<!--        <h1>All users</h1>-->
-<!--        <h:dataTable value="#{userController.userManager.allUsers}" var="user"-->
-<!--                     styleClass="table"-->
-<!--                     rowClasses="table-row"-->
-<!--                     headerClass="table-header-users">-->
-<!--            <h:column>-->
-<!--                <f:facet name="header">User Id</f:facet>-->
-<!--                #{user.userId}-->
-<!--            </h:column>-->
-
-<!--            <h:column>-->
-<!--                <f:facet name="header">Name</f:facet>-->
-<!--                #{user.name}-->
-<!--            </h:column>-->
-
-<!--            <h:column>-->
-<!--                <f:facet name="header">Last Name</f:facet>-->
-<!--                #{user.lastName}-->
-<!--            </h:column>-->
-
-<!--            <h:column>-->
-<!--                <f:facet name="header">Active</f:facet>-->
-<!--                #{user.active}-->
-<!--            </h:column>-->
-
-<!--            <h:column>-->
-<!--                <f:facet name="header">Activate</f:facet>-->
-<!--                <h:form>-->
-<!--                    <h:commandButton value="Activate" action="#{userController.userManager.activateUser(user)}"/>-->
-<!--                </h:form>-->
-<!--            </h:column>-->
-
-<!--            <h:column>-->
-<!--                <f:facet name="header">Deactivate</f:facet>-->
-<!--                <h:form>-->
-<!--                    <h:commandButton value="Deactivate" action="#{userController.userManager.deactivateUser(user)}"/>-->
-<!--                </h:form>-->
-<!--            </h:column>-->
-<!--        </h:dataTable>-->
-
-        <br/>
         <h1>All administrators</h1>
         <h:dataTable value="#{userController.userManager.allAdministrators}" var="user"
                      styleClass="table"
