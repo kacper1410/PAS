@@ -11,6 +11,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Named
@@ -30,6 +33,10 @@ public class ResourceController implements Serializable {
     public ResourceController() {
         newBook = new Book();
         newAudioBook = new AudioBook();
+    }
+
+    public int getCurrentYear() {
+        return Calendar.getInstance().get(Calendar.YEAR);
     }
 
     public String processNewBook() {
