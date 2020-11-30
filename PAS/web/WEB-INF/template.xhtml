@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>
-            <ui:define name="title">Wypozyczalnia ksiazek</ui:define>
+            <ui:define name="title">#{msg['page.title']}</ui:define>
         </title>
     </h:head>
     <h:body>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="footer">
-            Aplikacje wykonali Kacper Swiercz, Daniel Londka oraz Patryk Kolanek
+            #{msg['page.footer.authors']}
         </div>
     </h:body>
 </html>

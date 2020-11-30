@@ -4,7 +4,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="header">
-        <h1>Client</h1>
+        <h1>User</h1>
     </ui:define>
     <ui:define name="left">
         Linki
@@ -16,51 +16,48 @@
     <ui:define name="right">
 
         <br/>
-        <h1>Client</h1>
+        <h1>User</h1>
 
-        <h:dataTable value="#{userController.currentClient}"
-                styleClass="table"
-                rowClasses="table-row"
-                headerClass="table-header-users">
+        <h:dataTable value="#{userController.currentUser}"
+                     styleClass="table"
+                     rowClasses="table-row"
+                     headerClass="table-header-users">
 
             <h:column>
                 <f:facet name="header">Client Id</f:facet>
-                #{userController.currentClient.userId}
+                #{userController.currentUser.userId}
             </h:column>
 
             <h:column>
                 <f:facet name="header">Login</f:facet>
-                #{userController.currentClient.login}
+                #{userController.currentUser.login}
             </h:column>
-
 
             <h:column>
                 <f:facet name="header">Name</f:facet>
-                #{userController.currentClient.name}
+                #{userController.currentUser.name}
             </h:column>
 
             <h:column>
                 <f:facet name="header">Last Name</f:facet>
-                #{userController.currentClient.lastName}
+                #{userController.currentUser.lastName}
             </h:column>
 
             <h:column>
                 <f:facet name="header">Active</f:facet>
-                #{userController.currentClient.active}
+                #{userController.currentUser.active}
             </h:column>
 
             <h:column>
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
                     <h:commandButton value="Change activity" action="#{userController.changeActivity(userController.currentClient)}"/>
-                    <h:commandButton action="#{userController.viewClient(userController.currentClient)}" value="Show"/>
                 </h:form>
             </h:column>
-
         </h:dataTable>
 
         <h:form>
-            <h:dataTable value="#{userController.currentClient}"
+            <h:dataTable value="#{userController.currentUser}"
                          styleClass="table"
                          rowClasses="table-row"
                          headerClass="table-header-users">
@@ -73,15 +70,14 @@
                     <f:facet name="header">Login</f:facet>
                 </h:column>
 
-
                 <h:column>
                     <f:facet name="header">Name*</f:facet>
-                    <h:inputText value="#{userController.currentClient.name}" />
+                    <h:inputText value="#{userController.currentUser.name}" />
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Last Name*</f:facet>
-                    <h:inputText value="#{userController.currentClient.lastName}" />
+                    <h:inputText value="#{userController.currentUser.lastName}"/>
                 </h:column>
 
                 <h:column>
@@ -90,48 +86,11 @@
 
                 <h:column>
                     <f:facet name="header">Actions</f:facet>
-                        <h:commandButton value="Update" action="#{userController.updateClient}"/>
+                        <h:commandButton value="Update" action="#{userController.updateUser}"/>
                 </h:column>
             </h:dataTable>
+
         </h:form>
-
-        <h:dataTable value="#{borrowController.borrowManager.getAllBorrowsForClient(userController.currentClient.userId)}" var="borrow"
-                     styleClass="table"
-                     rowClasses="table-row"
-                     headerClass="table-header-borrows">
-
-            <h:column>
-                <f:facet name="header">Borrow Id</f:facet>
-                #{borrow.borrowId}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">Client Id</f:facet>
-                #{borrow.client.userId}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">Resource Id</f:facet>
-                #{borrow.resource.resourceId}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">Borrow Date</f:facet>
-                #{borrow.borrowDate}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">Return Date</f:facet>
-                #{borrow.returnDate}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">Return</f:facet>
-                <h:form>
-                    <h:commandButton value="Return" action="#{borrowController.borrowManager.endBorrow(borrow)}"/>
-                </h:form>
-            </h:column>
-        </h:dataTable>
     </ui:define>
 
 </ui:composition>

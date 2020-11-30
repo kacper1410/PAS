@@ -1,0 +1,146 @@
+<ui:composition template="WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="header">
+        <h1>Book</h1>
+    </ui:define>
+    <ui:define name="left">
+        Linki
+        <h:form>
+            <h:commandButton action="resourceList" value="Back"/>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="right">
+
+        <br/>
+        <h1>Book</h1>
+
+        <h:dataTable value="#{resourceController.currentBook}" var="res"
+                     styleClass="table"
+                     rowClasses="table-row"
+                     headerClass="table-header-resources">
+
+            <h:column>
+                <f:facet name="header">Resource Id</f:facet>
+                #{resourceController.currentBook.resourceId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">ISBN</f:facet>
+                #{resourceController.currentBook.ISBN}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                #{resourceController.currentBook.title}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Author</f:facet>
+                #{resourceController.currentBook.author}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Available</f:facet>
+                #{resourceController.currentBook.available}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Publish year</f:facet>
+                #{resourceController.currentBook.publishYear}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Remove</f:facet>
+                <h:form>
+                    <h:commandButton value="Remove" action="#{resourceController.removeCurrentBook}">
+                    </h:commandButton>
+                </h:form>
+            </h:column>
+
+        </h:dataTable>
+
+        <h:form>
+            <h:dataTable value="#{resourceController.currentBook}" var="res"
+                         styleClass="table"
+                         rowClasses="table-row"
+                         headerClass="table-header-resources">
+
+                <h:column>
+                    <f:facet name="header">Resource Id</f:facet>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">ISBN</f:facet>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Title*</f:facet>
+                    <h:inputText value="#{resourceController.currentBook.title}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Author*</f:facet>
+                    <h:inputText value="#{resourceController.currentBook.author}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Available</f:facet>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Publish year*</f:facet>
+                    <h:inputText value="#{resourceController.currentBook.publishYear}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Remove</f:facet>
+                        <h:commandButton value="Update" action="#{resourceController.updateBook}" />
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
+        <h:dataTable value="#{borrowController.borrowManager.getAllBorrowsForResource(resourceController.currentBook)}" var="borrow"
+                     styleClass="table"
+                     rowClasses="table-row"
+                     headerClass="table-header-borrows">
+
+            <h:column>
+                <f:facet name="header">Borrow Id</f:facet>
+                #{borrow.borrowId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Client Id</f:facet>
+                #{borrow.client.userId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Resource Id</f:facet>
+                #{borrow.resource.resourceId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Borrow Date</f:facet>
+                #{borrow.borrowDate}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Return Date</f:facet>
+                #{borrow.returnDate}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Return</f:facet>
+                <h:form>
+                    <h:commandButton value="Return" action="#{borrowController.returnResource(borrow)}"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+
+    </ui:define>
+
+</ui:composition>

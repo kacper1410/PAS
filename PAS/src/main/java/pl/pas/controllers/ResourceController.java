@@ -26,6 +26,34 @@ public class ResourceController implements Serializable {
     private Book newBook;
     private AudioBook newAudioBook;
 
+    private Book currentBook;
+    private AudioBook currentAudioBook;
+    private long resourceId;
+
+    public void setCurrentBook(Book currentBook) {
+        this.currentBook = currentBook;
+    }
+
+    public void setCurrentAudioBook(AudioBook currentAudioBook) {
+        this.currentAudioBook = currentAudioBook;
+    }
+
+    public void setResourceId(long resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public Book getCurrentBook() {
+        return currentBook;
+    }
+
+    public AudioBook getCurrentAudioBook() {
+        return currentAudioBook;
+    }
+
+    public long getResourceId() {
+        return resourceId;
+    }
+
     private List<Resource> currentResources;
     private List<Book> currentBooks;
     private List<AudioBook> currentAudioBooks;
@@ -111,5 +139,42 @@ public class ResourceController implements Serializable {
         currentResources = resourceManager.getAllResources();
         currentBooks = resourceManager.getAllBooks();
         currentAudioBooks = resourceManager.getAllAudioBooks();
+    }
+
+    public String search() {
+        Resource resource = resourceManager.getResource(resourceId);
+        if (resource instanceof Book) {
+            currentBook = (Book) resource;
+            return "book";
+        } else {
+            currentAudioBook = (AudioBook) resource;
+            return "audiobook";
+        }
+    }
+
+    public String removeCurrentBook() {
+        removeResource(currentBook);
+        currentBook = new Book();
+        return resourceList();
+    }
+
+    public String removeCurrentAudioBook() {
+        removeResource(currentAudioBook);
+        currentAudioBook = new AudioBook();
+        return resourceList();
+    }
+
+    public String updateBook() {
+        resourceManager.updateBook(currentBook, currentBook.getISBN(), currentBook.getTitle(), currentBook.getAuthor(), currentBook.getPublishYear());
+        updateList();
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        return viewId + "?faces-redirect=true";
+    }
+
+    public String updateAudioBook() {
+        resourceManager.updateAudioBook(currentAudioBook, currentAudioBook.getISBN(), currentAudioBook.getTitle(), currentAudioBook.getAuthor(), currentAudioBook.getLength());
+        updateList();
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        return viewId + "?faces-redirect=true";
     }
 }

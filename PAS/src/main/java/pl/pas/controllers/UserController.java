@@ -18,14 +18,25 @@ public class UserController implements Serializable {
     @Inject
     private UserManager userManager;
     private Client currentClient;
+    private User currentUser;
     private Client newClient;
     private Employee newEmployee;
     private Administrator newAdministrator;
+    private long userId;
+    private String login;
 
-    public UserController() {
-        newClient = new Client();
-        newEmployee = new Employee();
-        newAdministrator = new Administrator();
+    public void setLogin(String login) {
+        this.login = login;
+    }
+    public String getLogin() {
+        return login;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+    public long getUserId() {
+        return userId;
     }
 
     public UserManager getUserManager() {
@@ -62,6 +73,20 @@ public class UserController implements Serializable {
 
     public Client getCurrentClient() {
         return currentClient;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public UserController() {
+        newClient = new Client();
+        newEmployee = new Employee();
+        newAdministrator = new Administrator();
     }
 
     public String viewClient(Client client) {
@@ -113,6 +138,42 @@ public class UserController implements Serializable {
         } else {
             userManager.activateUser(user);
         }
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        return viewId + "?faces-redirect=true";
+    }
+
+
+
+    public String searchId() {
+        User user = userManager.getUser(userId);
+        if (user instanceof Client) {
+            currentClient = (Client) user;
+            return "client";
+        } else {
+            currentUser = user;
+            return "user";
+        }
+    }
+
+    public String searchLogin() {
+        User user = userManager.getUser(login);
+        if (user instanceof Client) {
+            currentClient = (Client) user;
+            return "client";
+        } else {
+            currentUser = user;
+            return "user";
+        }
+    }
+
+    public String updateClient() {
+        userManager.updateClient(currentClient, currentClient.getLogin(), currentClient.getName(), currentClient.getLastName(), currentClient.getAge());
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        return viewId + "?faces-redirect=true";
+    }
+
+    public String updateUser() {
+        userManager.updateUser(currentUser, currentUser.getLogin(), currentUser.getName(), currentUser.getLastName());
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
         return viewId + "?faces-redirect=true";
     }

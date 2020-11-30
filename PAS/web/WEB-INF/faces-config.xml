@@ -3,6 +3,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+  <application>
+    <locale-config>
+      <default-locale>en</default-locale>
+      <supported-locale>pl</supported-locale>
+    </locale-config>
+
+    <resource-bundle>
+      <base-name>messages</base-name>
+      <var>msg</var>
+    </resource-bundle>
+  </application>
+
   <navigation-rule>
     <from-view-id/>
     <navigation-case>
@@ -43,6 +55,26 @@
     <navigation-case>
       <from-outcome>client</from-outcome>
       <to-view-id>/client.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>user</from-outcome>
+      <to-view-id>/user.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>book</from-outcome>
+      <to-view-id>/book.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>audiobook</from-outcome>
+      <to-view-id>/audiobook.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>borrow</from-outcome>
+      <to-view-id>/borrow.xhtml</to-view-id>
       <redirect/>
     </navigation-case>
   </navigation-rule>
