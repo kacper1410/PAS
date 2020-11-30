@@ -83,8 +83,7 @@
             <h:column>
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
-                    <h:commandButton value="Activate" action="#{userController.userManager.activateUser(user)}"/>
-                    <h:commandButton value="Deactivate" action="#{userController.userManager.deactivateUser(user)}"/>
+                    <h:commandButton value="Change activity" action="#{userController.changeActivity(user)}"/>
                 </h:form>
             </h:column>
 
@@ -119,8 +118,7 @@
             <h:column>
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
-                    <h:commandButton value="Activate" action="#{userController.userManager.activateUser(user)}"/>
-                    <h:commandButton value="Deactivate" action="#{userController.userManager.deactivateUser(user)}"/>
+                    <h:commandButton value="Change activity" action="#{userController.changeActivity(user)}"/>
                 </h:form>
             </h:column>
 
@@ -156,8 +154,7 @@
             <h:column>
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
-                    <h:commandButton value="Activate" action="#{userController.userManager.activateUser(client)}"/>
-                    <h:commandButton value="Deactivate" action="#{userController.userManager.deactivateUser(client)}"/>
+                    <h:commandButton value="Change activity" action="#{userController.changeActivity(client)}"/>
                     <h:commandButton action="#{userController.viewClient(client)}" value="Show"/>
                 </h:form>
             </h:column>

@@ -4,8 +4,10 @@ import pl.pas.managers.UserManager;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
+import pl.pas.model.user.User;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -69,6 +71,10 @@ public class UserController implements Serializable {
         return "client";
     }
 
+    public UserManager getUserManager() {
+        return userManager;
+    }
+
     public String userList() {
         return "userList";
     }
@@ -102,5 +108,15 @@ public class UserController implements Serializable {
     public String cancelNewAdministrator() {
         newAdministrator = new Administrator();
         return "main";
+    }
+
+    public String changeActivity(User user) {
+        if (user.isActive()) {
+            userManager.deactivateUser(user);
+        } else {
+            userManager.activateUser(user);
+        }
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        return viewId + "?faces-redirect=true";
     }
 }
