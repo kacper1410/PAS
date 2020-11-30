@@ -74,7 +74,7 @@ public class UserManager implements Serializable {
         return userRepository.getUser(login);
     }
 
-    public List<User> getAllClients() {
+    public List<Client> getAllClients() {
         return userRepository.getAllClients();
     }
 

@@ -40,5 +40,10 @@
       <to-view-id>/index.xhtml</to-view-id>
       <redirect/>
     </navigation-case>
+    <navigation-case>
+      <from-outcome>client</from-outcome>
+      <to-view-id>/client.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
   </navigation-rule>
 </faces-config>

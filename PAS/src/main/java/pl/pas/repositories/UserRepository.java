@@ -73,12 +73,12 @@ public class UserRepository implements IUserRepository, Serializable {
     }
 
     @Override
-    public List<User> getAllClients() {
+    public List<Client> getAllClients() {
         synchronized (users) {
-            ArrayList<User> clients = new ArrayList<>();
+            ArrayList<Client> clients = new ArrayList<>();
             for (User user : users) {
                 if (user instanceof Client) {
-                    clients.add(user);
+                    clients.add((Client) user);
                 }
             }
             return clients;
