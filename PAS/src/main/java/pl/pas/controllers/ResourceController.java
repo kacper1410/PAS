@@ -17,15 +17,15 @@ import java.util.List;
 @SessionScoped
 public class ResourceController implements Serializable {
 
+    @Inject
+    private ResourceManager resourceManager;
+
     private Book newBook;
     private AudioBook newAudioBook;
 
     private List<Resource> currentResources;
     private List<Book> currentBooks;
     private List<AudioBook> currentAudioBooks;
-
-    @Inject
-    private ResourceManager resourceManager;
 
     public ResourceController() {
         newBook = new Book();
@@ -35,12 +35,14 @@ public class ResourceController implements Serializable {
     public String processNewBook() {
         this.resourceManager.addBook(newBook.getISBN(), newBook.getTitle(), newBook.getAuthor(), newBook.getPublishYear());
         this.newBook = new Book();
+        updateList();
         return "main";
     }
 
     public String processNewAudioBook() {
         this.resourceManager.addAudioBook(newAudioBook.getISBN(), newAudioBook.getTitle(), newAudioBook.getAuthor(), newAudioBook.getLength());
         this.newAudioBook = new AudioBook();
+        updateList();
         return "main";
     }
 
