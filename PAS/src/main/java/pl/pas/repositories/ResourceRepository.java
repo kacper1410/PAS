@@ -1,5 +1,6 @@
 package pl.pas.repositories;
 
+import pl.pas.UUID;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 import pl.pas.model.resource.Resource;
@@ -10,7 +11,6 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Named
 @ApplicationScoped
@@ -31,10 +31,10 @@ public class ResourceRepository implements IResourceRepository, Serializable {
     }
 
     @Override
-    public Resource getResource(UUID uuid) {
+    public Resource getResource(long uuid) {
         synchronized (resources) {
             for (Resource r : resources) {
-                if (r.getResourceId().equals(uuid)) {
+                if (r.getResourceId() == uuid) {
                     return r;
                 }
             }
@@ -51,10 +51,10 @@ public class ResourceRepository implements IResourceRepository, Serializable {
     }
 
     @Override
-    public void updateResource(UUID uuid, Resource newResource) {
+    public void updateResource(long uuid, Resource newResource) {
         synchronized (resources) {
             for (Resource r : resources) {
-                if (r.getResourceId().equals(uuid)) {
+                if (r.getResourceId() == uuid) {
                     newResource.setResourceId(uuid);
                     resources.set(resources.indexOf(r), newResource);
                 }
@@ -63,7 +63,7 @@ public class ResourceRepository implements IResourceRepository, Serializable {
     }
 
     @Override
-    public boolean deleteResource(UUID uuid) {
+    public boolean deleteResource(long uuid) {
         synchronized (resources) {
             return resources.remove(getResource(uuid));
         }

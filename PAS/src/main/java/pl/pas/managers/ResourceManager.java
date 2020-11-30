@@ -14,7 +14,6 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
-import java.util.UUID;
 
 @Named
 @ApplicationScoped
@@ -35,10 +34,7 @@ public class ResourceManager implements Serializable {
         this.userRepository = userRepository;
     }
 
-    public Resource getResource(UUID uuid) {
-        if (uuid == null) {
-            return null;
-        }
+    public Resource getResource(long uuid) {
         return resourceRepository.getResource(uuid);
     }
 
@@ -58,8 +54,8 @@ public class ResourceManager implements Serializable {
         return removeResource(resource.getResourceId());
     }
 
-    public boolean removeResource(UUID uuid) {
-        if (uuid == null || resourceRepository.getResource(uuid) == null) {
+    public boolean removeResource(long uuid) {
+        if (resourceRepository.getResource(uuid) == null) {
             return false;
         }
         if (!resourceRepository.getResource(uuid).isAvailable()) {

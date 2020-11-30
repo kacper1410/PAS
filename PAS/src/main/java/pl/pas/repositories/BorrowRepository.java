@@ -1,5 +1,6 @@
 package pl.pas.repositories;
 
+import pl.pas.UUID;
 import pl.pas.model.Borrow;
 import pl.pas.repositories.interfaces.IBorrowRepository;
 
@@ -9,7 +10,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Named
 @ApplicationScoped
@@ -30,21 +30,21 @@ public class BorrowRepository implements IBorrowRepository, Serializable {
     }
 
     @Override
-    public Borrow getBorrow(UUID uuid) {
+    public Borrow getBorrow(long uuid) {
         synchronized (borrows) {
             for (Borrow b : borrows) {
-                if (b.getBorrowId().equals(uuid)) return b;
+                if (b.getBorrowId() == uuid) return b;
             }
             return null;
         }
     }
 
     @Override
-    public List<Borrow> getBorrowsByUser(UUID uuid) {
+    public List<Borrow> getBorrowsByUser(long uuid) {
         synchronized (borrows) {
             List<Borrow> clientsBorrows = new ArrayList<>();
             for (Borrow b: borrows) {
-                if (b.getClient().getUserId().equals(uuid)) {
+                if (b.getClient().getUserId() == uuid) {
                     clientsBorrows.add(b);
                 }
             }
@@ -53,11 +53,11 @@ public class BorrowRepository implements IBorrowRepository, Serializable {
     }
 
     @Override
-    public List<Borrow> getBorrowsByResource(UUID uuid) {
+    public List<Borrow> getBorrowsByResource(long uuid) {
         synchronized (borrows) {
             List<Borrow> resourceBorrows = new ArrayList<>();
             for (Borrow b: borrows) {
-                if (b.getResource().getResourceId().equals(uuid)) {
+                if (b.getResource().getResourceId() == uuid) {
                     resourceBorrows.add(b);
                 }
             }
@@ -73,10 +73,10 @@ public class BorrowRepository implements IBorrowRepository, Serializable {
     }
 
     @Override
-    public void updateBorrow(UUID uuid, Borrow newBorrow) {
+    public void updateBorrow(long uuid, Borrow newBorrow) {
         synchronized (borrows) {
             for (Borrow b : borrows) {
-                if (b.getBorrowId().equals(uuid)) {
+                if (b.getBorrowId() == uuid) {
                     newBorrow.setBorrowId(uuid);
                     borrows.set(borrows.indexOf(b), newBorrow);
                 }
@@ -85,14 +85,14 @@ public class BorrowRepository implements IBorrowRepository, Serializable {
     }
 
     @Override
-    public boolean deleteBorrow(UUID uuid) {
+    public boolean deleteBorrow(long uuid) {
         synchronized (borrows) {
             return borrows.remove(getBorrow(uuid));
         }
     }
 
     @Override
-    public void endBorrow(UUID uuid) {
+    public void endBorrow(long uuid) {
         synchronized (borrows) {
             getBorrow(uuid).setReturnDate(new Date());
         }

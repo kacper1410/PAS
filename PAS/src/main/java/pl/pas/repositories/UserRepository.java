@@ -1,5 +1,6 @@
 package pl.pas.repositories;
 
+import pl.pas.UUID;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
@@ -11,7 +12,6 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Named
 @ApplicationScoped
@@ -34,10 +34,10 @@ public class UserRepository implements IUserRepository, Serializable {
     }
 
     @Override
-    public User getUser(UUID uuid) {
+    public User getUser(long uuid) {
         synchronized (users) {
             for (User u: users) {
-                if (u.getUserId().equals(uuid)) return u;
+                if (u.getUserId() == uuid) return u;
             }
             return null;
         }
@@ -61,10 +61,10 @@ public class UserRepository implements IUserRepository, Serializable {
     }
 
     @Override
-    public void updateUser(UUID uuid, User newUser) {
+    public void updateUser(long uuid, User newUser) {
         synchronized (users) {
             for (User u : users) {
-                if (u.getUserId().equals(uuid)) {
+                if (u.getUserId() == uuid) {
                     newUser.setUserId(uuid);
                     users.set(users.indexOf(u), newUser);
                 }

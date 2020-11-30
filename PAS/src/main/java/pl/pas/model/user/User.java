@@ -1,27 +1,25 @@
 package pl.pas.model.user;
 
-import java.util.UUID;
-
 public abstract class User {
-    private UUID userId;
+    private long userId;
     private String login;
     private String name;
     private String lastName;
     private boolean active;
 
     public User(String login, String name, String lastName) {
-        this.userId = null;
+        this.userId = 0;
         this.login = login;
         this.active = true;
         this.name = name;
         this.lastName = lastName;
     }
 
-    public void setUserId(UUID userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
-    public UUID getUserId() {
+    public long getUserId() {
         return userId;
     }
 
@@ -54,7 +52,7 @@ public abstract class User {
         if (this == obj) return true;
         if (obj instanceof User) {
             User user = (User) obj;
-            return this.userId.equals(user.getUserId()) && this.login.equals(user.getLogin());
+            return this.userId == user.userId && this.login.equals(user.getLogin());
         }
         return false;
     }

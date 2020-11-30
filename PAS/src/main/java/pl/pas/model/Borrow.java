@@ -4,17 +4,16 @@ import pl.pas.model.resource.Resource;
 import pl.pas.model.user.Client;
 
 import java.util.Date;
-import java.util.UUID;
 
 public class Borrow {
-    private UUID borrowId;
+    private long borrowId;
     private Client client;
     private Resource resource;
     private Date borrowDate;
     private Date returnDate;
 
     public Borrow(Client client, Resource resource) {
-        this.borrowId = null;
+        this.borrowId = 0;
         this.client = client;
         this.resource = resource;
         this.borrowDate = new Date();
@@ -22,14 +21,14 @@ public class Borrow {
     }
 
     public Borrow(Client client, Resource resource, Date date) {
-        this.borrowId = UUID.randomUUID();
+        this.borrowId = 0;
         this.client = client;
         this.resource = resource;
         this.borrowDate = date;
         this.returnDate = null;
     }
 
-    public void setBorrowId(UUID borrowId) {
+    public void setBorrowId(long borrowId) {
         this.borrowId = borrowId;
     }
 
@@ -65,7 +64,7 @@ public class Borrow {
         this.returnDate = returnDate;
     }
 
-    public UUID getBorrowId() {
+    public long getBorrowId() {
         return borrowId;
     }
 
@@ -78,7 +77,7 @@ public class Borrow {
         if (this == obj) return true;
         if (obj instanceof Borrow) {
             Borrow borrow = (Borrow) obj;
-            return this.borrowId.equals(borrow.getBorrowId()) && this.client.equals(borrow.getClient()) && this.resource.equals(borrow.getResource());
+            return this.borrowId == borrow.borrowId && this.client.equals(borrow.getClient()) && this.resource.equals(borrow.getResource());
         }
         return false;
     }

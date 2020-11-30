@@ -3,17 +3,13 @@ package pl.pas.repositories.interfaces;
 import pl.pas.model.user.User;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface IUserRepository {
-    // TODO
-    // UUID in addUser method
-
     boolean addUser(User user);
-    User getUser(UUID uuid);
+    User getUser(long uuid);
     User getUser(String login);
     List<User> getAllUsers();
-    void updateUser(UUID uuid, User newUser);
+    void updateUser(long uuid, User newUser);
     List<User> getAllClients();
     List<User> getAllEmployees();
     List<User> getAllAdministrators();

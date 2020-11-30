@@ -1,13 +1,11 @@
 package pl.pas.model.resource;
 
-import java.util.UUID;
-
 public abstract class Resource {
     private long ISBN;
     private String title;
     private String author;
     private boolean available;
-    private UUID resourceId;
+    private long resourceId;
 
     public Resource() {
     }
@@ -17,10 +15,10 @@ public abstract class Resource {
         this.title = title;
         this.author = author;
         this.available = true;
-        this.resourceId = null;
+        this.resourceId = 0;
     }
 
-    public void setResourceId(UUID resourceId) {
+    public void setResourceId(long resourceId) {
         this.resourceId = resourceId;
     }
 
@@ -56,7 +54,7 @@ public abstract class Resource {
         this.available = available;
     }
 
-    public UUID getResourceId() {
+    public long getResourceId() {
         return resourceId;
     }
 
@@ -65,7 +63,7 @@ public abstract class Resource {
         if (this == obj) return true;
         if (obj instanceof Resource) {
             Resource resource = (Resource) obj;
-            return this.resourceId.equals(resource.getResourceId()) && this.ISBN == resource.ISBN;
+            return this.resourceId == resource.resourceId && this.ISBN == resource.ISBN;
         }
         return false;
     }

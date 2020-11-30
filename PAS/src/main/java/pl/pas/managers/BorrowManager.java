@@ -14,7 +14,6 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Named
 @ApplicationScoped
@@ -35,11 +34,11 @@ public class BorrowManager implements Serializable {
         this.userRepository = userRepository;
     }
 
-    public boolean borrowResource(UUID resourceId, UUID clientId) {
+    public boolean borrowResource(long resourceId, long clientId) {
         return borrowResource(resourceId, clientId, new Date());
     }
 
-    public boolean borrowResource(UUID resourceId, UUID clientId, Date date) {
+    public boolean borrowResource(long resourceId, long clientId, Date date) {
         Resource resource = resourceRepository.getResource(resourceId);
         User user = userRepository.getUser(clientId);
         if (resource == null || user == null) {
@@ -55,11 +54,8 @@ public class BorrowManager implements Serializable {
         return false;
     }
 
-    public Borrow getBorrow(UUID uuid) {
-        if (uuid != null) {
-            return borrowRepository.getBorrow(uuid);
-        }
-        return null;
+    public Borrow getBorrow(long uuid) {
+        return borrowRepository.getBorrow(uuid);
     }
 
     public List<Borrow> getAllBorrows() {
@@ -70,7 +66,7 @@ public class BorrowManager implements Serializable {
         return getAllBorrowsForClient(client.getUserId());
     }
 
-    public List<Borrow> getAllBorrowsForClient(UUID uuid) {
+    public List<Borrow> getAllBorrowsForClient(long uuid) {
         return borrowRepository.getBorrowsByUser(uuid);
     }
 
@@ -78,7 +74,7 @@ public class BorrowManager implements Serializable {
         return getAllBorrowsForResource(resource.getResourceId());
     }
 
-    public List<Borrow> getAllBorrowsForResource(UUID uuid) {
+    public List<Borrow> getAllBorrowsForResource(long uuid) {
         return borrowRepository.getBorrowsByResource(uuid);
     }
 

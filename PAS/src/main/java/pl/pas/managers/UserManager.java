@@ -13,7 +13,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import java.util.UUID;
 
 @Named
 @ApplicationScoped
@@ -64,10 +63,7 @@ public class UserManager implements Serializable {
         return userRepository.getAllUsers();
     }
 
-    public User getUser(UUID id) {
-        if (id == null) {
-            return null;
-        }
+    public User getUser(long id) {
         return userRepository.getUser(id);
     }
 
