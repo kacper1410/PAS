@@ -1,6 +1,7 @@
 package pl.pas.controllers;
 
 import pl.pas.managers.ResourceManager;
+import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 import pl.pas.model.resource.Resource;
 
@@ -18,7 +19,9 @@ public class ResourceController implements Serializable {
 
     private Book newBook;
 
-    private List<Resource> currentResource;
+    private List<Resource> currentResources;
+    private List<Book> currentBooks;
+    private List<AudioBook> currentAudioBooks;
 
     @Inject
     private ResourceManager resourceManager;
@@ -45,7 +48,15 @@ public class ResourceController implements Serializable {
     }
 
     public List<Resource> getAllResource() {
-        return currentResource;
+        return currentResources;
+    }
+
+    public List<AudioBook> getAllAudioBooks() {
+        return currentAudioBooks;
+    }
+
+    public List<Book> getAllBooks() {
+        return currentBooks;
     }
 
     public String resourceList() {
@@ -61,6 +72,8 @@ public class ResourceController implements Serializable {
 
     @PostConstruct
     public void updateList() {
-        currentResource = resourceManager.getAllResources();
+        currentResources = resourceManager.getAllResources();
+        currentBooks = resourceManager.getAllBooks();
+        currentAudioBooks = resourceManager.getAllAudioBooks();
     }
 }
