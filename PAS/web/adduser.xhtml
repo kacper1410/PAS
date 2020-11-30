@@ -17,21 +17,57 @@
     <ui:define name="right">
         Add Client
         <h:form>
-            *Login: <h:inputText required="true" value="#{userController.newClient.login}"/><br/>
-            *Name: <h:inputText required="true" value="#{userController.newClient.name}"/><br/>
-            *Last Name: <h:inputText required="true" value="#{userController.newClient.lastName}"/><br/>
-            *Age: <h:inputText required="true" value="#{userController.newClient.age}"/><br/>
+            *Login:
+            <h:inputText id="Client_login" required="true" value="#{userController.newClient.login}">
+                <f:validateRequired for="Client_login" />
+            </h:inputText>
+            <h:message for="Client_login" style="color:red" />
+            <br/>
+            *Name:
+            <h:inputText id="Client_name" required="true" value="#{userController.newClient.name}">
+                <f:validateRequired for="Client_name" />
+            </h:inputText>
+            <h:message for="Client_name" style="color:red" />
+            <br/>
+            *Last Name:
+            <h:inputText id="Client_last_name" required="true" value="#{userController.newClient.lastName}">
+                <f:validateRequired for="Client_last_name" />
+            </h:inputText>
+            <h:message for="Client_last_name" style="color:red" />
+            <br/>
+            *Age:
+            <h:inputText id="Client_age" required="true" value="#{userController.newClient.age}">
+                <f:validateRequired for="Client_age" />
+                <f:validateLongRange for="Client_age" minimum="1" maximum="199"/>
+            </h:inputText>
+            <h:message for="Client_age" style="color:red" />
+            <br/>
             <h:commandButton value="OK" action="#{userController.processNewClient()}" />
-            <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewClient()}" />
+            <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewClient()}" /><br/>
         </h:form>
         <br/>
         <br/>
 
         Add Employee
         <h:form>
-            *Login: <h:inputText required="true" value="#{userController.newEmployee.login}"/><br/>
-            *Name: <h:inputText required="true" value="#{userController.newEmployee.name}"/><br/>
-            *Last Name: <h:inputText required="true" value="#{userController.newEmployee.lastName}"/><br/>
+            *Login:
+            <h:inputText id="Employee_login" required="true" value="#{userController.newEmployee.login}">
+                <f:validateRequired for="Employee_login" />
+            </h:inputText>
+            <h:message for="Employee_login" style="color:red" />
+            <br/>
+            *Name:
+            <h:inputText id="Employee_name" required="true" value="#{userController.newEmployee.name}">
+                <f:validateRequired for="Employee_name" />
+            </h:inputText>
+            <h:message for="Employee_name" style="color: red" />
+            <br/>
+            *Last Name:
+            <h:inputText id="Employee_last_name" required="true" value="#{userController.newEmployee.lastName}">
+                <f:validateRequired for="Employee_last_name" />
+            </h:inputText>
+            <h:message for="Employee_last_name" style="color: red" />
+            <br/>
             <h:commandButton value="OK" action="#{userController.processNewEmployee()}" />
             <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewEmployee()}" />
         </h:form>
@@ -40,9 +76,24 @@
 
         Add Administrator
         <h:form>
-            *Login: <h:inputText required="true" value="#{userController.newAdministrator.login}"/><br/>
-            *Name: <h:inputText required="true" value="#{userController.newAdministrator.name}"/><br/>
-            *Last Name: <h:inputText required="true" value="#{userController.newAdministrator.lastName}"/><br/>
+            *Login:
+            <h:inputText id="Administrator_login" required="true" value="#{userController.newAdministrator.login}">
+                <f:validateRequired for="Administrator_login" />
+            </h:inputText>
+            <h:message for="Administrator_login" style="color: red" />
+            <br/>
+            *Name:
+            <h:inputText id="Administrator_name" required="true" value="#{userController.newAdministrator.name}">
+                <f:validateRequired for="Administrator_name" />
+            </h:inputText>
+            <h:message for="Administrator_name" style="color: red" />
+            <br/>
+            *Last Name:
+            <h:inputText id="Administrator_last_name" required="true" value="#{userController.newAdministrator.lastName}">
+                <f:validateRequired for="Administrator_last_name" />
+            </h:inputText>
+            <h:message for="Administrator_last_name" style="color: red" />
+            <br/>
             <h:commandButton value="OK" action="#{userController.processNewAdministrator()}" />
             <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewAdministrator()}" />
         </h:form>

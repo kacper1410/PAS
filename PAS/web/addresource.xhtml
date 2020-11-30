@@ -17,10 +17,32 @@
 
         Add Book
         <h:form>
-            *ISBN: <h:inputText required="true" value="#{resourceController.newBook.ISBN}"/><br/>
-            *Title: <h:inputText required="true" value="#{resourceController.newBook.title}"/><br/>
-            *Author: <h:inputText required="true" value="#{resourceController.newBook.author}"/><br/>
-            *Publish Year: <h:inputText required="true" value="#{resourceController.newBook.publishYear}"/><br/>
+            *ISBN:
+            <h:inputText id="Book_ISBN" required="true" value="#{resourceController.newBook.ISBN}">
+                <f:validateRequired for="Book_ISBN" />
+                <f:validateLongRange for="Book_ISBN" minimum="1"/>
+            </h:inputText>
+            <h:message for="Book_ISBN" style="color: red" />
+            <br/>
+            *Title:
+            <h:inputText id="Book_title" required="true" value="#{resourceController.newBook.title}">
+                <f:validateRequired for="Book_title" />
+            </h:inputText>
+            <h:message for="Book_title" style="color: red" />
+            <br/>
+            *Author:
+            <h:inputText id="Book_author" required="true" value="#{resourceController.newBook.author}">
+                <f:validateRequired for="Book_author" />
+            </h:inputText>
+            <h:message for="Book_author" style="color: red" />
+            <br/>
+            *Publish Year:
+            <h:inputText id="Book_year" required="true" value="#{resourceController.newBook.publishYear}">
+                <f:validateRequired for="Book_year" />
+                <f:validateLongRange for="Book_year" />
+            </h:inputText>
+            <h:message for="Book_year" style="color: red" />
+            <br/>
             <h:commandButton value="OK" action="#{resourceController.processNewBook()}" />
             <h:commandButton value="Cancel" immediate="true" action="#{resourceController.cancelNewBook()}" />
         </h:form>
@@ -29,10 +51,32 @@
 
         Add Audio Book
         <h:form>
-            *ISBN: <h:inputText required="true" value="#{resourceController.newAudioBook.ISBN}"/><br/>
-            *Title: <h:inputText required="true" value="#{resourceController.newAudioBook.title}"/><br/>
-            *Author: <h:inputText required="true" value="#{resourceController.newAudioBook.author}"/><br/>
-            *Length: <h:inputText required="true" value="#{resourceController.newAudioBook.length}"/><br/>
+            *ISBN:
+            <h:inputText id="Audio_book_ISBN" required="true" value="#{resourceController.newAudioBook.ISBN}">
+                <f:validateRequired for="Audio_book_ISBN" />
+                <f:validateLongRange for="Audio_book_ISBN" minimum="1"/>
+            </h:inputText>
+            <h:message for="Audio_book_ISBN" style="color: red" />
+            <br/>
+            *Title:
+            <h:inputText id="Audio_book_title" required="true" value="#{resourceController.newAudioBook.title}">
+                <f:validateRequired for="Audio_book_title" />
+            </h:inputText>
+            <h:message for="Audio_book_title" style="color: red" />
+            <br/>
+            *Author:
+            <h:inputText id="Audio_book_author" required="true" value="#{resourceController.newAudioBook.author}">
+                <f:validateRequired for="Audio_book_author" />
+            </h:inputText>
+            <h:message for="Audio_book_author" style="color: red" />
+            <br/>
+            *Length:
+            <h:inputText id="Audio_book_length" required="true" value="#{resourceController.newAudioBook.length}">
+                <f:validateRequired for="Audio_book_length" />
+                <f:validateLongRange for="Audio_book_length" minimum="1"/>
+            </h:inputText>
+            <h:message for="Audio_book_length" style="color: red" />
+            <br/>
             <h:commandButton value="OK" action="#{resourceController.processNewAudioBook()}" />
             <h:commandButton value="Cancel" immediate="true" action="#{resourceController.cancelNewAudioBook()}" />
         </h:form>
