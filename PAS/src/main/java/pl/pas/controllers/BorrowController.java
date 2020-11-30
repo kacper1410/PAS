@@ -1,8 +1,10 @@
 package pl.pas.controllers;
 
 import pl.pas.managers.BorrowManager;
+import pl.pas.model.Borrow;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -18,6 +20,24 @@ public class BorrowController implements Serializable {
     private long resourceId;
     private long clientId;
     private Date borrowDate;
+    private Borrow currentBorrow;
+    private long borrowId;
+
+    public void setCurrentBorrow(Borrow currentBorrow) {
+        this.currentBorrow = currentBorrow;
+    }
+
+    public void setBorrowId(long borrowId) {
+        this.borrowId = borrowId;
+    }
+
+    public Borrow getCurrentBorrow() {
+        return currentBorrow;
+    }
+
+    public long getBorrowId() {
+        return borrowId;
+    }
 
     public BorrowController() {
         borrowDate = new Date();
@@ -61,5 +81,17 @@ public class BorrowController implements Serializable {
         this.clientId = 0;
         this.borrowDate = new Date();
         return "main";
+    }
+
+    public String search() {
+        currentBorrow = borrowManager.getBorrow(borrowId);
+        return "borrow";
+    }
+
+    public String returnResource(Borrow borrow) {
+        borrowManager.endBorrow(borrow);
+
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        return viewId + "?faces-redirect=true";
     }
 }
