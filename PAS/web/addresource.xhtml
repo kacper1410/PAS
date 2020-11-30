@@ -1,23 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <title>Dodaj zasob</title>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-</h:head>
-<h:body>
-    New resource
-    <h:form>
-        *ISBN: <h:inputText value="#{resourceController.newBook.ISBN}"/><br/>
-        *Title: <h:inputText value="#{resourceController.newBook.title}"/><br/>
-        *Author: <h:inputText value="#{resourceController.newBook.author}"/><br/>
-        *Publish Year: <h:inputText value="#{resourceController.newBook.publishYear}"/><br/>
-        <h:commandButton value="OK" action="#{resourceController.processNewBook()}" />
-        <h:commandButton value="Cancel" action="main" />
-    </h:form>
-</h:body>
-</html>
+<ui:composition template="WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="header">
+        <h1>Nawigacja</h1>
+    </ui:define>
+
+    <ui:define name="left">
+        Linki
+    </ui:define>
+    <ui:define name="right">
+        Add Book
+        <h:form>
+            *ISBN: <h:inputText value="#{resourceController.newBook.ISBN}"/><br/>
+            *Title: <h:inputText value="#{resourceController.newBook.title}"/><br/>
+            *Author: <h:inputText value="#{resourceController.newBook.author}"/><br/>
+            *Publish Year: <h:inputText value="#{resourceController.newBook.publishYear}"/><br/>
+            <h:commandButton value="OK" action="#{resourceController.processNewBook()}" />
+            <h:commandButton value="Cancel" action="main" />
+        </h:form>
+        <br/>
+        <br/>
+        Add Audio Book
+        <h:form>
+            *ISBN: <h:inputText value="#{resourceController.newAudioBook.ISBN}"/><br/>
+            *Title: <h:inputText value="#{resourceController.newAudioBook.title}"/><br/>
+            *Author: <h:inputText value="#{resourceController.newAudioBook.author}"/><br/>
+            *Length: <h:inputText value="#{resourceController.newAudioBook.length}"/><br/>
+            <h:commandButton value="OK" action="#{resourceController.processNewAudioBook()}" />
+            <h:commandButton value="Cancel" action="main" />
+        </h:form>
+    </ui:define>
+</ui:composition>
+

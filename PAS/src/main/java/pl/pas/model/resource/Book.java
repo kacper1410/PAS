@@ -5,6 +5,7 @@ public class Book extends Resource {
 
     public Book() {
         super();
+        this.publishYear = 0;
     }
 
     public Book(long ISBN, String title, String author, int publishYear) {
