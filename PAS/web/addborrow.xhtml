@@ -15,12 +15,28 @@
     <ui:define name="right">
         <h3>Add Borrow</h3>
         <h:form>
-            *Resource ID: <h:inputText value="#{borrowController.resourceId}"/><br/>
-            *Client ID: <h:inputText value="#{borrowController.clientId}"/><br/>
+            *Resource ID:
+            <h:inputText id="Resource_ID" value="#{borrowController.resourceId}">
+                <f:validateRequired for="Resource_ID" />
+                <f:validateLongRange for="Resource_ID" minimum="1" />
+            </h:inputText>
+            <h:message for="Resource_ID" style="color: red" />
+            <br/>
+
+            *Client ID:
+            <h:inputText id="Client_ID" value="#{borrowController.clientId}">
+                <f:validateRequired for="Client_ID" />
+                <f:validateLongRange for="Client_ID" minimum="1" />
+            </h:inputText>
+            <h:message for="Client_ID" style="color: red" />
+            <br/>
+
             *Date:
-            <h:inputText value="#{borrowController.borrowDate}">
+            <h:inputText id="Borrow_date" value="#{borrowController.borrowDate}">
                 <f:convertDateTime pattern="yyyy-MM-dd"/>
-            </h:inputText><br/>
+            </h:inputText>
+            <h:message for="Borrow_date" style="color: red" />
+            <br/>
             <h:commandButton value="OK" action="#{borrowController.processBorrow()}" />
             <h:commandButton value="Cancel" action="main" />
         </h:form>

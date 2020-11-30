@@ -142,8 +142,6 @@ public class UserController implements Serializable {
         return viewId + "?faces-redirect=true";
     }
 
-
-
     public String searchId() {
         User user = userManager.getUser(userId);
         if (user instanceof Client) {

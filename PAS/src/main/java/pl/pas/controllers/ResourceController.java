@@ -11,9 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Named
@@ -61,6 +59,7 @@ public class ResourceController implements Serializable {
     public ResourceController() {
         newBook = new Book();
         newAudioBook = new AudioBook();
+        resourceId = 0;
     }
 
     public int getCurrentYear() {
@@ -143,6 +142,10 @@ public class ResourceController implements Serializable {
 
     public String search() {
         Resource resource = resourceManager.getResource(resourceId);
+        if (resource == null) {
+            String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+            return viewId + "?faces-redirect=true";
+        }
         if (resource instanceof Book) {
             currentBook = (Book) resource;
             return "book";

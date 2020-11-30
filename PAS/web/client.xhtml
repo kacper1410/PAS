@@ -76,12 +76,18 @@
 
                 <h:column>
                     <f:facet name="header">Name*</f:facet>
-                    <h:inputText value="#{userController.currentClient.name}" />
+                    <h:inputText id="Client_name" value="#{userController.currentClient.name}">
+                        <f:validateRequired for="Client_name"/>
+                    </h:inputText>
+                    <h:message for="Client_name" style="color: red"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Last Name*</f:facet>
-                    <h:inputText value="#{userController.currentClient.lastName}" />
+                    <h:inputText id="Client_last_name" value="#{userController.currentClient.lastName}">
+                        <f:validateRequired for="Client_last_name" />
+                    </h:inputText>
+                    <h:message for="Client_last_name" style="color: red" />
                 </h:column>
 
                 <h:column>

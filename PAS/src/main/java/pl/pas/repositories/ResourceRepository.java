@@ -38,7 +38,6 @@ public class ResourceRepository implements IResourceRepository, Serializable {
                     return r;
                 }
             }
-
             return null;
         }
     }
