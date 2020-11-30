@@ -4,6 +4,7 @@ import pl.pas.managers.BorrowManager;
 import pl.pas.model.Borrow;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -85,5 +86,12 @@ public class BorrowController implements Serializable {
     public String search() {
         currentBorrow = borrowManager.getBorrow(borrowId);
         return "borrow";
+    }
+
+    public String returnResource(Borrow borrow) {
+        borrowManager.endBorrow(borrow);
+
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        return viewId + "?faces-redirect=true";
     }
 }

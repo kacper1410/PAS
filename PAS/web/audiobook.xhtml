@@ -62,6 +62,44 @@
 
         </h:dataTable>
 
+        <h:dataTable value="#{borrowController.borrowManager.getAllBorrowsForResource(resourceController.currentAudioBook)}" var="borrow"
+                     styleClass="table"
+                     rowClasses="table-row"
+                     headerClass="table-header-borrows">
+
+            <h:column>
+                <f:facet name="header">Borrow Id</f:facet>
+                #{borrow.borrowId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Client Id</f:facet>
+                #{borrow.client.userId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Resource Id</f:facet>
+                #{borrow.resource.resourceId}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Borrow Date</f:facet>
+                #{borrow.borrowDate}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Return Date</f:facet>
+                #{borrow.returnDate}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Return</f:facet>
+                <h:form>
+                    <h:commandButton value="Return" action="#{borrowController.returnResource(borrow)}"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+
     </ui:define>
 
 </ui:composition>
