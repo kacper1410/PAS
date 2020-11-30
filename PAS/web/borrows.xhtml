@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Borrows</title>
-        <link rel="stylesheet" type="text/css" href="styles.css" />
-    </h:head>
-    <h:body>
-        <br/>
-        <h1>All borrows</h1>
+<ui:composition template="WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="header">
+        <h1>Nawigacja</h1>
+    </ui:define>
+
+    <ui:define name="left">
         <h:form>
             <h:commandButton action="main"  value="Back"/>
         </h:form>
+    </ui:define>
+    <ui:define name="right">
+        <br/>
+        <h1>All borrows</h1>
         <h:dataTable value="#{borrowController.borrowManager.allBorrows}" var="borrow"
                      styleClass="table"
                      rowClasses="table-row"
@@ -52,5 +52,6 @@
                 </h:form>
             </h:column>
         </h:dataTable>
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>
+
