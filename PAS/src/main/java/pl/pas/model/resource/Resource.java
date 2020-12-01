@@ -1,14 +1,8 @@
 package pl.pas.model.resource;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
+@Data
 public abstract class Resource {
     private long ISBN;
     private String title;
