@@ -91,8 +91,6 @@ public class UserController implements Serializable {
 
     public String viewClient(Client client) {
         setCurrentClient(client);
-        System.out.println(client);
-
         return "client";
     }
 
@@ -102,7 +100,6 @@ public class UserController implements Serializable {
 
     public String processNewClient() {
         userManager.addClient(newClient.getLogin(), newClient.getName(), newClient.getLastName(), newClient.getAge());
-        System.out.println(userManager.getAllClients());
         newClient = new Client();
         return "main";
     }

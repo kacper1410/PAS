@@ -133,11 +133,18 @@ public class ResourceController implements Serializable {
         return viewId + "?faces-redirect=true";
     }
 
+    public String updateList() {
+        initList();
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        return viewId + "?faces-redirect=true";
+    }
+
     @PostConstruct
-    public void updateList() {
+    public void initList() {
         currentResources = resourceManager.getAllResources();
         currentBooks = resourceManager.getAllBooks();
         currentAudioBooks = resourceManager.getAllAudioBooks();
+
     }
 
     public String search() {
