@@ -100,6 +100,7 @@
                     <f:facet name="header">Length*</f:facet>
                     <h:inputText id="Audiobook_length" value="#{resourceController.currentAudioBook.length}">
                         <f:validateRequired for="Audiobook_length" />
+                        <f:validateLongRange for="Audiobook_length" minimum="1" />
                     </h:inputText>
                     <h:message for="Audiobook_length" style="color: red" />
                 </h:column>
