@@ -9,7 +9,7 @@
     <ui:define name="left">
         Linki
         <h:form>
-            <h:commandButton action="resourceList" value="Back"/>
+            <h:commandButton action="resources" value="Back"/>
         </h:form>
     </ui:define>
 
@@ -54,7 +54,7 @@
             </h:column>
 
             <h:column>
-                <f:facet name="header">Remove</f:facet>
+                <f:facet name="header">Actions</f:facet>
                 <h:form>
                     <h:commandButton value="Remove" action="#{resourceController.removeCurrentBook}">
                     </h:commandButton>
@@ -107,7 +107,7 @@
                 </h:column>
 
                 <h:column>
-                    <f:facet name="header">Remove</f:facet>
+                    <f:facet name="header">Actions</f:facet>
                         <h:commandButton value="Update" action="#{resourceController.updateBook}" />
                 </h:column>
             </h:dataTable>

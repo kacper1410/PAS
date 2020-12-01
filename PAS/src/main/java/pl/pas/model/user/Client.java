@@ -1,23 +1,20 @@
 package pl.pas.model.user;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Client extends User {
     private int age;
 
     public Client() {
-        super();
+    super();
         age = 0;
     }
 
     public Client(String login, String name, String lastName, int age) {
         super(login, name, lastName);
-        this.age = age;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
         this.age = age;
     }
 

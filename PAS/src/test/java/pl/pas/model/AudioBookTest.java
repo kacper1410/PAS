@@ -10,6 +10,7 @@ public class AudioBookTest {
     public void audioBookTest() {
         AudioBook audioBook = new AudioBook(1, "Harry Potter", "Author", 270);
 
+        assertEquals(0, audioBook.getResourceId());
         assertEquals(1, audioBook.getISBN());
         assertEquals("Harry Potter", audioBook.getTitle());
         assertEquals("Author", audioBook.getAuthor());

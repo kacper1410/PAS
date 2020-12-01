@@ -10,6 +10,7 @@ public class EmployeeTest {
     public void employeeTest() {
         Employee employee = new Employee("nice_employee", "Anastazjusz", "Meczyziomek");
 
+        assertEquals(0, employee.getUserId());
         assertEquals("nice_employee", employee.getLogin());
         assertEquals("Anastazjusz", employee.getName());
         assertEquals("Meczyziomek", employee.getLastName());

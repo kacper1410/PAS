@@ -10,6 +10,7 @@ public class AdministratorTest {
     public void administratorTest() {
         Administrator administrator = new Administrator("nice_administrator", "Anastazjusz", "Meczyziomek");
 
+        assertEquals(0, administrator.getUserId());
         assertEquals("nice_administrator", administrator.getLogin());
         assertEquals("Anastazjusz", administrator.getName());
         assertEquals("Meczyziomek", administrator.getLastName());

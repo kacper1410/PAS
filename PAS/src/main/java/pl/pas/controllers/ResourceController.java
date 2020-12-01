@@ -123,7 +123,7 @@ public class ResourceController implements Serializable {
     }
 
     public String resourceList() {
-        return "resourceList";
+        return "resources";
     }
 
     public String removeResource(Resource resource) {
@@ -133,15 +133,22 @@ public class ResourceController implements Serializable {
         return viewId + "?faces-redirect=true";
     }
 
+    public String updateList() {
+        initList();
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        return viewId + "?faces-redirect=true";
+    }
+
     @PostConstruct
-    public void updateList() {
+    public void initList() {
         currentResources = resourceManager.getAllResources();
         currentBooks = resourceManager.getAllBooks();
         currentAudioBooks = resourceManager.getAllAudioBooks();
+
     }
 
-    public String search() {
-        Resource resource = resourceManager.getResource(resourceId);
+    public String search(long uuid) {
+        Resource resource = resourceManager.getResource(uuid);
         if (resource == null) {
             String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
             return viewId + "?faces-redirect=true";

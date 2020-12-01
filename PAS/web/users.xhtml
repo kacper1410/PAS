@@ -18,13 +18,13 @@
         <h:form>
             ID:
             <h:inputText value="#{userController.userId}"/>
-            <h:commandButton value="Search" action="#{userController.searchId()}"/>
+            <h:commandButton value="Search" action="#{userController.searchId(userController.userId)}"/>
         </h:form>
 
         <h:form>
             Login:
             <h:inputText value="#{userController.login}"/>
-            <h:commandButton value="Search" action="#{userController.searchLogin()}"/>
+            <h:commandButton value="Search" action="#{userController.searchLogin(userController.login)}"/>
         </h:form>
 
         <br/>
@@ -63,6 +63,8 @@
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
                     <h:commandButton value="Change activity" action="#{userController.changeActivity(user)}"/>
+                    <h:commandButton value="Show" action="#{userController.searchId(user.userId)}"/>
+                    <h:commandButton value="Edit" action="#{userController.searchId(user.userId)}"/>
                 </h:form>
             </h:column>
 
@@ -103,6 +105,8 @@
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
                     <h:commandButton value="Change activity" action="#{userController.changeActivity(user)}"/>
+                    <h:commandButton value="Show" action="#{userController.searchId(user.userId)}"/>
+                    <h:commandButton value="Edit" action="#{userController.searchId(user.userId)}"/>
                 </h:form>
             </h:column>
 
@@ -144,6 +148,7 @@
                 <h:form>
                     <h:commandButton value="Change activity" action="#{userController.changeActivity(client)}"/>
                     <h:commandButton action="#{userController.viewClient(client)}" value="Show"/>
+                    <h:commandButton value="Edit" action="#{userController.searchId(client.userId)}"/>
                 </h:form>
             </h:column>
 
