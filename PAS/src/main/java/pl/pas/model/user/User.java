@@ -1,5 +1,11 @@
 package pl.pas.model.user;
 
+import lombok.*;
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 public abstract class User {
     private long userId;
     private String login;
@@ -23,64 +29,4 @@ public abstract class User {
         this.lastName = lastName;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj instanceof User) {
-            User user = (User) obj;
-            return this.userId == user.userId && this.login.equals(user.getLogin());
-        }
-        return false;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", login='" + login + '\'' +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", active=" + active +
-                '}';
-    }
 }

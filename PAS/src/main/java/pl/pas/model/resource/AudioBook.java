@@ -1,5 +1,10 @@
 package pl.pas.model.resource;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class AudioBook extends Resource {
     private int length;
 
@@ -10,14 +15,6 @@ public class AudioBook extends Resource {
 
     public AudioBook(long ISBN, String title, String author, int length) {
         super(ISBN, title, author);
-        this.length = length;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
         this.length = length;
     }
 

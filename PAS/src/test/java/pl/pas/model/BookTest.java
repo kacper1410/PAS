@@ -9,6 +9,7 @@ public class BookTest {
     public void bookTest() {
         Book book = new Book(432345345, "Harry Potter", "Author", 2000);
 
+        assertEquals(0, book.getResourceId());
         assertEquals(432345345, book.getISBN());
         assertEquals("Harry Potter", book.getTitle());
         assertEquals("Author", book.getAuthor());

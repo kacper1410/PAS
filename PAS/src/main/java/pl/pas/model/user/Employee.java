@@ -10,9 +10,6 @@ public class Employee extends User {
         super(login, name, lastName);
     }
 
-    //TODO
-    // Methods for employee
-
     @Override
     public String toString() {
         return "Employee{} " + super.toString();

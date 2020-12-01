@@ -10,6 +10,7 @@ public class ClientTest {
     public void clientTest() {
         Client client = new Client("cool_jan++", "Jan", "Kowalski", 18);
 
+        assertEquals(0, client.getUserId());
         assertEquals("cool_jan++", client.getLogin());
         assertEquals("Jan", client.getName());
         assertEquals("Kowalski", client.getLastName());
