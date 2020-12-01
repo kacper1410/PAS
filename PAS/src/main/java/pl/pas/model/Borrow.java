@@ -1,18 +1,12 @@
 package pl.pas.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import pl.pas.model.resource.Resource;
 import pl.pas.model.user.Client;
 
 import java.util.Date;
 
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
+@Data
 public class Borrow {
     private long borrowId;
     private Client client;

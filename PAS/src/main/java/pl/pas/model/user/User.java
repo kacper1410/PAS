@@ -2,10 +2,7 @@ package pl.pas.model.user;
 
 import lombok.*;
 
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
+@Data
 public abstract class User {
     private long userId;
     private String login;
