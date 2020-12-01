@@ -147,8 +147,8 @@ public class ResourceController implements Serializable {
 
     }
 
-    public String search() {
-        Resource resource = resourceManager.getResource(resourceId);
+    public String search(long uuid) {
+        Resource resource = resourceManager.getResource(uuid);
         if (resource == null) {
             String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
             return viewId + "?faces-redirect=true";

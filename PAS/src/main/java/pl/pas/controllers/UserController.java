@@ -1,5 +1,6 @@
 package pl.pas.controllers;
 
+import pl.pas.UUID;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
@@ -139,8 +140,8 @@ public class UserController implements Serializable {
         return viewId + "?faces-redirect=true";
     }
 
-    public String searchId() {
-        User user = userManager.getUser(userId);
+    public String searchId(long uuid) {
+        User user = userManager.getUser(uuid);
         if (user instanceof Client) {
             currentClient = (Client) user;
             return "client";
@@ -150,7 +151,7 @@ public class UserController implements Serializable {
         }
     }
 
-    public String searchLogin() {
+    public String searchLogin(String login) {
         User user = userManager.getUser(login);
         if (user instanceof Client) {
             currentClient = (Client) user;

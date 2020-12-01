@@ -18,7 +18,7 @@
         <h:form>
             ID:
             <h:inputText value="#{resourceController.resourceId}"/>
-            <h:commandButton value="Search" action="#{resourceController.search()}"/>
+            <h:commandButton value="Search" action="#{resourceController.search(resourceController.resourceId)}"/>
         </h:form>
 
         <br/>
@@ -57,6 +57,8 @@
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
                     <h:commandButton value="Remove" action="#{resourceController.removeResource(res)}"/>
+                    <h:commandButton value="Show" action="#{resourceController.search(res.resourceId)}"/>
+                    <h:commandButton value="Edit" action="#{resourceController.search(res.resourceId)}"/>
                 </h:form>
             </h:column>
         </h:dataTable>
@@ -97,6 +99,8 @@
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
                     <h:commandButton value="Remove" action="#{resourceController.removeResource(res)}"/>
+                    <h:commandButton value="Show" action="#{resourceController.search(res.resourceId)}"/>
+                    <h:commandButton value="Edit" action="#{resourceController.search(res.resourceId)}"/>
                 </h:form>
             </h:column>
         </h:dataTable>
