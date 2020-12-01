@@ -79,12 +79,18 @@
 
                 <h:column>
                     <f:facet name="header">Title*</f:facet>
-                    <h:inputText value="#{resourceController.currentBook.title}"/>
+                    <h:inputText id="Book_title" required="true" value="#{resourceController.currentBook.title}">
+                        <f:validateRequired for="Book_title" />
+                    </h:inputText>
+                    <h:message for="Book_title" style="color: red" />
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Author*</f:facet>
-                    <h:inputText value="#{resourceController.currentBook.author}"/>
+                    <h:inputText id="Book_author" value="#{resourceController.currentBook.author}">
+                        <f:validateRequired for="Book_author" />
+                    </h:inputText>
+                    <h:message for="Book_author" style="color: red" />
                 </h:column>
 
                 <h:column>
@@ -93,7 +99,11 @@
 
                 <h:column>
                     <f:facet name="header">Publish year*</f:facet>
-                    <h:inputText value="#{resourceController.currentBook.publishYear}"/>
+                    <h:inputText id="Book_publish_year" value="#{resourceController.currentBook.publishYear}">
+                        <f:validateRequired for="Book_publish_year" />
+                        <f:validateLongRange for="Book_publish_year" maximum="#{resourceController.getCurrentYear()+1}" />
+                    </h:inputText>
+                    <h:message for="Book_publish_year" style="color: red" />
                 </h:column>
 
                 <h:column>
