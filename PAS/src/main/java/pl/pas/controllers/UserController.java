@@ -97,7 +97,7 @@ public class UserController implements Serializable {
     }
 
     public String userList() {
-        return "userList";
+        return "users";
     }
 
     public String processNewClient() {

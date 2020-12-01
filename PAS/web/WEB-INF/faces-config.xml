@@ -18,12 +18,12 @@
   <navigation-rule>
     <from-view-id/>
     <navigation-case>
-      <from-outcome>userList</from-outcome>
+      <from-outcome>users</from-outcome>
       <to-view-id>/users.xhtml</to-view-id>
       <redirect/>
     </navigation-case>
     <navigation-case>
-      <from-outcome>resourceList</from-outcome>
+      <from-outcome>resources</from-outcome>
       <to-view-id>/resources.xhtml</to-view-id>
       <redirect/>
     </navigation-case>

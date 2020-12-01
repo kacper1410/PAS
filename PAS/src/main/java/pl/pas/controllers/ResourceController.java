@@ -123,7 +123,7 @@ public class ResourceController implements Serializable {
     }
 
     public String resourceList() {
-        return "resourceList";
+        return "resources";
     }
 
     public String removeResource(Resource resource) {
