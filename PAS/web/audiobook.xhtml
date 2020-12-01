@@ -78,12 +78,18 @@
 
                 <h:column>
                     <f:facet name="header">Title*</f:facet>
-                    <h:inputText value="#{resourceController.currentAudioBook.title}"/>
+                    <h:inputText id="Audiobook_title" value="#{resourceController.currentAudioBook.title}">
+                        <f:validateRequired for="Audiobook_title" />
+                    </h:inputText>
+                    <h:message for="Audiobook_title" style="color: red" />
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Author*</f:facet>
-                    <h:inputText value="#{resourceController.currentAudioBook.author}"/>
+                    <h:inputText id="Audiobook_author" value="#{resourceController.currentAudioBook.author}">
+                        <f:validateRequired for="Audiobook_author" />
+                    </h:inputText>
+                    <h:message for="Audiobook_title" style="color: red" />
                 </h:column>
 
                 <h:column>
@@ -92,7 +98,10 @@
 
                 <h:column>
                     <f:facet name="header">Length*</f:facet>
-                    <h:inputText value="#{resourceController.currentAudioBook.length}"/>
+                    <h:inputText id="Audiobook_length" value="#{resourceController.currentAudioBook.length}">
+                        <f:validateRequired for="Audiobook_length" />
+                    </h:inputText>
+                    <h:message for="Audiobook_length" style="color: red" />
                 </h:column>
 
                 <h:column>
