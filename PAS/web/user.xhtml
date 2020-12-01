@@ -24,7 +24,7 @@
                      headerClass="table-header-users">
 
             <h:column>
-                <f:facet name="header">Client Id</f:facet>
+                <f:facet name="header">User Id</f:facet>
                 #{userController.currentUser.userId}
             </h:column>
 
@@ -51,7 +51,7 @@
             <h:column>
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
-                    <h:commandButton value="Change activity" action="#{userController.changeActivity(userController.currentClient)}"/>
+                    <h:commandButton value="Change activity" action="#{userController.changeActivity(userController.currentUser)}"/>
                 </h:form>
             </h:column>
         </h:dataTable>
@@ -63,7 +63,7 @@
                          headerClass="table-header-users">
 
                 <h:column>
-                    <f:facet name="header">Client Id</f:facet>
+                    <f:facet name="header">User Id</f:facet>
                 </h:column>
 
                 <h:column>
