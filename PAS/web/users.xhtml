@@ -9,141 +9,141 @@
 
     <ui:define name="left">
         <h:form>
-            <h:commandButton action="main"  value="Back"/>
+            <h:commandButton action="main"  value="${msg['page.left.back']}"/>
         </h:form>
     </ui:define>
 
     <ui:define name="right">
 
         <h:form>
-            ID:
+            ${msg['page.right.main.userID']}
             <h:inputText value="#{userController.userId}"/>
-            <h:commandButton value="Search" action="#{userController.searchId()}"/>
+            <h:commandButton value="${msg['page.right.main.search']}" action="#{userController.searchId()}"/>
         </h:form>
 
         <h:form>
-            Login:
+            ${msg['page.right.main.login']}
             <h:inputText value="#{userController.login}"/>
-            <h:commandButton value="Search" action="#{userController.searchLogin()}"/>
+            <h:commandButton value="${msg['page.right.main.search']}" action="#{userController.searchLogin()}"/>
         </h:form>
 
         <br/>
-        <h1>All administrators</h1>
+        <h1>${msg['page.right.main.allAdministators']}</h1>
         <h:dataTable value="#{userController.userManager.allAdministrators}" var="user"
                      styleClass="table"
                      rowClasses="table-row"
                      headerClass="table-header-users">
 
             <h:column>
-                <f:facet name="header">User Id</f:facet>
+                <f:facet name="header">${msg['page.right.main.userID']}</f:facet>
                 #{user.userId}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Login</f:facet>
+                <f:facet name="header">${msg['page.right.main.login']}</f:facet>
                 #{user.login}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Name</f:facet>
+                <f:facet name="header">${msg['page.right.main.name']}</f:facet>
                 #{user.name}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Last Name</f:facet>
+                <f:facet name="header">${msg['page.right.main.lastName']}</f:facet>
                 #{user.lastName}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Active</f:facet>
+                <f:facet name="header">${msg['page.right.main.active']}</f:facet>
                 #{user.active}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Actions</f:facet>
+                <f:facet name="header">${msg['page.right.main.actions']}</f:facet>
                 <h:form>
-                    <h:commandButton value="Change activity" action="#{userController.changeActivity(user)}"/>
+                    <h:commandButton value="${msg['page.right.main.changeActivity']}" action="#{userController.changeActivity(user)}"/>
                 </h:form>
             </h:column>
 
         </h:dataTable>
 
         <br/>
-        <h1>All employees</h1>
+        <h1>${msg['page.right.main.allEmployees']}</h1>
         <h:dataTable value="#{userController.userManager.allEmployees}" var="user"
                      styleClass="table"
                      rowClasses="table-row"
                      headerClass="table-header-users">
             <h:column>
-                <f:facet name="header">User Id</f:facet>
+                <f:facet name="header">${msg['page.right.main.userID']}</f:facet>
                 #{user.userId}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Login</f:facet>
+                <f:facet name="header">${msg['page.right.main.login']}</f:facet>
                 #{user.login}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Name</f:facet>
+                <f:facet name="header">${msg['page.right.main.name']}</f:facet>
                 #{user.name}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Last Name</f:facet>
+                <f:facet name="header">${msg['page.right.main.lastName']}</f:facet>
                 #{user.lastName}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Active</f:facet>
+                <f:facet name="header">${msg['page.right.main.active']}</f:facet>
                 #{user.active}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Actions</f:facet>
+                <f:facet name="header">${msg['page.right.main.actions']}</f:facet>
                 <h:form>
-                    <h:commandButton value="Change activity" action="#{userController.changeActivity(user)}"/>
+                    <h:commandButton value="${msg['page.right.main.changeActivity']}" action="#{userController.changeActivity(user)}"/>
                 </h:form>
             </h:column>
 
         </h:dataTable>
 
         <br/>
-        <h1>All clients</h1>
+        <h1>${msg['page.right.main.allClients']}</h1>
         <h:dataTable value="#{userController.userManager.allClients}" var="client"
                      styleClass="table"
                      rowClasses="table-row"
                      headerClass="table-header-users">
             <h:column>
-                <f:facet name="header">User Id</f:facet>
+                <f:facet name="header">${msg['page.right.main.userID']}</f:facet>
                 <h:outputFormat value="#{client.userId}"/>
             </h:column>
 
             <h:column>
-                <f:facet name="header">Login</f:facet>
+                <f:facet name="header">${msg['page.right.main.login']}</f:facet>
                 #{client.login}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Name</f:facet>
+                <f:facet name="header">${msg['page.right.main.name']}</f:facet>
                 #{client.name}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Last Name</f:facet>
+                <f:facet name="header">${msg['page.right.main.lastName']}</f:facet>
                 #{client.lastName}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Active</f:facet>
+                <f:facet name="header">${msg['page.right.main.active']}</f:facet>
                 #{client.active}
             </h:column>
 
             <h:column>
-                <f:facet name="header">Actions</f:facet>
+                <f:facet name="header">${msg['page.right.main.actions']}</f:facet>
                 <h:form>
-                    <h:commandButton value="Change activity" action="#{userController.changeActivity(client)}"/>
-                    <h:commandButton action="#{userController.viewClient(client)}" value="Show"/>
+                    <h:commandButton value="${msg['page.right.main.changeActivity']}" action="#{userController.changeActivity(client)}"/>
+                    <h:commandButton action="#{userController.viewClient(client)}" value="${msg['page.right.main.show']}"/>
                 </h:form>
             </h:column>
 
