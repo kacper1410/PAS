@@ -22,7 +22,7 @@
 }
 
 .table-header-resources, .table-header-borrows, .table-header-users {
-    width: 16%;
+    min-width: 200px;
     border: 1px dotted cornflowerblue;
 }
 
