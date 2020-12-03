@@ -23,7 +23,7 @@
 
         <br/>
         <h1>All books</h1>
-        <h:dataTable value="#{resourceController.allBooks}" var="res"
+        <h:dataTable value="#{resourceController.currentBooks}" var="res"
                      styleClass="table"
                      rowClasses="table-row"
                      headerClass="table-header-resources">
@@ -65,7 +65,7 @@
 
         <br/>
         <h1>All audio books</h1>
-        <h:dataTable value="#{resourceController.allAudioBooks}" var="res"
+        <h:dataTable value="#{resourceController.currentAudioBooks}" var="res"
                      styleClass="table"
                      rowClasses="table-row"
                      headerClass="table-header-resources">

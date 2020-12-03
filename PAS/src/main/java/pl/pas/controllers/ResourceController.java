@@ -1,5 +1,6 @@
 package pl.pas.controllers;
 
+import lombok.Data;
 import pl.pas.managers.ResourceManager;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
@@ -14,6 +15,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
+@Data
 @Named
 @SessionScoped
 public class ResourceController implements Serializable {
@@ -27,31 +29,6 @@ public class ResourceController implements Serializable {
     private Book currentBook;
     private AudioBook currentAudioBook;
     private long resourceId;
-
-    public void setCurrentBook(Book currentBook) {
-        this.currentBook = currentBook;
-    }
-
-    public void setCurrentAudioBook(AudioBook currentAudioBook) {
-        this.currentAudioBook = currentAudioBook;
-    }
-
-    public void setResourceId(long resourceId) {
-        this.resourceId = resourceId;
-    }
-
-    public Book getCurrentBook() {
-        return currentBook;
-    }
-
-    public AudioBook getCurrentAudioBook() {
-        return currentAudioBook;
-    }
-
-    public long getResourceId() {
-        return resourceId;
-    }
-
     private List<Resource> currentResources;
     private List<Book> currentBooks;
     private List<AudioBook> currentAudioBooks;
@@ -88,38 +65,6 @@ public class ResourceController implements Serializable {
     public String cancelNewAudioBook() {
         newAudioBook = new AudioBook();
         return "main";
-    }
-
-    public Book getNewBook() {
-        return newBook;
-    }
-
-    public void setNewBook(Book newBook) {
-        this.newBook = newBook;
-    }
-
-    public AudioBook getNewAudioBook() {
-        return newAudioBook;
-    }
-
-    public void setNewAudioBook(AudioBook newAudioBook) {
-        this.newAudioBook = newAudioBook;
-    }
-
-    public ResourceManager getResourceManager() {
-        return resourceManager;
-    }
-
-    public List<Resource> getAllResource() {
-        return currentResources;
-    }
-
-    public List<AudioBook> getAllAudioBooks() {
-        return currentAudioBooks;
-    }
-
-    public List<Book> getAllBooks() {
-        return currentBooks;
     }
 
     public String resourceList() {
