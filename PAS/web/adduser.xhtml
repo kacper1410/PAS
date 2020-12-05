@@ -5,7 +5,8 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="header">
-        <h1>Nawigacja</h1>
+        <h:link outcome="main">#{msg['page.header.main']}</h:link> >>
+        <h:link outcome="addUser">#{msg['page.header.addUser']}</h:link>
     </ui:define>
 
     <ui:define name="left">

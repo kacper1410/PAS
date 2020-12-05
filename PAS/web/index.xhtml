@@ -4,7 +4,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="header">
-        <h1>#{msg['page.header.main']}</h1>
+        <h:link outcome="main">#{msg['page.header.main']}</h:link>
     </ui:define>
 
     <ui:define name="left">

@@ -4,7 +4,9 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="header">
-        <h1>Navigation</h1>
+        <h:link outcome="main">#{msg['page.header.main']}</h:link> >>
+        <h:link outcome="borrows">#{msg['page.header.borrows']}</h:link> >>
+        <h:link outcome="borrow">#{msg['page.header.borrow']}</h:link>
     </ui:define>
     <ui:define name="left">
         Linki

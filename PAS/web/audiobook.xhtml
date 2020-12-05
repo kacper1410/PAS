@@ -4,7 +4,9 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="header">
-        <h1>Book</h1>
+        <h:link outcome="main">#{msg['page.header.main']}</h:link> >>
+        <h:link outcome="resources">#{msg['page.header.resources']}</h:link> >>
+        <h:link outcome="audiobook">#{msg['page.header.audiobook']}</h:link>
     </ui:define>
     <ui:define name="left">
         Linki

@@ -38,6 +38,7 @@ a {
     text-decoration: none;
     font-weight: bold;
     color: #7D9BE6;
+    margin: 0 10px;
 }
 
 .flex-item:hover {
