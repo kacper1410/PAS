@@ -16,9 +16,18 @@
             <h:commandButton value="Search" action="#{borrowController.search()}"/>
         </h:form>
 
+        <h:form>
+            Client ID:
+            <h:inputText value="#{borrowController.filterClientId}"/>
+
+            Book ID:
+            <h:inputText value="#{borrowController.filterResourceId}"/>
+            <h:commandButton value="Filter" action="#{borrowController.filter()}"/>
+        </h:form>
+
         <br/>
         <h1>All borrows</h1>
-        <h:dataTable value="#{borrowController.borrowManager.allBorrows}" var="borrow"
+        <h:dataTable value="#{borrowController.currentBorrows}" var="borrow"
                      styleClass="table"
                      rowClasses="table-row"
                      headerClass="table-header-borrows">
