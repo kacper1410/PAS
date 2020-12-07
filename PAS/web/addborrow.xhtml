@@ -29,6 +29,7 @@
 
             *Date:
             <h:inputText id="Borrow_date" value="#{borrowController.borrowDate}">
+                <f:validateRequired for="Borrow_date" />
                 <f:convertDateTime pattern="yyyy-MM-dd"/>
             </h:inputText>
             <h:message for="Borrow_date" style="color: red" />
