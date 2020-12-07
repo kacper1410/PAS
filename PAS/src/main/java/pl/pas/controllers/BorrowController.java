@@ -48,4 +48,11 @@ public class BorrowController implements Serializable {
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
         return viewId + "?faces-redirect=true";
     }
+
+    public String cancelBorrow() {
+        this.resourceId = 0;
+        this.clientId = 0;
+        this.borrowDate = new Date();
+        return "main";
+    }
 }

@@ -89,3 +89,7 @@ a {
 input {
     margin: 0 5px;
 }
+
+#addClient, #addAdministrator, #addEmployee, #addBook, #addAudioBook, #addBorrow {
+    display: none;
+}

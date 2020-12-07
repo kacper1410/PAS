@@ -1,0 +1,193 @@
+<ui:composition template="WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <ui:define name="header">
+        <h:link outcome="main">#{msg['page.header.main']}</h:link> >>
+        <h:link outcome="forms">#{msg['page.header.forms']}</h:link>
+    </ui:define>
+
+    <ui:define name="right">
+        <input type="button" id="addClientButton" value="Add Client"/>
+        <input type="button" id="addAdministratorButton" value="Add Administrator"/>
+        <input type="button" id="addEmployeeButton" value="Add Employee"/>
+        <input type="button" id="addBookButton" value="Add Book"/>
+        <input type="button" id="addAudioBookButton" value="Add Audio Book"/>
+        <input type="button" id="addBorrowButton" value="Add Borrow"/>
+
+        <h:form id="addClient">
+            <h3>Add Client</h3>
+            *Login:
+            <h:inputText id="Client_login" required="true" value="#{userController.newClient.login}">
+                <f:validateRequired for="Client_login"/>
+            </h:inputText>
+            <h:message for="Client_login" style="color:red"/>
+            <br/>
+            *Name:
+            <h:inputText id="Client_name" required="true" value="#{userController.newClient.name}">
+                <f:validateRequired for="Client_name"/>
+            </h:inputText>
+            <h:message for="Client_name" style="color:red"/>
+            <br/>
+            *Last Name:
+            <h:inputText id="Client_last_name" required="true" value="#{userController.newClient.lastName}">
+                <f:validateRequired for="Client_last_name"/>
+            </h:inputText>
+            <h:message for="Client_last_name" style="color:red"/>
+            <br/>
+            *Age:
+            <h:inputText id="Client_age" required="true" value="#{userController.newClient.age}">
+                <f:validateRequired for="Client_age"/>
+                <f:validateLongRange for="Client_age" minimum="1" maximum="199"/>
+            </h:inputText>
+            <h:message for="Client_age" style="color:red"/>
+            <br/>
+            <h:commandButton value="OK" action="#{userController.processNewClient()}"/>
+            <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewClient()}"/><br/>
+        </h:form>
+
+        <h:form id="addAdministrator">
+            <h3>Add Administrator</h3>
+            *Login:
+            <h:inputText id="Administrator_login" required="true" value="#{userController.newAdministrator.login}">
+                <f:validateRequired for="Administrator_login"/>
+            </h:inputText>
+            <h:message for="Administrator_login" style="color: red"/>
+            <br/>
+            *Name:
+            <h:inputText id="Administrator_name" required="true" value="#{userController.newAdministrator.name}">
+                <f:validateRequired for="Administrator_name"/>
+            </h:inputText>
+            <h:message for="Administrator_name" style="color: red"/>
+            <br/>
+            *Last Name:
+            <h:inputText id="Administrator_last_name" required="true"
+                         value="#{userController.newAdministrator.lastName}">
+                <f:validateRequired for="Administrator_last_name"/>
+            </h:inputText>
+            <h:message for="Administrator_last_name" style="color: red"/>
+            <br/>
+            <h:commandButton value="OK" action="#{userController.processNewAdministrator()}"/>
+            <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewAdministrator()}"/>
+        </h:form>
+
+        <h:form id="addEmployee">
+            <h3>Add Employee</h3>
+            *Login:
+            <h:inputText id="Employee_login" required="true" value="#{userController.newEmployee.login}">
+                <f:validateRequired for="Employee_login"/>
+            </h:inputText>
+            <h:message for="Employee_login" style="color:red"/>
+            <br/>
+            *Name:
+            <h:inputText id="Employee_name" required="true" value="#{userController.newEmployee.name}">
+                <f:validateRequired for="Employee_name"/>
+            </h:inputText>
+            <h:message for="Employee_name" style="color: red"/>
+            <br/>
+            *Last Name:
+            <h:inputText id="Employee_last_name" required="true" value="#{userController.newEmployee.lastName}">
+                <f:validateRequired for="Employee_last_name"/>
+            </h:inputText>
+            <h:message for="Employee_last_name" style="color: red"/>
+            <br/>
+            <h:commandButton value="OK" action="#{userController.processNewEmployee()}"/>
+            <h:commandButton value="Cancel" immediate="true" action="#{userController.cancelNewEmployee()}"/>
+        </h:form>
+
+        <h:form id="addBook">
+            <h3>Add Book</h3>
+            *ISBN:
+            <h:inputText id="Book_ISBN" required="true" value="#{resourceController.newBook.ISBN}">
+                <f:validateRequired for="Book_ISBN" />
+                <f:validateLongRange for="Book_ISBN" minimum="1"/>
+            </h:inputText>
+            <h:message for="Book_ISBN" style="color: red" />
+            <br/>
+            *Title:
+            <h:inputText id="Book_title" required="true" value="#{resourceController.newBook.title}">
+                <f:validateRequired for="Book_title" />
+            </h:inputText>
+            <h:message for="Book_title" style="color: red" />
+            <br/>
+            *Author:
+            <h:inputText id="Book_author" required="true" value="#{resourceController.newBook.author}">
+                <f:validateRequired for="Book_author" />
+            </h:inputText>
+            <h:message for="Book_author" style="color: red" />
+            <br/>
+            *Publish Year:
+            <h:inputText id="Book_year" required="true" value="#{resourceController.newBook.publishYear}">
+                <f:validateRequired for="Book_year" />
+                <f:validateLongRange for="Book_year" maximum="#{resourceController.getCurrentYear()+1}" />
+            </h:inputText>
+            <h:message for="Book_year" style="color: red" />
+            <br/>
+            <h:commandButton value="OK" action="#{resourceController.processNewBook()}" />
+            <h:commandButton value="Cancel" immediate="true" action="#{resourceController.cancelNewBook()}" />
+        </h:form>
+
+        <h:form id="addAudioBook">
+            <h3>Add Audio Book</h3>
+            *ISBN:
+            <h:inputText id="Audio_book_ISBN" required="true" value="#{resourceController.newAudioBook.ISBN}">
+                <f:validateRequired for="Audio_book_ISBN" />
+                <f:validateLongRange for="Audio_book_ISBN" minimum="1"/>
+            </h:inputText>
+            <h:message for="Audio_book_ISBN" style="color: red" />
+            <br/>
+            *Title:
+            <h:inputText id="Audio_book_title" required="true" value="#{resourceController.newAudioBook.title}">
+                <f:validateRequired for="Audio_book_title" />
+            </h:inputText>
+            <h:message for="Audio_book_title" style="color: red" />
+            <br/>
+            *Author:
+            <h:inputText id="Audio_book_author" required="true" value="#{resourceController.newAudioBook.author}">
+                <f:validateRequired for="Audio_book_author" />
+            </h:inputText>
+            <h:message for="Audio_book_author" style="color: red" />
+            <br/>
+            *Length:
+            <h:inputText id="Audio_book_length" required="true" value="#{resourceController.newAudioBook.length}">
+                <f:validateRequired for="Audio_book_length" />
+                <f:validateLongRange for="Audio_book_length" minimum="1"/>
+            </h:inputText>
+            <h:message for="Audio_book_length" style="color: red" />
+            <br/>
+            <h:commandButton value="OK" action="#{resourceController.processNewAudioBook()}" />
+            <h:commandButton value="Cancel" immediate="true" action="#{resourceController.cancelNewAudioBook()}" />
+        </h:form>
+
+        <h:form id="addBorrow">
+            <h3>Add Borrow</h3>
+            *Resource ID:
+            <h:inputText id="Resource_ID" value="#{borrowController.resourceId}">
+                <f:validateRequired for="Resource_ID" />
+                <f:validateLongRange for="Resource_ID" minimum="1" />
+            </h:inputText>
+            <h:message for="Resource_ID" style="color: red" />
+            <br/>
+
+            *Client ID:
+            <h:inputText id="Client_ID" value="#{borrowController.clientId}">
+                <f:validateRequired for="Client_ID" />
+                <f:validateLongRange for="Client_ID" minimum="1" />
+            </h:inputText>
+            <h:message for="Client_ID" style="color: red" />
+            <br/>
+
+            *Date:
+            <h:inputText id="Borrow_date" value="#{borrowController.borrowDate}">
+                <f:convertDateTime pattern="yyyy-MM-dd"/>
+            </h:inputText>
+            <h:message for="Borrow_date" style="color: red" />
+            <br/>
+            <h:commandButton value="OK" action="#{borrowController.processBorrow()}" />
+            <h:commandButton value="Cancel" immediate="true" action="#{borrowController.cancelBorrow()}" />
+        </h:form>
+    </ui:define>
+</ui:composition>

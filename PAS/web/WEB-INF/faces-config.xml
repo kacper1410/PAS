@@ -78,5 +78,10 @@
       <to-view-id>/borrow.xhtml</to-view-id>
       <redirect/>
     </navigation-case>
+    <navigation-case>
+      <from-outcome>forms</from-outcome>
+      <to-view-id>/forms.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
   </navigation-rule>
 </faces-config>

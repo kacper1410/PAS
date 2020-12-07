@@ -14,6 +14,14 @@ public class Borrow {
     private Date borrowDate;
     private Date returnDate;
 
+    public Borrow() {
+        borrowId = 0;
+        client = new Client();
+        borrowDate = new Date();
+        returnDate = null;
+    }
+
+
     public Borrow(Client client, Resource resource) {
         this.borrowId = 0;
         this.client = client;
