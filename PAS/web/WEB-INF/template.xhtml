@@ -37,51 +37,5 @@
         #{msg['page.footer.authors']}
     </div>
 </h:body>
-<script type="application/javascript">
-    let addClient = document.getElementById('addClient');
-    let addAdministrator = document.getElementById('addAdministrator');
-    let addEmployee = document.getElementById('addEmployee');
-    let addBook = document.getElementById('addBook');
-    let addAudioBook = document.getElementById('addAudioBook');
-    let addBorrow = document.getElementById('addBorrow');
 
-    document.getElementById('addClientButton').addEventListener('click', () => {
-        clear();
-        display(addClient);
-    });
-    document.getElementById('addAdministratorButton').addEventListener('click', () => {
-        clear();
-        display(addAdministrator);
-    });
-    document.getElementById('addEmployeeButton').addEventListener('click', () => {
-        clear();
-        display(addEmployee);
-    });
-
-    document.getElementById('addBookButton').addEventListener('click', () => {
-        clear();
-        display(addBook);
-    });
-
-    document.getElementById('addAudioBookButton').addEventListener('click', () => {
-        clear();
-        display(addAudioBook);
-    });
-
-    document.getElementById('addBorrowButton').addEventListener('click', () => {
-        clear();
-        display(addBorrow);
-    });
-
-    let clear = () => {
-        addClient.style.display = 'none';
-        addAdministrator.style.display = 'none';
-        addEmployee.style.display = 'none';
-        addBook.style.display = 'none';
-        addAudioBook.style.display = 'none';
-        addBorrow.style.display = 'none';
-    }
-
-    let display = (element) => element.style.display = 'block';
-</script>
 </html>

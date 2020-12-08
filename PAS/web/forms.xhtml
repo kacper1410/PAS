@@ -11,12 +11,17 @@
     </ui:define>
 
     <ui:define name="right">
-        <input type="button" id="addClientButton" value="Add Client"/>
-        <input type="button" id="addAdministratorButton" value="Add Administrator"/>
-        <input type="button" id="addEmployeeButton" value="Add Employee"/>
-        <input type="button" id="addBookButton" value="Add Book"/>
-        <input type="button" id="addAudioBookButton" value="Add Audio Book"/>
-        <input type="button" id="addBorrowButton" value="Add Borrow"/>
+        <div id="currentForm">
+            <h:outputText value=" #{universalController.currentForm}"/>
+        </div>
+        <h:form>
+            <h:commandButton action="#{universalController.updateCurrentForm('addClient')}" id="addClientButton" value="Add Client"/>
+            <h:commandButton action="#{universalController.updateCurrentForm('addAdministrator')}" id="addAdministratorButton" value="Add Administrator"/>
+            <h:commandButton action="#{universalController.updateCurrentForm('addEmployee')}" id="addEmployeeButton" value="Add Employee"/>
+            <h:commandButton action="#{universalController.updateCurrentForm('addBook')}" id="addBookButton" value="Add Book"/>
+            <h:commandButton action="#{universalController.updateCurrentForm('addAudioBook')}" id="addAudioBookButton" value="Add Audio Book"/>
+            <h:commandButton action="#{universalController.updateCurrentForm('addBorrow')}" id="addBorrowButton" value="Add Borrow"/>
+        </h:form>
 
         <h:form id="addClient">
             <h3>Add Client</h3>
@@ -189,5 +194,34 @@
             <h:commandButton value="OK" action="#{borrowController.processBorrow()}" />
             <h:commandButton value="Cancel" immediate="true" action="#{borrowController.cancelBorrow()}" />
         </h:form>
+
+        <script type="application/javascript">
+
+            let addClient = document.getElementById('addClient');
+            let addAdministrator = document.getElementById('addAdministrator');
+            let addEmployee = document.getElementById('addEmployee');
+            let addBook = document.getElementById('addBook');
+            let addAudioBook = document.getElementById('addAudioBook');
+            let addBorrow = document.getElementById('addBorrow');
+
+            let clear = () => {
+                addClient.style.display = 'none';
+                addAdministrator.style.display = 'none';
+                addEmployee.style.display = 'none';
+                addBook.style.display = 'none';
+                addAudioBook.style.display = 'none';
+                addBorrow.style.display = 'none';
+            }
+
+            let display = (element) => element.style.display = 'block';
+
+            let current = document.getElementById('currentForm').innerText;
+
+            if (current !== "") {
+                clear()
+                display(document.getElementById(current.trim()))
+            }
+
+        </script>
     </ui:define>
 </ui:composition>

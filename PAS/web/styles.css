@@ -90,6 +90,7 @@ input {
     margin: 0 5px;
 }
 
-#addClient, #addAdministrator, #addEmployee, #addBook, #addAudioBook, #addBorrow {
+#addClient, #addAdministrator, #addEmployee, #addBook, #addAudioBook, #addBorrow, #currentForm {
     display: none;
 }
+
