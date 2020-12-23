@@ -5,13 +5,26 @@
     <title>Logowanko</title>
 </head>
 <body>
-    <h1>Formularz do logowania</h1>
-    <form action="j_security_check">
-        <label for="j_username">Login: *</label>
-        <input type="text" id="j_username"/><br>
-        <label for="j_password">Password: *</label>
-        <input type="password" id="j_password"/><br>
-        <input type="submit" value="OK">
-    </form>
+    <link rel="stylesheet" type="text/css" href="auth.css"/>
+    <div class="flex-container">
+        <div class="flex-item">
+            <h1>Wypożyczalnia książek</h1>
+        </div>
+        <div class="flex-item">
+            <form action="j_security_check">
+                <div class="flex-item">
+                    <label for="j_username">Login: *</label>
+                    <input type="text" id="j_username"/><br>
+                </div>
+                <div class="flex-item">
+                    <label for="j_password">Password: *</label>
+                    <input type="password" id="j_password"/><br>
+                </div>
+                <div class="flex-item">
+                    <input type="submit" value="Zaloguj się">
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
