@@ -65,6 +65,14 @@
         </user-data-constraint>
     </security-constraint>
 
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/auth/auth.html</form-login-page>
+            <form-error-page>/auth/error.html</form-error-page>
+        </form-login-config>
+    </login-config>
+
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
