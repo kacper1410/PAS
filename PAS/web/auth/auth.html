@@ -11,14 +11,14 @@
             <h1>Wypożyczalnia książek</h1>
         </div>
         <div class="flex-item">
-            <form action="j_security_check">
+            <form method="POST" action="j_security_check">
                 <div class="flex-item">
                     <label for="j_username">Login: *</label>
-                    <input type="text" id="j_username"/><br>
+                    <input type="text" id="j_username" name="j_username"/><br>
                 </div>
                 <div class="flex-item">
                     <label for="j_password">Password: *</label>
-                    <input type="password" id="j_password"/><br>
+                    <input type="password" id="j_password" name="j_password"/><br>
                 </div>
                 <div class="flex-item">
                     <input type="submit" value="Zaloguj się">
