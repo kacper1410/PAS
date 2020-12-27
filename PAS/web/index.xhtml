@@ -9,26 +9,14 @@
 
     <ui:define name="right">
         <div class="flex-container-menu">
-            <div class="flex-item">
-                <h:link outcome="users">#{msg['page.right.main.users']}</h:link>
-            </div>
-            <div class="flex-item">
-                <h:link outcome="resources">#{msg['page.right.main.resources']}</h:link>
-            </div>
-            <div class="flex-item">
-                <h:link outcome="borrows">#{msg['page.right.main.borrows']}</h:link>
-            </div>
+            <h:link styleClass="flex-item" outcome="users" rendered="#{identityUtils.admin}">#{msg['page.right.main.users']}</h:link>
+            <h:link styleClass="flex-item" outcome="resources" rendered="#{identityUtils.client || identityUtils.employee}">#{msg['page.right.main.resources']}</h:link>
+            <h:link styleClass="flex-item" outcome="borrows" rendered="#{identityUtils.employee}">#{msg['page.right.main.borrows']}</h:link>
         </div>
         <div class="flex-container-menu">
-            <div class="flex-item">
-                <h:link outcome="addUser">#{msg['page.right.main.addUser']}</h:link>
-            </div>
-            <div class="flex-item">
-                <h:link outcome="addResource">#{msg['page.right.main.addResource']}</h:link>
-            </div>
-            <div class="flex-item">
-                <h:link outcome="addBorrow">#{msg['page.right.main.addBorrow']}</h:link>
-            </div>
+            <h:link styleClass="flex-item" outcome="addUser" rendered="#{identityUtils.admin}">#{msg['page.right.main.addUser']}</h:link>
+            <h:link styleClass="flex-item" outcome="addResource" rendered="#{identityUtils.employee}">#{msg['page.right.main.addResource']}</h:link>
+            <h:link styleClass="flex-item" outcome="addBorrow" rendered="#{identityUtils.employee || identityUtils.client}">#{msg['page.right.main.addBorrow']}</h:link>
         </div>
     </ui:define>
 </ui:composition>

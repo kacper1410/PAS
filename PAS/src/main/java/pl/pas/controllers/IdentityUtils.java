@@ -18,14 +18,14 @@ public class IdentityUtils implements Serializable {
     }
 
     public boolean isAdmin() {
-        return httpServletRequest.isUserInRole("Admins");
+        return httpServletRequest.isUserInRole("Administrator");
     }
 
     public boolean isEmployee() {
-        return httpServletRequest.isUserInRole("Employees");
+        return httpServletRequest.isUserInRole("Employee");
     }
 
     public boolean isClient() {
-        return httpServletRequest.isUserInRole("Clients");
+        return httpServletRequest.isUserInRole("Client");
     }
 }
