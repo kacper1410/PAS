@@ -8,7 +8,6 @@ import pl.pas.model.user.Employee;
 import pl.pas.model.user.User;
 
 import javax.enterprise.context.SessionScoped;
-import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
