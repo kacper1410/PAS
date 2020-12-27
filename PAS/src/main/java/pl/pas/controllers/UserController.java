@@ -20,6 +20,8 @@ public class UserController implements Serializable {
 
     @Inject
     private UserManager userManager;
+    @Inject
+    private IdentityUtils identityUtils;
     private Client currentClient;
     private User currentUser;
     private Client newClient;
@@ -104,6 +106,11 @@ public class UserController implements Serializable {
             currentUser = user;
             return "user";
         }
+    }
+
+    public String viewProfile() {
+        String login = identityUtils.getMyLogin();
+        return searchLogin(login);
     }
 
     public String updateClient() {

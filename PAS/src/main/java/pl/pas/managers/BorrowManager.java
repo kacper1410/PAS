@@ -41,6 +41,7 @@ public class BorrowManager implements Serializable {
     public boolean borrowResource(long resourceId, long clientId, Date date) {
         Resource resource = resourceRepository.getResource(resourceId);
         User user = userRepository.getUser(clientId);
+
         if (resource == null || user == null) {
             return false;
         }
