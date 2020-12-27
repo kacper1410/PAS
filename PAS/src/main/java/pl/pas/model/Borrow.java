@@ -21,7 +21,6 @@ public class Borrow {
         returnDate = null;
     }
 
-
     public Borrow(Client client, Resource resource) {
         this.borrowId = 0;
         this.client = client;

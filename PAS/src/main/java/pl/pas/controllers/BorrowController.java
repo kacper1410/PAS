@@ -69,13 +69,6 @@ public class BorrowController implements Serializable {
         return viewId + "?faces-redirect=true";
     }
 
-    public String cancelBorrow() {
-        this.resourceId = 0;
-        this.clientId = 0;
-        this.borrowDate = new Date();
-        return "main";
-    }
-
     @PostConstruct
     private void initBorrows() {
         currentBorrows = borrowManager.getAllBorrows();
