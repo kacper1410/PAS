@@ -32,6 +32,7 @@
         <h:outputLabel value="Client" rendered="#{identityUtils.client}"/>
         <h:form>
             <h:commandButton action="#{userController.viewProfile()}" value="View profile"/>
+            <h:commandButton action="#{loginController.logout()}" value="Log out"/>
         </h:form>
     </div>
 

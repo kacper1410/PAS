@@ -41,5 +41,10 @@ public class LoginController implements Serializable {
         }
         return "main";
     }
+
+    public String logout() {
+        request.getSession().invalidate();
+        return "main";
+    }
 }
 
