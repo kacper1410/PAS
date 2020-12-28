@@ -3,6 +3,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <ui:define name="header">
         <h:link outcome="main">#{msg['page.header.main']}</h:link> >>
         <h:link outcome="addBorrow">#{msg['page.header.addBorrow']}</h:link>
@@ -13,30 +14,49 @@
         <h:form>
             *Resource ID:
             <h:inputText id="Resource_ID" value="#{borrowController.resourceId}">
-                <f:validateRequired for="Resource_ID" />
-                <f:validateLongRange for="Resource_ID" minimum="1" />
+                <f:validateRequired for="Resource_ID"/>
+                <f:validateLongRange for="Resource_ID" minimum="1"/>
             </h:inputText>
-            <h:message for="Resource_ID" style="color: red" />
+            <h:message for="Resource_ID" style="color: red"/>
             <br/>
 
             *Client ID:
             <h:inputText id="Client_ID" value="#{borrowController.clientId}">
-                <f:validateRequired for="Client_ID" />
-                <f:validateLongRange for="Client_ID" minimum="1" />
+                <f:validateRequired for="Client_ID"/>
+                <f:validateLongRange for="Client_ID" minimum="1"/>
             </h:inputText>
-            <h:message for="Client_ID" style="color: red" />
+            <h:message for="Client_ID" style="color: red"/>
             <br/>
 
             *Date:
             <h:inputText id="Borrow_date" value="#{borrowController.borrowDate}">
-                <f:validateRequired for="Borrow_date" />
+                <f:validateRequired for="Borrow_date"/>
                 <f:convertDateTime pattern="yyyy-MM-dd"/>
             </h:inputText>
-            <h:message for="Borrow_date" style="color: red" />
+            <h:message for="Borrow_date" style="color: red"/>
             <br/>
-            <h:commandButton value="OK" action="#{borrowController.processBorrow()}" />
-            <h:commandButton value="Cancel" action="main" />
+            <h:commandButton value="OK" action="#{borrowController.processBorrow()}"/>
+            <h:commandButton value="Cancel" action="main"/>
         </h:form>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+        <script type="application/javascript">
+            var picker = new Pikaday(
+                {
+                    field: document.getElementById('j_idt35:Borrow_date'),
+                    firstDay: 1,
+                    minDate: new Date(),
+                    maxDate: new Date(2020, 12, 31),
+                    yearRange: [2000, 2100],
+                    format: 'YYYY-MM-DD',
+                    toString(date, format) {
+                        const day = date.getDate();
+                        const month = date.getMonth()+1;
+                        const year = date.getFullYear();
+                        return year + '-' + month + '-' + day;
+                    }
+                });
+        </script>
     </ui:define>
 </ui:composition>
 

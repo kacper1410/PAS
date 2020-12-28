@@ -3,7 +3,6 @@ package pl.pas.controllers;
 import lombok.Data;
 import pl.pas.managers.BorrowManager;
 import pl.pas.model.Borrow;
-
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;

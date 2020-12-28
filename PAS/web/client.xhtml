@@ -51,7 +51,7 @@
                 #{userController.currentClient.active}
             </h:column>
 
-            <h:column>
+            <h:column rendered="#{identityUtils.admin}">
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
                     <h:commandButton value="Change activity" action="#{userController.changeActivity(userController.currentClient)}"/>

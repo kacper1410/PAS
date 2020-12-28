@@ -49,6 +49,11 @@
             </h:column>
 
             <h:column>
+                <f:facet name="header">#{msg['page.right.main.pubYear']}</f:facet>
+                #{res.publishYear}
+            </h:column>
+
+            <h:column rendered="#{identityUtils.employee}">
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
                     <h:commandButton value="Remove" action="#{resourceController.removeResource(res)}"/>
@@ -60,42 +65,47 @@
 
         <br/>
         <h1>All audio books</h1>
-        <h:dataTable value="#{resourceController.currentAudioBooks}" var="res"
+        <h:dataTable value="#{resourceController.currentAudioBooks}" var="abRes"
                      styleClass="table"
                      rowClasses="table-row"
                      headerClass="table-header-resources">
 
             <h:column>
                 <f:facet name="header">Resource Id</f:facet>
-                #{res.resourceId}
+                #{abRes.resourceId}
             </h:column>
 
             <h:column>
                 <f:facet name="header">ISBN</f:facet>
-                #{res.ISBN}
+                #{abRes.ISBN}
             </h:column>
 
             <h:column>
                 <f:facet name="header">Title</f:facet>
-                #{res.title}
+                #{abRes.title}
             </h:column>
 
             <h:column>
                 <f:facet name="header">Author</f:facet>
-                #{res.author}
+                #{abRes.author}
             </h:column>
 
             <h:column>
                 <f:facet name="header">Available</f:facet>
-                #{res.available}
+                #{abRes.available}
             </h:column>
 
             <h:column>
+                <f:facet name="header">#{msg['page.right.main.length']}</f:facet>
+                #{abRes.length}
+            </h:column>
+
+            <h:column rendered="#{identityUtils.employee}">
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
-                    <h:commandButton value="Remove" action="#{resourceController.removeResource(res)}"/>
-                    <h:commandButton value="Show" action="#{resourceController.search(res.resourceId)}"/>
-                    <h:commandButton value="Edit" action="#{resourceController.search(res.resourceId)}"/>
+                    <h:commandButton value="Remove" action="#{resourceController.removeResource(abRes)}"/>
+                    <h:commandButton value="Show" action="#{resourceController.search(abRes.resourceId)}"/>
+                    <h:commandButton value="Edit" action="#{resourceController.search(abRes.resourceId)}"/>
                 </h:form>
             </h:column>
         </h:dataTable>
