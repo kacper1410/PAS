@@ -20,7 +20,6 @@
     <div class="left">
         <h2>#{msg['page.left.links']}</h2>
         <h:link outcome="main">#{msg['page.header.main']}</h:link>
-        <h:link outcome="#{userController.viewProfile()}">Profile</h:link>
         <h:link outcome="users" rendered="#{identityUtils.admin}">#{msg['page.header.users']}</h:link>
         <h:link outcome="resources" rendered="#{identityUtils.employee || identityUtils.client}">#{msg['page.header.resources']}</h:link>
         <h:link outcome="borrows" rendered="#{identityUtils.employee}">#{msg['page.header.borrows']}</h:link>
@@ -29,6 +28,9 @@
         <h:link outcome="addBorrow" rendered="#{identityUtils.employee || identityUtils.client}">#{msg['page.header.addBorrow']}</h:link>
         <h:outputLabel value="login: #{identityUtils.myLogin}"/>
         <h:outputLabel value="Administrator" rendered="#{identityUtils.admin}"/>
+        <h:form>
+            <h:commandButton action="#{userController.viewProfile()}" value="View profile"/>
+        </h:form>
         <h:outputLabel value="Employee" rendered="#{identityUtils.employee}"/>
         <h:outputLabel value="Client" rendered="#{identityUtils.client}"/>
     </div>
