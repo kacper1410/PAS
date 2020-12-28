@@ -62,6 +62,13 @@
 
     <security-constraint>
         <web-resource-collection>
+            <web-resource-name>LoginPages</web-resource-name>
+            <url-pattern>/faces/auth/*</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
             <web-resource-name>AllPages</web-resource-name>
             <url-pattern>/*</url-pattern>
         </web-resource-collection>
@@ -79,8 +86,8 @@
         <auth-method>FORM</auth-method>
         <realm-name>file</realm-name>
         <form-login-config>
-            <form-login-page>/auth/auth.html</form-login-page>
-            <form-error-page>/auth/error.html</form-error-page>
+            <form-login-page>/faces/auth/auth.xhtml</form-login-page>
+            <form-error-page>/faces/auth/error.xhtml</form-error-page>
         </form-login-config>
     </login-config>
 

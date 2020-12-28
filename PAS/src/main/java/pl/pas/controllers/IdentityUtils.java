@@ -1,14 +1,13 @@
 package pl.pas.controllers;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
-import java.io.Serializable;
 
 @Named
-@SessionScoped
-public class IdentityUtils implements Serializable {
+@ApplicationScoped
+public class IdentityUtils {
 
     @Inject
     private HttpServletRequest httpServletRequest;

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <style type="text/css">
+        .error {
+            display: flex;
+            flex-direction: column;
+            height: 95vh;
+            color: red;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: #7D9BE6;
+        }
+    </style>
+</head>
+<h:body>
+    <div class="error">
+        <h:outputText value="Próba logowania zakończyła się niepowodzeniem"/>
+        <h:link outcome="main" value="Try again!"/>
+    </div>
+</h:body>
+</html>
