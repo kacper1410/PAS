@@ -12,21 +12,22 @@
     <ui:define name="right">
         <h3>Add Borrow</h3>
         <h:form>
-            *Resource ID:
-            <h:inputText id="Resource_ID" value="#{borrowController.resourceId}">
-                <f:validateRequired for="Resource_ID"/>
-                <f:validateLongRange for="Resource_ID" minimum="1"/>
-            </h:inputText>
-            <h:message for="Resource_ID" style="color: red"/>
+            *Resource:
+            <h:selectOneMenu value="#{borrowController.resourceId}">
+                <f:selectItems value="#{resourceController.currentlyAvailableResources}" var="res"
+                               itemLabel="#{res.author} - #{res.title}" itemValue="#{res.resourceId}"/>
+            </h:selectOneMenu>
             <br/>
 
-            *Client ID:
-            <h:inputText id="Client_ID" value="#{borrowController.clientId}">
-                <f:validateRequired for="Client_ID"/>
-                <f:validateLongRange for="Client_ID" minimum="1"/>
-            </h:inputText>
-            <h:message for="Client_ID" style="color: red"/>
-            <br/>
+            <h:panelGroup rendered="#{identityUtils.employee}">
+                *Client ID:
+                <h:inputText id="Client_ID" value="#{borrowController.clientId}">
+                    <f:validateRequired for="Client_ID"/>
+                    <f:validateLongRange for="Client_ID" minimum="1"/>
+                </h:inputText>
+                <h:message for="Client_ID" style="color: red"/>
+                <br/>
+            </h:panelGroup>
 
             *Date:
             <h:inputText id="Borrow_date" value="#{borrowController.borrowDate}">
@@ -46,7 +47,6 @@
                     field: document.getElementById('j_idt35:Borrow_date'),
                     firstDay: 1,
                     minDate: new Date(),
-                    maxDate: new Date(2020, 12, 31),
                     yearRange: [2000, 2100],
                     format: 'YYYY-MM-DD',
                     toString(date, format) {
