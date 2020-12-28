@@ -54,6 +54,11 @@
       <redirect/>
     </navigation-case>
     <navigation-case>
+      <from-outcome>loginError</from-outcome>
+      <to-view-id>/auth/error.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
       <from-outcome>main</from-outcome>
       <to-view-id>/index.xhtml</to-view-id>
       <redirect/>

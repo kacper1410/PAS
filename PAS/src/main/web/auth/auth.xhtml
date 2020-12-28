@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <style type="text/css">
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flex-item {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        h1 {
+            color: #7D9BE6;
+        }
+
+        input {
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<h:body>
+    <div class="flex-container">
+        <div class="flex-item">
+            <h1>Wypożyczalnia książek</h1>
+        </div>
+        <h:form>
+            <div class="flex-item">
+                <h:outputLabel for="login" value="Login: *"/>
+                <h:inputText value="#{loginController.login}" required="true" id="login"/>
+            </div>
+            <div class="flex-item">
+                <h:outputLabel for="password" value="Password: *"/>
+                <h:inputSecret value="#{loginController.password}" required="true" id="password"/>
+            </div>
+            <div class="flex-item">
+                <h:commandButton action="#{loginController.login()}" value="Log in"/>
+            </div>
+        </h:form>
+    </div>
+</h:body>
+</html>
