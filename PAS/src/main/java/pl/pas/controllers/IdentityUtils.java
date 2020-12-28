@@ -16,25 +16,32 @@ public class IdentityUtils {
     private HttpServletRequest httpServletRequest;
     @Inject
     private UserManager userManager;
+    @Inject
+    private LoginController loginController;
 
     public String getMyLogin() {
         return null == httpServletRequest.getUserPrincipal() ? "" : httpServletRequest.getUserPrincipal().getName();
     }
 
     public boolean isAdmin() {
-        return httpServletRequest.isUserInRole("Administrator") && isActive();
+        return httpServletRequest.isUserInRole("Administrator");
     }
 
     public boolean isEmployee() {
-        return httpServletRequest.isUserInRole("Employee") && isActive();
+        return httpServletRequest.isUserInRole("Employee");
     }
 
     public boolean isClient() {
-        return httpServletRequest.isUserInRole("Client") && isActive();
+
+        return httpServletRequest.isUserInRole("Client");
     }
 
-    private boolean isActive() {
+    public boolean isActive() {
         User user = userManager.getUser(getMyLogin());
-        return user != null && user.isActive();
+        if (user == null || !user.isActive()) {
+            loginController.logout();
+            return false;
+        }
+        return true;
     }
 }

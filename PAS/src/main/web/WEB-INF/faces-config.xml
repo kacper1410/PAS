@@ -54,16 +54,6 @@
       <redirect/>
     </navigation-case>
     <navigation-case>
-      <from-outcome>loginError</from-outcome>
-      <to-view-id>/auth/error.xhtml</to-view-id>
-      <redirect/>
-    </navigation-case>
-    <navigation-case>
-      <from-outcome>main</from-outcome>
-      <to-view-id>/index.xhtml</to-view-id>
-      <redirect/>
-    </navigation-case>
-    <navigation-case>
       <from-outcome>client</from-outcome>
       <to-view-id>/client.xhtml</to-view-id>
       <redirect/>
@@ -86,6 +76,16 @@
     <navigation-case>
       <from-outcome>borrow</from-outcome>
       <to-view-id>/borrow.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>loginError</from-outcome>
+      <to-view-id>/auth/error.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>main</from-outcome>
+      <to-view-id>/index.xhtml</to-view-id>
       <redirect/>
     </navigation-case>
   </navigation-rule>

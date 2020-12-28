@@ -17,6 +17,18 @@
     font-size: 1.3rem;
 }
 
+.error {
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+    color: red;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
 .table {
     width: 100%;
 }

@@ -64,6 +64,7 @@
         <web-resource-collection>
             <web-resource-name>LoginPages</web-resource-name>
             <url-pattern>/faces/auth/*</url-pattern>
+            <url-pattern>/faces/styles.css</url-pattern>
         </web-resource-collection>
     </security-constraint>
 

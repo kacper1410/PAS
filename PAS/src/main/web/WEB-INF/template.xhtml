@@ -12,37 +12,46 @@
 </h:head>
 <h:body>
     <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <h:panelGroup rendered="#{identityUtils.active}">
 
-    <div class="header">
-        <ui:insert name="header"/>
-    </div>
+        <div class="header">
+            <ui:insert name="header"/>
+        </div>
 
-    <div class="left">
-        <h2>#{msg['page.left.links']}</h2>
-        <h:link outcome="main">#{msg['page.header.main']}</h:link>
-        <h:link outcome="users" rendered="#{identityUtils.admin}">#{msg['page.header.users']}</h:link>
-        <h:link outcome="resources" rendered="#{identityUtils.employee || identityUtils.client}">#{msg['page.header.resources']}</h:link>
-        <h:link outcome="borrows" rendered="#{identityUtils.employee}">#{msg['page.header.borrows']}</h:link>
-        <h:link outcome="addUser" rendered="#{identityUtils.admin}">#{msg['page.header.addUser']}</h:link>
-        <h:link outcome="addResource" rendered="#{identityUtils.employee}">#{msg['page.header.addResource']}</h:link>
-        <h:link outcome="addBorrow" rendered="#{identityUtils.employee || identityUtils.client}">#{msg['page.header.addBorrow']}</h:link>
-        <h:outputLabel value="login: #{identityUtils.myLogin}"/>
-        <h:outputLabel value="Administrator" rendered="#{identityUtils.admin}"/>
-        <h:outputLabel value="Employee" rendered="#{identityUtils.employee}"/>
-        <h:outputLabel value="Client" rendered="#{identityUtils.client}"/>
-        <h:form>
-            <h:commandButton action="#{userController.viewProfile()}" value="View profile"/>
-            <h:commandButton action="#{loginController.logout()}" value="Log out"/>
-        </h:form>
-    </div>
+        <div class="left">
+            <h2>#{msg['page.left.links']}</h2>
+            <h:link outcome="main">#{msg['page.header.main']}</h:link>
+            <h:link outcome="users" rendered="#{identityUtils.admin}">#{msg['page.header.users']}</h:link>
+            <h:link outcome="resources" rendered="#{identityUtils.employee || identityUtils.client}">#{msg['page.header.resources']}</h:link>
+            <h:link outcome="borrows" rendered="#{identityUtils.employee}">#{msg['page.header.borrows']}</h:link>
+            <h:link outcome="addUser" rendered="#{identityUtils.admin}">#{msg['page.header.addUser']}</h:link>
+            <h:link outcome="addResource" rendered="#{identityUtils.employee}">#{msg['page.header.addResource']}</h:link>
+            <h:link outcome="addBorrow" rendered="#{identityUtils.employee || identityUtils.client}">#{msg['page.header.addBorrow']}</h:link>
+            <h:outputLabel value="login: #{identityUtils.myLogin}"/>
+            <h:outputLabel value="Administrator" rendered="#{identityUtils.admin}"/>
+            <h:outputLabel value="Employee" rendered="#{identityUtils.employee}"/>
+            <h:outputLabel value="Client" rendered="#{identityUtils.client}"/>
+            <h:form>
+                <h:commandButton action="#{userController.viewProfile()}" value="View profile"/>
+                <h:commandButton action="#{loginController.logout()}" value="Log out"/>
+            </h:form>
+        </div>
 
-    <div class="right">
-        <ui:insert name="right"/>
-    </div>
+        <div class="right">
+            <ui:insert name="right"/>
+        </div>
 
-    <div class="footer">
-        #{msg['page.footer.authors']}
-    </div>
+        <div class="footer">
+            #{msg['page.footer.authors']}
+        </div>
+    </h:panelGroup>
+    <h:panelGroup rendered="#{!identityUtils.active}">
+        <div class="error">
+            <h:outputText value="Logout has occured"/>
+            <h:link outcome="main" value="Login"/>
+        </div>
+    </h:panelGroup>
+
 </h:body>
 
 </html>
