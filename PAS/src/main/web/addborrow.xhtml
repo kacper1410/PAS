@@ -11,7 +11,7 @@
 
     <ui:define name="right">
         <h3>Add Borrow</h3>
-        <h:form>
+        <h:form id="New_borrow_form">
             *Resource:
             <h:selectOneMenu value="#{borrowController.resourceId}">
                 <f:selectItems value="#{resourceController.currentlyAvailableResources}" var="res"
@@ -44,7 +44,7 @@
         <script type="application/javascript">
             var picker = new Pikaday(
                 {
-                    field: document.getElementById('j_idt35:Borrow_date'),
+                    field: document.getElementById('New_borrow_form:Borrow_date'),
                     firstDay: 1,
                     minDate: new Date(),
                     yearRange: [2000, 2100],
