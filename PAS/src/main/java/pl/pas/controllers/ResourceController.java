@@ -25,13 +25,13 @@ public class ResourceController implements Serializable {
 
     private Book newBook;
     private AudioBook newAudioBook;
-
     private Book currentBook;
     private AudioBook currentAudioBook;
     private long resourceId;
     private List<Resource> currentResources;
     private List<Book> currentBooks;
     private List<AudioBook> currentAudioBooks;
+    private List<Resource> currentlyAvailableResources;
 
     public ResourceController() {
         newBook = new Book();
@@ -89,7 +89,7 @@ public class ResourceController implements Serializable {
         currentResources = resourceManager.getAllResources();
         currentBooks = resourceManager.getAllBooks();
         currentAudioBooks = resourceManager.getAllAudioBooks();
-
+        currentlyAvailableResources = resourceManager.getAllAvailableResources();
     }
 
     public String search(long uuid) {

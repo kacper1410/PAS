@@ -2,9 +2,10 @@ package pl.pas.controllers;
 
 import lombok.Data;
 import pl.pas.managers.BorrowManager;
+import pl.pas.managers.UserManager;
 import pl.pas.model.Borrow;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,11 +15,17 @@ import java.util.List;
 
 @Data
 @Named
-@ApplicationScoped
+@SessionScoped
 public class BorrowController implements Serializable {
 
     @Inject
     private BorrowManager borrowManager;
+    @Inject
+    private IdentityUtils identityUtils;
+    @Inject
+    private UserManager userManager;
+    @Inject
+    private ResourceController resourceController;
 
     private long resourceId;
     private long filterResourceId;
@@ -34,7 +41,11 @@ public class BorrowController implements Serializable {
     }
 
     public String processBorrow() {
+        if (identityUtils.isClient()) {
+            clientId = userManager.getUser(identityUtils.getMyLogin()).getUserId();
+        }
         this.borrowManager.borrowResource(resourceId, clientId, borrowDate);
+        resourceController.updateList();
         this.resourceId = 0;
         this.clientId = 0;
         this.borrowDate = new Date();

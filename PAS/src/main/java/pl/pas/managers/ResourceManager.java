@@ -12,6 +12,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -40,6 +41,14 @@ public class ResourceManager implements Serializable {
 
     public List<Resource> getAllResources() {
         return resourceRepository.getAllResources();
+    }
+
+    public List<Resource> getAllAvailableResources() {
+        List<Resource> availableResources = new ArrayList<>();
+        for (Resource res: resourceRepository.getAllResources()) {
+            if (res.isAvailable()) availableResources.add(res);
+        }
+        return availableResources;
     }
 
     public List<Book> getAllBooks() {
