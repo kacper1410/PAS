@@ -57,8 +57,10 @@ public class BorrowRepository implements IBorrowRepository, Serializable {
         synchronized (borrows) {
             List<Borrow> resourceBorrows = new ArrayList<>();
             for (Borrow b: borrows) {
-                if (b.getResource().getResourceId() == uuid) {
-                    resourceBorrows.add(b);
+                if (b.getResource() != null) {
+                    if (b.getResource().getResourceId() == uuid) {
+                        resourceBorrows.add(b);
+                    }
                 }
             }
             return resourceBorrows;
