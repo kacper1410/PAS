@@ -43,7 +43,10 @@
             <url-pattern>/resources.xhtml</url-pattern>
             <url-pattern>/addresource.xhtml</url-pattern>
             <url-pattern>/borrows.xhtml</url-pattern>
+            <url-pattern>/borrow.xhtml</url-pattern>
             <url-pattern>/addborrow.xhtml</url-pattern>
+            <url-pattern>/audiobook.xhtml</url-pattern>
+            <url-pattern>/book.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>Employee</role-name>
