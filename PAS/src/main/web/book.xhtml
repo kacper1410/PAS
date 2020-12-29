@@ -51,7 +51,7 @@
 
             <h:column rendered="#{identityUtils.employee}">
                 <f:facet name="header">Actions</f:facet>
-                <h:form>
+                <h:form rendered="#{resourceController.currentBook.available}">
                     <h:commandButton value="Remove" action="#{resourceController.removeCurrentBook}">
                     </h:commandButton>
                 </h:form>
@@ -139,7 +139,7 @@
                 #{borrow.returnDate}
             </h:column>
 
-            <h:column>
+            <h:column rendered="#{identityUtils.employee}">
                 <f:facet name="header">Return</f:facet>
                 <h:form>
                     <h:commandButton value="Return" action="#{borrowController.returnResource(borrow)}"/>

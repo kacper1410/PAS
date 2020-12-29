@@ -49,16 +49,16 @@
                 #{resourceController.currentAudioBook.length}
             </h:column>
 
-            <h:column>
+            <h:column rendered="#{identityUtils.employee}">
                 <f:facet name="header">Actions</f:facet>
-                <h:form>
+                <h:form rendered="#{resourceController.currentAudioBook.available}">
                     <h:commandButton value="Remove" action="#{resourceController.removeCurrentAudioBook}"/>
                 </h:form>
             </h:column>
 
         </h:dataTable>
 
-        <h:form>
+        <h:form rendered="#{identityUtils.employee}">
             <h:dataTable value="#{resourceController.currentAudioBook}" var="res"
                          styleClass="table"
                          rowClasses="table-row"
@@ -138,7 +138,7 @@
                 #{borrow.returnDate}
             </h:column>
 
-            <h:column>
+            <h:column rendered="#{identityUtils.employee}">
                 <f:facet name="header">Return</f:facet>
                 <h:form>
                     <h:commandButton value="Return" action="#{borrowController.returnResource(borrow)}"/>

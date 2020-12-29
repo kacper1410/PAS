@@ -56,7 +56,7 @@
             <h:column rendered="#{identityUtils.employee}">
                 <f:facet name="header">Actions</f:facet>
                 <h:form>
-                    <h:commandButton value="Remove" action="#{resourceController.removeResource(res)}"/>
+                    <h:commandButton rendered="#{res.available}" value="Remove" action="#{resourceController.removeResource(res)}"/>
                     <h:commandButton value="Show" action="#{resourceController.search(res.resourceId)}"/>
                     <h:commandButton value="Edit" action="#{resourceController.search(res.resourceId)}"/>
                 </h:form>
