@@ -74,6 +74,7 @@ public class BorrowController implements Serializable {
 
     public String returnResource(Borrow borrow) {
         borrowManager.endBorrow(borrow);
+        resourceController.updateList();
 
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
         return viewId + "?faces-redirect=true";

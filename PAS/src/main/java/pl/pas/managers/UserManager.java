@@ -12,6 +12,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -88,6 +89,16 @@ public class UserManager implements Serializable {
 
     public List<User> getAllActiveUsers() {
         return userRepository.getAllActiveUsers();
+    }
+
+    public List<Client> getAllActiveClients() {
+        List<Client> activeClients = new ArrayList<>();
+        for (Client client: userRepository.getAllClients()) {
+            if (client.isActive()) {
+                activeClients.add(client);
+            }
+        }
+        return activeClients;
     }
 
     public boolean updateClient(User oldUser, String login, String name, String lastName, int age) {
