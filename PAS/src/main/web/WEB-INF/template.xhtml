@@ -27,6 +27,7 @@
             <h:link outcome="addUser" rendered="#{identityUtils.admin}">#{msg['page.header.addUser']}</h:link>
             <h:link outcome="addResource" rendered="#{identityUtils.employee}">#{msg['page.header.addResource']}</h:link>
             <h:link outcome="addBorrow" rendered="#{identityUtils.employee || identityUtils.client}">#{msg['page.header.addBorrow']}</h:link>
+            <h:link outcome="logs" rendered="#{identityUtils.admin}">#{msg['page.header.logs']}</h:link>
             <h:outputLabel value="login: #{identityUtils.myLogin}"/>
             <h:outputLabel value="Administrator" rendered="#{identityUtils.admin}"/>
             <h:outputLabel value="Employee" rendered="#{identityUtils.employee}"/>

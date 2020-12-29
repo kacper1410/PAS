@@ -1,6 +1,8 @@
 package pl.pas.controllers;
 
 import lombok.Data;
+import pl.pas.Logger;
+import pl.pas.Priority;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.User;
 
@@ -21,22 +23,23 @@ public class LoginController implements Serializable {
     private HttpServletRequest request;
     @Inject
     private UserManager userManager;
+    @Inject
+    private Logger logger;
 
     public String login() {
-        // TODO add log information for (un)successful login
         try {
             User user = userManager.getUser(login);
             if (user == null) {
-                // Nie ma w repozytorium takiego loginu
+                logger.addLog(login, "There's no user with this login", Priority.WARNING);
                 return "loginError";
             } else if (!user.isActive()) {
-                // Użytkownik jest nieaktywny
+                logger.addLog(login, "User isn't active", Priority.WARNING);
                 return "loginError";
             }
             request.login(login, password);
-            // Poprawne uwierzytelnienie
+            logger.addLog(request.getUserPrincipal().getName(), "Welcome :)", Priority.INFO);
         } catch (ServletException e) {
-            // Brak uwierzytelnienia
+            logger.addLog("None", e.getMessage(), Priority.WARNING);
             return "loginError";
         }
         return "main";

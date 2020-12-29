@@ -88,5 +88,10 @@
       <to-view-id>/index.xhtml</to-view-id>
       <redirect/>
     </navigation-case>
+    <navigation-case>
+      <from-outcome>logs</from-outcome>
+      <to-view-id>/logs.xhtml</to-view-id>
+      <redirect/>
+    </navigation-case>
   </navigation-rule>
 </faces-config>
