@@ -44,6 +44,7 @@ public class BorrowController implements Serializable {
         if (identityUtils.isClient()) {
             clientId = userManager.getUser(identityUtils.getMyLogin()).getUserId();
         }
+        System.out.println("Jestem tu: " + resourceId + "  ..  " + clientId);
         this.borrowManager.borrowResource(resourceId, clientId, borrowDate);
         resourceController.updateList();
         this.resourceId = 0;

@@ -24,7 +24,7 @@
 
             <h:panelGroup rendered="#{identityUtils.employee}">
                 *Client:
-                <h:selectOneMenu value="#{borrowController.resourceId}">
+                <h:selectOneMenu value="#{borrowController.clientId}">
                     <f:selectItems value="#{userController.userManager.allActiveClients}"
                                    var="client"
                                    itemLabel="#{client.login}"

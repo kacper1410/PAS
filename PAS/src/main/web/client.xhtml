@@ -145,7 +145,7 @@
             <h:column>
                 <f:facet name="header">Return</f:facet>
                 <h:form>
-                    <h:commandButton rendered="#{!borrow.resource.available}" value="Return" action="#{borrowController.returnResource(borrow)}"/>
+                    <h:commandButton rendered="#{borrow.returnDate == null}" value="Return" action="#{borrowController.returnResource(borrow)}"/>
                 </h:form>
             </h:column>
         </h:dataTable>

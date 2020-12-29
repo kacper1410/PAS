@@ -11,7 +11,6 @@ import pl.pas.managers.BorrowManager;
 import pl.pas.repositories.interfaces.IBorrowRepository;
 import pl.pas.repositories.interfaces.IResourceRepository;
 import pl.pas.repositories.interfaces.IUserRepository;
-
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Initialized;
