@@ -38,6 +38,7 @@ public class IdentityUtils {
 
     public boolean isActive() {
         User user = userManager.getUser(getMyLogin());
+
         if (user == null || !user.isActive()) {
             loginController.logout();
             return false;

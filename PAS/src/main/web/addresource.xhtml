@@ -34,7 +34,7 @@
             *Publish Year:
             <h:inputText id="Book_year" required="true" value="#{resourceController.newBook.publishYear}">
                 <f:validateRequired for="Book_year" />
-                <f:validateLongRange for="Book_year" maximum="#{resourceController.getCurrentYear()+1}" />
+                <f:validateLongRange for="Book_year" maximum="#{resourceController.getCurrentYear() + 1}" />
             </h:inputText>
             <h:message for="Book_year" style="color: red" />
             <br/>

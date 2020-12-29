@@ -22,6 +22,7 @@ public class UserController implements Serializable {
     private UserManager userManager;
     @Inject
     private IdentityUtils identityUtils;
+
     private Client currentClient;
     private User currentUser;
     private Client newClient;
@@ -46,17 +47,26 @@ public class UserController implements Serializable {
     }
 
     public String processNewClient() {
-        userManager.addClient(newClient.getLogin(), newClient.getName(), newClient.getLastName(), newClient.getAge());
+        if (identityUtils.isAdmin()) {
+            userManager.addClient(newClient.getLogin(), newClient.getName(), newClient.getLastName(), newClient.getAge());
+        }
+
         newClient = new Client();
         return "main";
     }
     public String processNewEmployee() {
-        userManager.addEmployee(newEmployee.getLogin(), newEmployee.getName(), newEmployee.getLastName());
+        if (identityUtils.isAdmin()) {
+            userManager.addEmployee(newEmployee.getLogin(), newEmployee.getName(), newEmployee.getLastName());
+        }
+
         newEmployee = new Employee();
         return "main";
     }
     public String processNewAdministrator() {
-        userManager.addAdministrator(newAdministrator.getLogin(), newAdministrator.getName(), newAdministrator.getLastName());
+        if (identityUtils.isAdmin()) {
+            userManager.addAdministrator(newAdministrator.getLogin(), newAdministrator.getName(), newAdministrator.getLastName());
+        }
+
         newAdministrator = new Administrator();
         return "main";
     }
@@ -77,17 +87,21 @@ public class UserController implements Serializable {
     }
 
     public String changeActivity(User user) {
-        if (user.isActive()) {
-            userManager.deactivateUser(user);
-        } else {
-            userManager.activateUser(user);
+        if (identityUtils.isAdmin()) {
+            if (user.isActive()) {
+                userManager.deactivateUser(user);
+            } else {
+                userManager.activateUser(user);
+            }
         }
+
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
         return viewId + "?faces-redirect=true";
     }
 
     public String searchId(long uuid) {
         User user = userManager.getUser(uuid);
+
         if (user instanceof Client) {
             currentClient = (Client) user;
             return "client";
@@ -99,6 +113,7 @@ public class UserController implements Serializable {
 
     public String searchLogin(String login) {
         User user = userManager.getUser(login);
+
         if (user instanceof Client) {
             currentClient = (Client) user;
             return "client";
@@ -109,18 +124,23 @@ public class UserController implements Serializable {
     }
 
     public String viewProfile() {
-        String login = identityUtils.getMyLogin();
-        return searchLogin(login);
+        return searchLogin(identityUtils.getMyLogin());
     }
 
     public String updateClient() {
-        userManager.updateClient(currentClient, currentClient.getLogin(), currentClient.getName(), currentClient.getLastName(), currentClient.getAge());
+        if (identityUtils.isAdmin()) {
+            userManager.updateClient(currentClient, currentClient.getLogin(), currentClient.getName(), currentClient.getLastName(), currentClient.getAge());
+        }
+
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
         return viewId + "?faces-redirect=true";
     }
 
     public String updateUser() {
-        userManager.updateUser(currentUser, currentUser.getLogin(), currentUser.getName(), currentUser.getLastName());
+        if (identityUtils.isAdmin()) {
+            userManager.updateUser(currentUser, currentUser.getLogin(), currentUser.getName(), currentUser.getLastName());
+        }
+
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
         return viewId + "?faces-redirect=true";
     }
