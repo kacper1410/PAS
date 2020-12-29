@@ -142,7 +142,7 @@
                 #{borrow.returnDate}
             </h:column>
 
-            <h:column>
+            <h:column rendered="#{identityUtils.client || identityUtils.employee}">
                 <f:facet name="header">Return</f:facet>
                 <h:form>
                     <h:commandButton rendered="#{borrow.returnDate == null}" value="Return" action="#{borrowController.returnResource(borrow)}"/>
