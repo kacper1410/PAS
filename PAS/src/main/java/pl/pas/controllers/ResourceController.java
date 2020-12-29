@@ -5,7 +5,6 @@ import pl.pas.managers.ResourceManager;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 import pl.pas.model.resource.Resource;
-
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -22,6 +21,8 @@ public class ResourceController implements Serializable {
 
     @Inject
     private ResourceManager resourceManager;
+    @Inject
+    private IdentityUtils identityUtils;
 
     private Book newBook;
     private AudioBook newAudioBook;
@@ -44,15 +45,21 @@ public class ResourceController implements Serializable {
     }
 
     public String processNewBook() {
-        this.resourceManager.addBook(newBook.getISBN(), newBook.getTitle(), newBook.getAuthor(), newBook.getPublishYear());
-        this.newBook = new Book();
+        if (identityUtils.isEmployee()){
+            this.resourceManager.addBook(newBook.getISBN(), newBook.getTitle(),
+                    newBook.getAuthor(), newBook.getPublishYear());
+            this.newBook = new Book();
+        }
         updateList();
         return "main";
     }
 
     public String processNewAudioBook() {
-        this.resourceManager.addAudioBook(newAudioBook.getISBN(), newAudioBook.getTitle(), newAudioBook.getAuthor(), newAudioBook.getLength());
-        this.newAudioBook = new AudioBook();
+        if (identityUtils.isEmployee()) {
+            this.resourceManager.addAudioBook(newAudioBook.getISBN(), newAudioBook.getTitle(),
+                    newAudioBook.getAuthor(), newAudioBook.getLength());
+            this.newAudioBook = new AudioBook();
+        }
         updateList();
         return "main";
     }
@@ -72,7 +79,9 @@ public class ResourceController implements Serializable {
     }
 
     public String removeResource(Resource resource) {
-        resourceManager.removeResource(resource.getResourceId());
+        if (identityUtils.isEmployee()) {
+            resourceManager.removeResource(resource.getResourceId());
+        }
         updateList();
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
         return viewId + "?faces-redirect=true";
@@ -108,26 +117,36 @@ public class ResourceController implements Serializable {
     }
 
     public String removeCurrentBook() {
-        removeResource(currentBook);
+        if (identityUtils.isEmployee()) {
+            removeResource(currentBook);
+        }
         currentBook = new Book();
         return resourceList();
     }
 
     public String removeCurrentAudioBook() {
-        removeResource(currentAudioBook);
+        if (identityUtils.isEmployee()) {
+            removeResource(currentAudioBook);
+        }
         currentAudioBook = new AudioBook();
         return resourceList();
     }
 
     public String updateBook() {
-        resourceManager.updateBook(currentBook, currentBook.getISBN(), currentBook.getTitle(), currentBook.getAuthor(), currentBook.getPublishYear());
+        if (identityUtils.isEmployee()) {
+            resourceManager.updateBook(currentBook, currentBook.getISBN(), currentBook.getTitle(),
+                    currentBook.getAuthor(), currentBook.getPublishYear());
+        }
         updateList();
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
         return viewId + "?faces-redirect=true";
     }
 
     public String updateAudioBook() {
-        resourceManager.updateAudioBook(currentAudioBook, currentAudioBook.getISBN(), currentAudioBook.getTitle(), currentAudioBook.getAuthor(), currentAudioBook.getLength());
+        if (identityUtils.isEmployee()) {
+            resourceManager.updateAudioBook(currentAudioBook, currentAudioBook.getISBN(), currentAudioBook.getTitle(),
+                    currentAudioBook.getAuthor(), currentAudioBook.getLength());
+        }
         updateList();
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
         return viewId + "?faces-redirect=true";
