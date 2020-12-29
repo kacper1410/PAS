@@ -97,7 +97,7 @@
                     <f:facet name="header">Publish year*</f:facet>
                     <h:inputText id="Book_publish_year" value="#{resourceController.currentBook.publishYear}">
                         <f:validateRequired for="Book_publish_year" />
-                        <f:validateLongRange for="Book_publish_year" maximum="#{resourceController.getCurrentYear()+1}" />
+                        <f:validateLongRange for="Book_publish_year" maximum="#{resourceController.getCurrentYear() + 1}" />
                     </h:inputText>
                     <h:message for="Book_publish_year" style="color: red" />
                 </h:column>

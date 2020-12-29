@@ -17,14 +17,16 @@ import java.io.Serializable;
 @Named
 @Data
 public class LoginController implements Serializable {
-    private String login;
-    private String password;
+
     @Inject
     private HttpServletRequest request;
     @Inject
     private UserManager userManager;
     @Inject
     private Logger logger;
+
+    private String login;
+    private String password;
 
     public String login() {
         try {
@@ -42,6 +44,7 @@ public class LoginController implements Serializable {
             logger.addLog("None", e.getMessage(), Priority.WARNING);
             return "loginError";
         }
+
         return "main";
     }
 
