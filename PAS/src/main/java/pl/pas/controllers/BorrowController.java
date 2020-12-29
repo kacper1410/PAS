@@ -41,14 +41,18 @@ public class BorrowController implements Serializable {
     }
 
     public String processBorrow() {
-        if (identityUtils.isClient()) {
-            clientId = userManager.getUser(identityUtils.getMyLogin()).getUserId();
+        if (identityUtils.isClient() || identityUtils.isEmployee()) {
+            if (identityUtils.isClient()) {
+                clientId = userManager.getUser(identityUtils.getMyLogin()).getUserId();
+            }
+
+            this.borrowManager.borrowResource(resourceId, clientId, borrowDate);
+            resourceController.updateList();
+            this.resourceId = 0;
+            this.clientId = 0;
+            this.borrowDate = new Date();
         }
-        this.borrowManager.borrowResource(resourceId, clientId, borrowDate);
-        resourceController.updateList();
-        this.resourceId = 0;
-        this.clientId = 0;
-        this.borrowDate = new Date();
+
         return "main";
     }
 
@@ -73,8 +77,10 @@ public class BorrowController implements Serializable {
     }
 
     public String returnResource(Borrow borrow) {
-        borrowManager.endBorrow(borrow);
-        resourceController.updateList();
+        if (identityUtils.isEmployee() || (identityUtils.isClient() && identityUtils.getMyLogin().equals(borrow.getClient().getLogin()))) {
+            borrowManager.endBorrow(borrow);
+            resourceController.updateList();
+        }
 
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
         return viewId + "?faces-redirect=true";
