@@ -70,7 +70,7 @@
             <url-pattern>/auth/*</url-pattern>
             <url-pattern>/styles.css</url-pattern>
 <!--          TODO Remove this path from this constraint -->
-            <url-pattern>/resources/*</url-pattern>
+            <url-pattern>/api/*</url-pattern>
         </web-resource-collection>
     </security-constraint>
 
