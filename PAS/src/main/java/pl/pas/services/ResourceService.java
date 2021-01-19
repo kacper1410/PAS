@@ -49,7 +49,7 @@ public class ResourceService {
     }
 
     @DELETE
-    @Path("/removeResource/{uuid}")
+    @Path("removeResource/{uuid}")
     public void removeResource(@PathParam("uuid") long uuid) {
         resourceManager.removeResource(uuid);
     }
