@@ -10,10 +10,7 @@ import pl.pas.model.user.User;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -65,5 +62,27 @@ public class UserService {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public User getUser(@PathParam("login") String login) {
         return userManager.getUser(login);
+    }
+
+    // TODO Post method should response something
+    @POST
+    @Path("addEmployee")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void addEmployee(Employee employee) {
+        userManager.addEmployee(employee.getLogin(), employee.getName(), employee.getLastName());
+    }
+
+    @POST
+    @Path("addAdministrator")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void addAdministrator(Administrator administrator) {
+        userManager.addAdministrator(administrator.getLogin(), administrator.getName(), administrator.getLastName());
+    }
+
+    @POST
+    @Path("addClient")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void addClient(Client client) {
+        userManager.addClient(client.getLogin(), client.getName(), client.getLastName(), client.getAge());
     }
 }
