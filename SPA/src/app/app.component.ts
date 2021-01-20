@@ -8,13 +8,12 @@ import { Client } from './model/client';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'SPA';
   clients: Client[] = [];
 
   constructor(private userService: UserService) {
   }
 
   onClickButton(): void {
-    this.clients = this.userService.getAllClients().subscribe();
+    this.userService.getAllClients().subscribe((response: Client[]) => this.clients = response);
   }
 }
