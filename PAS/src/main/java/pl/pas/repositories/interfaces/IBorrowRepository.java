@@ -5,7 +5,6 @@ import pl.pas.model.Borrow;
 import java.util.List;
 
 public interface IBorrowRepository {
-
     boolean addBorrow(Borrow borrow);
     Borrow getBorrow(long uuid);
     List<Borrow> getBorrowsByUser(long uuid);

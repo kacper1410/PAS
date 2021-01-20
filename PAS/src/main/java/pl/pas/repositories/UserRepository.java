@@ -86,12 +86,12 @@ public class UserRepository implements IUserRepository, Serializable {
     }
 
     @Override
-    public List<User> getAllEmployees() {
+    public List<Employee> getAllEmployees() {
         synchronized (users) {
-            ArrayList<User> employees = new ArrayList<>();
+            ArrayList<Employee> employees = new ArrayList<>();
             for (User user : users) {
                 if (user instanceof Employee) {
-                    employees.add(user);
+                    employees.add((Employee) user);
                 }
             }
             return employees;
@@ -99,12 +99,12 @@ public class UserRepository implements IUserRepository, Serializable {
     }
 
     @Override
-    public List<User> getAllAdministrators() {
+    public List<Administrator> getAllAdministrators() {
         synchronized (users) {
-            ArrayList<User> administrators = new ArrayList<>();
+            ArrayList<Administrator> administrators = new ArrayList<>();
             for (User user : users) {
                 if (user instanceof Administrator) {
-                    administrators.add(user);
+                    administrators.add((Administrator) user);
                 }
             }
             return administrators;

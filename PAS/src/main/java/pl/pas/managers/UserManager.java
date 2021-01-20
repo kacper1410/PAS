@@ -79,11 +79,11 @@ public class UserManager implements Serializable {
         return userRepository.getAllClients();
     }
 
-    public List<User> getAllEmployees() {
+    public List<Employee> getAllEmployees() {
         return userRepository.getAllEmployees();
     }
 
-    public List<User> getAllAdministrators() {
+    public List<Administrator> getAllAdministrators() {
         return userRepository.getAllAdministrators();
     }
 
