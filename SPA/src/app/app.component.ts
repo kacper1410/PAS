@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserService } from './user.service';
+import { Client } from './model/client';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SPA';
+  clients: Client[] = [];
+
+  constructor(private userService: UserService) {
+  }
+
+  onClickButton(): void {
+    this.clients = this.userService.getAllClients().subscribe();
+  }
 }
