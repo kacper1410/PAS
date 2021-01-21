@@ -1,7 +1,5 @@
-export interface Administrator {
-  userId: number;
-  login: string;
-  name: string;
-  lastName: string;
-  active: boolean;
+import { User } from './user';
+
+// tslint:disable-next-line:no-empty-interface
+export interface Administrator extends User {
 }

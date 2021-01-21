@@ -1,19 +1,13 @@
-<button (click)="onClickButton()">Get all clients</button>
-<table style="width:100%">
-  <tr>
-    <th>Uuid</th>
-    <th>Login</th>
-    <th>Name</th>
-    <th>Last Name</th>
-    <th>Active</th>
-  </tr>
-  <tr *ngFor="let client of clients">
-    <td>{{client.userId}}</td>
-    <td>{{client.login}}</td>
-    <td>{{client.name}}</td>
-    <td>{{client.lastName}}</td>
-    <td>{{client.active}}</td>
-  </tr>
-</table>
+<button (click)="getAllClients()">Get all clients</button>
+<app-table [users]="clients"></app-table>
+
+<button (click)="getAllEmployees()">Get all employees</button>
+<app-table [users]="employees"></app-table>
+
+<button (click)="getAllAdministrators()">Get all administrators</button>
+<app-table [users]="administrators"></app-table>
+
+<button (click)="getAllActiveClients()">Get all active clients</button>
+<app-table [users]="activeClients"></app-table>
 
 <router-outlet></router-outlet>

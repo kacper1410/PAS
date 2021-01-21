@@ -1,8 +1,5 @@
-export interface Client {
-  userId: number;
-  login: string;
-  name: string;
-  lastName: string;
-  active: boolean;
+import { User } from './user';
+
+export interface Client extends User {
   age: number;
 }

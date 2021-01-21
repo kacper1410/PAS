@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Administrator } from './model/administrator';
-import { Employee } from './model/employee';
-import { Client } from './model/client';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -15,5 +12,17 @@ export class UserService {
 
   getAllClients(): any {
     return this.http.get<any>(this.url + '/getAllClients');
+  }
+
+  getAllEmployees(): any {
+    return this.http.get<any>(this.url + '/getAllEmployees');
+  }
+
+  getAllAdministrators(): any {
+    return this.http.get<any>(this.url + '/getAllAdministrators');
+  }
+
+  getAllActiveClients(): any {
+    return this.http.get<any>(this.url + '/getAllActiveClients');
   }
 }
