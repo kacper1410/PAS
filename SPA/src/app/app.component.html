@@ -10,4 +10,15 @@
 <button (click)="getAllActiveClients()">Get all active clients</button>
 <app-table [users]="activeClients"></app-table>
 
+Login
+<input type="text" [(ngModel)]="newUser.login">
+Name
+<input type="text" [(ngModel)]="newUser.name">
+Last Name
+<input type="text" [(ngModel)]="newUser.lastName">
+<button (click)="addAdministrator()">Add Administrator</button>
+<button (click)="addEmployee()">Add Employee</button>
+<button (click)="addClient()">Add Client</button>
+
+
 <router-outlet></router-outlet>

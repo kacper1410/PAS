@@ -1,7 +1,7 @@
 export interface User {
-  userId: number;
+  userId?: number;
   login: string;
   name: string;
   lastName: string;
-  active: boolean;
+  active?: boolean;
 }

@@ -67,21 +67,21 @@ public class UserService {
     // TODO Post method should response something
     @POST
     @Path("addEmployee")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addEmployee(Employee employee) {
         userManager.addEmployee(employee.getLogin(), employee.getName(), employee.getLastName());
     }
 
     @POST
     @Path("addAdministrator")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addAdministrator(Administrator administrator) {
         userManager.addAdministrator(administrator.getLogin(), administrator.getName(), administrator.getLastName());
     }
 
     @POST
     @Path("addClient")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addClient(Client client) {
         userManager.addClient(client.getLogin(), client.getName(), client.getLastName(), client.getAge());
     }
