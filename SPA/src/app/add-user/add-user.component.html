@@ -1,1 +1,25 @@
-<p>add-user works!</p>
+<div class="flex-container">
+  <div class="flex-form">
+    <label for="login">Login</label>
+    <input type="text" id="login" [(ngModel)]="newUser.login">
+
+    <label for="name">Name</label>
+    <input type="text" id="name" [(ngModel)]="newUser.name">
+
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" [(ngModel)]="newUser.lastName">
+
+    <div class="flex-buttons">
+      <button (click)="addAdministrator()">Add Administrator</button>
+      <button (click)="addEmployee()">Add Employee</button>
+      <button (click)="addClient()">Add Client</button>
+      <button (click)="clear()">Clear</button>
+    </div>
+  </div>
+  <div class="flex-data">
+    <h1>Your new user</h1>
+    <p><b>Login:</b> {{newUser.login}}</p>
+    <p><b>Name:</b> {{newUser.name}}</p>
+    <p><b>Last name:</b> {{newUser.lastName}}</p>
+  </div>
+</div>

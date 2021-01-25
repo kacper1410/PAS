@@ -1,0 +1,64 @@
+@import '../app.component.less';
+
+.flex-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+
+  .flex-form, .flex-data {
+    flex-direction: column;
+    width: 50%;
+  }
+
+  .flex-data {
+    align-items: center;
+    width: 50%;
+    text-align: center;
+    font-size: 1.1rem;
+
+    h1 {
+      color: @dark-blue;
+    }
+  }
+
+  .flex-form {
+    display: flex;
+    align-items: center;
+
+    label {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin: 20px 20px 5px 20px;
+      color: @dark-blue;
+    }
+
+    .flex-buttons {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  button {
+    display: flex;
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    border-color: @dark-blue;
+    margin: 10px;
+    background: @dark-blue;
+    color: @shine;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    text-decoration: none;
+    outline: none;
+    border-style: none;
+  }
+
+  button:hover {
+    background-color: @blue;
+    border-color: @blue;
+    color: @dark-blue;
+  }
+}
