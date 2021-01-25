@@ -1,0 +1,14 @@
+<nav>
+  <button (click)="getAllClients()">Get all clients</button>
+  <button (click)="getAllEmployees()">Get all employees</button>
+  <button (click)="getAllAdministrators()">Get all administrators</button>
+  <button (click)="getAllActiveClients()">Get all active clients</button>
+</nav>
+
+<app-table [users]="clients"></app-table>
+
+<app-table [users]="employees"></app-table>
+
+<app-table [users]="administrators"></app-table>
+
+<app-table [users]="activeClients"></app-table>

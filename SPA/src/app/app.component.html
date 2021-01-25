@@ -1,24 +1,30 @@
-<button (click)="getAllClients()">Get all clients</button>
-<app-table [users]="clients"></app-table>
+<nav>
+  <a routerLink="/users">Users</a>
+  <a routerLink="/addUser">Add user</a>
+  <a routerLink="/editUser">Edit user</a>
+</nav>
 
-<button (click)="getAllEmployees()">Get all employees</button>
-<app-table [users]="employees"></app-table>
+<!--<button (click)="getAllClients()">Get all clients</button>-->
+<!--<app-table [users]="clients"></app-table>-->
 
-<button (click)="getAllAdministrators()">Get all administrators</button>
-<app-table [users]="administrators"></app-table>
+<!--<button (click)="getAllEmployees()">Get all employees</button>-->
+<!--<app-table [users]="employees"></app-table>-->
 
-<button (click)="getAllActiveClients()">Get all active clients</button>
-<app-table [users]="activeClients"></app-table>
+<!--<button (click)="getAllAdministrators()">Get all administrators</button>-->
+<!--<app-table [users]="administrators"></app-table>-->
 
-Login
-<input type="text" [(ngModel)]="newUser.login">
-Name
-<input type="text" [(ngModel)]="newUser.name">
-Last Name
-<input type="text" [(ngModel)]="newUser.lastName">
-<button (click)="addAdministrator()">Add Administrator</button>
-<button (click)="addEmployee()">Add Employee</button>
-<button (click)="addClient()">Add Client</button>
+<!--<button (click)="getAllActiveClients()">Get all active clients</button>-->
+<!--<app-table [users]="activeClients"></app-table>-->
+
+<!--Login-->
+<!--<input type="text" [(ngModel)]="newUser.login">-->
+<!--Name-->
+<!--<input type="text" [(ngModel)]="newUser.name">-->
+<!--Last Name-->
+<!--<input type="text" [(ngModel)]="newUser.lastName">-->
+<!--<button (click)="addAdministrator()">Add Administrator</button>-->
+<!--<button (click)="addEmployee()">Add Employee</button>-->
+<!--<button (click)="addClient()">Add Client</button>-->
 
 
 <router-outlet></router-outlet>

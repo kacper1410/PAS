@@ -1,0 +1,33 @@
+@import '../app.component.less';
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  button {
+    display: flex;
+    width: 180px;
+    height: 45px;
+    border-radius: 10px;
+    border-color: @dark-blue;
+    background: @dark-blue;
+    color: @shine;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    text-decoration: none;
+    outline: none;
+    border-style: none;
+  }
+
+  button:hover {
+    background-color: @blue;
+    border-color: @blue;
+    color: @dark-blue;
+  }
+}
