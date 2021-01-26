@@ -14,5 +14,6 @@ public class CorsResponseFilter implements ContainerResponseFilter {
         final MultivaluedMap<String, Object> headers = containerResponseContext.getHeaders();
         headers.add("Access-Control-Allow-Origin", "http://localhost:4200");
         headers.add("Access-Control-Allow-Headers", "Content-Type");
+        headers.add("Access-Control-Allow-Methods", "POST, GET, PUT");
     }
 }

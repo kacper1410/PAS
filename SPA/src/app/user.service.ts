@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Administrator } from './model/administrator';
 import { Employee } from './model/employee';
-import { Client } from './model/client';
 import { User } from './model/user';
 
 @Injectable({
@@ -42,5 +41,17 @@ export class UserService {
 
   addClient(newUser: User): any {
     return this.http.post<any>(this.url + '/addClient', newUser);
+  }
+
+  updateAdministrator(editUser: Administrator): any {
+    return this.http.put<any>(this.url + '/updateAdministrator/' + editUser.userId, editUser);
+  }
+
+  updateClient(editUser: User): any {
+    return this.http.put<any>(this.url + '/updateClient/' + editUser.userId, editUser);
+  }
+
+  updateEmployee(editUser: Employee): any {
+    return this.http.put<any>(this.url + '/updateEmployee/' + editUser.userId, editUser);
   }
 }

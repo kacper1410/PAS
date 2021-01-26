@@ -1,1 +1,20 @@
-<p>edit-user works!</p>
+<div class="flex-form">
+  <label for="userId">User id</label>
+  <input type="text" id="userId" [(ngModel)]="editUser.userId">
+
+  <label for="login">Login</label>
+  <input type="text" id="login" [(ngModel)]="editUser.login">
+
+  <label for="name">Name</label>
+  <input type="text" id="name" [(ngModel)]="editUser.name">
+
+  <label for="lastName">Last Name</label>
+  <input type="text" id="lastName" [(ngModel)]="editUser.lastName">
+
+  <div class="flex-buttons">
+    <button (click)="updateAdministrator()">Update Administrator</button>
+    <button (click)="updateEmployee()">Update Employee</button>
+    <button (click)="updateClient()">Update Client</button>
+    <button (click)="clear()">Clear</button>
+  </div>
+</div>
