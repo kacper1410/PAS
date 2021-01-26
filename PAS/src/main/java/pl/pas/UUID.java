@@ -8,7 +8,7 @@ public class UUID {
         long uuid;
 
         do {
-            uuid = random.nextLong();
+            uuid = random.nextLong() / 256;
         } while (uuid < 0);
 
         return uuid;
