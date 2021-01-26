@@ -103,7 +103,7 @@ public class UserManager implements Serializable {
 
     public boolean updateClient(User oldUser, String login, String name, String lastName, int age) {
         if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
-                || login == null || name == null || lastName == null || age > 0 || !(oldUser instanceof Client)) {
+                || login == null || name == null || lastName == null || age < 0 || !(oldUser instanceof Client)) {
             return false;
         }
         userRepository.updateUser(oldUser.getUserId(), new Client(login, name, lastName, age));

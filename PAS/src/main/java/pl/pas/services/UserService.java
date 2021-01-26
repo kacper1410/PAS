@@ -85,4 +85,25 @@ public class UserService {
     public void addClient(Client client) {
         userManager.addClient(client.getLogin(), client.getName(), client.getLastName(), client.getAge());
     }
+
+    @PUT
+    @Path("updateAdministrator/{id}")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void updateEmployee(@PathParam("id") long id, Administrator administrator) {
+        userManager.updateUser(userManager.getUser(id), administrator.getLogin(), administrator.getName(), administrator.getLastName());
+    }
+
+    @PUT
+    @Path("updateEmployee/{id}")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void updateEmployee(@PathParam("id") long id, Employee employee) {
+        userManager.updateUser(userManager.getUser(id), employee.getLogin(), employee.getName(), employee.getLastName());
+    }
+
+    @PUT
+    @Path("updateClient/{id}")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void updateClient(@PathParam("id") long id, Client client) {
+        userManager.updateClient(userManager.getUser(id), client.getLogin(), client.getName(), client.getLastName(), client.getAge());
+    }
 }
