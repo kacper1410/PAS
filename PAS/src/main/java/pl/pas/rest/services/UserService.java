@@ -4,6 +4,7 @@ package pl.pas.rest.services;
 import lombok.NoArgsConstructor;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
+import pl.pas.exceptions.UserNotFoundException;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
@@ -75,6 +76,8 @@ public class UserService {
     public User getUser(@PathParam("uuid") long uuid) {
         try {
             return userManager.getUser(uuid);
+        } catch (UserNotFoundException e) {
+            throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (Exception e) {
             throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
         }
@@ -86,6 +89,8 @@ public class UserService {
     public User getUser(@PathParam("login") String login) {
         try {
             return userManager.getUser(login);
+        } catch (UserNotFoundException e) {
+            throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (Exception e) {
             throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
         }
@@ -142,6 +147,8 @@ public class UserService {
     public void updateEmployee(@PathParam("id") long id, Administrator administrator) {
         try {
             userManager.updateUser(userManager.getUser(id), administrator.getLogin(), administrator.getName(), administrator.getLastName());
+        } catch (UserNotFoundException e) {
+            throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (NotValidException e) {
             throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
         } catch (Exception e) {
@@ -155,6 +162,8 @@ public class UserService {
     public void updateEmployee(@PathParam("id") long id, Employee employee) {
         try {
             userManager.updateUser(userManager.getUser(id), employee.getLogin(), employee.getName(), employee.getLastName());
+        } catch (UserNotFoundException e) {
+            throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (NotValidException e) {
             throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
         } catch (Exception e) {
@@ -168,6 +177,8 @@ public class UserService {
     public void updateClient(@PathParam("id") long id, Client client) {
         try {
             userManager.updateClient(userManager.getUser(id), client.getLogin(), client.getName(), client.getLastName(), client.getAge());
+        } catch (UserNotFoundException e) {
+            throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (NotValidException e) {
             throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
         } catch (Exception e) {

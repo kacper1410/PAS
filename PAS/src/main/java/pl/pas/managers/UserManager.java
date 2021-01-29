@@ -2,6 +2,7 @@ package pl.pas.managers;
 
 import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
+import pl.pas.exceptions.UserNotFoundException;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
@@ -65,12 +66,24 @@ public class UserManager implements Serializable {
         return userRepository.getAllUsers();
     }
 
-    public User getUser(long id) {
-        return userRepository.getUser(id);
+    public User getUser(long id) throws UserNotFoundException {
+        User user = userRepository.getUser(id);
+
+        if (user == null) {
+            throw new UserNotFoundException();
+        }
+
+        return user;
     }
 
-    public User getUser(String login) {
-        return userRepository.getUser(login);
+    public User getUser(String login) throws UserNotFoundException {
+        User user = userRepository.getUser(login);
+
+        if (user == null) {
+            throw new UserNotFoundException();
+        }
+
+        return user;
     }
 
     public List<Client> getAllClients() {
