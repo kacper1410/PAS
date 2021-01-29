@@ -1,5 +1,6 @@
 package pl.pas.controllers;
 
+import pl.pas.exceptions.UserNotFoundException;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.User;
 import javax.enterprise.context.ApplicationScoped;
@@ -35,12 +36,17 @@ public class IdentityUtils {
     }
 
     public boolean isActive() {
-        User user = userManager.getUser(getMyLogin());
+        try {
+            User user = userManager.getUser(getMyLogin());
 
-        if (user == null || !user.isActive()) {
-            loginController.logout();
-            return false;
+            if (user == null || !user.isActive()) {
+                loginController.logout();
+                return false;
+            }
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
         }
+
         return true;
     }
 }

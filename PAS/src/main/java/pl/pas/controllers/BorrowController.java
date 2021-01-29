@@ -1,6 +1,7 @@
 package pl.pas.controllers;
 
 import lombok.Data;
+import pl.pas.exceptions.UserNotFoundException;
 import pl.pas.managers.BorrowManager;
 import pl.pas.managers.UserManager;
 import pl.pas.model.Borrow;
@@ -43,7 +44,11 @@ public class BorrowController implements Serializable {
     public String processBorrow() {
         if (identityUtils.isClient() || identityUtils.isEmployee()) {
             if (identityUtils.isClient()) {
-                clientId = userManager.getUser(identityUtils.getMyLogin()).getUserId();
+                try {
+                    clientId = userManager.getUser(identityUtils.getMyLogin()).getUserId();
+                } catch (UserNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
 
             this.borrowManager.borrowResource(resourceId, clientId, borrowDate);
