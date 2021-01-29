@@ -1,6 +1,7 @@
 package pl.pas.controllers;
 
 import lombok.Data;
+import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.Administrator;
@@ -51,7 +52,7 @@ public class UserController implements Serializable {
         if (identityUtils.isAdmin()) {
             try {
                 userManager.addClient(newClient.getLogin(), newClient.getName(), newClient.getLastName(), newClient.getAge());
-            } catch (UserAlreadyExistException e) {
+            } catch (UserAlreadyExistException | NotValidException e) {
                 e.printStackTrace();
             }
         }
@@ -63,7 +64,7 @@ public class UserController implements Serializable {
         if (identityUtils.isAdmin()) {
             try {
                 userManager.addEmployee(newEmployee.getLogin(), newEmployee.getName(), newEmployee.getLastName());
-            } catch (UserAlreadyExistException e) {
+            } catch (UserAlreadyExistException | NotValidException e) {
                 e.printStackTrace();
             }
         }
@@ -75,7 +76,7 @@ public class UserController implements Serializable {
         if (identityUtils.isAdmin()) {
             try {
                 userManager.addAdministrator(newAdministrator.getLogin(), newAdministrator.getName(), newAdministrator.getLastName());
-            } catch (UserAlreadyExistException e) {
+            } catch (UserAlreadyExistException | NotValidException e) {
                 e.printStackTrace();
             }
         }
@@ -142,7 +143,11 @@ public class UserController implements Serializable {
 
     public String updateClient() {
         if (identityUtils.isAdmin()) {
-            userManager.updateClient(currentClient, currentClient.getLogin(), currentClient.getName(), currentClient.getLastName(), currentClient.getAge());
+            try {
+                userManager.updateClient(currentClient, currentClient.getLogin(), currentClient.getName(), currentClient.getLastName(), currentClient.getAge());
+            } catch (NotValidException e) {
+                e.printStackTrace();
+            }
         }
 
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
@@ -151,7 +156,11 @@ public class UserController implements Serializable {
 
     public String updateUser() {
         if (identityUtils.isAdmin()) {
-            userManager.updateUser(currentUser, currentUser.getLogin(), currentUser.getName(), currentUser.getLastName());
+            try {
+                userManager.updateUser(currentUser, currentUser.getLogin(), currentUser.getName(), currentUser.getLastName());
+            } catch (NotValidException e) {
+                e.printStackTrace();
+            }
         }
 
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();

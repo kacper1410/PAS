@@ -39,8 +39,11 @@ public class UserRepository implements IUserRepository, Serializable {
     public User getUser(long uuid) {
         synchronized (users) {
             for (User u: users) {
-                if (u.getUserId() == uuid) return u;
+                if (u.getUserId() == uuid) {
+                    return u;
+                }
             }
+
             return null;
         }
     }
@@ -49,8 +52,11 @@ public class UserRepository implements IUserRepository, Serializable {
     public User getUser(String login) {
         synchronized (users) {
             for (User u: users) {
-                if (u.getLogin().equals(login)) return u;
+                if (u.getLogin().equals(login)) {
+                    return u;
+                }
             }
+
             return null;
         }
     }
@@ -78,11 +84,13 @@ public class UserRepository implements IUserRepository, Serializable {
     public List<Client> getAllClients() {
         synchronized (users) {
             ArrayList<Client> clients = new ArrayList<>();
+
             for (User user : users) {
                 if (user instanceof Client) {
                     clients.add((Client) user);
                 }
             }
+
             return clients;
         }
     }
@@ -91,11 +99,13 @@ public class UserRepository implements IUserRepository, Serializable {
     public List<Employee> getAllEmployees() {
         synchronized (users) {
             ArrayList<Employee> employees = new ArrayList<>();
+
             for (User user : users) {
                 if (user instanceof Employee) {
                     employees.add((Employee) user);
                 }
             }
+
             return employees;
         }
     }
@@ -104,11 +114,13 @@ public class UserRepository implements IUserRepository, Serializable {
     public List<Administrator> getAllAdministrators() {
         synchronized (users) {
             ArrayList<Administrator> administrators = new ArrayList<>();
+
             for (User user : users) {
                 if (user instanceof Administrator) {
                     administrators.add((Administrator) user);
                 }
             }
+
             return administrators;
         }
     }
@@ -117,11 +129,13 @@ public class UserRepository implements IUserRepository, Serializable {
     public List<User> getAllActiveUsers() {
         synchronized (users) {
             ArrayList<User> activeUsers = new ArrayList<>();
+
             for (User user : users) {
                 if (user.isActive()) {
                     activeUsers.add(user);
                 }
             }
+
             return activeUsers;
         }
     }

@@ -2,6 +2,7 @@ package pl.pas.rest.services;
 
 
 import lombok.NoArgsConstructor;
+import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.Administrator;
@@ -28,45 +29,68 @@ public class UserService {
     @Path("getAllClients")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Client> getAllClients() {
-        return userManager.getAllClients();
+        try {
+            return userManager.getAllClients();
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GET
     @Path("getAllActiveClients")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Client> getAllActiveClients() {
-        return userManager.getAllActiveClients();
+        try {
+            return userManager.getAllActiveClients();
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GET
     @Path("getAllEmployees")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Employee> getAllEmployees() {
-        return userManager.getAllEmployees();
+        try {
+            return userManager.getAllEmployees();
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GET
     @Path("getAllAdministrators")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Administrator> getAllAdministrators() {
-        return userManager.getAllAdministrators();
+        try {
+            return userManager.getAllAdministrators();
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GET
     @Path("getUserById/{uuid}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public User getUser(@PathParam("uuid") long uuid) {
-        return userManager.getUser(uuid);
+        try {
+            return userManager.getUser(uuid);
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GET
     @Path("getUserByLogin/{login}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public User getUser(@PathParam("login") String login) {
-        return userManager.getUser(login);
+        try {
+            return userManager.getUser(login);
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    // TODO Post method should response something
     @POST
     @Path("addEmployee")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -74,9 +98,11 @@ public class UserService {
         try {
             userManager.addEmployee(employee.getLogin(), employee.getName(), employee.getLastName());
         } catch (UserAlreadyExistException e) {
-            // TODO adequate response code
-            // throw new ClientErrorException(Response.Status.CONFLICT);
-            e.printStackTrace();
+             throw new ClientErrorException("User exist", Response.Status.CONFLICT);
+        } catch (NotValidException e) {
+            throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -87,7 +113,11 @@ public class UserService {
         try {
             userManager.addAdministrator(administrator.getLogin(), administrator.getName(), administrator.getLastName());
         } catch (UserAlreadyExistException e) {
-            e.printStackTrace();
+            throw new ClientErrorException("User exist", Response.Status.CONFLICT);
+        } catch (NotValidException e) {
+            throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -98,7 +128,11 @@ public class UserService {
         try {
             userManager.addClient(client.getLogin(), client.getName(), client.getLastName(), client.getAge());
         } catch (UserAlreadyExistException e) {
-            e.printStackTrace();
+            throw new ClientErrorException("User exist", Response.Status.CONFLICT);
+        } catch (NotValidException e) {
+            throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -106,20 +140,38 @@ public class UserService {
     @Path("updateAdministrator/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void updateEmployee(@PathParam("id") long id, Administrator administrator) {
-        userManager.updateUser(userManager.getUser(id), administrator.getLogin(), administrator.getName(), administrator.getLastName());
+        try {
+            userManager.updateUser(userManager.getUser(id), administrator.getLogin(), administrator.getName(), administrator.getLastName());
+        } catch (NotValidException e) {
+            throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PUT
     @Path("updateEmployee/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void updateEmployee(@PathParam("id") long id, Employee employee) {
-        userManager.updateUser(userManager.getUser(id), employee.getLogin(), employee.getName(), employee.getLastName());
+        try {
+            userManager.updateUser(userManager.getUser(id), employee.getLogin(), employee.getName(), employee.getLastName());
+        } catch (NotValidException e) {
+            throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PUT
     @Path("updateClient/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void updateClient(@PathParam("id") long id, Client client) {
-        userManager.updateClient(userManager.getUser(id), client.getLogin(), client.getName(), client.getLastName(), client.getAge());
+        try {
+            userManager.updateClient(userManager.getUser(id), client.getLogin(), client.getName(), client.getLastName(), client.getAge());
+        } catch (NotValidException e) {
+            throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
     }
 }

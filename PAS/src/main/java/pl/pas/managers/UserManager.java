@@ -1,5 +1,6 @@
 package pl.pas.managers;
 
+import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
@@ -36,24 +37,27 @@ public class UserManager implements Serializable {
     }
 
 
-    public void addAdministrator(String login, String name, String lastName) throws UserAlreadyExistException, IllegalArgumentException {
+    public void addAdministrator(String login, String name, String lastName) throws UserAlreadyExistException, NotValidException {
         if (login == null || name == null || lastName == null) {
-            throw new IllegalArgumentException();
+            throw new NotValidException();
         }
+
         userRepository.addUser(new Administrator(login, name, lastName));
     }
 
-    public void addEmployee(String login, String name, String lastName) throws UserAlreadyExistException, IllegalArgumentException {
+    public void addEmployee(String login, String name, String lastName) throws UserAlreadyExistException, NotValidException {
         if (login == null || name == null || lastName == null) {
-            throw new IllegalArgumentException();
+            throw new NotValidException();
         }
+
         userRepository.addUser(new Employee(login, name, lastName));
     }
 
-    public void addClient(String login, String name, String lastName, int age) throws UserAlreadyExistException, IllegalArgumentException {
+    public void addClient(String login, String name, String lastName, int age) throws UserAlreadyExistException, NotValidException {
         if (login == null || name == null || lastName == null || age < 0) {
-            throw new IllegalArgumentException();
+            throw new NotValidException();
         }
+
         userRepository.addUser(new Client(login, name, lastName, age));
     }
 
@@ -66,9 +70,6 @@ public class UserManager implements Serializable {
     }
 
     public User getUser(String login) {
-        if (login == null) {
-            return null;
-        }
         return userRepository.getUser(login);
     }
 
@@ -90,34 +91,36 @@ public class UserManager implements Serializable {
 
     public List<Client> getAllActiveClients() {
         List<Client> activeClients = new ArrayList<>();
+
         for (Client client: userRepository.getAllClients()) {
             if (client.isActive()) {
                 activeClients.add(client);
             }
         }
+
         return activeClients;
     }
 
-    public boolean updateClient(User oldUser, String login, String name, String lastName, int age) {
+    public void updateClient(User oldUser, String login, String name, String lastName, int age) throws NotValidException {
         if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
                 || login == null || name == null || lastName == null || age < 0 || !(oldUser instanceof Client)) {
-            return false;
+            throw new NotValidException();
         }
+
         userRepository.updateUser(oldUser.getUserId(), new Client(login, name, lastName, age));
-        return true;
     }
 
-    public boolean updateUser(User oldUser, String login, String name, String lastName) {
+    public void updateUser(User oldUser, String login, String name, String lastName) throws NotValidException {
         if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
                 || login == null || name == null || lastName == null) {
-            return false;
+            throw new NotValidException();
         }
+
         if (oldUser instanceof Employee) {
             userRepository.updateUser(oldUser.getUserId(), new Employee(login, name, lastName));
         } else if (oldUser instanceof Administrator) {
             userRepository.updateUser(oldUser.getUserId(), new Administrator(login, name, lastName));
         }
-        return true;
     }
 
 
