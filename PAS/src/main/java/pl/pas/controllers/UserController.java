@@ -3,6 +3,7 @@ package pl.pas.controllers;
 import lombok.Data;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
+import pl.pas.exceptions.UserNotFoundException;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
@@ -114,7 +115,13 @@ public class UserController implements Serializable {
     }
 
     public String searchId(long uuid) {
-        User user = userManager.getUser(uuid);
+        User user = null;
+
+        try {
+            user = userManager.getUser(uuid);
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        }
 
         if (user instanceof Client) {
             currentClient = (Client) user;
@@ -126,7 +133,13 @@ public class UserController implements Serializable {
     }
 
     public String searchLogin(String login) {
-        User user = userManager.getUser(login);
+        User user = null;
+
+        try {
+            user = userManager.getUser(login);
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        }
 
         if (user instanceof Client) {
             currentClient = (Client) user;

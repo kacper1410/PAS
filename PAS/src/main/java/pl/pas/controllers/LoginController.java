@@ -1,6 +1,7 @@
 package pl.pas.controllers;
 
 import lombok.Data;
+import pl.pas.exceptions.UserNotFoundException;
 import pl.pas.logger.Logger;
 import pl.pas.logger.Priority;
 import pl.pas.managers.UserManager;
@@ -40,7 +41,7 @@ public class LoginController implements Serializable {
             }
             request.login(login, password);
             logger.addLog(request.getUserPrincipal().getName(), "Welcome :)", Priority.INFO);
-        } catch (ServletException e) {
+        } catch (ServletException | UserNotFoundException e) {
             logger.addLog("None", e.getMessage(), Priority.WARNING);
             return "loginError";
         }
