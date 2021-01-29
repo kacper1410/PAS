@@ -19,6 +19,21 @@ export class EditUserComponent {
   constructor(private userService: UserService) {
   }
 
+  updateAdministrator(): void {
+    this.userService.updateAdministrator(this.editUser).subscribe();
+    this.clear();
+  }
+
+  updateClient(): void {
+    this.userService.updateClient(this.editUser).subscribe();
+    this.clear();
+  }
+
+  updateEmployee(): void {
+    this.userService.updateEmployee(this.editUser).subscribe();
+    this.clear();
+  }
+
   clear(): void {
     this.editUser = {
       userId: 0,
@@ -26,17 +41,5 @@ export class EditUserComponent {
       name: '',
       lastName: ''
     };
-  }
-
-  updateAdministrator(): void {
-    this.userService.updateAdministrator(this.editUser).subscribe();
-  }
-
-  updateClient(): void {
-    this.userService.updateClient(this.editUser).subscribe();
-  }
-
-  updateEmployee(): void {
-    this.userService.updateEmployee(this.editUser).subscribe();
   }
 }

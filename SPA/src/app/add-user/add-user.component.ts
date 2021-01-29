@@ -19,14 +19,17 @@ export class AddUserComponent {
 
   addAdministrator(): void {
     this.userService.addAdministrator(this.newUser).subscribe();
+    this.clear();
   }
 
   addEmployee(): void {
     this.userService.addEmployee(this.newUser).subscribe();
+    this.clear();
   }
 
   addClient(): void {
     this.userService.addClient(this.newUser).subscribe();
+    this.clear();
   }
 
   clear(): void {
