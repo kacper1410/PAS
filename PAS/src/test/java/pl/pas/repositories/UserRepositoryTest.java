@@ -1,6 +1,7 @@
 package pl.pas.repositories;
 
 import org.junit.Test;
+import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
@@ -27,10 +28,14 @@ public class UserRepositoryTest {
     public void testAddUser() {
         assertEquals(userRepository.getAllUsers().size(), 0);
 
-        userRepository.addUser(client1);
-        userRepository.addUser(client2);
-        userRepository.addUser(employee);
-        userRepository.addUser(administrator);
+        try {
+            userRepository.addUser(client1);
+            userRepository.addUser(client2);
+            userRepository.addUser(employee);
+            userRepository.addUser(administrator);
+        } catch (UserAlreadyExistException e) {
+            e.printStackTrace();
+        }
 
         assertEquals(userRepository.getAllUsers().size(), 4);
         assertEquals(userRepository.getAllUsers().get(0), client1);
@@ -43,10 +48,14 @@ public class UserRepositoryTest {
 
     @Test
     public void testGetUser() {
-        userRepository.addUser(client1);
-        userRepository.addUser(client2);
-        userRepository.addUser(employee);
-        userRepository.addUser(administrator);
+        try {
+            userRepository.addUser(client1);
+            userRepository.addUser(client2);
+            userRepository.addUser(employee);
+            userRepository.addUser(administrator);
+        } catch (UserAlreadyExistException e) {
+            e.printStackTrace();
+        }
 
         //Test getUser for ID
         assertEquals(userRepository.getUser(client1.getUserId()), client1);
@@ -65,10 +74,14 @@ public class UserRepositoryTest {
     public void testGetAllUsers() {
         assertEquals(userRepository.getAllUsers().size(), 0);
 
-        userRepository.addUser(client1);
-        userRepository.addUser(client2);
-        userRepository.addUser(employee);
-        userRepository.addUser(administrator);
+        try {
+            userRepository.addUser(client1);
+            userRepository.addUser(client2);
+            userRepository.addUser(employee);
+            userRepository.addUser(administrator);
+        } catch (UserAlreadyExistException e) {
+            e.printStackTrace();
+        }
 
         assertEquals(userRepository.getAllUsers().size(), 4);
     }
@@ -76,10 +89,14 @@ public class UserRepositoryTest {
 
     @Test
     public void testUpdateUser() {
-        userRepository.addUser(client1);
-        userRepository.addUser(client2);
-        userRepository.addUser(employee);
-        userRepository.addUser(administrator);
+        try {
+            userRepository.addUser(client1);
+            userRepository.addUser(client2);
+            userRepository.addUser(employee);
+            userRepository.addUser(administrator);
+        } catch (UserAlreadyExistException e) {
+            e.printStackTrace();
+        }
 
         // Test login change
         assertEquals(userRepository.getAllUsers().get(1).getLogin(), "kacper1410");

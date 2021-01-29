@@ -1,5 +1,6 @@
 package pl.pas.repositories;
 
+import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
@@ -23,12 +24,14 @@ public class UserRepository implements IUserRepository, Serializable {
     }
 
     @Override
-    public boolean addUser(User user) {
+    public void addUser(User user) throws UserAlreadyExistException {
         synchronized (users) {
-            if (users.contains(getUser(user.getLogin()))) return false;
+            if (users.contains(getUser(user.getLogin()))) {
+                throw new UserAlreadyExistException();
+            }
 
             user.setUserId(UUID.randomUUID());
-            return users.add(user);
+            users.add(user);
         }
     }
 

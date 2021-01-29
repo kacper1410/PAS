@@ -2,6 +2,7 @@ package pl.pas.rest.services;
 
 
 import lombok.NoArgsConstructor;
+import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
@@ -12,6 +13,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @NoArgsConstructor
@@ -69,21 +71,35 @@ public class UserService {
     @Path("addEmployee")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addEmployee(Employee employee) {
-        userManager.addEmployee(employee.getLogin(), employee.getName(), employee.getLastName());
+        try {
+            userManager.addEmployee(employee.getLogin(), employee.getName(), employee.getLastName());
+        } catch (UserAlreadyExistException e) {
+            // TODO adequate response code
+            // throw new ClientErrorException(Response.Status.CONFLICT);
+            e.printStackTrace();
+        }
     }
 
     @POST
     @Path("addAdministrator")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addAdministrator(Administrator administrator) {
-        userManager.addAdministrator(administrator.getLogin(), administrator.getName(), administrator.getLastName());
+        try {
+            userManager.addAdministrator(administrator.getLogin(), administrator.getName(), administrator.getLastName());
+        } catch (UserAlreadyExistException e) {
+            e.printStackTrace();
+        }
     }
 
     @POST
     @Path("addClient")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addClient(Client client) {
-        userManager.addClient(client.getLogin(), client.getName(), client.getLastName(), client.getAge());
+        try {
+            userManager.addClient(client.getLogin(), client.getName(), client.getLastName(), client.getAge());
+        } catch (UserAlreadyExistException e) {
+            e.printStackTrace();
+        }
     }
 
     @PUT

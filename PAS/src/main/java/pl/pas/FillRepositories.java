@@ -1,5 +1,6 @@
 package pl.pas;
 
+import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 import pl.pas.model.resource.Resource;
@@ -71,11 +72,15 @@ public class FillRepositories implements Serializable {
         User user5 = new Client("hast", "Hanna", "Strzelec", 15);
         user5.setActive(false);
 
-        userRepository.addUser(user1);
-        userRepository.addUser(user2);
-        userRepository.addUser(user3);
-        userRepository.addUser(user4);
-        userRepository.addUser(user5);
+        try {
+            userRepository.addUser(user1);
+            userRepository.addUser(user2);
+            userRepository.addUser(user3);
+            userRepository.addUser(user4);
+            userRepository.addUser(user5);
+        } catch (UserAlreadyExistException e) {
+            e.printStackTrace();
+        }
 
         borrowManager.borrowResource(book1.getResourceId(), user3.getUserId());
         borrowManager.borrowResource(audioBook1.getResourceId(), user3.getUserId());

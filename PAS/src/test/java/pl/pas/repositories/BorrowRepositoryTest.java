@@ -1,6 +1,7 @@
 package pl.pas.repositories;
 
 import org.junit.Test;
+import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.model.Borrow;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
@@ -21,7 +22,11 @@ public class BorrowRepositoryTest {
         resourceRepository.addResource(book);
         resourceRepository.addResource(audioBook);
         Client client = new Client("cLogin", "Kacper", "Swiercz", 21);
-        userRepository.addUser(client);
+        try {
+            userRepository.addUser(client);
+        } catch (UserAlreadyExistException e) {
+            e.printStackTrace();
+        }
         Borrow borrow1 = new Borrow(client, book, new Date());
         Borrow borrow2 = new Borrow(client, audioBook, new Date());
         borrowRepository.addBorrow(borrow1);

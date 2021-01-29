@@ -1,5 +1,6 @@
 package pl.pas.managers;
 
+import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
@@ -24,10 +25,6 @@ public class UserManager implements Serializable {
     private IResourceRepository resourceRepository;
     @Inject
     private IBorrowRepository borrowRepository;
-    public final static int LOGIN_FIELD = 0;
-    public final static int NAME_FIELD = 1;
-    public final static int LASTNAME_FIELD = 2;
-    public final static int AGE_FIELD = 3;
 
     public UserManager() {
     }
@@ -39,25 +36,25 @@ public class UserManager implements Serializable {
     }
 
 
-    public boolean addAdministrator(String login, String name, String lastName) {
+    public void addAdministrator(String login, String name, String lastName) throws UserAlreadyExistException, IllegalArgumentException {
         if (login == null || name == null || lastName == null) {
-            return false;
+            throw new IllegalArgumentException();
         }
-        return userRepository.addUser(new Administrator(login, name, lastName));
+        userRepository.addUser(new Administrator(login, name, lastName));
     }
 
-    public boolean addEmployee(String login, String name, String lastName) {
+    public void addEmployee(String login, String name, String lastName) throws UserAlreadyExistException, IllegalArgumentException {
         if (login == null || name == null || lastName == null) {
-            return false;
+            throw new IllegalArgumentException();
         }
-        return userRepository.addUser(new Employee(login, name, lastName));
+        userRepository.addUser(new Employee(login, name, lastName));
     }
 
-    public boolean addClient(String login, String name, String lastName, int age) {
+    public void addClient(String login, String name, String lastName, int age) throws UserAlreadyExistException, IllegalArgumentException {
         if (login == null || name == null || lastName == null || age < 0) {
-            return false;
+            throw new IllegalArgumentException();
         }
-        return userRepository.addUser(new Client(login, name, lastName, age));
+        userRepository.addUser(new Client(login, name, lastName, age));
     }
 
     public List<User> getAllUsers() {

@@ -1,6 +1,7 @@
 package pl.pas.controllers;
 
 import lombok.Data;
+import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
@@ -48,7 +49,11 @@ public class UserController implements Serializable {
 
     public String processNewClient() {
         if (identityUtils.isAdmin()) {
-            userManager.addClient(newClient.getLogin(), newClient.getName(), newClient.getLastName(), newClient.getAge());
+            try {
+                userManager.addClient(newClient.getLogin(), newClient.getName(), newClient.getLastName(), newClient.getAge());
+            } catch (UserAlreadyExistException e) {
+                e.printStackTrace();
+            }
         }
 
         newClient = new Client();
@@ -56,7 +61,11 @@ public class UserController implements Serializable {
     }
     public String processNewEmployee() {
         if (identityUtils.isAdmin()) {
-            userManager.addEmployee(newEmployee.getLogin(), newEmployee.getName(), newEmployee.getLastName());
+            try {
+                userManager.addEmployee(newEmployee.getLogin(), newEmployee.getName(), newEmployee.getLastName());
+            } catch (UserAlreadyExistException e) {
+                e.printStackTrace();
+            }
         }
 
         newEmployee = new Employee();
@@ -64,7 +73,11 @@ public class UserController implements Serializable {
     }
     public String processNewAdministrator() {
         if (identityUtils.isAdmin()) {
-            userManager.addAdministrator(newAdministrator.getLogin(), newAdministrator.getName(), newAdministrator.getLastName());
+            try {
+                userManager.addAdministrator(newAdministrator.getLogin(), newAdministrator.getName(), newAdministrator.getLastName());
+            } catch (UserAlreadyExistException e) {
+                e.printStackTrace();
+            }
         }
 
         newAdministrator = new Administrator();
