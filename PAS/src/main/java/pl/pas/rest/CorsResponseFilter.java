@@ -1,4 +1,4 @@
-package pl.pas;
+package pl.pas.rest;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;

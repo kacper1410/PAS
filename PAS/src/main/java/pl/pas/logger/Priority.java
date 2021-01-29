@@ -1,4 +1,4 @@
-package pl.pas;
+package pl.pas.logger;
 
 public enum Priority {
     ERROR,

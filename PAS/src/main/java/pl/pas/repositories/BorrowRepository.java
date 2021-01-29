@@ -1,6 +1,5 @@
 package pl.pas.repositories;
 
-import pl.pas.UUID;
 import pl.pas.model.Borrow;
 import pl.pas.repositories.interfaces.IBorrowRepository;
 

@@ -1,6 +1,5 @@
 package pl.pas.repositories;
 
-import pl.pas.UUID;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 import pl.pas.model.resource.Resource;

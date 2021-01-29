@@ -1,6 +1,5 @@
 package pl.pas.repositories;
 
-import pl.pas.UUID;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;

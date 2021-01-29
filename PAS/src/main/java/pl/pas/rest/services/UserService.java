@@ -1,4 +1,4 @@
-package pl.pas.services;
+package pl.pas.rest.services;
 
 
 import lombok.NoArgsConstructor;

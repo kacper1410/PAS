@@ -31,7 +31,6 @@ public class IdentityUtils {
     }
 
     public boolean isClient() {
-
         return httpServletRequest.isUserInRole("Client");
     }
 

@@ -1,4 +1,4 @@
-package pl.pas;
+package pl.pas.logger;
 
 import lombok.Data;
 
