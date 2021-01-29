@@ -48,6 +48,34 @@ public class ResourceService {
         return resourceManager.getAllAudioBooks();
     }
 
+    @POST
+    @Path("addBook")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void addBook(Book book) {
+        resourceManager.addBook(book.getISBN(), book.getTitle(), book.getAuthor(), book.getPublishYear());
+    }
+
+    @POST
+    @Path("addAudioBook")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void addAudioBook(AudioBook audioBook) {
+        resourceManager.addAudioBook(audioBook.getISBN(), audioBook.getTitle(), audioBook.getAuthor(), audioBook.getLength());
+    }
+
+    @PUT
+    @Path("updateBookById/{id}")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void updateBookById(@PathParam("id") long id, Book book) {
+        resourceManager.updateBook(resourceManager.getResource(id), book.getISBN(), book.getTitle(), book.getAuthor(), book.getPublishYear());
+    }
+
+    @PUT
+    @Path("updateAudioBookById/{id}")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void updateAudioBookById(@PathParam("id") long id, AudioBook book) {
+        resourceManager.updateAudioBook(resourceManager.getResource(id), book.getISBN(), book.getTitle(), book.getAuthor(), book.getLength());
+    }
+
     @DELETE
     @Path("removeResource/{uuid}")
     public void removeResource(@PathParam("uuid") long uuid) {
