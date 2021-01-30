@@ -1,4 +1,4 @@
-package pl.pas.rest;
+package pl.pas.rest.filters;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;

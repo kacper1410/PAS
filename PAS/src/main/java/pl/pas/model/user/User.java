@@ -1,9 +1,12 @@
 package pl.pas.model.user;
 
 import lombok.*;
+import pl.pas.model.SignableEntity;
+
+import javax.json.bind.annotation.JsonbTransient;
 
 @Data
-public abstract class User {
+public abstract class User implements SignableEntity {
     private long userId;
     private String login;
     private String name;
@@ -26,4 +29,8 @@ public abstract class User {
         this.lastName = lastName;
     }
 
+    @JsonbTransient
+    public long getSignablePayload() {
+        return userId;
+    }
 }
