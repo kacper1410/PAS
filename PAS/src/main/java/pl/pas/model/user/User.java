@@ -49,6 +49,8 @@ public abstract class User {
         this.lastName = lastName;
     }
 
+    public abstract String getAccessGroup();
+
     @JsonbTypeAdapter(StringToEmptyAdapter.class)
     public String getPassword() {
         return password;

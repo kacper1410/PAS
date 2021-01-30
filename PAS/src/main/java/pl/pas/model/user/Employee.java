@@ -14,4 +14,9 @@ public class Employee extends User {
     public String toString() {
         return "Employee{} " + super.toString();
     }
+
+    @Override
+    public String getAccessGroup() {
+        return "Employees";
+    }
 }

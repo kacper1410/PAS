@@ -18,4 +18,5 @@ public interface IUserRepository {
     List<Employee> getAllEmployees();
     List<Administrator> getAllAdministrators();
     List<User> getAllActiveUsers();
+    User getUserByLoginPasswordActive(String login, String password);
 }

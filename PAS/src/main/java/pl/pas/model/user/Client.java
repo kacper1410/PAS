@@ -24,4 +24,9 @@ public class Client extends User {
                 "age=" + age +
                 "} " + super.toString();
     }
+
+    @Override
+    public String getAccessGroup() {
+        return "Clients";
+    }
 }

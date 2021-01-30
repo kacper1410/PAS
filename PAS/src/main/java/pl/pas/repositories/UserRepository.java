@@ -138,4 +138,16 @@ public class UserRepository implements IUserRepository, Serializable {
             return activeUsers;
         }
     }
+
+    @Override
+    public User getUserByLoginPasswordActive(String login, String password) {
+        synchronized (users) {
+            for (User u: users) {
+                if (u.getLogin().equals(login) && u.getPassword().equals(password) && u.isActive()) {
+                    return u;
+                }
+            }
+        }
+        return null;
+    }
 }

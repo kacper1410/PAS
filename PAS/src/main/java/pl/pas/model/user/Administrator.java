@@ -14,4 +14,9 @@ public class Administrator extends User {
     public String toString() {
         return "Administrator{} " + super.toString();
     }
+
+    @Override
+    public String getAccessGroup() {
+        return "Administrators";
+    }
 }
