@@ -159,10 +159,11 @@ public class UserService {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @SignatureValidatorFilterBinding
     public void updateAdministrator(@PathParam("id") long id, @HeaderParam("If-match") @NotNull @NotEmpty String ifMatch, Administrator administrator) {
+        if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, id)) {
+            throw new ClientErrorException("If-match not valid", Response.Status.PRECONDITION_FAILED);
+        }
+
         try {
-            if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, administrator)) {
-                throw new ClientErrorException("If-match not valid", Response.Status.PRECONDITION_FAILED);
-            }
             userManager.updateUser(id, administrator);
         } catch (UserNotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
@@ -178,10 +179,11 @@ public class UserService {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @SignatureValidatorFilterBinding
     public void updateEmployee(@PathParam("id") long id, @HeaderParam("If-match") @NotNull @NotEmpty String ifMatch, Employee employee) {
+        if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, id)) {
+            throw new ClientErrorException("If-match not valid", Response.Status.PRECONDITION_FAILED);
+        }
+
         try {
-            if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, employee)) {
-                throw new ClientErrorException("If-match not valid", Response.Status.PRECONDITION_FAILED);
-            }
             userManager.updateUser(id, employee);
         } catch (UserNotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
@@ -197,10 +199,11 @@ public class UserService {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @SignatureValidatorFilterBinding
     public void updateClient(@PathParam("id") long id, @HeaderParam("If-match") @NotNull @NotEmpty String ifMatch, Client client) {
+        if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, id)) {
+            throw new ClientErrorException("If-match not valid", Response.Status.PRECONDITION_FAILED);
+        }
+
         try {
-            if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, client)) {
-                throw new ClientErrorException("If-match not valid", Response.Status.PRECONDITION_FAILED);
-            }
             userManager.updateClient(id, client);
         } catch (UserNotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);

@@ -36,10 +36,10 @@ public class IdentitySignVerifier {
         }
     }
 
-    public static boolean isEntitySignatureValid(String ifMatch, SignableEntity signableEntity) {
+    public static boolean isEntitySignatureValid(String ifMatch, long id) {
         try {
             String payloadFromIfMatch = JWSObject.parse(ifMatch).getPayload().toString();
-            String payloadFromEntity = String.valueOf(signableEntity.getSignablePayload());
+            String payloadFromEntity = String.valueOf(id);
 
             return isEntitySignatureValid(ifMatch) && payloadFromIfMatch.equals(payloadFromEntity);
         } catch (ParseException e) {
