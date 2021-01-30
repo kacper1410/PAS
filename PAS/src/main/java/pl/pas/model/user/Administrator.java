@@ -6,8 +6,8 @@ public class Administrator extends User {
         super();
     }
 
-    public Administrator(String login, String name, String lastName) {
-        super(login, name, lastName);
+    public Administrator(String login, String password, String name, String lastName) {
+        super(login, password, name, lastName);
     }
 
     @Override

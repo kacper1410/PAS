@@ -65,11 +65,11 @@ public class FillRepositories implements Serializable {
         resourceRepository.addResource(audioBook3);
         resourceRepository.addResource(book5);
 
-        User user1 = new Administrator("login", "Jan", "Kowalski");
-        User user2 = new Employee("tomcio123", "Tomasz", "Tomaszewski");
-        User user3 = new Client("tomasz_hajto", "Adam", "Walczak", 13);
-        User user4 = new Client("janna", "Joanna", "Andrzejewska", 22);
-        User user5 = new Client("hast", "Hanna", "Strzelec", 15);
+        User user1 = new Administrator("login", "spa", "Jan", "Kowalski");
+        User user2 = new Employee("emp", "spa", "Tomasz", "Tomaszewski");
+        User user3 = new Client("cli1", "spa", "Adam", "Walczak", 13);
+        User user4 = new Client("cli2", "spa", "Joanna", "Andrzejewska", 22);
+        User user5 = new Client("cli3", "spa", "Hanna", "Strzelec", 15);
         user5.setActive(false);
 
         try {

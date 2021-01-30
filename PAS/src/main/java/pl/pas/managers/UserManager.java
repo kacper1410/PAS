@@ -38,28 +38,31 @@ public class UserManager implements Serializable {
     }
 
 
-    public void addAdministrator(String login, String name, String lastName) throws UserAlreadyExistException, NotValidException {
-        if (login == null || name == null || lastName == null) {
+    public void addAdministrator(Administrator admin) throws UserAlreadyExistException, NotValidException {
+        if (admin == null || admin.getLogin() == null || admin.getPassword() == null || admin.getName() == null
+                || admin.getLastName() == null) {
             throw new NotValidException();
         }
 
-        userRepository.addUser(new Administrator(login, name, lastName));
+        userRepository.addUser(new Administrator(admin.getLogin(), admin.getPassword(), admin.getName(), admin.getLastName()));
     }
 
-    public void addEmployee(String login, String name, String lastName) throws UserAlreadyExistException, NotValidException {
-        if (login == null || name == null || lastName == null) {
+    public void addEmployee(Employee employee) throws UserAlreadyExistException, NotValidException {
+        if (employee == null || employee.getLogin() == null || employee.getPassword() == null || employee.getName() == null
+                || employee.getLastName() == null) {
             throw new NotValidException();
         }
 
-        userRepository.addUser(new Employee(login, name, lastName));
+        userRepository.addUser(new Employee(employee.getLogin(), employee.getPassword(), employee.getName(), employee.getLastName()));
     }
 
-    public void addClient(String login, String name, String lastName, int age) throws UserAlreadyExistException, NotValidException {
-        if (login == null || name == null || lastName == null || age < 0) {
+    public void addClient(Client client) throws UserAlreadyExistException, NotValidException {
+        if (client == null || client.getLogin() == null || client.getPassword() == null || client.getName() == null
+                || client.getLastName() == null || client.getAge() < 0) {
             throw new NotValidException();
         }
 
-        userRepository.addUser(new Client(login, name, lastName, age));
+        userRepository.addUser(new Client(client.getLogin(), client.getPassword(), client.getName(), client.getLastName(), client.getAge()));
     }
 
     public List<User> getAllUsers() {
@@ -114,25 +117,38 @@ public class UserManager implements Serializable {
         return activeClients;
     }
 
-    public void updateClient(User oldUser, String login, String name, String lastName, int age) throws NotValidException {
-        if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
-                || login == null || name == null || lastName == null || age < 0 || !(oldUser instanceof Client)) {
+    public void updateClient(long oldUserId, Client newClient) throws NotValidException, UserNotFoundException {
+        if (oldUserId <= 0
+                || getUser(oldUserId) == null
+                || newClient == null
+                || newClient.getLogin() == null
+                || !newClient.getPassword().equals("")
+                || newClient.getName() == null
+                || newClient.getAge() < 0
+                || !(userRepository.getUser(oldUserId) instanceof Client)) {
             throw new NotValidException();
         }
-
-        userRepository.updateUser(oldUser.getUserId(), new Client(login, name, lastName, age));
+        userRepository.updateUser(oldUserId, new Client(newClient.getLogin(),
+                userRepository.getUser(oldUserId).getPassword(), newClient.getName(),
+                newClient.getLastName(), newClient.getAge()));
     }
 
-    public void updateUser(User oldUser, String login, String name, String lastName) throws NotValidException {
-        if (oldUser == null || userRepository.getUser(oldUser.getUserId()) == null
-                || login == null || name == null || lastName == null) {
+    public void updateUser(long oldUserId, User newUser) throws NotValidException, UserNotFoundException {
+        if (oldUserId <= 0
+                || getUser(oldUserId) == null
+                || newUser.getLogin() == null
+                || !newUser.getPassword().equals("")
+                || newUser.getName() == null
+                || newUser.getLastName() == null) {
             throw new NotValidException();
         }
 
-        if (oldUser instanceof Employee) {
-            userRepository.updateUser(oldUser.getUserId(), new Employee(login, name, lastName));
-        } else if (oldUser instanceof Administrator) {
-            userRepository.updateUser(oldUser.getUserId(), new Administrator(login, name, lastName));
+        if (userRepository.getUser(oldUserId) instanceof Employee) {
+            userRepository.updateUser(oldUserId, new Employee(newUser.getLogin(),
+                    userRepository.getUser(oldUserId).getPassword(), newUser.getName(), newUser.getLastName()));
+        } else if (userRepository.getUser(oldUserId) instanceof Administrator) {
+            userRepository.updateUser(oldUserId, new Administrator(newUser.getLogin(),
+                    userRepository.getUser(oldUserId).getPassword(), newUser.getName(), newUser.getLastName()));
         }
     }
 

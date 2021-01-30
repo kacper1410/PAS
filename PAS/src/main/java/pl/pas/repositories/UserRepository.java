@@ -43,7 +43,6 @@ public class UserRepository implements IUserRepository, Serializable {
                     return u;
                 }
             }
-
             return null;
         }
     }

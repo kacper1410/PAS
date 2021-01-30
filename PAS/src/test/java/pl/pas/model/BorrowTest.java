@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class BorrowTest {
     @Test
     public void borrowTest() {
-        Client client = new Client("niezly_login", "Igrek", "Iksinski", 23);
+        Client client = new Client("niezly_login", "nie", "Igrek", "Iksinski", 23);
         Book book = new Book(123, "Droga Królów", "Author", 2010);
         Borrow borrow = new Borrow(client, book);
 
@@ -26,7 +26,7 @@ public class BorrowTest {
 
     @Test
     public void borrowDateTest() {
-        Client client = new Client("niezly_login", "Igrek", "Iksinski", 23);
+        Client client = new Client("niezly_login", "tak", "Igrek", "Iksinski", 23);
         Book book = new Book(123, "Droga Królów", "Author", 2010);
         Date date = new Date();
         Borrow borrow = new Borrow(client, book, date);
