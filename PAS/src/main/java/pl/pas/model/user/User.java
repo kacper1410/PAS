@@ -1,12 +1,16 @@
 package pl.pas.model.user;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import pl.pas.model.SignableEntity;
 import pl.pas.rest.jsonb.adapters.StringToEmptyAdapter;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.json.bind.annotation.JsonbTypeAdapter;
 
 @AllArgsConstructor
-public abstract class User {
+public abstract class User implements SignableEntity {
 
     @Getter
     @Setter
@@ -50,6 +54,11 @@ public abstract class User {
     }
 
     public abstract String getAccessGroup();
+
+    @JsonbTransient
+    public long getSignablePayload() {
+        return userId;
+    }
 
     @JsonbTypeAdapter(StringToEmptyAdapter.class)
     public String getPassword() {
