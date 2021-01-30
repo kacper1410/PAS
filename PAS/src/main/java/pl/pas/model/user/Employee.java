@@ -6,8 +6,8 @@ public class Employee extends User {
         super();
     }
 
-    public Employee(String login, String name, String lastName) {
-        super(login, name, lastName);
+    public Employee(String login, String password, String name, String lastName) {
+        super(login, password, name, lastName);
     }
 
     @Override

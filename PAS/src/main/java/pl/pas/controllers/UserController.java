@@ -52,7 +52,7 @@ public class UserController implements Serializable {
     public String processNewClient() {
         if (identityUtils.isAdmin()) {
             try {
-                userManager.addClient(newClient.getLogin(), newClient.getName(), newClient.getLastName(), newClient.getAge());
+                userManager.addClient(newClient);
             } catch (UserAlreadyExistException | NotValidException e) {
                 e.printStackTrace();
             }
@@ -64,7 +64,7 @@ public class UserController implements Serializable {
     public String processNewEmployee() {
         if (identityUtils.isAdmin()) {
             try {
-                userManager.addEmployee(newEmployee.getLogin(), newEmployee.getName(), newEmployee.getLastName());
+                userManager.addEmployee(newEmployee);
             } catch (UserAlreadyExistException | NotValidException e) {
                 e.printStackTrace();
             }
@@ -76,7 +76,7 @@ public class UserController implements Serializable {
     public String processNewAdministrator() {
         if (identityUtils.isAdmin()) {
             try {
-                userManager.addAdministrator(newAdministrator.getLogin(), newAdministrator.getName(), newAdministrator.getLastName());
+                userManager.addAdministrator(newAdministrator);
             } catch (UserAlreadyExistException | NotValidException e) {
                 e.printStackTrace();
             }
@@ -157,8 +157,8 @@ public class UserController implements Serializable {
     public String updateClient() {
         if (identityUtils.isAdmin()) {
             try {
-                userManager.updateClient(currentClient, currentClient.getLogin(), currentClient.getName(), currentClient.getLastName(), currentClient.getAge());
-            } catch (NotValidException e) {
+                userManager.updateClient(currentClient.getUserId(), currentClient);
+            } catch (NotValidException | UserNotFoundException e) {
                 e.printStackTrace();
             }
         }
@@ -170,8 +170,8 @@ public class UserController implements Serializable {
     public String updateUser() {
         if (identityUtils.isAdmin()) {
             try {
-                userManager.updateUser(currentUser, currentUser.getLogin(), currentUser.getName(), currentUser.getLastName());
-            } catch (NotValidException e) {
+                userManager.updateUser(currentUser.getUserId(), currentUser);
+            } catch (NotValidException | UserNotFoundException e) {
                 e.printStackTrace();
             }
         }

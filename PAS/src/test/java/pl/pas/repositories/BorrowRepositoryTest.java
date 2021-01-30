@@ -21,7 +21,7 @@ public class BorrowRepositoryTest {
         AudioBook audioBook = new AudioBook(432345345, "Audio Book", "Author", 200);
         resourceRepository.addResource(book);
         resourceRepository.addResource(audioBook);
-        Client client = new Client("cLogin", "Kacper", "Swiercz", 21);
+        Client client = new Client("cLogin", "perkac", "Kacper", "Swiercz", 21);
         try {
             userRepository.addUser(client);
         } catch (UserAlreadyExistException e) {

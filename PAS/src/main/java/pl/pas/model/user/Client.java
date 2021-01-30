@@ -13,8 +13,8 @@ public class Client extends User {
         age = 0;
     }
 
-    public Client(String login, String name, String lastName, int age) {
-        super(login, name, lastName);
+    public Client(String login, String password, String name, String lastName, int age) {
+        super(login, password, name, lastName);
         this.age = age;
     }
 

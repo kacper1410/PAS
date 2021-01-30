@@ -101,7 +101,7 @@ public class UserService {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addEmployee(Employee employee) {
         try {
-            userManager.addEmployee(employee.getLogin(), employee.getName(), employee.getLastName());
+            userManager.addEmployee(employee);
         } catch (UserAlreadyExistException e) {
              throw new ClientErrorException("User exist", Response.Status.CONFLICT);
         } catch (NotValidException e) {
@@ -116,7 +116,7 @@ public class UserService {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addAdministrator(Administrator administrator) {
         try {
-            userManager.addAdministrator(administrator.getLogin(), administrator.getName(), administrator.getLastName());
+            userManager.addAdministrator(administrator);
         } catch (UserAlreadyExistException e) {
             throw new ClientErrorException("User exist", Response.Status.CONFLICT);
         } catch (NotValidException e) {
@@ -131,7 +131,7 @@ public class UserService {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addClient(Client client) {
         try {
-            userManager.addClient(client.getLogin(), client.getName(), client.getLastName(), client.getAge());
+            userManager.addClient(client);
         } catch (UserAlreadyExistException e) {
             throw new ClientErrorException("User exist", Response.Status.CONFLICT);
         } catch (NotValidException e) {
@@ -146,7 +146,7 @@ public class UserService {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void updateEmployee(@PathParam("id") long id, Administrator administrator) {
         try {
-            userManager.updateUser(userManager.getUser(id), administrator.getLogin(), administrator.getName(), administrator.getLastName());
+            userManager.updateUser(id, administrator);
         } catch (UserNotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (NotValidException e) {
@@ -161,7 +161,7 @@ public class UserService {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void updateEmployee(@PathParam("id") long id, Employee employee) {
         try {
-            userManager.updateUser(userManager.getUser(id), employee.getLogin(), employee.getName(), employee.getLastName());
+            userManager.updateUser(id, employee);
         } catch (UserNotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (NotValidException e) {
@@ -176,7 +176,7 @@ public class UserService {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void updateClient(@PathParam("id") long id, Client client) {
         try {
-            userManager.updateClient(userManager.getUser(id), client.getLogin(), client.getName(), client.getLastName(), client.getAge());
+            userManager.updateClient(id, client);
         } catch (UserNotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (NotValidException e) {

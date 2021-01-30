@@ -9,7 +9,7 @@ public class UUID {
 
         do {
             uuid = random.nextLong() / 4096;
-        } while (uuid < 0);
+        } while (uuid <= 0);
 
         return uuid;
     }
