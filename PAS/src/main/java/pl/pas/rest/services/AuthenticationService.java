@@ -29,7 +29,7 @@ public class AuthenticationService {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Produces({MediaType.TEXT_PLAIN})
     public Response authenticate(@NotNull LoginData loginData) {
-        Credential credential = new UsernamePasswordCredential(loginData.getLogin(), loginData.getLogin());
+        Credential credential = new UsernamePasswordCredential(loginData.getLogin(), loginData.getPassword());
         CredentialValidationResult result = identityStoreHandler.validate(credential);
         if (result.getStatus() == CredentialValidationResult.Status.VALID) {
             return Response.accepted()
