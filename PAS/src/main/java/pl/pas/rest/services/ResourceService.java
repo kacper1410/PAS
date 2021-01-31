@@ -48,6 +48,13 @@ public class ResourceService {
         return resourceManager.getAllAudioBooks();
     }
 
+    @GET
+    @Path("getResourceById/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Resource getResourceById(@PathParam("id") long id) {
+        return resourceManager.getResource(id);
+    }
+
     @POST
     @Path("addBook")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
