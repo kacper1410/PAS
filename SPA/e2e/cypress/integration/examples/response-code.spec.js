@@ -35,10 +35,12 @@ describe('Response code test', () => {
   it('No JWT token', () => {
     cy.request({
       method: 'GET',
-      url: '/',
+      url: '/authenticate',
       failOnStatusCode: false
     }).its('status')
-      .should('equal', 401)
+      .should('equal', 405)
+
+      // Add profile and allocate
   })
 
   it('Wrong user role', () => {

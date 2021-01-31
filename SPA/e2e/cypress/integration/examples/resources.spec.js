@@ -45,7 +45,7 @@ describe('Resources test', () => {
       }
     }).then((response) => {
       expect(response.status).equal(200)
-      expect(response.body.ISBN``).equal(resource.ISBN``)
+      expect(response.body.ISBN).equal(resource.ISBN)
       expect(response.body.title).equal(resource.title)
       expect(response.body.author).equal(resource.author)
       expect(response.body.available).equal(resource.available)

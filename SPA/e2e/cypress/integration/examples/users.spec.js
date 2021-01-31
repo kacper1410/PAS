@@ -7,7 +7,7 @@ describe('Users test', () => {
   let lastName;
 
   beforeEach(() => {
-    cy.request('POST', '/authenticate', {login: "login", password: "spa"})
+    cy.request('POST', '/authenticate', { login: "login", password: "spa" })
       .its('body')
       .then((body) => {
         jwt = body;
