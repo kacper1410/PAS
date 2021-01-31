@@ -78,4 +78,10 @@ describe('Users test', () => {
       expect(response.body.lastName).equal(lastName)
     })
   })
+
+  it('Update user', () => {
+  })
+
+  it('Authentication and get information about yourself', () => {
+  })
 })

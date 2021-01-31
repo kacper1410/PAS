@@ -1,5 +1,11 @@
 describe('Response code test', () => {
 
+  it('Client with not valid age', () => {
+  })
+
+  it('Resource with negative length', () => {
+  })
+
   it('Wrong credentials', () => {
     cy.request({
       method: 'POST',
@@ -36,5 +42,14 @@ describe('Response code test', () => {
   })
 
   it('Wrong user role', () => {
+  })
+
+  it('Change user id', () => {
+  })
+
+  it('Change resource id', () => {
+  })
+
+  it('Refresh JWT in inactive account', () => {
   })
 })
