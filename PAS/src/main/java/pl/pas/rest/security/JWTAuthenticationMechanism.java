@@ -17,14 +17,22 @@ import java.util.HashSet;
 @ApplicationScoped
 public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
 
-
     @Override
     public AuthenticationStatus validateRequest(
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
             HttpMessageContext httpMessageContext) throws AuthenticationException {
 
-        if (httpServletRequest.getRequestURL().toString().endsWith(MySecurityConstants.AUTHENTICATE_URL)) {
+//        if (httpServletRequest.getRequestURL().toString().endsWith(MySecurityConstants.AUTHENTICATE_URL)) {
+//            return httpMessageContext.doNothing();
+//        }
+
+        if (!httpServletRequest.isSecure() || !"HTTPS".equalsIgnoreCase(httpServletRequest.getScheme())) {
+            return httpMessageContext.responseUnauthorized();
+        }
+
+        if (!httpServletRequest.getRequestURL().toString().contains("profile")
+                && !httpServletRequest.getRequestURL().toString().contains("allocate")) {
             return httpMessageContext.doNothing();
         }
 
