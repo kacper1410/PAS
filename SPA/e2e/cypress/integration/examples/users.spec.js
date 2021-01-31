@@ -1,10 +1,13 @@
 describe('Users test', () => {
+
   let jwt;
 
-  let userId;
-  let name;
-  let login;
-  let lastName;
+  let user = {
+    userId: '',
+    name: '',
+    login: '',
+    lastName: ''
+  }
 
   beforeEach(() => {
     cy.request('POST', '/authenticate', { login: "login", password: "spa" })
@@ -23,10 +26,10 @@ describe('Users test', () => {
       }
     }).its('body')
       .then((users) => {
-        userId = users[0].userId;
-        name = users[0].name;
-        login = users[0].login;
-        lastName = users[0].lastName;
+        user.userId = users[0].userId;
+        user.name = users[0].name;
+        user.login = users[0].login;
+        user.lastName = users[0].lastName;
       })
   })
 
@@ -67,15 +70,15 @@ describe('Users test', () => {
   it('Read user', () => {
     cy.request({
       method: 'GET',
-      url: '/user/getUserById/' + userId,
+      url: '/user/getUserById/' + user.userId,
       headers: {
         'Authorization': 'Bearer ' + jwt
       }
     }).then((response) => {
       expect(response.status).equal(200)
-      expect(response.body.name).equal(name)
-      expect(response.body.login).equal(login)
-      expect(response.body.lastName).equal(lastName)
+      expect(response.body.name).equal(user.name)
+      expect(response.body.login).equal(user.login)
+      expect(response.body.lastName).equal(user.lastName)
     })
   })
 

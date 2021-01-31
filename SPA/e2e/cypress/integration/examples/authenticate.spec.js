@@ -1,6 +1,5 @@
-/// <reference types="cypress" />
-
 describe('Authentication tests', () => {
+
   it('Getting JWT', () => {
     cy.request('POST', '/authenticate', { login: "login", password: "spa" })
       .its('status')
