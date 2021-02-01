@@ -27,6 +27,12 @@ describe('Response code test', () => {
   })
 
   it('Wrong protocol (required HTTPS)', () => {
+    cy.request({
+      method: 'GET',
+      url: 'http://localhost:8080/PAS/api',
+      failOnStatusCode: false
+    }).its('status')
+      .should('equal', 401)
   })
 
   it('No JWT token', () => {

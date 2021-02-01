@@ -9,6 +9,8 @@ import { UserService } from '../user.service';
 })
 export class EditUserComponent {
 
+  etag: any = '';
+
   editUser: User = {
     userId: 0,
     login: 'login',
@@ -20,18 +22,30 @@ export class EditUserComponent {
   }
 
   updateAdministrator(): void {
-    this.userService.updateAdministrator(this.editUser).subscribe();
+    this.getEtag();
+    this.userService.updateAdministrator(this.editUser, this.etag).subscribe();
     this.clear();
   }
 
   updateClient(): void {
-    this.userService.updateClient(this.editUser).subscribe();
+    this.getEtag();
+    this.userService.updateClient(this.editUser, this.etag).subscribe();
     this.clear();
   }
 
   updateEmployee(): void {
-    this.userService.updateEmployee(this.editUser).subscribe();
+    this.getEtag();
+    this.userService.updateEmployee(this.editUser, this.etag).subscribe();
     this.clear();
+  }
+
+  getEtag(): void {
+    this.userService.getUserEtag(this.editUser.userId).subscribe((response: Response) => {
+      this.etag = response.headers.get('etag');
+      this.etag = this.etag.replace('\"', '');
+      this.etag = this.etag.replace('\"', '');
+      console.log(this.etag);
+    });
   }
 
   clear(): void {

@@ -8,7 +8,7 @@ import { User } from './model/user';
   providedIn: 'root'
 })
 export class UserService {
-  url = 'http://localhost:8080/PAS/api/user';
+  url = 'https://localhost:8181/PAS/api/user';
   http: HttpClient;
 
   constructor(http: HttpClient) {
@@ -31,6 +31,10 @@ export class UserService {
     return this.http.get<any>(this.url + '/getAllActiveClients');
   }
 
+  getUserEtag(id: number | undefined): any {
+    return this.http.get(this.url + '/getUserById/' + id, { observe: 'response' });
+  }
+
   addAdministrator(newUser: Administrator): any {
     return this.http.post<any>(this.url + '/addAdministrator', newUser);
   }
@@ -43,15 +47,15 @@ export class UserService {
     return this.http.post<any>(this.url + '/addClient', newUser);
   }
 
-  updateAdministrator(editUser: Administrator): any {
-    return this.http.put<any>(this.url + '/updateAdministrator/' + editUser.userId, editUser);
+  updateAdministrator(editUser: Administrator, etag: string): any {
+    return this.http.put<any>(this.url + '/updateAdministrator/' + editUser.userId, editUser, { headers: { 'if-match': etag }});
   }
 
-  updateClient(editUser: User): any {
-    return this.http.put<any>(this.url + '/updateClient/' + editUser.userId, editUser);
+  updateClient(editUser: User, etag: string): any {
+    return this.http.put<any>(this.url + '/updateClient/' + editUser.userId, editUser, { headers: { 'if-match': etag }});
   }
 
-  updateEmployee(editUser: Employee): any {
-    return this.http.put<any>(this.url + '/updateEmployee/' + editUser.userId, editUser);
+  updateEmployee(editUser: Employee, etag: string): any {
+    return this.http.put<any>(this.url + '/updateEmployee/' + editUser.userId, editUser, { headers: { 'if-match': etag }});
   }
 }
