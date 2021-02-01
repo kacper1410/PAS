@@ -1,8 +1,5 @@
 describe('Response code test', () => {
 
-  it('Client with not valid age', () => {
-  })
-
   it('Resource with negative length', () => {
   })
 

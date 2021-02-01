@@ -10,7 +10,7 @@ describe('Users test', () => {
     lastName: ''
   }
 
-  beforeEach(() => {
+  beforeEach('Getting jwt', () => {
     cy.request('POST', '/authenticate', { login: "login", password: "spa" })
       .its('body')
       .then((body) => {
@@ -18,7 +18,7 @@ describe('Users test', () => {
       })
   })
 
-  beforeEach(() => {
+  beforeEach('Getting first active client', () => {
     cy.request({
       method: 'GET',
       url: '/user/getAllActiveClients',
@@ -34,7 +34,7 @@ describe('Users test', () => {
       })
   })
 
-  beforeEach(() => {
+  beforeEach('Getting etag', () => {
     cy.request({
       method: 'GET',
       url: '/user/getUserById/' + user.userId
@@ -118,6 +118,25 @@ describe('Users test', () => {
         expect(response.body.age).equal(editUser.age)
       })
     })
+  })
+
+  it('Client with not valid age', () => {
+    let editUser = {
+      name: 'testNameEEE',
+      lastName: 'testLastName',
+      age: -20,
+    }
+
+    cy.request({
+      method: 'PUT',
+      url: '/user/updateClient/' + user.userId,
+      body: editUser,
+      failOnStatusCode: false,
+      headers: {
+        'If-match': etag,
+      }
+    }).its('status')
+      .should('equal', 406)
   })
 
   it('Authentication and get information about yourself', () => {
