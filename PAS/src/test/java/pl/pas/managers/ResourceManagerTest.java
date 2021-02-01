@@ -2,6 +2,7 @@ package pl.pas.managers;
 
 import org.junit.Test;
 import pl.pas.FillRepositories;
+import pl.pas.exceptions.NotValidException;
 import pl.pas.model.resource.Resource;
 import pl.pas.repositories.BorrowRepository;
 import pl.pas.repositories.ResourceRepository;
@@ -61,13 +62,21 @@ public class ResourceManagerTest {
 
     @Test
     public void testAddBook() {
-        assertTrue(resourceManager.addBook(432345345, "Harry Potter", "Author", 2000));
+        try {
+            assertTrue(resourceManager.addBook(432345345, "Harry Potter", "Author", 2000));
+        } catch (NotValidException e) {
+            e.printStackTrace();
+        }
         assertEquals(SIZE + 1, resourceManager.getAllResources().size());
     }
 
     @Test
     public void testAddAudioBook() {
-        assertTrue(resourceManager.addAudioBook(432345345, "Harry Potter", "Author", 90));
+        try {
+            assertTrue(resourceManager.addAudioBook(432345345, "Harry Potter", "Author", 90));
+        } catch (NotValidException e) {
+            e.printStackTrace();
+        }
         assertEquals(SIZE + 1, resourceManager.getAllResources().size());
     }
 
@@ -76,8 +85,12 @@ public class ResourceManagerTest {
         Resource book = resourceManager.getAllResources().get(7);
         Resource audioBook = resourceManager.getAllResources().get(6);
 
-        assertFalse(resourceManager.updateBook(audioBook, 123, "New", "New", 111));
-        assertTrue(resourceManager.updateBook(book, 123, "New", "New", 111));
+        try {
+            assertTrue(resourceManager.updateBook(book, 123, "New", "New", 111));
+            assertFalse(resourceManager.updateBook(audioBook, 123, "New", "New", 111));
+        } catch (NotValidException e) {
+            e.printStackTrace();
+        }
 
         assertNotEquals(book, resourceManager.getResource(book.getResourceId()));
     }
@@ -87,8 +100,12 @@ public class ResourceManagerTest {
         Resource book = resourceManager.getAllResources().get(7);
         Resource audioBook = resourceManager.getAllResources().get(6);
 
-        assertFalse(resourceManager.updateAudioBook(book, 123, "New", "New", 111));
-        assertTrue(resourceManager.updateAudioBook(audioBook, 123, "New", "New", 111));
+        try {
+            assertTrue(resourceManager.updateAudioBook(audioBook, 123, "New", "New", 111));
+            assertFalse(resourceManager.updateAudioBook(book, 123, "New", "New", 111));
+        } catch (NotValidException e) {
+            e.printStackTrace();
+        }
 
         assertNotEquals(audioBook, resourceManager.getResource(audioBook.getResourceId()));
     }

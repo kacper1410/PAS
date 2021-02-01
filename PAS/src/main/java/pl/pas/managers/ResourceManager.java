@@ -1,5 +1,6 @@
 package pl.pas.managers;
 
+import pl.pas.exceptions.NotValidException;
 import pl.pas.model.Borrow;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
@@ -78,36 +79,36 @@ public class ResourceManager implements Serializable {
         return resourceRepository.deleteResource(uuid);
     }
 
-    public boolean addBook(long isbn, String title, String author, int publishYear) {
+    public boolean addBook(long isbn, String title, String author, int publishYear) throws NotValidException {
         if (isbn == 0 || title == null || author == null || publishYear > Calendar.getInstance().get(Calendar.YEAR)) {
-            return false;
+            throw new NotValidException();
         }
         return resourceRepository.addResource(new Book(isbn, title, author, publishYear));
     }
 
-    public boolean addAudioBook(long isbn, String title, String author, int length) {
+    public boolean addAudioBook(long isbn, String title, String author, int length) throws NotValidException {
         if (isbn == 0 || title == null || author == null || length <= 0) {
-            return false;
+            throw new NotValidException();
         }
         return resourceRepository.addResource(new Book(isbn, title, author, length));
     }
 
-    public boolean updateBook(Resource oldResource, long ISBN, String title, String author, int publishYear) {
+    public boolean updateBook(Resource oldResource, long ISBN, String title, String author, int publishYear) throws NotValidException {
         if (oldResource == null || ISBN <= 0 || title == null || author == null
                 || publishYear > Calendar.getInstance().get(Calendar.YEAR)
                 || !resourceRepository.getAllResources().contains(oldResource) || !(oldResource instanceof Book)
                 || !oldResource.isAvailable()) {
-            return false;
+            throw new NotValidException();
         }
         resourceRepository.updateResource(oldResource.getResourceId(), new Book(ISBN, title, author, publishYear));
         return true;
     }
 
-    public boolean updateAudioBook(Resource oldResource, long ISBN, String title, String author, int length) {
+    public boolean updateAudioBook(Resource oldResource, long ISBN, String title, String author, int length) throws NotValidException {
         if (oldResource == null || ISBN <= 0 || title == null || author == null || length < 0
                 || !resourceRepository.getAllResources().contains(oldResource) || !(oldResource instanceof AudioBook)
                 || !oldResource.isAvailable()) {
-            return false;
+            throw new NotValidException();
         }
         resourceRepository.updateResource(oldResource.getResourceId(), new AudioBook(ISBN, title, author, length));
         return true;

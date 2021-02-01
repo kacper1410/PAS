@@ -1,6 +1,7 @@
 package pl.pas.controllers;
 
 import lombok.Data;
+import pl.pas.exceptions.NotValidException;
 import pl.pas.managers.ResourceManager;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
@@ -46,8 +47,12 @@ public class ResourceController implements Serializable {
 
     public String processNewBook() {
         if (identityUtils.isEmployee()){
-            this.resourceManager.addBook(newBook.getISBN(), newBook.getTitle(),
-                    newBook.getAuthor(), newBook.getPublishYear());
+            try {
+                this.resourceManager.addBook(newBook.getISBN(), newBook.getTitle(),
+                        newBook.getAuthor(), newBook.getPublishYear());
+            } catch (NotValidException e) {
+                e.printStackTrace();
+            }
             this.newBook = new Book();
         }
         updateList();
@@ -56,8 +61,12 @@ public class ResourceController implements Serializable {
 
     public String processNewAudioBook() {
         if (identityUtils.isEmployee()) {
-            this.resourceManager.addAudioBook(newAudioBook.getISBN(), newAudioBook.getTitle(),
-                    newAudioBook.getAuthor(), newAudioBook.getLength());
+            try {
+                this.resourceManager.addAudioBook(newAudioBook.getISBN(), newAudioBook.getTitle(),
+                        newAudioBook.getAuthor(), newAudioBook.getLength());
+            } catch (NotValidException e) {
+                e.printStackTrace();
+            }
             this.newAudioBook = new AudioBook();
         }
         updateList();
@@ -134,8 +143,12 @@ public class ResourceController implements Serializable {
 
     public String updateBook() {
         if (identityUtils.isEmployee()) {
-            resourceManager.updateBook(currentBook, currentBook.getISBN(), currentBook.getTitle(),
-                    currentBook.getAuthor(), currentBook.getPublishYear());
+            try {
+                resourceManager.updateBook(currentBook, currentBook.getISBN(), currentBook.getTitle(),
+                        currentBook.getAuthor(), currentBook.getPublishYear());
+            } catch (NotValidException e) {
+                e.printStackTrace();
+            }
         }
         updateList();
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
@@ -144,8 +157,12 @@ public class ResourceController implements Serializable {
 
     public String updateAudioBook() {
         if (identityUtils.isEmployee()) {
-            resourceManager.updateAudioBook(currentAudioBook, currentAudioBook.getISBN(), currentAudioBook.getTitle(),
-                    currentAudioBook.getAuthor(), currentAudioBook.getLength());
+            try {
+                resourceManager.updateAudioBook(currentAudioBook, currentAudioBook.getISBN(), currentAudioBook.getTitle(),
+                        currentAudioBook.getAuthor(), currentAudioBook.getLength());
+            } catch (NotValidException e) {
+                e.printStackTrace();
+            }
         }
         updateList();
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();

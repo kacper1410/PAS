@@ -1,6 +1,7 @@
 package pl.pas.rest.services;
 
 import lombok.NoArgsConstructor;
+import pl.pas.exceptions.NotValidException;
 import pl.pas.managers.ResourceManager;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
@@ -10,6 +11,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @NoArgsConstructor
@@ -59,28 +61,44 @@ public class ResourceService {
     @Path("addBook")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addBook(Book book) {
-        resourceManager.addBook(book.getISBN(), book.getTitle(), book.getAuthor(), book.getPublishYear());
+        try {
+            resourceManager.addBook(book.getISBN(), book.getTitle(), book.getAuthor(), book.getPublishYear());
+        } catch (NotValidException e) {
+            throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        }
     }
 
     @POST
     @Path("addAudioBook")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addAudioBook(AudioBook audioBook) {
-        resourceManager.addAudioBook(audioBook.getISBN(), audioBook.getTitle(), audioBook.getAuthor(), audioBook.getLength());
+        try {
+            resourceManager.addAudioBook(audioBook.getISBN(), audioBook.getTitle(), audioBook.getAuthor(), audioBook.getLength());
+        } catch (NotValidException e) {
+            throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        }
     }
 
     @PUT
     @Path("updateBookById/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void updateBookById(@PathParam("id") long id, Book book) {
-        resourceManager.updateBook(resourceManager.getResource(id), book.getISBN(), book.getTitle(), book.getAuthor(), book.getPublishYear());
+        try {
+            resourceManager.updateBook(resourceManager.getResource(id), book.getISBN(), book.getTitle(), book.getAuthor(), book.getPublishYear());
+        } catch (NotValidException e) {
+            throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        }
     }
 
     @PUT
     @Path("updateAudioBookById/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void updateAudioBookById(@PathParam("id") long id, AudioBook book) {
-        resourceManager.updateAudioBook(resourceManager.getResource(id), book.getISBN(), book.getTitle(), book.getAuthor(), book.getLength());
+        try {
+            resourceManager.updateAudioBook(resourceManager.getResource(id), book.getISBN(), book.getTitle(), book.getAuthor(), book.getLength());
+        } catch (NotValidException e) {
+            throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        }
     }
 
     @DELETE
