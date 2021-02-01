@@ -6,9 +6,13 @@ import pl.pas.managers.ResourceManager;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 import pl.pas.model.resource.Resource;
+import pl.pas.rest.IdentitySignVerifier;
+import pl.pas.rest.filters.SignatureValidatorFilterBinding;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -53,8 +57,17 @@ public class ResourceService {
     @GET
     @Path("getResourceById/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Resource getResourceById(@PathParam("id") long id) {
-        return resourceManager.getResource(id);
+    public Response getResourceById(@PathParam("id") long id) {
+        try {
+            Resource resource = resourceManager.getResource(id);
+
+            return Response.ok()
+                    .entity(resource)
+                    .tag(IdentitySignVerifier.calculateEntitySignature(resource))
+                    .build();
+        } catch (Exception e) {
+            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @POST
@@ -82,7 +95,12 @@ public class ResourceService {
     @PUT
     @Path("updateBookById/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void updateBookById(@PathParam("id") long id, Book book) {
+    @SignatureValidatorFilterBinding
+    public void updateBookById(@PathParam("id") long id, @HeaderParam("If-match") @NotNull @NotEmpty String ifMatch, Book book) {
+        if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, id)) {
+            throw new ClientErrorException("If-match not valid", Response.Status.PRECONDITION_FAILED);
+        }
+
         try {
             resourceManager.updateBook(resourceManager.getResource(id), book.getISBN(), book.getTitle(), book.getAuthor(), book.getPublishYear());
         } catch (NotValidException e) {
@@ -93,7 +111,12 @@ public class ResourceService {
     @PUT
     @Path("updateAudioBookById/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void updateAudioBookById(@PathParam("id") long id, AudioBook book) {
+    @SignatureValidatorFilterBinding
+    public void updateAudioBookById(@PathParam("id") long id, @HeaderParam("If-match") @NotNull @NotEmpty String ifMatch, AudioBook book) {
+        if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, id)) {
+            throw new ClientErrorException("If-match not valid", Response.Status.PRECONDITION_FAILED);
+        }
+
         try {
             resourceManager.updateAudioBook(resourceManager.getResource(id), book.getISBN(), book.getTitle(), book.getAuthor(), book.getLength());
         } catch (NotValidException e) {

@@ -1,9 +1,12 @@
 package pl.pas.model.resource;
 
 import lombok.*;
+import pl.pas.model.SignableEntity;
+
+import javax.json.bind.annotation.JsonbTransient;
 
 @Data
-public abstract class Resource {
+public abstract class Resource implements SignableEntity {
     private long ISBN;
     private String title;
     private String author;
@@ -23,5 +26,10 @@ public abstract class Resource {
         this.author = author;
         this.available = true;
         this.resourceId = 0;
+    }
+
+    @JsonbTransient
+    public long getSignablePayload() {
+        return resourceId;
     }
 }
