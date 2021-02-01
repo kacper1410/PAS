@@ -27,10 +27,6 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
 //            return httpMessageContext.doNothing();
 //        }
 
-        if (!httpServletRequest.isSecure() || !"HTTPS".equalsIgnoreCase(httpServletRequest.getScheme())) {
-            return httpMessageContext.responseUnauthorized();
-        }
-
         if (!httpServletRequest.getRequestURL().toString().contains("profile")
                 && !httpServletRequest.getRequestURL().toString().contains("allocate")) {
             return httpMessageContext.doNothing();
