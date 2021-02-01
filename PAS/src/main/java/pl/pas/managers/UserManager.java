@@ -118,6 +118,8 @@ public class UserManager implements Serializable {
     }
 
     public void updateClient(long oldUserId, Client newClient) throws NotValidException, UserNotFoundException {
+        User oldUser = userRepository.getUser(oldUserId);
+
         if (oldUserId <= 0
                 || getUser(oldUserId) == null
                 || newClient == null
@@ -125,15 +127,17 @@ public class UserManager implements Serializable {
                 || !newClient.getPassword().equals("")
                 || newClient.getName() == null
                 || newClient.getAge() < 0
-                || !(userRepository.getUser(oldUserId) instanceof Client)) {
+                || !(oldUser instanceof Client)) {
             throw new NotValidException();
         }
-        userRepository.updateUser(oldUserId, new Client(newClient.getLogin(),
-                userRepository.getUser(oldUserId).getPassword(), newClient.getName(),
+        userRepository.updateUser(oldUserId, new Client(oldUser.getLogin(),
+                oldUser.getPassword(), newClient.getName(),
                 newClient.getLastName(), newClient.getAge()));
     }
 
     public void updateUser(long oldUserId, User newUser) throws NotValidException, UserNotFoundException {
+        User oldUser = userRepository.getUser(oldUserId);
+
         if (oldUserId <= 0
                 || getUser(oldUserId) == null
                 || newUser.getLogin() == null
@@ -143,12 +147,12 @@ public class UserManager implements Serializable {
             throw new NotValidException();
         }
 
-        if (userRepository.getUser(oldUserId) instanceof Employee) {
-            userRepository.updateUser(oldUserId, new Employee(newUser.getLogin(),
-                    userRepository.getUser(oldUserId).getPassword(), newUser.getName(), newUser.getLastName()));
-        } else if (userRepository.getUser(oldUserId) instanceof Administrator) {
-            userRepository.updateUser(oldUserId, new Administrator(newUser.getLogin(),
-                    userRepository.getUser(oldUserId).getPassword(), newUser.getName(), newUser.getLastName()));
+        if (oldUser instanceof Employee) {
+            userRepository.updateUser(oldUserId, new Employee(oldUser.getLogin(),
+                    oldUser.getPassword(), newUser.getName(), newUser.getLastName()));
+        } else if (oldUser instanceof Administrator) {
+            userRepository.updateUser(oldUserId, new Administrator(oldUser.getLogin(),
+                    oldUser.getPassword(), newUser.getName(), newUser.getLastName()));
         }
     }
 

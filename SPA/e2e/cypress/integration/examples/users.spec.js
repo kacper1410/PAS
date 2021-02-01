@@ -1,6 +1,7 @@
 describe('Users test', () => {
 
   let jwt;
+  let etag;
 
   let user = {
     userId: '',
@@ -31,6 +32,17 @@ describe('Users test', () => {
         user.login = users[0].login;
         user.lastName = users[0].lastName;
       })
+  })
+
+  beforeEach(() => {
+    cy.request({
+      method: 'GET',
+      url: '/user/getUserById/' + user.userId
+    }).then((response) => {
+      etag = response.headers.etag
+      etag = etag.replace('\"', '')
+      etag = etag.replace('\"', '')
+    })
   })
 
   it('Create user', () => {
@@ -70,10 +82,7 @@ describe('Users test', () => {
   it('Read user', () => {
     cy.request({
       method: 'GET',
-      url: '/user/getUserById/' + user.userId,
-      headers: {
-        'Authorization': 'Bearer ' + jwt
-      }
+      url: '/user/getUserById/' + user.userId
     }).then((response) => {
       expect(response.status).equal(200)
       expect(response.body.name).equal(user.name)
@@ -83,6 +92,32 @@ describe('Users test', () => {
   })
 
   it('Update user', () => {
+    let editUser = {
+      name: 'testNameEEE',
+      lastName: 'testLastName',
+      age: 20,
+    }
+
+    cy.request({
+      method: 'PUT',
+      url: '/user/updateClient/' + user.userId,
+      body: editUser,
+      headers: {
+        'If-match': etag,
+      }
+    })
+
+    cy.wait(500).then(() => {
+      cy.request({
+        method: 'GET',
+        url: '/user/getUserById/' + user.userId
+      }).then((response) => {
+        expect(response.body.name).equal(editUser.name)
+        expect(response.body.login).equal(user.login)
+        expect(response.body.lastName).equal(editUser.lastName)
+        expect(response.body.age).equal(editUser.age)
+      })
+    })
   })
 
   it('Authentication and get information about yourself', () => {
