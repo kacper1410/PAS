@@ -17,8 +17,10 @@ import javax.inject.Inject;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import java.util.List;
 
 @NoArgsConstructor
@@ -213,4 +215,21 @@ public class UserService {
             throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GET
+    @Path("/profile")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Response profile(@Context SecurityContext securityContext) {
+        User user;
+        try {
+            user = userManager.getUser(securityContext.getUserPrincipal().getName());
+        } catch (UserNotFoundException e) {
+            throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
+        }
+        return Response.ok()
+                .entity(user)
+                .tag(IdentitySignVerifier.calculateEntitySignature(user))
+                .build();
+    }
+
 }
