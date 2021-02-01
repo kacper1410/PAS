@@ -5,9 +5,9 @@ describe('Resources test', () => {
     ISBN: '',
     title: '',
     author: '',
-    available: '',
+    available: true,
     resourceId: '',
-    publishYear: ''
+    publishYear: 0
   }
 
   beforeEach(() => {
@@ -38,6 +38,16 @@ describe('Resources test', () => {
 
   it('Create resource', () => {
     cy.request({
+      method: 'POST',
+      url: '/resource/addBook',
+      body: resource
+    }).then((response) => {
+      expect(response.status).equal(204)
+    })
+  })
+
+  it('Read resource', () => {
+    cy.request({
       method: 'GET',
       url: '/resource/getResourceById/' + resource.resourceId,
       headers: {
@@ -52,9 +62,6 @@ describe('Resources test', () => {
       expect(response.body.available).equal(resource.available)
       expect(response.body.publishYear).equal(resource.publishYear)
     })
-  })
-
-  it('Read resource', () => {
   })
 
   it('Update resource', () => {
