@@ -13,7 +13,8 @@ public class CorsResponseFilter implements ContainerResponseFilter {
     public void filter(ContainerRequestContext containerRequestContext, ContainerResponseContext containerResponseContext) throws IOException {
         final MultivaluedMap<String, Object> headers = containerResponseContext.getHeaders();
         headers.add("Access-Control-Allow-Origin", "http://localhost:4200");
-        headers.add("Access-Control-Allow-Headers", "Content-Type");
+        headers.add("Access-Control-Allow-Headers", "Content-Type, If-match");
         headers.add("Access-Control-Allow-Methods", "POST, GET, PUT");
+        headers.add("Access-Control-Expose-Headers", "etag");
     }
 }
