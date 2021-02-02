@@ -129,7 +129,7 @@ describe('Authentication tests', () => {
         .should('equal', 204)
     })
 
-    cy.wait(1000).then(() => {
+    cy.wait(500).then(() => {
       cy.request({
         method: 'GET',
         url: '/authenticate/refreshJWT',
@@ -141,7 +141,7 @@ describe('Authentication tests', () => {
         .should('equal', 401)
     })
 
-    cy.wait(1500).then(() => {
+    cy.wait(500).then(() => {
       cy.request({
         method: 'PUT',
         url: '/user/activate/' + userId,
