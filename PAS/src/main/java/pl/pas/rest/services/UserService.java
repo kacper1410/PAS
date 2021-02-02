@@ -3,7 +3,7 @@ package pl.pas.rest.services;
 import lombok.NoArgsConstructor;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
-import pl.pas.exceptions.UserNotFoundException;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
@@ -33,7 +33,7 @@ public class UserService {
 
     @GET
     @Path("getAllClients")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Client> getAllClients() {
         try {
             return userManager.getAllClients();
@@ -44,7 +44,7 @@ public class UserService {
 
     @GET
     @Path("getAllActiveClients")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Client> getAllActiveClients() {
         try {
             return userManager.getAllActiveClients();
@@ -55,7 +55,7 @@ public class UserService {
 
     @GET
     @Path("getAllEmployees")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Employee> getAllEmployees() {
         try {
             return userManager.getAllEmployees();
@@ -66,7 +66,7 @@ public class UserService {
 
     @GET
     @Path("getAllAdministrators")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Administrator> getAllAdministrators() {
         try {
             return userManager.getAllAdministrators();
@@ -77,7 +77,7 @@ public class UserService {
 
     @GET
     @Path("getUserById/{uuid}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Response getUser(@PathParam("uuid") long uuid) {
         try {
             User user = userManager.getUser(uuid);
@@ -86,7 +86,7 @@ public class UserService {
                     .entity(user)
                     .tag(IdentitySignVerifier.calculateEntitySignature(user))
                     .build();
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (Exception e) {
             throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
@@ -95,7 +95,7 @@ public class UserService {
 
     @GET
     @Path("getUserByLogin/{login}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Response getUser(@PathParam("login") String login) {
         try {
             User user = userManager.getUser(login);
@@ -104,7 +104,7 @@ public class UserService {
                     .entity(user)
                     .tag(IdentitySignVerifier.calculateEntitySignature(user))
                     .build();
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (Exception e) {
             throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
@@ -113,7 +113,7 @@ public class UserService {
 
     @POST
     @Path("addEmployee")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public void addEmployee(Employee employee) {
         try {
             userManager.addEmployee(employee);
@@ -128,7 +128,7 @@ public class UserService {
 
     @POST
     @Path("addAdministrator")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public void addAdministrator(Administrator administrator) {
         try {
             userManager.addAdministrator(administrator);
@@ -143,7 +143,7 @@ public class UserService {
 
     @POST
     @Path("addClient")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public void addClient(Client client) {
         try {
             userManager.addClient(client);
@@ -158,7 +158,7 @@ public class UserService {
 
     @PUT
     @Path("updateAdministrator/{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @SignatureValidatorFilterBinding
     public void updateAdministrator(@PathParam("id") long id, @HeaderParam("If-match") @NotNull @NotEmpty String ifMatch, Administrator administrator) {
         if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, id)) {
@@ -167,7 +167,7 @@ public class UserService {
 
         try {
             userManager.updateUser(id, administrator);
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (NotValidException e) {
             throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
@@ -178,7 +178,7 @@ public class UserService {
 
     @PUT
     @Path("updateEmployee/{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @SignatureValidatorFilterBinding
     public void updateEmployee(@PathParam("id") long id, @HeaderParam("If-match") @NotNull @NotEmpty String ifMatch, Employee employee) {
         if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, id)) {
@@ -187,7 +187,7 @@ public class UserService {
 
         try {
             userManager.updateUser(id, employee);
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (NotValidException e) {
             throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
@@ -198,7 +198,7 @@ public class UserService {
 
     @PUT
     @Path("updateClient/{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @SignatureValidatorFilterBinding
     public void updateClient(@PathParam("id") long id, @HeaderParam("If-match") @NotNull @NotEmpty String ifMatch, Client client) {
         if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, id)) {
@@ -207,7 +207,7 @@ public class UserService {
 
         try {
             userManager.updateClient(id, client);
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (NotValidException e) {
             throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
@@ -218,12 +218,12 @@ public class UserService {
 
     @GET
     @Path("/profile")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Response profile(@Context SecurityContext securityContext) {
         User user;
         try {
             user = userManager.getUser(securityContext.getUserPrincipal().getName());
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         }
         return Response.ok()

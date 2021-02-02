@@ -1,5 +1,7 @@
 package pl.pas;
 
+import pl.pas.exceptions.NotFoundException;
+import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
@@ -82,14 +84,20 @@ public class FillRepositories implements Serializable {
             e.printStackTrace();
         }
 
-        borrowManager.borrowResource(book1.getResourceId(), user3.getUserId());
-        borrowManager.borrowResource(audioBook1.getResourceId(), user3.getUserId());
-        borrowManager.borrowResource(book2.getResourceId(), user3.getUserId());
+        try {
+            borrowManager.borrowResource(book1.getResourceId(), user3.getUserId());
+            borrowManager.borrowResource(audioBook1.getResourceId(), user3.getUserId());
+            borrowManager.borrowResource(book2.getResourceId(), user3.getUserId());
 
-        borrowManager.borrowResource(book3.getResourceId(), user4.getUserId());
-        borrowManager.borrowResource(audioBook2.getResourceId(), user4.getUserId());
+            borrowManager.borrowResource(book3.getResourceId(), user4.getUserId());
+            borrowManager.borrowResource(audioBook2.getResourceId(), user4.getUserId());
 
-        borrowManager.borrowResource(book4.getResourceId(), user5.getUserId());
+            user5.setActive(true);
+            borrowManager.borrowResource(book4.getResourceId(), user5.getUserId());
+            user5.setActive(false);
+        } catch (NotFoundException | NotValidException e) {
+            e.printStackTrace();
+        }
     }
 
     public void doNothing() {

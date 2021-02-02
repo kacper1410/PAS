@@ -1,7 +1,8 @@
 package pl.pas.controllers;
 
 import lombok.Data;
-import pl.pas.exceptions.UserNotFoundException;
+import pl.pas.exceptions.NotFoundException;
+import pl.pas.exceptions.NotValidException;
 import pl.pas.managers.BorrowManager;
 import pl.pas.managers.UserManager;
 import pl.pas.model.Borrow;
@@ -46,12 +47,16 @@ public class BorrowController implements Serializable {
             if (identityUtils.isClient()) {
                 try {
                     clientId = userManager.getUser(identityUtils.getMyLogin()).getUserId();
-                } catch (UserNotFoundException e) {
+                } catch (NotFoundException e) {
                     e.printStackTrace();
                 }
             }
 
-            this.borrowManager.borrowResource(resourceId, clientId, borrowDate);
+            try {
+                this.borrowManager.borrowResource(resourceId, clientId, borrowDate);
+            } catch (NotFoundException | NotValidException e) {
+                e.printStackTrace();
+            }
             resourceController.updateList();
             this.resourceId = 0;
             this.clientId = 0;
@@ -62,7 +67,11 @@ public class BorrowController implements Serializable {
     }
 
     public String search() {
-        currentBorrow = borrowManager.getBorrow(borrowId);
+        try {
+            currentBorrow = borrowManager.getBorrow(borrowId);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
         return "borrow";
     }
 
@@ -83,7 +92,11 @@ public class BorrowController implements Serializable {
 
     public String returnResource(Borrow borrow) {
         if (identityUtils.isEmployee() || (identityUtils.isClient() && identityUtils.getMyLogin().equals(borrow.getClient().getLogin()))) {
-            borrowManager.endBorrow(borrow);
+            try {
+                borrowManager.endBorrow(borrow);
+            } catch (NotValidException | NotFoundException ignored) {
+
+            }
             resourceController.updateList();
         }
 

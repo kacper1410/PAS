@@ -1,6 +1,7 @@
 package pl.pas.repositories;
 
 import org.junit.Test;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.model.Borrow;
 import pl.pas.model.resource.AudioBook;
@@ -32,8 +33,12 @@ public class BorrowRepositoryTest {
         borrowRepository.addBorrow(borrow1);
         borrowRepository.addBorrow(borrow2);
 
-        assertEquals(borrowRepository.getBorrow(borrow1.getBorrowId()), borrow1);
-        assertEquals(borrowRepository.getBorrow(borrow2.getBorrowId()), borrow2);
+        try {
+            assertEquals(borrowRepository.getBorrow(borrow1.getBorrowId()), borrow1);
+            assertEquals(borrowRepository.getBorrow(borrow2.getBorrowId()), borrow2);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

@@ -1,6 +1,6 @@
 package pl.pas.controllers;
 
-import pl.pas.exceptions.UserNotFoundException;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.User;
 import javax.enterprise.context.ApplicationScoped;
@@ -43,7 +43,7 @@ public class IdentityUtils {
                 loginController.logout();
                 return false;
             }
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             e.printStackTrace();
         }
 

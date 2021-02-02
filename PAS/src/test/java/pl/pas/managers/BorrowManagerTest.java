@@ -2,6 +2,8 @@ package pl.pas.managers;
 
 import org.junit.Test;
 import pl.pas.FillRepositories;
+import pl.pas.exceptions.NotFoundException;
+import pl.pas.exceptions.NotValidException;
 import pl.pas.model.resource.Resource;
 import pl.pas.model.user.Client;
 import pl.pas.repositories.BorrowRepository;
@@ -31,7 +33,11 @@ public class BorrowManagerTest {
         Resource resource = resourceRepository.getAllBooks().get(4);
         Client client = userRepository.getAllClients().get(0);
         assertEquals(SIZE, borrowManager.getAllBorrows().size());
-        borrowManager.borrowResource(resource.getResourceId(), client.getUserId());
+        try {
+            borrowManager.borrowResource(resource.getResourceId(), client.getUserId());
+        } catch (NotFoundException | NotValidException ignored) {
+
+        }
         assertEquals(SIZE + 1, borrowManager.getAllBorrows().size());
     }
 }

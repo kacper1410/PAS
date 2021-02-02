@@ -1,5 +1,6 @@
 package pl.pas.repositories.interfaces;
 
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 import pl.pas.model.resource.Resource;
@@ -7,11 +8,11 @@ import pl.pas.model.resource.Resource;
 import java.util.List;
 
 public interface IResourceRepository {
-    boolean addResource(Resource resource);
-    Resource getResource(long uuid);
+    void addResource(Resource resource);
+    Resource getResource(long uuid) throws NotFoundException;
     List<Resource> getAllResources();
     void updateResource(long uuid, Resource newResource);
-    boolean deleteResource(long uuid);
+    void deleteResource(long uuid);
     List<Book> getAllBooks();
     List<AudioBook> getAllAudioBooks();
 }

@@ -1,5 +1,6 @@
 package pl.pas.repositories;
 
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 import pl.pas.model.resource.Resource;
@@ -22,22 +23,22 @@ public class ResourceRepository implements IResourceRepository, Serializable {
     }
 
     @Override
-    public boolean addResource(Resource resource) {
+    public void addResource(Resource resource) {
         synchronized (resources) {
             resource.setResourceId(UUID.randomUUID());
-            return resources.add(resource);
+            resources.add(resource);
         }
     }
 
     @Override
-    public Resource getResource(long uuid) {
+    public Resource getResource(long uuid) throws NotFoundException {
         synchronized (resources) {
             for (Resource r : resources) {
                 if (r.getResourceId() == uuid) {
                     return r;
                 }
             }
-            return null;
+            throw new NotFoundException();
         }
     }
 
@@ -61,9 +62,13 @@ public class ResourceRepository implements IResourceRepository, Serializable {
     }
 
     @Override
-    public boolean deleteResource(long uuid) {
+    public void deleteResource(long uuid) {
         synchronized (resources) {
-            return resources.remove(getResource(uuid));
+            try {
+                resources.remove(getResource(uuid));
+            } catch (NotFoundException ignored) {
+
+            }
         }
     }
 

@@ -1,5 +1,7 @@
 package pl.pas.managers;
 
+import pl.pas.exceptions.NotFoundException;
+import pl.pas.exceptions.NotValidException;
 import pl.pas.model.Borrow;
 import pl.pas.model.resource.Resource;
 import pl.pas.model.user.Client;
@@ -34,28 +36,24 @@ public class BorrowManager implements Serializable {
         this.userRepository = userRepository;
     }
 
-    public boolean borrowResource(long resourceId, long clientId) {
-        return borrowResource(resourceId, clientId, new Date());
+    public void borrowResource(long resourceId, long clientId) throws NotFoundException, NotValidException {
+        borrowResource(resourceId, clientId, new Date());
     }
 
-    public boolean borrowResource(long resourceId, long clientId, Date date) {
+    public void borrowResource(long resourceId, long clientId, Date date) throws NotFoundException, NotValidException {
         Resource resource = resourceRepository.getResource(resourceId);
         User user = userRepository.getUser(clientId);
-
-        if (resource == null || user == null) {
-            return false;
-        }
 
         if (resource.isAvailable() && user instanceof Client && user.isActive()) {
             borrowRepository.addBorrow(new Borrow((Client) user, resource, date));
             resource.setAvailable(false);
-            return true;
+            return;
         }
+        throw new NotValidException();
 
-        return false;
     }
 
-    public Borrow getBorrow(long uuid) {
+    public Borrow getBorrow(long uuid) throws NotFoundException {
         return borrowRepository.getBorrow(uuid);
     }
 
@@ -63,41 +61,41 @@ public class BorrowManager implements Serializable {
         return borrowRepository.getAllBorrows();
     }
 
-    public List<Borrow> getAllBorrowsForClient(Client client) {
+    public List<Borrow> getAllBorrowsForClient(Client client) throws NotFoundException {
         return getAllBorrowsForClient(client.getUserId());
     }
 
-    public List<Borrow> getAllBorrowsForClient(long uuid) {
-        return borrowRepository.getBorrowsByUser(uuid);
+    public List<Borrow> getAllBorrowsForClient(long uuid) throws NotFoundException {
+        Client c = (Client) userRepository.getUser(uuid);
+        return borrowRepository.getBorrowsByUser(c.getUserId());
     }
 
-    public List<Borrow> getAllBorrowsForResource(Resource resource) {
+    public List<Borrow> getAllBorrowsForResource(Resource resource) throws NotFoundException {
         return getAllBorrowsForResource(resource.getResourceId());
     }
 
-    public List<Borrow> getAllBorrowsForResource(long uuid) {
-        return borrowRepository.getBorrowsByResource(uuid);
+    public List<Borrow> getAllBorrowsForResource(long uuid) throws NotFoundException {
+        Resource res = resourceRepository.getResource(uuid);
+        return borrowRepository.getBorrowsByResource(res.getResourceId());
     }
 
-    public boolean endBorrow(Borrow borrow) {
+    public void endBorrow(Borrow borrow) throws NotValidException, NotFoundException {
         if (borrow == null
-                || borrow.getReturnDate() != null
-                || borrowRepository.getBorrow(borrow.getBorrowId()) == null) {
-            return false;
+                || borrow.getReturnDate() != null) {
+            throw new NotValidException();
         }
-        borrow.getResource().setAvailable(true);
         borrowRepository.endBorrow(borrow.getBorrowId());
-        return true;
+        borrow.getResource().setAvailable(true);
     }
 
-    public boolean cancelBorrow(Borrow borrow) {
-        if (borrow == null
-                || borrow.getReturnDate() != null
-                || borrowRepository.getBorrow(borrow.getBorrowId()) == null) {
-            return false;
-        }
-
-        return borrowRepository.deleteBorrow(borrow.getBorrowId());
-    }
+//    public boolean cancelBorrow(Borrow borrow) {
+//        if (borrow == null
+//                || borrow.getReturnDate() != null
+//                || borrowRepository.getBorrow(borrow.getBorrowId()) == null) {
+//            return false;
+//        }
+//
+//        return borrowRepository.deleteBorrow(borrow.getBorrowId());
+//    }
 
 }

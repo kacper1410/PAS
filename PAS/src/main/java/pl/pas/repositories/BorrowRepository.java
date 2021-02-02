@@ -1,5 +1,6 @@
 package pl.pas.repositories;
 
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.model.Borrow;
 import pl.pas.repositories.interfaces.IBorrowRepository;
 
@@ -21,20 +22,20 @@ public class BorrowRepository implements IBorrowRepository, Serializable {
     }
 
     @Override
-    public boolean addBorrow(Borrow borrow) {
+    public void addBorrow(Borrow borrow) {
         synchronized (borrows) {
             borrow.setBorrowId(UUID.randomUUID());
-            return borrows.add(borrow);
+            borrows.add(borrow);
         }
     }
 
     @Override
-    public Borrow getBorrow(long uuid) {
+    public Borrow getBorrow(long uuid) throws NotFoundException {
         synchronized (borrows) {
             for (Borrow b : borrows) {
                 if (b.getBorrowId() == uuid) return b;
             }
-            return null;
+            throw new NotFoundException();
         }
     }
 
@@ -86,14 +87,18 @@ public class BorrowRepository implements IBorrowRepository, Serializable {
     }
 
     @Override
-    public boolean deleteBorrow(long uuid) {
+    public void deleteBorrow(long uuid) {
         synchronized (borrows) {
-            return borrows.remove(getBorrow(uuid));
+            try {
+                borrows.remove(getBorrow(uuid));
+            } catch (NotFoundException ignored) {
+
+            }
         }
     }
 
     @Override
-    public void endBorrow(long uuid) {
+    public void endBorrow(long uuid) throws NotFoundException {
         synchronized (borrows) {
             getBorrow(uuid).setReturnDate(new Date());
         }
