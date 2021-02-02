@@ -1,6 +1,4 @@
 describe('Users test', () => {
-
-  let jwt;
   let etag;
 
   let user = {
@@ -10,21 +8,10 @@ describe('Users test', () => {
     lastName: ''
   }
 
-  beforeEach('Getting jwt', () => {
-    cy.request('POST', '/authenticate', { login: "login", password: "spa" })
-      .its('body')
-      .then((body) => {
-        jwt = body;
-      })
-  })
-
   beforeEach('Getting first active client', () => {
     cy.request({
       method: 'GET',
-      url: '/user/getAllActiveClients',
-      headers: {
-        'Authorization': 'Bearer ' + jwt
-      }
+      url: '/user/getAllActiveClients'
     }).its('body')
       .then((users) => {
         user.userId = users[0].userId;
@@ -56,20 +43,14 @@ describe('Users test', () => {
     cy.request({
       method: 'POST',
       url: '/user/addClient',
-      body: user,
-      headers: {
-        'Authorization': 'Bearer ' + jwt
-      }
+      body: user
     }).then((response) => {
       expect(response.status).equal(204)
     })
 
     cy.request({
       method: 'GET',
-      url: '/user/getUserByLogin/' + user.login,
-      headers: {
-        'Authorization': 'Bearer ' + jwt
-      }
+      url: '/user/getUserByLogin/' + user.login
     }).then((response) => {
       expect(response.status).equal(200)
       expect(response.body.login).equal(user.login)
@@ -139,24 +120,22 @@ describe('Users test', () => {
       .should('equal', 406)
   })
 
-  it('Authentication and get information about yourself', () => {
-    cy.request({
-      method: 'GET',
-      url: '/user/profile',
-      headers: {
-        'Authorization': 'Bearer ' + jwt
-      }
-    }).then((response) => {
-      expect(response.body.login).equal('login')
-      expect(response.body.name).equal('Jan')
-      expect(response.body.lastName).equal('Kowalski')
-    })
+  it('Change user id', () => {
+    let editUser = {
+      name: 'testNameEEE',
+      lastName: 'testLastName',
+      age: 20,
+    }
 
     cy.request({
-      method: 'GET',
-      url: '/user/profile',
-      failOnStatusCode: false
+      method: 'PUT',
+      url: '/user/updateClient/' + user.userId + 1,
+      body: editUser,
+      failOnStatusCode: false,
+      headers: {
+        'If-match': etag,
+      }
     }).its('status')
-      .should('equal', 401)
+      .should('equal', 412)
   })
 })

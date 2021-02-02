@@ -1,5 +1,5 @@
 describe('Resources test', () => {
-  let jwt;
+  let etag;
 
   let resource = {
     ISBN: '',
@@ -11,20 +11,9 @@ describe('Resources test', () => {
   }
 
   beforeEach(() => {
-    cy.request('POST', '/authenticate', {login: "login", password: "spa"})
-      .its('body')
-      .then((body) => {
-        jwt = body;
-      })
-  })
-
-  beforeEach(() => {
     cy.request({
       method: 'GET',
-      url: '/resource/getAllAvailableResources',
-      headers: {
-        'Authorization': 'Bearer ' + jwt
-      }
+      url: '/resource/getAllAvailableResources'
     }).its('body')
       .then((resources) => {
         resource.resourceId = resources[0].resourceId;
@@ -34,6 +23,17 @@ describe('Resources test', () => {
         resource.available = resources[0].available;
         resource.publishYear = resources[0].publishYear;
       })
+  })
+
+  beforeEach('Getting etag', () => {
+    cy.request({
+      method: 'GET',
+      url: '/resource/getResourceById/' + resource.resourceId
+    }).then((response) => {
+      etag = response.headers.etag
+      etag = etag.replace('\"', '')
+      etag = etag.replace('\"', '')
+    })
   })
 
   it('Create resource', () => {
@@ -49,10 +49,7 @@ describe('Resources test', () => {
   it('Read resource', () => {
     cy.request({
       method: 'GET',
-      url: '/resource/getResourceById/' + resource.resourceId,
-      headers: {
-        'Authorization': 'Bearer ' + jwt
-      }
+      url: '/resource/getResourceById/' + resource.resourceId
     }).then((response) => {
       expect(response.status).equal(200)
       expect(response.body.ISBN).equal(resource.ISBN)
@@ -65,11 +62,114 @@ describe('Resources test', () => {
   })
 
   it('Update resource', () => {
+    let editResource = {
+      ISBN: 312321312312,
+      title: 'ResourceTitle',
+      author: 'ResourceAuthor',
+      available: true,
+      publishYear: 2000
+    }
+
+    cy.request({
+      method: 'PUT',
+      url: '/resource/updateBookById/' + resource.resourceId,
+      body: editResource,
+      headers: {
+        'If-match': etag,
+      }
+    })
+
+    cy.wait(500).then(() => {
+      cy.request({
+        method: 'GET',
+        url: '/resource/getResourceById/' + resource.resourceId
+      }).then((response) => {
+        expect(response.body.title).equal(editResource.title)
+        expect(response.body.author).equal(editResource.author)
+        expect(response.body.publishYear).equal(editResource.publishYear)
+      })
+    })
   })
 
   it('Delete resource', () => {
+    let deleteResourceId;
+
+    cy.request({
+      method: 'GET',
+      url: '/resource/getAllAvailableResources'
+    }).its('body')
+      .then((resources) => {
+        deleteResourceId = resources[1].resourceId;
+      })
+
+    cy.wait(500).then(() => {
+      cy.request({
+        method: 'GET',
+        url: '/resource/getResourceById/' + deleteResourceId
+      })
+    }).its('status')
+      .should('equal', 200)
+
+    cy.wait(500).then(() => {
+      cy.request({
+        method: 'DELETE',
+        url: '/resource/removeResource/' + deleteResourceId
+      }).its('status')
+        .should('equal', 204)
+    })
+
+    // cy.wait(500).then(() => {
+    //   cy.request({
+    //     method: 'GET',
+    //     url: '/resource/getResourceById/' + deleteResourceId,
+    //     failOnStatusCode: false
+    //   }).its('status')
+    //     .should('equal', 404)
+    // })
   })
 
   it('Authentication and borrow resource', () => {
+  })
+
+  it('Resource with negative length', () => {
+    let editResource = {
+      ISBN: 312321312312,
+      title: 'ResourceTitle',
+      author: 'ResourceAuthor',
+      available: true,
+      length: -2000
+    }
+
+    cy.request({
+      method: 'PUT',
+      url: '/resource/updateAudioBookById/' + resource.resourceId,
+      body: editResource,
+      failOnStatusCode: false,
+      headers: {
+        'If-match': etag,
+      }
+    }).its('status')
+      .should('equal', 406)
+  })
+
+  it('Change resource id', () => {
+    let editResource = {
+      ISBN: 312321312312,
+      title: 'ResourceTitle',
+      author: 'ResourceAuthor',
+      available: true,
+      publishYear: 2000
+    }
+
+    cy.request({
+      method: 'PUT',
+      url: '/resource/updateBookById/' + resource.resourceId + 1,
+      body: editResource,
+      failOnStatusCode: false,
+      headers: {
+        'If-match': etag,
+      }
+    }).its('status')
+      .should('equal', 412)
   })
 })
