@@ -1,6 +1,7 @@
 package pl.pas.rest.services;
 
 import lombok.NoArgsConstructor;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.managers.ResourceManager;
 import pl.pas.model.resource.AudioBook;
@@ -105,6 +106,8 @@ public class ResourceService {
             resourceManager.updateBook(resourceManager.getResource(id), book.getISBN(), book.getTitle(), book.getAuthor(), book.getPublishYear());
         } catch (NotValidException e) {
             throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        } catch (NotFoundException e) {
+            throw new ClientErrorException("Resource not found", Response.Status.NOT_FOUND);
         }
     }
 
@@ -121,12 +124,18 @@ public class ResourceService {
             resourceManager.updateAudioBook(resourceManager.getResource(id), book.getISBN(), book.getTitle(), book.getAuthor(), book.getLength());
         } catch (NotValidException e) {
             throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        } catch (NotFoundException e) {
+            throw new ClientErrorException("Resource not found", Response.Status.NOT_FOUND);
         }
     }
 
     @DELETE
     @Path("removeResource/{uuid}")
     public void removeResource(@PathParam("uuid") long uuid) {
-        resourceManager.removeResource(uuid);
+        try {
+            resourceManager.removeResource(uuid);
+        } catch (NotValidException e) {
+            throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        }
     }
 }

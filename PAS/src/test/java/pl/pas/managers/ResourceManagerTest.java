@@ -1,7 +1,9 @@
 package pl.pas.managers;
 
 import org.junit.Test;
+import org.opentest4j.TestAbortedException;
 import pl.pas.FillRepositories;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.model.resource.Resource;
 import pl.pas.repositories.BorrowRepository;
@@ -27,7 +29,11 @@ public class ResourceManagerTest {
     @Test
     public void testGetResource() {
         Resource resource = resourceManager.getAllBooks().get(0);
-        assertEquals(resource, resourceManager.getResource(resource.getResourceId()));
+        try {
+            assertEquals(resource, resourceManager.getResource(resource.getResourceId()));
+        } catch (NotFoundException e) {
+            throw new TestAbortedException();
+        }
     }
 
     @Test
@@ -50,22 +56,30 @@ public class ResourceManagerTest {
         Resource unavailableResource = resourceManager.getAllBooks().get(0);
 
         assertFalse(unavailableResource.isAvailable());
-        assertFalse(resourceManager.removeResource(unavailableResource.getResourceId()));
+
+        assertThrows(NotValidException.class,() -> resourceManager.removeResource(unavailableResource.getResourceId()));
+
         assertEquals(SIZE, resourceManager.getAllResources().size());
 
         Resource availableResource = resourceManager.getAllBooks().get(4);
 
         assertTrue(availableResource.isAvailable());
-        assertTrue(resourceManager.removeResource(availableResource.getResourceId()));
+
+        try {
+            resourceManager.removeResource(availableResource.getResourceId());
+        } catch (NotValidException e) {
+            throw new TestAbortedException();
+        }
+
         assertEquals(SIZE - 1, resourceManager.getAllResources().size());
     }
 
     @Test
     public void testAddBook() {
         try {
-            assertTrue(resourceManager.addBook(432345345, "Harry Potter", "Author", 2000));
+            resourceManager.addBook(432345345, "Harry Potter", "Author", 2000);
         } catch (NotValidException e) {
-            e.printStackTrace();
+            throw new TestAbortedException();
         }
         assertEquals(SIZE + 1, resourceManager.getAllResources().size());
     }
@@ -73,9 +87,9 @@ public class ResourceManagerTest {
     @Test
     public void testAddAudioBook() {
         try {
-            assertTrue(resourceManager.addAudioBook(432345345, "Harry Potter", "Author", 90));
+            resourceManager.addAudioBook(432345345, "Harry Potter", "Author", 90);
         } catch (NotValidException e) {
-            e.printStackTrace();
+            throw new TestAbortedException();
         }
         assertEquals(SIZE + 1, resourceManager.getAllResources().size());
     }
@@ -86,13 +100,18 @@ public class ResourceManagerTest {
         Resource audioBook = resourceManager.getAllResources().get(6);
 
         try {
-            assertTrue(resourceManager.updateBook(book, 123, "New", "New", 111));
-            assertFalse(resourceManager.updateBook(audioBook, 123, "New", "New", 111));
+            resourceManager.updateBook(book, 123, "New", "New", 111);
         } catch (NotValidException e) {
-            e.printStackTrace();
+            throw new TestAbortedException();
         }
+        assertThrows(NotValidException.class,() -> resourceManager.updateBook(audioBook, 123, "New", "New", 111));
 
-        assertNotEquals(book, resourceManager.getResource(book.getResourceId()));
+
+        try {
+            assertNotEquals(book, resourceManager.getResource(book.getResourceId()));
+        } catch (NotFoundException e) {
+            throw new TestAbortedException();
+        }
     }
 
     @Test
@@ -101,12 +120,16 @@ public class ResourceManagerTest {
         Resource audioBook = resourceManager.getAllResources().get(6);
 
         try {
-            assertTrue(resourceManager.updateAudioBook(audioBook, 123, "New", "New", 111));
-            assertFalse(resourceManager.updateAudioBook(book, 123, "New", "New", 111));
+            resourceManager.updateAudioBook(audioBook, 123, "New", "New", 111);
         } catch (NotValidException e) {
-            e.printStackTrace();
+            throw new TestAbortedException();
         }
+        assertThrows(NotValidException.class,() -> resourceManager.updateAudioBook(book, 123, "New", "New", 111));
 
-        assertNotEquals(audioBook, resourceManager.getResource(audioBook.getResourceId()));
+        try {
+            assertNotEquals(audioBook, resourceManager.getResource(audioBook.getResourceId()));
+        } catch (NotFoundException e) {
+            throw new TestAbortedException();
+        }
     }
 }

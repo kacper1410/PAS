@@ -1,16 +1,15 @@
 package pl.pas.rest.services;
 
 import lombok.NoArgsConstructor;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.managers.BorrowManager;
 import pl.pas.model.Borrow;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @NoArgsConstructor
@@ -32,13 +31,21 @@ public class BorrowService {
     @Path("getAllBorrowsForClientByUuid/{uuid}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Borrow> getAllBorrowsForClientByUuid(@PathParam("uuid") long uuid) {
-        return borrowManager.getAllBorrowsForClient(uuid);
+        try {
+            return borrowManager.getAllBorrowsForClient(uuid);
+        } catch (NotFoundException e) {
+            throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
+        }
     }
 
     @GET
     @Path("getAllBorrowsForResourceByUuid/{uuid}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Borrow> getAllBorrowsForResourceByUuid(@PathParam("uuid") long uuid) {
-        return borrowManager.getAllBorrowsForResource(uuid);
+        try {
+            return borrowManager.getAllBorrowsForResource(uuid);
+        } catch (NotFoundException e) {
+            throw new ClientErrorException("Resource not found", Response.Status.NOT_FOUND);
+        }
     }
 }

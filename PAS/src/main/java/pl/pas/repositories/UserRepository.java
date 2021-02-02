@@ -1,5 +1,6 @@
 package pl.pas.repositories;
 
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
@@ -26,8 +27,12 @@ public class UserRepository implements IUserRepository, Serializable {
     @Override
     public void addUser(User user) throws UserAlreadyExistException {
         synchronized (users) {
-            if (users.contains(getUser(user.getLogin()))) {
-                throw new UserAlreadyExistException();
+            try {
+                if (users.contains(getUser(user.getLogin()))) {
+                    throw new UserAlreadyExistException();
+                }
+            } catch (NotFoundException ignored) {
+
             }
 
             user.setUserId(UUID.randomUUID());
@@ -36,27 +41,26 @@ public class UserRepository implements IUserRepository, Serializable {
     }
 
     @Override
-    public User getUser(long uuid) {
+    public User getUser(long uuid) throws NotFoundException {
         synchronized (users) {
             for (User u: users) {
                 if (u.getUserId() == uuid) {
                     return u;
                 }
             }
-            return null;
+            throw new NotFoundException();
         }
     }
 
     @Override
-    public User getUser(String login) {
+    public User getUser(String login) throws NotFoundException {
         synchronized (users) {
             for (User u: users) {
                 if (u.getLogin().equals(login)) {
                     return u;
                 }
             }
-
-            return null;
+            throw new NotFoundException();
         }
     }
 
@@ -140,7 +144,7 @@ public class UserRepository implements IUserRepository, Serializable {
     }
 
     @Override
-    public User getUserByLoginPasswordActive(String login, String password) {
+    public User getUserByLoginPasswordActive(String login, String password) throws NotFoundException {
         synchronized (users) {
             for (User u: users) {
                 if (u.getLogin().equals(login) && u.getPassword().equals(password) && u.isActive()) {
@@ -148,6 +152,6 @@ public class UserRepository implements IUserRepository, Serializable {
                 }
             }
         }
-        return null;
+        throw new NotFoundException();
     }
 }

@@ -2,7 +2,7 @@ package pl.pas.managers;
 
 import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
-import pl.pas.exceptions.UserNotFoundException;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
@@ -69,24 +69,12 @@ public class UserManager implements Serializable {
         return userRepository.getAllUsers();
     }
 
-    public User getUser(long id) throws UserNotFoundException {
-        User user = userRepository.getUser(id);
-
-        if (user == null) {
-            throw new UserNotFoundException();
-        }
-
-        return user;
+    public User getUser(long id) throws NotFoundException {
+        return userRepository.getUser(id);
     }
 
-    public User getUser(String login) throws UserNotFoundException {
-        User user = userRepository.getUser(login);
-
-        if (user == null) {
-            throw new UserNotFoundException();
-        }
-
-        return user;
+    public User getUser(String login) throws NotFoundException {
+        return userRepository.getUser(login);
     }
 
     public List<Client> getAllClients() {
@@ -117,7 +105,7 @@ public class UserManager implements Serializable {
         return activeClients;
     }
 
-    public void updateClient(long oldUserId, Client newClient) throws NotValidException, UserNotFoundException {
+    public void updateClient(long oldUserId, Client newClient) throws NotValidException, NotFoundException {
         User oldUser = userRepository.getUser(oldUserId);
 
         if (oldUserId <= 0
@@ -135,7 +123,7 @@ public class UserManager implements Serializable {
                 newClient.getLastName(), newClient.getAge()));
     }
 
-    public void updateUser(long oldUserId, User newUser) throws NotValidException, UserNotFoundException {
+    public void updateUser(long oldUserId, User newUser) throws NotValidException, NotFoundException {
         User oldUser = userRepository.getUser(oldUserId);
 
         if (oldUserId <= 0
@@ -157,20 +145,18 @@ public class UserManager implements Serializable {
     }
 
 
-    public boolean activateUser(User user) {
+    public void activateUser(User user) throws NotValidException, NotFoundException {
         if (user == null) {
-            return false;
+            throw new NotValidException();
         }
-        user.setActive(true);
-        return true;
+        userRepository.getUser(user.getLogin()).setActive(true);
     }
 
-    public boolean deactivateUser(User user) {
+    public void deactivateUser(User user) throws NotValidException, NotFoundException {
         if (user == null) {
-            return false;
+            throw new NotValidException();
         }
-        user.setActive(false);
-        return true;
+        userRepository.getUser(user.getLogin()).setActive(false);
     }
 
 }

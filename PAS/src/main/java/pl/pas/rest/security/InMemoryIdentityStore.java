@@ -1,5 +1,6 @@
 package pl.pas.rest.security;
 
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.model.user.User;
 import pl.pas.repositories.UserRepository;
 
@@ -23,8 +24,13 @@ public class InMemoryIdentityStore implements IdentityStore {
     public CredentialValidationResult validate(Credential credential) {
         if (credential instanceof UsernamePasswordCredential) {
             UsernamePasswordCredential usernamePasswordCredential = (UsernamePasswordCredential) credential;
-            User user = userRepository.getUserByLoginPasswordActive(usernamePasswordCredential.getCaller(),
-                    usernamePasswordCredential.getPasswordAsString());
+            User user = null;
+            try {
+                user = userRepository.getUserByLoginPasswordActive(usernamePasswordCredential.getCaller(),
+                        usernamePasswordCredential.getPasswordAsString());
+            } catch (NotFoundException ignored) {
+
+            }
             if (user != null) {
                 return new CredentialValidationResult(user.getLogin(), new HashSet<>(Arrays.asList(user.getAccessGroup())));
             }

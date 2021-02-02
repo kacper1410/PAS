@@ -1,6 +1,8 @@
 package pl.pas.repositories;
 
 import org.junit.Test;
+import org.opentest4j.TestAbortedException;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 
@@ -39,10 +41,14 @@ public class ResourceRepositoryTest {
         resourceRepository.addResource(audioBook1);
         resourceRepository.addResource(audioBook2);
 
-        assertEquals(book1, resourceRepository.getResource(book1.getResourceId()));
-        assertEquals(book2, resourceRepository.getResource(book2.getResourceId()));
-        assertEquals(audioBook1, resourceRepository.getResource(audioBook1.getResourceId()));
-        assertEquals(audioBook2, resourceRepository.getResource(audioBook2.getResourceId()));
+        try {
+            assertEquals(book1, resourceRepository.getResource(book1.getResourceId()));
+            assertEquals(book2, resourceRepository.getResource(book2.getResourceId()));
+            assertEquals(audioBook1, resourceRepository.getResource(audioBook1.getResourceId()));
+            assertEquals(audioBook2, resourceRepository.getResource(audioBook2.getResourceId()));
+        } catch (NotFoundException e) {
+            throw new TestAbortedException();
+        }
     }
 
     @Test

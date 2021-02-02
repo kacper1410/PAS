@@ -3,7 +3,7 @@ package pl.pas.controllers;
 import lombok.Data;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
-import pl.pas.exceptions.UserNotFoundException;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
@@ -101,7 +101,7 @@ public class UserController implements Serializable {
         return "main";
     }
 
-    public String changeActivity(User user) {
+    public String changeActivity(User user) throws NotValidException, NotFoundException {
         if (identityUtils.isAdmin()) {
             if (user.isActive()) {
                 userManager.deactivateUser(user);
@@ -119,7 +119,7 @@ public class UserController implements Serializable {
 
         try {
             user = userManager.getUser(uuid);
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             e.printStackTrace();
         }
 
@@ -137,7 +137,7 @@ public class UserController implements Serializable {
 
         try {
             user = userManager.getUser(login);
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             e.printStackTrace();
         }
 
@@ -158,7 +158,7 @@ public class UserController implements Serializable {
         if (identityUtils.isAdmin()) {
             try {
                 userManager.updateClient(currentClient.getUserId(), currentClient);
-            } catch (NotValidException | UserNotFoundException e) {
+            } catch (NotValidException | NotFoundException e) {
                 e.printStackTrace();
             }
         }
@@ -171,7 +171,7 @@ public class UserController implements Serializable {
         if (identityUtils.isAdmin()) {
             try {
                 userManager.updateUser(currentUser.getUserId(), currentUser);
-            } catch (NotValidException | UserNotFoundException e) {
+            } catch (NotValidException | NotFoundException e) {
                 e.printStackTrace();
             }
         }

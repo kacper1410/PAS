@@ -1,6 +1,7 @@
 package pl.pas.controllers;
 
 import lombok.Data;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.managers.ResourceManager;
 import pl.pas.model.resource.AudioBook;
@@ -89,7 +90,11 @@ public class ResourceController implements Serializable {
 
     public String removeResource(Resource resource) {
         if (identityUtils.isEmployee()) {
-            resourceManager.removeResource(resource.getResourceId());
+            try {
+                resourceManager.removeResource(resource.getResourceId());
+            } catch (NotValidException ignored) {
+
+            }
         }
         updateList();
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
@@ -111,7 +116,12 @@ public class ResourceController implements Serializable {
     }
 
     public String search(long uuid) {
-        Resource resource = resourceManager.getResource(uuid);
+        Resource resource = null;
+        try {
+            resource = resourceManager.getResource(uuid);
+        } catch (NotFoundException ignored) {
+
+        }
         if (resource == null) {
             String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
             return viewId + "?faces-redirect=true";

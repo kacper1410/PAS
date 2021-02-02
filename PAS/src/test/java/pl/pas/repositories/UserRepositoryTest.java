@@ -1,6 +1,7 @@
 package pl.pas.repositories;
 
 import org.junit.Test;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
@@ -60,16 +61,20 @@ public class UserRepositoryTest {
         }
 
         //Test getUser for ID
-        assertEquals(userRepository.getUser(client1.getUserId()), client1);
-        assertEquals(userRepository.getUser(client2.getUserId()), client2);
-        assertEquals(userRepository.getUser(employee.getUserId()), employee);
-        assertEquals(userRepository.getUser(administrator.getUserId()), administrator);
+        try {
+            assertEquals(userRepository.getUser(client1.getUserId()), client1);
+            assertEquals(userRepository.getUser(client2.getUserId()), client2);
+            assertEquals(userRepository.getUser(employee.getUserId()), employee);
+            assertEquals(userRepository.getUser(administrator.getUserId()), administrator);
 
-        //Test getUser for login
-        assertEquals(userRepository.getUser("abraxas"), client1);
-        assertEquals(userRepository.getUser("kacper1410"), client2);
-        assertEquals(userRepository.getUser("Martiego"), employee);
-        assertEquals(userRepository.getUser("nero7410"), administrator);
+            //Test getUser for login
+            assertEquals(userRepository.getUser("abraxas"), client1);
+            assertEquals(userRepository.getUser("kacper1410"), client2);
+            assertEquals(userRepository.getUser("Martiego"), employee);
+            assertEquals(userRepository.getUser("nero7410"), administrator);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

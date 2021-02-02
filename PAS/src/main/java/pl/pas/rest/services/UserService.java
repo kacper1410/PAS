@@ -3,7 +3,7 @@ package pl.pas.rest.services;
 import lombok.NoArgsConstructor;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
-import pl.pas.exceptions.UserNotFoundException;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.managers.UserManager;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
@@ -86,7 +86,7 @@ public class UserService {
                     .entity(user)
                     .tag(IdentitySignVerifier.calculateEntitySignature(user))
                     .build();
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (Exception e) {
             throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
@@ -104,7 +104,7 @@ public class UserService {
                     .entity(user)
                     .tag(IdentitySignVerifier.calculateEntitySignature(user))
                     .build();
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (Exception e) {
             throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
@@ -167,7 +167,7 @@ public class UserService {
 
         try {
             userManager.updateUser(id, administrator);
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (NotValidException e) {
             throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
@@ -187,7 +187,7 @@ public class UserService {
 
         try {
             userManager.updateUser(id, employee);
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (NotValidException e) {
             throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
@@ -207,7 +207,7 @@ public class UserService {
 
         try {
             userManager.updateClient(id, client);
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         } catch (NotValidException e) {
             throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
@@ -223,7 +223,7 @@ public class UserService {
         User user;
         try {
             user = userManager.getUser(securityContext.getUserPrincipal().getName());
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
         }
         return Response.ok()
