@@ -66,8 +66,8 @@ public class ResourceService {
                     .entity(resource)
                     .tag(IdentitySignVerifier.calculateEntitySignature(resource))
                     .build();
-        } catch (Exception e) {
-            throw new ClientErrorException(Response.Status.INTERNAL_SERVER_ERROR);
+        } catch (NotFoundException e) {
+            throw new ClientErrorException("Resource not found", Response.Status.NOT_FOUND);
         }
     }
 
