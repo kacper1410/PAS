@@ -77,6 +77,10 @@ public class UserRepository implements IUserRepository, Serializable {
             for (User u : users) {
                 if (u.getUserId() == uuid) {
                     newUser.setUserId(uuid);
+                    try {
+                        newUser.setActive(getUser(uuid).isActive());
+                    } catch (NotFoundException ignored) {
+                    }
                     users.set(users.indexOf(u), newUser);
                 }
             }
