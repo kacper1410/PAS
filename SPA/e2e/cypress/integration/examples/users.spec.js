@@ -140,5 +140,23 @@ describe('Users test', () => {
   })
 
   it('Authentication and get information about yourself', () => {
+    cy.request({
+      method: 'GET',
+      url: '/user/profile',
+      headers: {
+        'Authorization': 'Bearer ' + jwt
+      }
+    }).then((response) => {
+      expect(response.body.login).equal('login')
+      expect(response.body.name).equal('Jan')
+      expect(response.body.lastName).equal('Kowalski')
+    })
+
+    cy.request({
+      method: 'GET',
+      url: '/user/profile',
+      failOnStatusCode: false
+    }).its('status')
+      .should('equal', 401)
   })
 })
