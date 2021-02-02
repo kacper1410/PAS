@@ -118,14 +118,14 @@ describe('Resources test', () => {
         .should('equal', 204)
     })
 
-    // cy.wait(500).then(() => {
-    //   cy.request({
-    //     method: 'GET',
-    //     url: '/resource/getResourceById/' + deleteResourceId,
-    //     failOnStatusCode: false
-    //   }).its('status')
-    //     .should('equal', 404)
-    // })
+    cy.wait(500).then(() => {
+      cy.request({
+        method: 'GET',
+        url: '/resource/getResourceById/' + deleteResourceId,
+        failOnStatusCode: false
+      }).its('status')
+        .should('equal', 404)
+    })
   })
 
   it('Authentication and borrow resource', () => {
