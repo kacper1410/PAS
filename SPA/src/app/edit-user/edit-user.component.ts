@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { User } from '../model/user';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-user',
@@ -22,30 +23,40 @@ export class EditUserComponent {
   }
 
   updateAdministrator(): void {
-    this.getEtag();
-    this.userService.updateAdministrator(this.editUser, this.etag).subscribe();
-    this.clear();
-  }
-
-  updateClient(): void {
-    this.getEtag();
-    this.userService.updateClient(this.editUser, this.etag).subscribe();
-    this.clear();
-  }
-
-  updateEmployee(): void {
-    this.getEtag();
-    this.userService.updateEmployee(this.editUser, this.etag).subscribe();
-    this.clear();
-  }
-
-  getEtag(): void {
-    this.userService.getUserEtag(this.editUser.userId).subscribe((response: Response) => {
+    this.getEtag().subscribe((response: Response) => {
       this.etag = response.headers.get('etag');
       this.etag = this.etag.replace('\"', '');
       this.etag = this.etag.replace('\"', '');
-      console.log(this.etag);
+
+      this.userService.updateAdministrator(this.editUser, this.etag).subscribe();
+      this.clear();
     });
+  }
+
+  updateClient(): void {
+    this.getEtag().subscribe((response: Response) => {
+      this.etag = response.headers.get('etag');
+      this.etag = this.etag.replace('\"', '');
+      this.etag = this.etag.replace('\"', '');
+
+      this.userService.updateClient(this.editUser, this.etag).subscribe();
+      this.clear();
+    });
+  }
+
+  updateEmployee(): void {
+    this.getEtag().subscribe((response: Response) => {
+      this.etag = response.headers.get('etag');
+      this.etag = this.etag.replace('\"', '');
+      this.etag = this.etag.replace('\"', '');
+
+      this.userService.updateEmployee(this.editUser, this.etag).subscribe();
+      this.clear();
+    });
+  }
+
+  getEtag(): any {
+    return this.userService.getUserEtag(this.editUser.userId);
   }
 
   clear(): void {

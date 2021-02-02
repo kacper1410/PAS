@@ -6,14 +6,10 @@ import { User } from '../model/user';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.less']
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
 
   @Input()
   users: User[] = [];
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
