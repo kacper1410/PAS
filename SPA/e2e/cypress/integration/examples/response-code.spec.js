@@ -1,8 +1,5 @@
 describe('Response code test', () => {
 
-  it('Resource with negative length', () => {
-  })
-
   it('Wrong credentials', () => {
     cy.request({
       method: 'POST',
@@ -32,7 +29,7 @@ describe('Response code test', () => {
       url: 'http://localhost:8080/PAS/api',
       failOnStatusCode: false
     }).its('status')
-      .should('equal', 401)
+      .should('equal', 404)
   })
 
   it('No JWT token', () => {
@@ -44,15 +41,6 @@ describe('Response code test', () => {
       .should('equal', 405)
 
       // Add profile and allocate
-  })
-
-  it('Wrong user role', () => {
-  })
-
-  it('Change user id', () => {
-  })
-
-  it('Change resource id', () => {
   })
 
   it('Refresh JWT in inactive account', () => {
