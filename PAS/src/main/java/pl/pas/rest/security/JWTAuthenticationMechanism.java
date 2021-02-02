@@ -28,7 +28,8 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
 //        }
 
         if (!httpServletRequest.getRequestURL().toString().contains("profile")
-                && !httpServletRequest.getRequestURL().toString().contains("allocate")) {
+                && !httpServletRequest.getRequestURL().toString().contains("allocate")
+                && !httpServletRequest.getRequestURL().toString().contains("refreshJWT")) {
             return httpMessageContext.doNothing();
         }
 
