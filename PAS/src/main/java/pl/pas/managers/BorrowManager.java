@@ -40,6 +40,11 @@ public class BorrowManager implements Serializable {
         borrowResource(resourceId, clientId, new Date());
     }
 
+    public void borrowResource(long resourceId, String login) throws NotFoundException, NotValidException {
+        User user = userRepository.getUser(login);
+        borrowResource(resourceId, user.getUserId(), new Date());
+    }
+
     public void borrowResource(long resourceId, long clientId, Date date) throws NotFoundException, NotValidException {
         Resource resource = resourceRepository.getResource(resourceId);
         User user = userRepository.getUser(clientId);

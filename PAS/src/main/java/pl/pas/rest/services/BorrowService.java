@@ -2,14 +2,17 @@ package pl.pas.rest.services;
 
 import lombok.NoArgsConstructor;
 import pl.pas.exceptions.NotFoundException;
+import pl.pas.exceptions.NotValidException;
 import pl.pas.managers.BorrowManager;
 import pl.pas.model.Borrow;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import java.util.List;
 
 @NoArgsConstructor
@@ -46,6 +49,18 @@ public class BorrowService {
             return borrowManager.getAllBorrowsForResource(uuid);
         } catch (NotFoundException e) {
             throw new ClientErrorException("Resource not found", Response.Status.NOT_FOUND);
+        }
+    }
+
+    @POST
+    @Path("allocate/{resUuid}")
+    public void allocate(@PathParam("resUuid") long resUuid, @Context SecurityContext securityContext) {
+        try {
+            borrowManager.borrowResource(resUuid, securityContext.getUserPrincipal().getName());
+        } catch (NotFoundException e) {
+            throw new ClientErrorException("Client or resource not found", Response.Status.NOT_FOUND);
+        } catch (NotValidException e) {
+            throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
         }
     }
 }
