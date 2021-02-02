@@ -236,7 +236,7 @@ public class UserService {
     @Path("/deactivate/{uuid}")
     public void deactivate(@PathParam("uuid") long id) {
         try {
-            userManager.activateUser(userManager.getUser(id));
+            userManager.deactivateUser(userManager.getUser(id));
         } catch (NotValidException ignored) {
         } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);
@@ -247,7 +247,7 @@ public class UserService {
     @Path("/activate/{uuid}")
     public void activate(@PathParam("uuid") long id) {
         try {
-            userManager.deactivateUser(userManager.getUser(id));
+            userManager.activateUser(userManager.getUser(id));
         } catch (NotValidException ignored) {
         } catch (NotFoundException e) {
             throw new ClientErrorException("User not found", Response.Status.NOT_FOUND);

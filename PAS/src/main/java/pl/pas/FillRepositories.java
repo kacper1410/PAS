@@ -3,6 +3,7 @@ package pl.pas;
 import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
+import pl.pas.managers.BorrowManager;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 import pl.pas.model.resource.Resource;
@@ -10,11 +11,10 @@ import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
 import pl.pas.model.user.User;
-import pl.pas.managers.BorrowManager;
 import pl.pas.repositories.interfaces.IBorrowRepository;
 import pl.pas.repositories.interfaces.IResourceRepository;
 import pl.pas.repositories.interfaces.IUserRepository;
-import javax.annotation.PostConstruct;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Initialized;
 import javax.enterprise.event.Observes;
@@ -85,11 +85,7 @@ public class FillRepositories implements Serializable {
         }
 
         try {
-            borrowManager.borrowResource(book1.getResourceId(), user3.getUserId());
             borrowManager.borrowResource(audioBook1.getResourceId(), user3.getUserId());
-            borrowManager.borrowResource(book2.getResourceId(), user3.getUserId());
-
-            borrowManager.borrowResource(book3.getResourceId(), user4.getUserId());
             borrowManager.borrowResource(audioBook2.getResourceId(), user4.getUserId());
 
             user5.setActive(true);

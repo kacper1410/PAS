@@ -13,7 +13,7 @@ describe('Resources test', () => {
   beforeEach(() => {
     cy.request({
       method: 'GET',
-      url: '/resource/getAllAvailableResources'
+      url: '/resource/getAllBooks'
     }).its('body')
       .then((resources) => {
         resource.resourceId = resources[0].resourceId;
@@ -56,7 +56,6 @@ describe('Resources test', () => {
       expect(response.body.title).equal(resource.title)
       expect(response.body.author).equal(resource.author)
       expect(response.body.available).equal(resource.available)
-      expect(response.body.available).equal(resource.available)
       expect(response.body.publishYear).equal(resource.publishYear)
     })
   })
@@ -67,28 +66,30 @@ describe('Resources test', () => {
       title: 'ResourceTitle',
       author: 'ResourceAuthor',
       available: true,
-      length: 2000
+      publishYear: 2000
     }
 
-    cy.request({
-      method: 'PUT',
-      url: '/resource/updateAudioBookById/' + resource.resourceId,
-      body: editResource,
-      headers: {
-        'If-match': etag,
-      }
-    })
-
-    cy.wait(500).then(() => {
+    if (resource.available) {
       cy.request({
-        method: 'GET',
-        url: '/resource/getResourceById/' + resource.resourceId
-      }).then((response) => {
-        expect(response.body.title).equal(editResource.title)
-        expect(response.body.author).equal(editResource.author)
-        expect(response.body.length).equal(editResource.length)
+        method: 'PUT',
+        url: '/resource/updateBookById/' + resource.resourceId,
+        body: editResource,
+        headers: {
+          'If-match': etag,
+        }
       })
-    })
+
+      cy.wait(500).then(() => {
+        cy.request({
+          method: 'GET',
+          url: '/resource/getResourceById/' + resource.resourceId
+        }).then((response) => {
+          expect(response.body.title).equal(editResource.title)
+          expect(response.body.author).equal(editResource.author)
+          expect(response.body.publishYear).equal(editResource.publishYear)
+        })
+      })
+    }
   })
 
   it('Delete resource', () => {
@@ -126,9 +127,57 @@ describe('Resources test', () => {
       }).its('status')
         .should('equal', 404)
     })
+
+    cy.wait(500).then(() => {
+      cy.request({
+        method: 'POST',
+        url: '/resource/addBook',
+        body: resource
+      }).then((response) => {
+        expect(response.status).equal(204)
+      })
+    })
   })
 
   it('Authentication and borrow resource', () => {
+    let jwt;
+
+    cy.request('POST', '/authenticate', {login: "cli1", password: "spa"})
+      .its('body')
+      .then((body) => {
+        jwt = body;
+      })
+
+    if (resource.available) {
+      cy.wait(500).then(() => {
+        cy.request({
+          method: 'GET',
+          url: '/resource/getResourceById/' + resource.resourceId
+        }).then((response) => {
+          expect(response.body.available).equal(true)
+        })
+      })
+
+      cy.wait(500).then(() => {
+        cy.request({
+          method: 'POST',
+          url: '/borrow/allocate/' + resource.resourceId,
+          headers: {
+            'Authorization': 'Bearer ' + jwt
+          }
+        }).its('status')
+          .should('equals', 204)
+      })
+    } else {
+      cy.wait(500).then(() => {
+        cy.request({
+          method: 'GET',
+          url: '/resource/getResourceById/' + resource.resourceId
+        }).then((response) => {
+          expect(response.body.available).equal(false)
+        })
+      })
+    }
   })
 
   it('Resource with negative length', () => {
@@ -171,5 +220,29 @@ describe('Resources test', () => {
       }
     }).its('status')
       .should('equal', 412)
+  })
+
+  it('Resource actual borrowed', () => {
+    let jwt;
+
+    cy.request('POST', '/authenticate', {login: "cli1", password: "spa"})
+      .its('body')
+      .then((body) => {
+        jwt = body;
+      })
+
+    if (!resource.available) {
+      cy.wait(500).then(() => {
+        cy.request({
+          method: 'POST',
+          url: '/borrow/allocate/' + resource.resourceId,
+          failOnStatusCode: false,
+          headers: {
+            'Authorization': 'Bearer ' + jwt
+          }
+        }).its('status')
+          .should('equals', 406)
+      })
+    }
   })
 })
