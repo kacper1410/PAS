@@ -29,35 +29,35 @@ public class ResourceService {
 
     @GET
     @Path("getAllResources")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Resource> getAllResources() {
         return resourceManager.getAllResources();
     }
 
     @GET
     @Path("getAllAvailableResources")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Resource> getAllAvailableResources() {
         return resourceManager.getAllAvailableResources();
     }
 
     @GET
     @Path("getAllBooks")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Book> getAllBooks() {
         return resourceManager.getAllBooks();
     }
 
     @GET
     @Path("getAllAudioBooks")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<AudioBook> getAllAudioBooks() {
         return resourceManager.getAllAudioBooks();
     }
 
     @GET
     @Path("getResourceById/{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Response getResourceById(@PathParam("id") long id) {
         try {
             Resource resource = resourceManager.getResource(id);
@@ -73,7 +73,7 @@ public class ResourceService {
 
     @POST
     @Path("addBook")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public void addBook(Book book) {
         try {
             resourceManager.addBook(book.getISBN(), book.getTitle(), book.getAuthor(), book.getPublishYear());
@@ -84,7 +84,7 @@ public class ResourceService {
 
     @POST
     @Path("addAudioBook")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public void addAudioBook(AudioBook audioBook) {
         try {
             resourceManager.addAudioBook(audioBook.getISBN(), audioBook.getTitle(), audioBook.getAuthor(), audioBook.getLength());
@@ -95,7 +95,7 @@ public class ResourceService {
 
     @PUT
     @Path("updateBookById/{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @SignatureValidatorFilterBinding
     public void updateBookById(@PathParam("id") long id, @HeaderParam("If-match") @NotNull @NotEmpty String ifMatch, Book book) {
         if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, id)) {
@@ -113,7 +113,7 @@ public class ResourceService {
 
     @PUT
     @Path("updateAudioBookById/{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @SignatureValidatorFilterBinding
     public void updateAudioBookById(@PathParam("id") long id, @HeaderParam("If-match") @NotNull @NotEmpty String ifMatch, AudioBook book) {
         if (!IdentitySignVerifier.isEntitySignatureValid(ifMatch, id)) {

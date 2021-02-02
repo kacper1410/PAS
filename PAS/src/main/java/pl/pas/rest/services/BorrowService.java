@@ -22,14 +22,14 @@ public class BorrowService {
 
     @GET
     @Path("getAllBorrows")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Borrow> getAllBorrows() {
         return borrowManager.getAllBorrows();
     }
 
     @GET
     @Path("getAllBorrowsForClientByUuid/{uuid}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Borrow> getAllBorrowsForClientByUuid(@PathParam("uuid") long uuid) {
         try {
             return borrowManager.getAllBorrowsForClient(uuid);
@@ -40,7 +40,7 @@ public class BorrowService {
 
     @GET
     @Path("getAllBorrowsForResourceByUuid/{uuid}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Borrow> getAllBorrowsForResourceByUuid(@PathParam("uuid") long uuid) {
         try {
             return borrowManager.getAllBorrowsForResource(uuid);
