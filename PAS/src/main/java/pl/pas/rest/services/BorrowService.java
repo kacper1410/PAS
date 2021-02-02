@@ -63,4 +63,16 @@ public class BorrowService {
             throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
         }
     }
+
+    @PUT
+    @Path("endBorrow/{uuid}")
+    public void endBorrow(@PathParam("uuid") long uuid) {
+        try {
+            borrowManager.endBorrow(borrowManager.getBorrow(uuid));
+        } catch (NotValidException e) {
+            //throw new ClientErrorException("Values not valid", Response.Status.NOT_ACCEPTABLE);
+        } catch (NotFoundException e) {
+            throw new ClientErrorException("Borrow not found", Response.Status.NOT_FOUND);
+        }
+    }
 }
