@@ -67,12 +67,12 @@ describe('Resources test', () => {
       title: 'ResourceTitle',
       author: 'ResourceAuthor',
       available: true,
-      publishYear: 2000
+      length: 2000
     }
 
     cy.request({
       method: 'PUT',
-      url: '/resource/updateBookById/' + resource.resourceId,
+      url: '/resource/updateAudioBookById/' + resource.resourceId,
       body: editResource,
       headers: {
         'If-match': etag,
@@ -86,7 +86,7 @@ describe('Resources test', () => {
       }).then((response) => {
         expect(response.body.title).equal(editResource.title)
         expect(response.body.author).equal(editResource.author)
-        expect(response.body.publishYear).equal(editResource.publishYear)
+        expect(response.body.length).equal(editResource.length)
       })
     })
   })
