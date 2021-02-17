@@ -32,7 +32,7 @@ describe('Users test', () => {
     })
   })
 
-  it('Create user', () => {
+  it('Create user (positive)', () => {
     let user = {
       login: 'test-client' + Math.random() * 10000,
       name: 'test',
@@ -60,7 +60,7 @@ describe('Users test', () => {
     })
   })
 
-  it('Read user', () => {
+  it('Read user (positive)', () => {
     cy.request({
       method: 'GET',
       url: '/user/getUserById/' + user.userId
@@ -72,7 +72,7 @@ describe('Users test', () => {
     })
   })
 
-  it('Update user', () => {
+  it('Update user (positive)', () => {
     let editUser = {
       name: 'testNameEEE',
       lastName: 'testLastName',
@@ -101,7 +101,7 @@ describe('Users test', () => {
     })
   })
 
-  it('Client with not valid age', () => {
+  it('Client with not valid age (negative)', () => {
     let editUser = {
       name: 'testNameEEE',
       lastName: 'testLastName',
@@ -120,7 +120,7 @@ describe('Users test', () => {
       .should('equal', 406)
   })
 
-  it('Change user id', () => {
+  it('Change user id (negative)', () => {
     let editUser = {
       name: 'testNameEEE',
       lastName: 'testLastName',
