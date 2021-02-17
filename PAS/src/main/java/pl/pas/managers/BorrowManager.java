@@ -92,15 +92,4 @@ public class BorrowManager implements Serializable {
         borrowRepository.endBorrow(borrow.getBorrowId());
         borrow.getResource().setAvailable(true);
     }
-
-//    public boolean cancelBorrow(Borrow borrow) {
-//        if (borrow == null
-//                || borrow.getReturnDate() != null
-//                || borrowRepository.getBorrow(borrow.getBorrowId()) == null) {
-//            return false;
-//        }
-//
-//        return borrowRepository.deleteBorrow(borrow.getBorrowId());
-//    }
-
 }

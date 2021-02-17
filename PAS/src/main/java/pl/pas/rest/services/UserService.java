@@ -32,7 +32,7 @@ public class UserService {
     private UserManager userManager;
 
     @GET
-    @Path("getAllClients")
+    @Path("allClients")
     @Produces({MediaType.APPLICATION_JSON})
     public List<Client> getAllClients() {
         try {
@@ -43,7 +43,7 @@ public class UserService {
     }
 
     @GET
-    @Path("getAllActiveClients")
+    @Path("allActiveClients")
     @Produces({MediaType.APPLICATION_JSON})
     public List<Client> getAllActiveClients() {
         try {
@@ -54,7 +54,7 @@ public class UserService {
     }
 
     @GET
-    @Path("getAllEmployees")
+    @Path("allEmployees")
     @Produces({MediaType.APPLICATION_JSON})
     public List<Employee> getAllEmployees() {
         try {
@@ -65,7 +65,7 @@ public class UserService {
     }
 
     @GET
-    @Path("getAllAdministrators")
+    @Path("allAdministrators")
     @Produces({MediaType.APPLICATION_JSON})
     public List<Administrator> getAllAdministrators() {
         try {
@@ -76,7 +76,7 @@ public class UserService {
     }
 
     @GET
-    @Path("getUserById/{uuid}")
+    @Path("userById/{uuid}")
     @Produces({MediaType.APPLICATION_JSON})
     public Response getUser(@PathParam("uuid") long uuid) {
         try {
@@ -94,7 +94,7 @@ public class UserService {
     }
 
     @GET
-    @Path("getUserByLogin/{login}")
+    @Path("userByLogin/{login}")
     @Produces({MediaType.APPLICATION_JSON})
     public Response getUser(@PathParam("login") String login) {
         try {
@@ -112,7 +112,7 @@ public class UserService {
     }
 
     @POST
-    @Path("addEmployee")
+    @Path("employee")
     @Consumes({MediaType.APPLICATION_JSON})
     public void addEmployee(Employee employee) {
         try {
@@ -127,7 +127,7 @@ public class UserService {
     }
 
     @POST
-    @Path("addAdministrator")
+    @Path("administrator")
     @Consumes({MediaType.APPLICATION_JSON})
     public void addAdministrator(Administrator administrator) {
         try {
@@ -142,7 +142,7 @@ public class UserService {
     }
 
     @POST
-    @Path("addClient")
+    @Path("client")
     @Consumes({MediaType.APPLICATION_JSON})
     public void addClient(Client client) {
         try {
@@ -177,7 +177,7 @@ public class UserService {
     }
 
     @PUT
-    @Path("updateEmployee/{id}")
+    @Path("employee/{id}")
     @Consumes({MediaType.APPLICATION_JSON})
     @SignatureValidatorFilterBinding
     public void updateEmployee(@PathParam("id") long id, @HeaderParam("If-match") @NotNull @NotEmpty String ifMatch, Employee employee) {
@@ -197,7 +197,7 @@ public class UserService {
     }
 
     @PUT
-    @Path("updateClient/{id}")
+    @Path("client/{id}")
     @Consumes({MediaType.APPLICATION_JSON})
     @SignatureValidatorFilterBinding
     public void updateClient(@PathParam("id") long id, @HeaderParam("If-match") @NotNull @NotEmpty String ifMatch, Client client) {

@@ -36,7 +36,7 @@ describe('Resources test', () => {
     })
   })
 
-  it('Create resource', () => {
+  it('Create resource (positive)', () => {
     cy.request({
       method: 'POST',
       url: '/resource/addBook',
@@ -46,7 +46,7 @@ describe('Resources test', () => {
     })
   })
 
-  it('Read resource', () => {
+  it('Read resource (positive)', () => {
     cy.request({
       method: 'GET',
       url: '/resource/getResourceById/' + resource.resourceId
@@ -60,7 +60,7 @@ describe('Resources test', () => {
     })
   })
 
-  it('Update resource', () => {
+  it('Update resource (positive)', () => {
     let editResource = {
       ISBN: 312321312312,
       title: 'ResourceTitle',
@@ -92,7 +92,7 @@ describe('Resources test', () => {
     }
   })
 
-  it('Delete resource', () => {
+  it('Delete resource (positive)', () => {
     let deleteResourceId;
 
     cy.request({
@@ -139,7 +139,7 @@ describe('Resources test', () => {
     })
   })
 
-  it('Authentication and borrow resource', () => {
+  it('Authentication and borrow resource (positive)', () => {
     let jwt;
 
     cy.request('POST', '/authenticate', {login: "cli1", password: "spa"})
@@ -180,7 +180,7 @@ describe('Resources test', () => {
     }
   })
 
-  it('Resource with negative length', () => {
+  it('Resource with negative length (negative)', () => {
     let editResource = {
       ISBN: 312321312312,
       title: 'ResourceTitle',
@@ -201,7 +201,7 @@ describe('Resources test', () => {
       .should('equal', 406)
   })
 
-  it('Change resource id', () => {
+  it('Change resource id (negative)', () => {
     let editResource = {
       ISBN: 312321312312,
       title: 'ResourceTitle',
@@ -222,7 +222,7 @@ describe('Resources test', () => {
       .should('equal', 412)
   })
 
-  it('Resource actual borrowed', () => {
+  it('Resource actual borrowed (negative)', () => {
     let jwt;
 
     cy.request('POST', '/authenticate', {login: "cli1", password: "spa"})

@@ -9,13 +9,13 @@ describe('Authentication tests', () => {
       })
   })
 
-  it('Getting JWT', () => {
+  it('Getting JWT (positive)', () => {
     cy.request('POST', '/authenticate', { login: "login", password: "spa" })
       .its('status')
       .should('be.ok')
   })
 
-  it('Authentication and get information about yourself', () => {
+  it('Authentication and get information about yourself (positive)', () => {
     cy.request({
       method: 'GET',
       url: '/user/profile',
@@ -36,7 +36,7 @@ describe('Authentication tests', () => {
       .should('equal', 401)
   })
 
-  it('Wrong credentials', () => {
+  it('Wrong credentials (negative)', () => {
     cy.request({
       method: 'POST',
       url: '/authenticate',
@@ -56,7 +56,7 @@ describe('Authentication tests', () => {
       .should('equal', 401)
   })
 
-  it('Wrong protocol (required HTTPS)', () => {
+  it('Wrong protocol (required HTTPS) (negative)', () => {
     cy.request({
       method: 'GET',
       url: 'http://localhost:8080/PAS/api',
@@ -65,7 +65,7 @@ describe('Authentication tests', () => {
       .should('equal', 404)
   })
 
-  it('No JWT token', () => {
+  it('No JWT token (negative)', () => {
     cy.request({
       method: 'POST',
       url: '/borrow/allocate',
@@ -74,7 +74,7 @@ describe('Authentication tests', () => {
       .should('equal', 401)
   })
 
-  it('Refresh JWT', () => {
+  it('Refresh JWT (positive)', () => {
     cy.wait(1000).then(() => {
       cy.request({
         method: 'GET',
@@ -95,7 +95,7 @@ describe('Authentication tests', () => {
     })
   })
 
-  it('Refresh JWT in inactive account', () => {
+  it('Refresh JWT in inactive account (negative)', () => {
     let etag;
     let userId;
 
