@@ -8,7 +8,7 @@ import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 import pl.pas.model.user.Client;
 import java.util.Date;
-import java.util.UUID;
+
 import static org.junit.Assert.*;
 
 public class BorrowRepositoryTest {

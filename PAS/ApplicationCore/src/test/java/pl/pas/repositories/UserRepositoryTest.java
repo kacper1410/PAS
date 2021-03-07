@@ -7,7 +7,6 @@ import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
 
-import java.util.UUID;
 import static org.junit.Assert.*;
 
 public class UserRepositoryTest {
