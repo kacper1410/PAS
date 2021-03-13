@@ -2,13 +2,9 @@ package pl.pas.managers;
 
 import org.junit.Test;
 import org.opentest4j.TestAbortedException;
-import pl.pas.FillRepositories;
 import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.model.resource.Resource;
-import pl.pas.repositories.BorrowRepository;
-import pl.pas.repositories.ResourceRepository;
-import pl.pas.repositories.UserRepository;
 
 import static org.junit.Assert.*;
 
@@ -17,13 +13,13 @@ public class ResourceManagerTest {
     private static int SIZE;
 
     public ResourceManagerTest() {
-        ResourceRepository resourceRepository = new ResourceRepository();
-        UserRepository userRepository = new UserRepository();
-        BorrowRepository borrowRepository = new BorrowRepository();
-        FillRepositories fillRepositories = new FillRepositories(resourceRepository, userRepository, borrowRepository);
-        fillRepositories.fill();
-        resourceManager = new ResourceManager(resourceRepository, borrowRepository, userRepository);
-        SIZE = resourceRepository.getAllResources().size();
+//        ResourceRepository resourceRepository = new ResourceRepository();
+//        UserRepository userRepository = new UserRepository();
+//        BorrowRepository borrowRepository = new BorrowRepository();
+//        FillRepositories fillRepositories = new FillRepositories(resourceRepository, userRepository, borrowRepository);
+//        fillRepositories.fill();
+//        resourceManager = new ResourceManager(resourceRepository, borrowRepository, userRepository);
+//        SIZE = resourceRepository.getAllResources().size();
     }
 
     @Test

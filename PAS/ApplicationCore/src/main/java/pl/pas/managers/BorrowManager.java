@@ -6,9 +6,11 @@ import pl.pas.model.Borrow;
 import pl.pas.model.resource.Resource;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.User;
-import pl.pas.repositories.interfaces.IBorrowRepository;
-import pl.pas.repositories.interfaces.IResourceRepository;
-import pl.pas.repositories.interfaces.IUserRepository;
+import pl.pas.ports.infrastructure.borrow.CreateBorrowPort;
+import pl.pas.ports.infrastructure.borrow.ReadBorrowPort;
+import pl.pas.ports.infrastructure.borrow.UpdateBorrowPort;
+import pl.pas.ports.infrastructure.resource.ReadResourcePort;
+import pl.pas.ports.infrastructure.user.ReadUserPort;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -26,6 +28,17 @@ public class BorrowManager implements Serializable {
     private IBorrowRepository borrowRepository;
     @Inject
     private IUserRepository userRepository;
+
+    @Inject
+    private ReadBorrowPort readBorrowPort;
+    @Inject
+    private UpdateBorrowPort updateBorrowPort;
+    @Inject
+    private CreateBorrowPort createBorrowPort;
+    @Inject
+    private ReadUserPort readUserPort;
+    @Inject
+    private ReadResourcePort readResourcePort;
 
     public BorrowManager() {
     }

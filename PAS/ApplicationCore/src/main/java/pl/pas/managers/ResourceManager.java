@@ -6,9 +6,11 @@ import pl.pas.model.Borrow;
 import pl.pas.model.resource.AudioBook;
 import pl.pas.model.resource.Book;
 import pl.pas.model.resource.Resource;
-import pl.pas.repositories.interfaces.IBorrowRepository;
-import pl.pas.repositories.interfaces.IResourceRepository;
-import pl.pas.repositories.interfaces.IUserRepository;
+import pl.pas.ports.infrastructure.borrow.ReadBorrowPort;
+import pl.pas.ports.infrastructure.resource.CreateResourcePort;
+import pl.pas.ports.infrastructure.resource.DeleteResourcePort;
+import pl.pas.ports.infrastructure.resource.ReadResourcePort;
+import pl.pas.ports.infrastructure.resource.UpdateResourcePort;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

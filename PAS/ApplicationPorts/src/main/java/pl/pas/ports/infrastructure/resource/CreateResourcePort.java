@@ -1,9 +1,7 @@
 package pl.pas.ports.infrastructure.resource;
 
-import pl.pas.model.resource.AudioBook;
-import pl.pas.model.resource.Book;
+import pl.pas.model.resource.Resource;
 
 public interface CreateResourcePort {
-    void createBook(Book book);
-    void createAudioBook(AudioBook book);
+    void createResource(Resource resource);
 }

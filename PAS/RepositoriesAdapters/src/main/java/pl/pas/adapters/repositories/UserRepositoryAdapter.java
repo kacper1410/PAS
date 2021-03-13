@@ -1,12 +1,9 @@
 package pl.pas.adapters.repositories;
 
 import pl.pas.data.model.exceptions.UserAlreadyExistExceptionEntity;
+import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.UserAlreadyExistException;
-import pl.pas.mappers.user.AdministratorEntityMapper;
-import pl.pas.mappers.user.ClientEntityMapper;
-import pl.pas.mappers.user.EmployeeEntityMapper;
-import pl.pas.model.user.User;
-import pl.pas.ports.infrastructure.user.CreateUserPort;
+import pl.pas.mappers.user.UserEntityMapper;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
@@ -51,7 +48,10 @@ public class UserRepositoryAdapter implements CreateUserPort, ReadUserPort, Upda
 
     @Override
     public List<Client> readAllClients() {
-        return null;
+        return userRepository.getAllClients()
+                .stream()
+                .map(userEntity -> (Client) UserEntityMapper.userEntityToUser(userEntity))
+                .collect(Collectors.toList());
     }
 
     @Override
