@@ -23,44 +23,43 @@ import java.util.List;
 @Named
 @ApplicationScoped
 public class ResourceManager implements Serializable {
+
     @Inject
-    private IResourceRepository resourceRepository;
+    private ReadResourcePort readResourcePort;
     @Inject
-    private IBorrowRepository borrowRepository;
+    private ReadBorrowPort readBorrowPort;
     @Inject
-    private IUserRepository userRepository;
+    private DeleteResourcePort deleteResourcePort;
+    @Inject
+    private CreateResourcePort createResourcePort;
+    @Inject
+    private UpdateResourcePort updateResourcePort;
 
     public ResourceManager() {
     }
 
-    public ResourceManager(IResourceRepository resourceRepository, IBorrowRepository borrowRepository, IUserRepository userRepository) {
-        this.resourceRepository = resourceRepository;
-        this.borrowRepository = borrowRepository;
-        this.userRepository = userRepository;
-    }
-
     public Resource getResource(long uuid) throws NotFoundException {
-        return resourceRepository.getResource(uuid);
+        return readResourcePort.readResource(uuid);
     }
 
     public List<Resource> getAllResources() {
-        return resourceRepository.getAllResources();
+        return readResourcePort.readAllResources();
     }
 
     public List<Resource> getAllAvailableResources() {
         List<Resource> availableResources = new ArrayList<>();
-        for (Resource res: resourceRepository.getAllResources()) {
+        for (Resource res: readResourcePort.readAllResources()) {
             if (res.isAvailable()) availableResources.add(res);
         }
         return availableResources;
     }
 
     public List<Book> getAllBooks() {
-        return resourceRepository.getAllBooks();
+        return readResourcePort.readAllBooks();
     }
 
     public List<AudioBook> getAllAudioBooks() {
-        return resourceRepository.getAllAudioBooks();
+        return readResourcePort.readAllAudioBooks();
     }
 
     public void removeResource(Resource resource) throws NotValidException {
@@ -70,7 +69,7 @@ public class ResourceManager implements Serializable {
     public void removeResource(long uuid) throws NotValidException {
         Resource resource;
         try {
-            resource = resourceRepository.getResource(uuid);
+            resource = readResourcePort.readResource(uuid);
         } catch (NotFoundException e) {
             return;
         }
@@ -79,46 +78,46 @@ public class ResourceManager implements Serializable {
             throw new NotValidException();
         }
 
-        for (Borrow borrow : borrowRepository.getAllBorrows()) {
+        for (Borrow borrow : readBorrowPort.readAllBorrows()) {
             if (borrow.getResource() == resource) {
                 borrow.setResource(null);
             }
         }
 
-        resourceRepository.deleteResource(uuid);
+        deleteResourcePort.deleteResource(uuid);
     }
 
     public void addBook(long isbn, String title, String author, int publishYear) throws NotValidException {
         if (isbn == 0 || title == null || author == null || publishYear > Calendar.getInstance().get(Calendar.YEAR)) {
             throw new NotValidException();
         }
-        resourceRepository.addResource(new Book(isbn, title, author, publishYear));
+        createResourcePort.createResource(new Book(isbn, title, author, publishYear));
     }
 
     public void addAudioBook(long isbn, String title, String author, int length) throws NotValidException {
         if (isbn == 0 || title == null || author == null || length <= 0) {
             throw new NotValidException();
         }
-        resourceRepository.addResource(new Book(isbn, title, author, length));
+        createResourcePort.createResource(new Book(isbn, title, author, length));
     }
 
     public void updateBook(Resource oldResource, long ISBN, String title, String author, int publishYear) throws NotValidException {
         if (oldResource == null || ISBN <= 0 || title == null || author == null
                 || publishYear > Calendar.getInstance().get(Calendar.YEAR)
-                || !resourceRepository.getAllResources().contains(oldResource) || !(oldResource instanceof Book)
+                || !readResourcePort.readAllResources().contains(oldResource) || !(oldResource instanceof Book)
                 || !oldResource.isAvailable()) {
             throw new NotValidException();
         }
-        resourceRepository.updateResource(oldResource.getResourceId(), new Book(ISBN, title, author, publishYear));
+        updateResourcePort.updateResource(oldResource.getResourceId(), new Book(ISBN, title, author, publishYear));
     }
 
     public void updateAudioBook(Resource oldResource, long ISBN, String title, String author, int length) throws NotValidException {
         if (oldResource == null || ISBN <= 0 || title == null || author == null || length < 0
-                || !resourceRepository.getAllResources().contains(oldResource) || !(oldResource instanceof AudioBook)
+                || !readResourcePort.readAllResources().contains(oldResource) || !(oldResource instanceof AudioBook)
                 || !oldResource.isAvailable()) {
             throw new NotValidException();
         }
-        resourceRepository.updateResource(oldResource.getResourceId(), new AudioBook(ISBN, title, author, length));
+        updateResourcePort.updateResource(oldResource.getResourceId(), new AudioBook(ISBN, title, author, length));
     }
 
 }

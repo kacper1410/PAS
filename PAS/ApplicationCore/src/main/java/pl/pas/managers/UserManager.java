@@ -7,9 +7,9 @@ import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
 import pl.pas.model.user.User;
-import pl.pas.repositories.interfaces.IBorrowRepository;
-import pl.pas.repositories.interfaces.IResourceRepository;
-import pl.pas.repositories.interfaces.IUserRepository;
+import pl.pas.ports.infrastructure.user.CreateUserPort;
+import pl.pas.ports.infrastructure.user.ReadUserPort;
+import pl.pas.ports.infrastructure.user.UpdateUserPort;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -21,22 +21,16 @@ import java.util.List;
 @Named
 @ApplicationScoped
 public class UserManager implements Serializable {
+
     @Inject
-    private IUserRepository userRepository;
+    private CreateUserPort createUserPort;
     @Inject
-    private IResourceRepository resourceRepository;
+    private ReadUserPort readUserPort;
     @Inject
-    private IBorrowRepository borrowRepository;
+    private UpdateUserPort updateUser;
 
     public UserManager() {
     }
-
-    public UserManager(IUserRepository userRepository, IResourceRepository resourceRepository, IBorrowRepository borrowRepository) {
-        this.userRepository = userRepository;
-        this.resourceRepository = resourceRepository;
-        this.borrowRepository = borrowRepository;
-    }
-
 
     public void addAdministrator(Administrator admin) throws UserAlreadyExistException, NotValidException {
         if (admin == null || admin.getLogin() == null || admin.getPassword() == null || admin.getName() == null
@@ -44,7 +38,7 @@ public class UserManager implements Serializable {
             throw new NotValidException();
         }
 
-        userRepository.addUser(new Administrator(admin.getLogin(), admin.getPassword(), admin.getName(), admin.getLastName()));
+        createUserPort.createUser(new Administrator(admin.getLogin(), admin.getPassword(), admin.getName(), admin.getLastName()));
     }
 
     public void addEmployee(Employee employee) throws UserAlreadyExistException, NotValidException {
@@ -53,7 +47,7 @@ public class UserManager implements Serializable {
             throw new NotValidException();
         }
 
-        userRepository.addUser(new Employee(employee.getLogin(), employee.getPassword(), employee.getName(), employee.getLastName()));
+        createUserPort.createUser(new Employee(employee.getLogin(), employee.getPassword(), employee.getName(), employee.getLastName()));
     }
 
     public void addClient(Client client) throws UserAlreadyExistException, NotValidException {
@@ -62,41 +56,41 @@ public class UserManager implements Serializable {
             throw new NotValidException();
         }
 
-        userRepository.addUser(new Client(client.getLogin(), client.getPassword(), client.getName(), client.getLastName(), client.getAge()));
+        createUserPort.createUser(new Client(client.getLogin(), client.getPassword(), client.getName(), client.getLastName(), client.getAge()));
     }
 
     public List<User> getAllUsers() {
-        return userRepository.getAllUsers();
+        return readUserPort.readAllUsers();
     }
 
     public User getUser(long id) throws NotFoundException {
-        return userRepository.getUser(id);
+        return readUserPort.readUser(id);
     }
 
     public User getUser(String login) throws NotFoundException {
-        return userRepository.getUser(login);
+        return readUserPort.readUser(login);
     }
 
     public List<Client> getAllClients() {
-        return userRepository.getAllClients();
+        return readUserPort.readAllClients();
     }
 
     public List<Employee> getAllEmployees() {
-        return userRepository.getAllEmployees();
+        return readUserPort.readAllEmployees();
     }
 
     public List<Administrator> getAllAdministrators() {
-        return userRepository.getAllAdministrators();
+        return readUserPort.readAllAdministrators();
     }
 
     public List<User> getAllActiveUsers() {
-        return userRepository.getAllActiveUsers();
+        return readUserPort.readAllActiveUsers();
     }
 
     public List<Client> getAllActiveClients() {
         List<Client> activeClients = new ArrayList<>();
 
-        for (Client client: userRepository.getAllClients()) {
+        for (Client client: readUserPort.readAllClients()) {
             if (client.isActive()) {
                 activeClients.add(client);
             }
@@ -106,7 +100,7 @@ public class UserManager implements Serializable {
     }
 
     public void updateClient(long oldUserId, Client newClient) throws NotValidException, NotFoundException {
-        User oldUser = userRepository.getUser(oldUserId);
+        User oldUser = readUserPort.readUser(oldUserId);
 
         if (oldUserId <= 0
                 || getUser(oldUserId) == null
@@ -118,13 +112,13 @@ public class UserManager implements Serializable {
                 || !(oldUser instanceof Client)) {
             throw new NotValidException();
         }
-        userRepository.updateUser(oldUserId, new Client(oldUser.getLogin(),
+        updateUser.updateUser(oldUserId, new Client(oldUser.getLogin(),
                 oldUser.getPassword(), newClient.getName(),
                 newClient.getLastName(), newClient.getAge()));
     }
 
     public void updateUser(long oldUserId, User newUser) throws NotValidException, NotFoundException {
-        User oldUser = userRepository.getUser(oldUserId);
+        User oldUser = readUserPort.readUser(oldUserId);
 
         if (oldUserId <= 0
                 || getUser(oldUserId) == null
@@ -136,10 +130,10 @@ public class UserManager implements Serializable {
         }
 
         if (oldUser instanceof Employee) {
-            userRepository.updateUser(oldUserId, new Employee(oldUser.getLogin(),
+            updateUser.updateUser(oldUserId, new Employee(oldUser.getLogin(),
                     oldUser.getPassword(), newUser.getName(), newUser.getLastName()));
         } else if (oldUser instanceof Administrator) {
-            userRepository.updateUser(oldUserId, new Administrator(oldUser.getLogin(),
+            updateUser.updateUser(oldUserId, new Administrator(oldUser.getLogin(),
                     oldUser.getPassword(), newUser.getName(), newUser.getLastName()));
         }
     }
@@ -149,14 +143,14 @@ public class UserManager implements Serializable {
         if (user == null) {
             throw new NotValidException();
         }
-        userRepository.getUser(user.getLogin()).setActive(true);
+        readUserPort.readUser(user.getLogin()).setActive(true);
     }
 
     public void deactivateUser(User user) throws NotValidException, NotFoundException {
         if (user == null) {
             throw new NotValidException();
         }
-        userRepository.getUser(user.getLogin()).setActive(false);
+        readUserPort.readUser(user.getLogin()).setActive(false);
     }
 
 }

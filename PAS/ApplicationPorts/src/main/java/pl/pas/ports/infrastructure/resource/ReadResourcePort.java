@@ -10,6 +10,6 @@ import java.util.List;
 public interface ReadResourcePort {
     Resource readResource(long uuid) throws NotFoundException;
     List<Resource> readAllResources();
-    List<Book> getAllBooks();
-    List<AudioBook> getAllAudioBooks();
+    List<Book> readAllBooks();
+    List<AudioBook> readAllAudioBooks();
 }

@@ -22,12 +22,6 @@ import java.util.List;
 @Named
 @ApplicationScoped
 public class BorrowManager implements Serializable {
-    @Inject
-    private IResourceRepository resourceRepository;
-    @Inject
-    private IBorrowRepository borrowRepository;
-    @Inject
-    private IUserRepository userRepository;
 
     @Inject
     private ReadBorrowPort readBorrowPort;
@@ -43,27 +37,21 @@ public class BorrowManager implements Serializable {
     public BorrowManager() {
     }
 
-    public BorrowManager(IResourceRepository resourceRepository, IBorrowRepository borrowRepository, IUserRepository userRepository) {
-        this.resourceRepository = resourceRepository;
-        this.borrowRepository = borrowRepository;
-        this.userRepository = userRepository;
-    }
-
     public void borrowResource(long resourceId, long clientId) throws NotFoundException, NotValidException {
         borrowResource(resourceId, clientId, new Date());
     }
 
     public void borrowResource(long resourceId, String login) throws NotFoundException, NotValidException {
-        User user = userRepository.getUser(login);
+        User user = readUserPort.readUser(login);
         borrowResource(resourceId, user.getUserId(), new Date());
     }
 
     public void borrowResource(long resourceId, long clientId, Date date) throws NotFoundException, NotValidException {
-        Resource resource = resourceRepository.getResource(resourceId);
-        User user = userRepository.getUser(clientId);
+        Resource resource = readResourcePort.readResource(resourceId);
+        User user = readUserPort.readUser(clientId);
 
         if (resource.isAvailable() && user instanceof Client && user.isActive()) {
-            borrowRepository.addBorrow(new Borrow((Client) user, resource, date));
+            createBorrowPort.createBorrow(new Borrow((Client) user, resource, date));
             resource.setAvailable(false);
             return;
         }
@@ -72,11 +60,11 @@ public class BorrowManager implements Serializable {
     }
 
     public Borrow getBorrow(long uuid) throws NotFoundException {
-        return borrowRepository.getBorrow(uuid);
+        return readBorrowPort.readBorrow(uuid);
     }
 
     public List<Borrow> getAllBorrows() {
-        return borrowRepository.getAllBorrows();
+        return readBorrowPort.readAllBorrows();
     }
 
     public List<Borrow> getAllBorrowsForClient(Client client) throws NotFoundException {
@@ -84,8 +72,8 @@ public class BorrowManager implements Serializable {
     }
 
     public List<Borrow> getAllBorrowsForClient(long uuid) throws NotFoundException {
-        Client c = (Client) userRepository.getUser(uuid);
-        return borrowRepository.getBorrowsByUser(c.getUserId());
+        Client c = (Client) readUserPort.readUser(uuid);
+        return readBorrowPort.readBorrowsByUser(c.getUserId());
     }
 
     public List<Borrow> getAllBorrowsForResource(Resource resource) throws NotFoundException {
@@ -93,8 +81,8 @@ public class BorrowManager implements Serializable {
     }
 
     public List<Borrow> getAllBorrowsForResource(long uuid) throws NotFoundException {
-        Resource res = resourceRepository.getResource(uuid);
-        return borrowRepository.getBorrowsByResource(res.getResourceId());
+        Resource res = readResourcePort.readResource(uuid);
+        return readBorrowPort.readBorrowsByResource(res.getResourceId());
     }
 
     public void endBorrow(Borrow borrow) throws NotValidException, NotFoundException {
@@ -102,7 +90,7 @@ public class BorrowManager implements Serializable {
                 || borrow.getReturnDate() != null) {
             throw new NotValidException();
         }
-        borrowRepository.endBorrow(borrow.getBorrowId());
+        updateBorrowPort.endBorrow(borrow.getBorrowId());
         borrow.getResource().setAvailable(true);
     }
 }

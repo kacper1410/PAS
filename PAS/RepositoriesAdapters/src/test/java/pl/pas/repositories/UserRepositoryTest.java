@@ -46,8 +46,6 @@ public class UserRepositoryTest {
         assertEquals(userRepository.getAllUsers().get(3), administrator);
     }
 
-
-
     @Test
     public void testGetUser() {
         try {
@@ -91,7 +89,6 @@ public class UserRepositoryTest {
 
         assertEquals(userRepository.getAllUsers().size(), 4);
     }
-
 
     @Test
     public void testUpdateUser() {
