@@ -1,5 +1,6 @@
 package pl.pas.data.model.user;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -16,6 +16,13 @@
   <name>RepositoriesAdapters</name>
   <url>http://www.example.com</url>
 
+  <dependencies>
+    <dependency>
+      <groupId>pl.pas</groupId>
+      <artifactId>ApplicationPorts</artifactId>
+    </dependency>
+  </dependencies>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
