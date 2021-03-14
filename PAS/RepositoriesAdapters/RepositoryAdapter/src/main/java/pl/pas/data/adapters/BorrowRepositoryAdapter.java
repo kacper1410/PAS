@@ -19,7 +19,15 @@ import java.util.stream.Collectors;
 public class BorrowRepositoryAdapter implements UpdateBorrowPort, DeleteBorrowPort, ReadBorrowPort, CreateBorrowPort {
 
     @Inject
-    BorrowRepository borrowRepository;
+    private BorrowRepository borrowRepository;
+
+    public BorrowRepositoryAdapter() {
+
+    }
+
+    public BorrowRepositoryAdapter(BorrowRepository borrowRepository) {
+        this.borrowRepository = borrowRepository;
+    }
 
     @Override
     public void createBorrow(Borrow borrow) {

@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Book extends Resource {
+
     private int publishYear;
 
     public Book() {

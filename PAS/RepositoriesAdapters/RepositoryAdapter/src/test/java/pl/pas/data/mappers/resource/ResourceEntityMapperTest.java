@@ -6,12 +6,14 @@ import pl.pas.data.model.resource.AudioBookEntity;
 import pl.pas.data.model.resource.BookEntity;
 import pl.pas.domain.model.resource.AudioBook;
 import pl.pas.domain.model.resource.Book;
+import pl.pas.data.repositories.UUID;
 
 class ResourceEntityMapperTest {
 
     @Test
     void resourceEntityToResource() {
         BookEntity bookEntity = new BookEntity(432345345, "Harry Potter", "Author", 2000);
+        bookEntity.setResourceId(UUID.randomUUID());
 
         Book book = (Book) ResourceEntityMapper.resourceEntityToResource(bookEntity);
         Assertions.assertEquals(book.getResourceId(), book.getResourceId());
@@ -22,6 +24,7 @@ class ResourceEntityMapperTest {
         Assertions.assertTrue(book.isAvailable());
 
         AudioBookEntity audioBookEntity = new AudioBookEntity(1, "Harry Potter", "Author", 270);
+        audioBookEntity.setResourceId(UUID.randomUUID());
 
         AudioBook audioBook = (AudioBook) ResourceEntityMapper.resourceEntityToResource(audioBookEntity);
         Assertions.assertEquals(audioBook.getResourceId(), audioBook.getResourceId());
@@ -35,6 +38,7 @@ class ResourceEntityMapperTest {
     @Test
     void resourceToResourceEntity() {
         Book book = new Book(432345345, "Harry Potter", "Author", 2000);
+        book.setResourceId(UUID.randomUUID());
 
         BookEntity bookEntity = (BookEntity) ResourceEntityMapper.resourceToResourceEntity(book);
         Assertions.assertEquals(book.getResourceId(), bookEntity.getResourceId());
@@ -45,6 +49,7 @@ class ResourceEntityMapperTest {
         Assertions.assertTrue(bookEntity.isAvailable());
 
         AudioBook audioBook = new AudioBook(1, "Harry Potter", "Author", 270);
+        audioBook.setResourceId(UUID.randomUUID());
 
         AudioBookEntity audioBookEntity = (AudioBookEntity) ResourceEntityMapper.resourceToResourceEntity(audioBook);
         Assertions.assertEquals(audioBook.getResourceId(), audioBookEntity.getResourceId());

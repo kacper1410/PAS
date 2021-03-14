@@ -21,7 +21,15 @@ import java.util.stream.Collectors;
 public class ResourceRepositoryAdapter implements CreateResourcePort, UpdateResourcePort, DeleteResourcePort, ReadResourcePort {
 
     @Inject
-    ResourceRepository resourceRepository;
+    private ResourceRepository resourceRepository;
+
+    public ResourceRepositoryAdapter() {
+
+    }
+
+    public ResourceRepositoryAdapter(ResourceRepository resourceRepository) {
+        this.resourceRepository = resourceRepository;
+    }
 
     @Override
     public void createResource(Resource resource) {

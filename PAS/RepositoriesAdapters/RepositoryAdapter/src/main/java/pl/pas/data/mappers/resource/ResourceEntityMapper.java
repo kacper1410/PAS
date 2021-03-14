@@ -12,6 +12,7 @@ public class ResourceEntityMapper {
     public static Resource resourceEntityToResource(ResourceEntity resourceEntity) {
         if (resourceEntity instanceof BookEntity) {
             Book book = new Book();
+            book.setResourceId(resourceEntity.getResourceId());
             book.setISBN(resourceEntity.getISBN());
             book.setTitle(resourceEntity.getTitle());
             book.setAuthor(resourceEntity.getAuthor());
@@ -20,6 +21,7 @@ public class ResourceEntityMapper {
             return book;
         } else if (resourceEntity instanceof AudioBookEntity) {
             AudioBook audioBook = new AudioBook();
+            audioBook.setResourceId(resourceEntity.getResourceId());
             audioBook.setISBN(resourceEntity.getISBN());
             audioBook.setTitle(resourceEntity.getTitle());
             audioBook.setAuthor(resourceEntity.getAuthor());
@@ -34,6 +36,7 @@ public class ResourceEntityMapper {
     public static ResourceEntity resourceToResourceEntity(Resource resource) {
         if (resource instanceof Book) {
             BookEntity bookEntity = new BookEntity();
+            bookEntity.setResourceId(resource.getResourceId());
             bookEntity.setISBN(resource.getISBN());
             bookEntity.setTitle(resource.getTitle());
             bookEntity.setAuthor(resource.getAuthor());
@@ -42,6 +45,7 @@ public class ResourceEntityMapper {
             return bookEntity;
         } else if (resource instanceof AudioBook) {
             AudioBookEntity audioBookEntity = new AudioBookEntity();
+            audioBookEntity.setResourceId(resource.getResourceId());
             audioBookEntity.setISBN(resource.getISBN());
             audioBookEntity.setTitle(resource.getTitle());
             audioBookEntity.setAuthor(resource.getAuthor());

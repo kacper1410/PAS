@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pl.pas.data.model.BorrowEntity;
 import pl.pas.data.model.resource.BookEntity;
 import pl.pas.data.model.user.ClientEntity;
+import pl.pas.data.mappers.user.UserEntityMapper;
 import pl.pas.data.mappers.resource.ResourceEntityMapper;
 import pl.pas.domain.model.Borrow;
 import pl.pas.domain.model.resource.Book;
@@ -24,7 +25,7 @@ class BorrowEntityMapperTest {
 
         Borrow borrow = BorrowEntityMapper.borrowEntityToBorrow(borrowEntity);
         Assertions.assertEquals(borrowEntity.getBorrowId(), borrow.getBorrowId());
-//        Assertions.assertEquals(UserEntityMapper.userEntityToUser(borrowEntity.getClient()), borrow.getClient());
+        Assertions.assertEquals(UserEntityMapper.userEntityToUser(borrowEntity.getClient()), borrow.getClient());
         Assertions.assertEquals(ResourceEntityMapper.resourceEntityToResource(borrowEntity.getResource()), borrow.getResource());
         Assertions.assertEquals(borrowEntity.getBorrowDate(), borrow.getBorrowDate());
         Assertions.assertEquals(borrowEntity.getReturnDate(), borrow.getReturnDate());
@@ -40,7 +41,7 @@ class BorrowEntityMapperTest {
 
         BorrowEntity borrowEntity = BorrowEntityMapper.borrowToBorrowEntity(borrow);
         Assertions.assertEquals(borrow.getBorrowId(), borrowEntity.getBorrowId());
-//        Assertions.assertEquals(UserEntityMapper.userToUserEntity(borrow.getClient()), borrowEntity.getClient());
+        Assertions.assertEquals(UserEntityMapper.userToUserEntity(borrow.getClient()), borrowEntity.getClient());
         Assertions.assertEquals(ResourceEntityMapper.resourceToResourceEntity(borrow.getResource()), borrowEntity.getResource());
         Assertions.assertEquals(borrow.getBorrowDate(), borrowEntity.getBorrowDate());
         Assertions.assertEquals(borrow.getReturnDate(), borrowEntity.getReturnDate());
