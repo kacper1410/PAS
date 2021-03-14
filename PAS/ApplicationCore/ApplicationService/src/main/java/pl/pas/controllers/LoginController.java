@@ -2,7 +2,7 @@ package pl.pas.controllers;
 
 import lombok.Data;
 import pl.pas.managers.UserManager;
-import pl.pas.exceptions.NotFoundException;
+import pl.pas.data.exceptions.NotFoundException;
 import pl.pas.logger.Priority;
 import pl.pas.logger.Logger;
 import pl.pas.data.model.user.User;

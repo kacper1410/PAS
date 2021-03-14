@@ -1,8 +1,8 @@
 package pl.pas.rest.services;
 
 import lombok.NoArgsConstructor;
-import pl.pas.exceptions.NotFoundException;
-import pl.pas.exceptions.NotValidException;
+import pl.pas.data.exceptions.NotFoundException;
+import pl.pas.data.exceptions.NotValidException;
 import pl.pas.managers.BorrowManager;
 import pl.pas.data.model.Borrow;
 

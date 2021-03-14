@@ -1,7 +1,7 @@
 package pl.pas.controllers;
 
 import pl.pas.managers.UserManager;
-import pl.pas.exceptions.NotFoundException;
+import pl.pas.data.exceptions.NotFoundException;
 import pl.pas.data.model.user.User;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

@@ -1,6 +1,6 @@
 package pl.pas.rest.security;
 
-import pl.pas.exceptions.NotFoundException;
+import pl.pas.data.exceptions.NotFoundException;
 import pl.pas.data.model.user.User;
 import pl.pas.ports.infrastructure.user.ReadUserPort;
 

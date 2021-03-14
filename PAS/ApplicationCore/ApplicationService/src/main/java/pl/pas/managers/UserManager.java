@@ -1,8 +1,8 @@
 package pl.pas.managers;
 
-import pl.pas.exceptions.NotValidException;
-import pl.pas.exceptions.UserAlreadyExistException;
-import pl.pas.exceptions.NotFoundException;
+import pl.pas.data.exceptions.NotValidException;
+import pl.pas.data.exceptions.UserAlreadyExistException;
+import pl.pas.data.exceptions.NotFoundException;
 import pl.pas.data.model.user.Administrator;
 import pl.pas.data.model.user.Client;
 import pl.pas.data.model.user.Employee;

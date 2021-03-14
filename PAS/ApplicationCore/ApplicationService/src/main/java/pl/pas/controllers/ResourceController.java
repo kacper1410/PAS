@@ -2,8 +2,8 @@ package pl.pas.controllers;
 
 import lombok.Data;
 import pl.pas.managers.ResourceManager;
-import pl.pas.exceptions.NotFoundException;
-import pl.pas.exceptions.NotValidException;
+import pl.pas.data.exceptions.NotFoundException;
+import pl.pas.data.exceptions.NotValidException;
 import pl.pas.data.model.resource.AudioBook;
 import pl.pas.data.model.resource.Book;
 import pl.pas.data.model.resource.Resource;
