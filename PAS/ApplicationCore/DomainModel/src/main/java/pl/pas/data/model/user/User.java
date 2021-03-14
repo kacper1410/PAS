@@ -1,39 +1,22 @@
 package pl.pas.data.model.user;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import pl.pas.data.model.SignableEntity;
 
 import javax.json.bind.annotation.JsonbTransient;
 
 //import pl.pas.rest.jsonb.adapters.StringToEmptyAdapter;
 
+@Data
 @AllArgsConstructor
 public abstract class User implements SignableEntity {
 
-    @Getter
-    @Setter
     private long userId;
-
-    @Getter
-    @Setter
     private String login;
-
-    @Setter
-    @Getter
     private String password;
-
-    @Getter
-    @Setter
     private String name;
-
-    @Getter
-    @Setter
     private String lastName;
-
-    @Getter
-    @Setter
     private boolean active;
 
     public User() {
