@@ -33,7 +33,9 @@ public class BorrowRepository implements IBorrowRepository, Serializable {
     public BorrowEntity getBorrow(long uuid) throws NotFoundExceptionEntity {
         synchronized (borrows) {
             for (BorrowEntity b : borrows) {
-                if (b.getBorrowId() == uuid) return b;
+                if (b.getBorrowId() == uuid) {
+                    return b;
+                }
             }
             throw new NotFoundExceptionEntity();
         }
