@@ -1,4 +1,4 @@
-package pl.pas.data.model.resource;
+package pl.pas.domain.model.resource;
 
 import lombok.Getter;
 import lombok.Setter;

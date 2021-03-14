@@ -3,9 +3,9 @@ package pl.pas.data.mappers.resource;
 import pl.pas.data.model.resource.AudioBookEntity;
 import pl.pas.data.model.resource.BookEntity;
 import pl.pas.data.model.resource.ResourceEntity;
-import pl.pas.data.model.resource.AudioBook;
-import pl.pas.data.model.resource.Book;
-import pl.pas.data.model.resource.Resource;
+import pl.pas.domain.model.resource.AudioBook;
+import pl.pas.domain.model.resource.Book;
+import pl.pas.domain.model.resource.Resource;
 
 public class ResourceEntityMapper {
 

@@ -1,8 +1,8 @@
-package pl.pas.data.model;
+package pl.pas.domain.model;
 
 import lombok.*;
-import pl.pas.data.model.resource.Resource;
-import pl.pas.data.model.user.Client;
+import pl.pas.domain.model.resource.Resource;
+import pl.pas.domain.model.user.Client;
 
 import java.util.Date;
 

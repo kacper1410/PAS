@@ -4,8 +4,8 @@ import pl.pas.data.mappers.resource.ResourceEntityMapper;
 import pl.pas.data.model.BorrowEntity;
 import pl.pas.data.model.user.ClientEntity;
 import pl.pas.data.mappers.user.UserEntityMapper;
-import pl.pas.data.model.Borrow;
-import pl.pas.data.model.user.Client;
+import pl.pas.domain.model.Borrow;
+import pl.pas.domain.model.user.Client;
 
 public class BorrowEntityMapper {
 

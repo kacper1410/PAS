@@ -1,4 +1,4 @@
-package pl.pas.data.exceptions;
+package pl.pas.domain.exceptions;
 
 public class NotFoundException extends Exception {
 }

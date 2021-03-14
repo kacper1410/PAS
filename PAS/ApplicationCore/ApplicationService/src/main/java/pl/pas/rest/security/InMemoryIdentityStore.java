@@ -1,7 +1,7 @@
 package pl.pas.rest.security;
 
-import pl.pas.data.exceptions.NotFoundException;
-import pl.pas.data.model.user.User;
+import pl.pas.domain.exceptions.NotFoundException;
+import pl.pas.domain.model.user.User;
 import pl.pas.ports.infrastructure.user.ReadUserPort;
 
 import javax.enterprise.context.ApplicationScoped;

@@ -2,13 +2,13 @@ package pl.pas.rest.services;
 
 import lombok.NoArgsConstructor;
 import pl.pas.managers.ResourceManager;
-import pl.pas.data.exceptions.NotFoundException;
-import pl.pas.data.exceptions.NotValidException;
+import pl.pas.domain.exceptions.NotFoundException;
+import pl.pas.domain.exceptions.NotValidException;
 import pl.pas.rest.IdentitySignVerifier;
 import pl.pas.rest.filters.SignatureValidatorFilterBinding;
-import pl.pas.data.model.resource.AudioBook;
-import pl.pas.data.model.resource.Book;
-import pl.pas.data.model.resource.Resource;
+import pl.pas.domain.model.resource.AudioBook;
+import pl.pas.domain.model.resource.Book;
+import pl.pas.domain.model.resource.Resource;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

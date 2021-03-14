@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import pl.pas.data.model.user.AdministratorEntity;
 import pl.pas.data.model.user.ClientEntity;
 import pl.pas.data.model.user.EmployeeEntity;
-import pl.pas.data.model.user.Administrator;
-import pl.pas.data.model.user.Client;
-import pl.pas.data.model.user.Employee;
+import pl.pas.domain.model.user.Administrator;
+import pl.pas.domain.model.user.Client;
+import pl.pas.domain.model.user.Employee;
 
 class UserEntityMapperTest {
 

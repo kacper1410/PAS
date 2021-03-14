@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pl.pas.data.model.resource.AudioBookEntity;
 import pl.pas.data.model.resource.BookEntity;
-import pl.pas.data.model.resource.AudioBook;
-import pl.pas.data.model.resource.Book;
+import pl.pas.domain.model.resource.AudioBook;
+import pl.pas.domain.model.resource.Book;
 import pl.pas.data.repositories.UUID;
 
 class ResourceEntityMapperTest {

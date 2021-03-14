@@ -1,8 +1,8 @@
-package pl.pas.data.model.user;
+package pl.pas.domain.model.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import pl.pas.data.model.SignableEntity;
+import pl.pas.domain.model.SignableEntity;
 
 import javax.json.bind.annotation.JsonbTransient;
 

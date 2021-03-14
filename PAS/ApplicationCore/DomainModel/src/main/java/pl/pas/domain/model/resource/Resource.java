@@ -1,7 +1,7 @@
-package pl.pas.data.model.resource;
+package pl.pas.domain.model.resource;
 
 import lombok.*;
-import pl.pas.data.model.SignableEntity;
+import pl.pas.domain.model.SignableEntity;
 
 import javax.json.bind.annotation.JsonbTransient;
 

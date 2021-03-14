@@ -1,9 +1,9 @@
 package pl.pas.data.adapters;
 
 import pl.pas.data.model.exceptions.NotFoundExceptionEntity;
-import pl.pas.data.exceptions.NotFoundException;
+import pl.pas.domain.exceptions.NotFoundException;
 import pl.pas.data.mappers.BorrowEntityMapper;
-import pl.pas.data.model.Borrow;
+import pl.pas.domain.model.Borrow;
 import pl.pas.data.repositories.BorrowRepository;
 import pl.pas.ports.infrastructure.borrow.CreateBorrowPort;
 import pl.pas.ports.infrastructure.borrow.DeleteBorrowPort;

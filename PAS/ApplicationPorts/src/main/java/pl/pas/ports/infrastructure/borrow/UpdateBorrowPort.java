@@ -1,7 +1,7 @@
 package pl.pas.ports.infrastructure.borrow;
 
-import pl.pas.data.exceptions.NotFoundException;
-import pl.pas.data.model.Borrow;
+import pl.pas.domain.exceptions.NotFoundException;
+import pl.pas.domain.model.Borrow;
 
 public interface UpdateBorrowPort {
     void endBorrow(long uuid) throws NotFoundException;

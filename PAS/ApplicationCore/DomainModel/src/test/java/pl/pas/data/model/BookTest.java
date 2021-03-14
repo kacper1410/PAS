@@ -1,7 +1,7 @@
 package pl.pas.data.model;
 
 import org.junit.Test;
-import pl.pas.data.model.resource.Book;
+import pl.pas.domain.model.resource.Book;
 
 import static org.junit.Assert.*;
 
