@@ -2,11 +2,11 @@ package pl.pas.data.adapters;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pl.pas.data.exceptions.NotFoundException;
-import pl.pas.data.model.resource.AudioBook;
-import pl.pas.data.model.resource.Book;
-import pl.pas.data.model.resource.Resource;
 import pl.pas.data.repositories.ResourceRepository;
+import pl.pas.domain.exceptions.NotFoundException;
+import pl.pas.domain.model.resource.AudioBook;
+import pl.pas.domain.model.resource.Book;
+import pl.pas.domain.model.resource.Resource;
 
 import java.util.List;
 

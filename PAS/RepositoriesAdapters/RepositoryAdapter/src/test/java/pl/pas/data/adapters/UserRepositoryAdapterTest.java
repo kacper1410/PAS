@@ -2,13 +2,13 @@ package pl.pas.data.adapters;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pl.pas.data.exceptions.NotFoundException;
-import pl.pas.data.exceptions.UserAlreadyExistException;
-import pl.pas.data.model.user.Administrator;
-import pl.pas.data.model.user.Client;
-import pl.pas.data.model.user.Employee;
-import pl.pas.data.model.user.User;
 import pl.pas.data.repositories.UserRepository;
+import pl.pas.domain.exceptions.NotFoundException;
+import pl.pas.domain.exceptions.UserAlreadyExistException;
+import pl.pas.domain.model.user.Administrator;
+import pl.pas.domain.model.user.Client;
+import pl.pas.domain.model.user.Employee;
+import pl.pas.domain.model.user.User;
 
 import java.util.List;
 
