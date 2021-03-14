@@ -15,16 +15,16 @@ class BorrowRepositoryAdapterTest {
 
     private final BorrowRepositoryAdapter borrowRepositoryAdapter;
 
-    private Client client;
-    private Client client1;
+    private final Client client;
+    private final Client client1;
 
-    private Book book;
-    private Book book1;
+    private final Book book;
+    private final Book book1;
 
-    private Borrow borrow;
-    private Borrow borrow1;
+    private final Borrow borrow;
+    private final Borrow borrow1;
 
-    private Date date;
+    private final Date date;
 
     public BorrowRepositoryAdapterTest() {
         BorrowRepository borrowRepository = new BorrowRepository();
@@ -36,10 +36,11 @@ class BorrowRepositoryAdapterTest {
         book = new Book(123, "Droga Królów", "Author", 2010);
         book1 = new Book(124, "Droga Królów1", "Author1", 2011);
 
+        date = new Date();
+
         borrow = new Borrow(client, book, date);
         borrow1 = new Borrow(client1, book1, date);
 
-        date = new Date();
     }
 
     @Test
