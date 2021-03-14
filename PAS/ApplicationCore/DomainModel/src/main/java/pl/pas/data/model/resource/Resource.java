@@ -7,6 +7,7 @@ import javax.json.bind.annotation.JsonbTransient;
 
 @Data
 public abstract class Resource implements SignableEntity {
+
     private long ISBN;
     private String title;
     private String author;
