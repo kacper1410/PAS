@@ -2,10 +2,10 @@ package pl.pas.managers;
 
 import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.NotValidException;
-import pl.pas.model.Borrow;
-import pl.pas.model.resource.Resource;
-import pl.pas.model.user.Client;
-import pl.pas.model.user.User;
+import pl.pas.data.model.Borrow;
+import pl.pas.data.model.resource.Resource;
+import pl.pas.data.model.user.Client;
+import pl.pas.data.model.user.User;
 import pl.pas.ports.infrastructure.borrow.CreateBorrowPort;
 import pl.pas.ports.infrastructure.borrow.ReadBorrowPort;
 import pl.pas.ports.infrastructure.borrow.UpdateBorrowPort;

@@ -6,9 +6,9 @@ import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.rest.IdentitySignVerifier;
 import pl.pas.rest.filters.SignatureValidatorFilterBinding;
-import pl.pas.model.resource.AudioBook;
-import pl.pas.model.resource.Book;
-import pl.pas.model.resource.Resource;
+import pl.pas.data.model.resource.AudioBook;
+import pl.pas.data.model.resource.Book;
+import pl.pas.data.model.resource.Resource;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

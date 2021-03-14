@@ -3,7 +3,7 @@ package pl.pas.rest;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
-import pl.pas.model.SignableEntity;
+import pl.pas.data.model.SignableEntity;
 
 import java.text.ParseException;
 

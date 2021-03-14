@@ -1,7 +1,7 @@
 package pl.pas.ports.infrastructure.borrow;
 
 import pl.pas.exceptions.NotFoundException;
-import pl.pas.model.Borrow;
+import pl.pas.data.model.Borrow;
 
 import java.util.List;
 

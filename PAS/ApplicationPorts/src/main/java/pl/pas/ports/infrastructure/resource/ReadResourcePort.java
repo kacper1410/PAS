@@ -1,9 +1,9 @@
 package pl.pas.ports.infrastructure.resource;
 
 import pl.pas.exceptions.NotFoundException;
-import pl.pas.model.resource.AudioBook;
-import pl.pas.model.resource.Book;
-import pl.pas.model.resource.Resource;
+import pl.pas.data.model.resource.AudioBook;
+import pl.pas.data.model.resource.Book;
+import pl.pas.data.model.resource.Resource;
 
 import java.util.List;
 

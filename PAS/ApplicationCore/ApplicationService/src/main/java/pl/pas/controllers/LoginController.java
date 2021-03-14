@@ -5,7 +5,7 @@ import pl.pas.managers.UserManager;
 import pl.pas.exceptions.NotFoundException;
 import pl.pas.logger.Priority;
 import pl.pas.logger.Logger;
-import pl.pas.model.user.User;
+import pl.pas.data.model.user.User;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;

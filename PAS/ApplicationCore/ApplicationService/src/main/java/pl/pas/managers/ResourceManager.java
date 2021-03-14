@@ -2,10 +2,10 @@ package pl.pas.managers;
 
 import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.NotValidException;
-import pl.pas.model.Borrow;
-import pl.pas.model.resource.AudioBook;
-import pl.pas.model.resource.Book;
-import pl.pas.model.resource.Resource;
+import pl.pas.data.model.Borrow;
+import pl.pas.data.model.resource.AudioBook;
+import pl.pas.data.model.resource.Book;
+import pl.pas.data.model.resource.Resource;
 import pl.pas.ports.infrastructure.borrow.ReadBorrowPort;
 import pl.pas.ports.infrastructure.resource.CreateResourcePort;
 import pl.pas.ports.infrastructure.resource.DeleteResourcePort;

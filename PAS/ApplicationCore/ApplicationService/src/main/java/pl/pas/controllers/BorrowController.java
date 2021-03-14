@@ -5,7 +5,7 @@ import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.managers.BorrowManager;
 import pl.pas.managers.UserManager;
-import pl.pas.model.Borrow;
+import pl.pas.data.model.Borrow;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;

@@ -16,10 +16,6 @@
   <dependencies>
     <dependency>
       <groupId>pl.pas</groupId>
-      <artifactId>ApplicationCore</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>pl.pas</groupId>
       <artifactId>DomainModel</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>

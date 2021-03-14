@@ -4,7 +4,7 @@ import lombok.NoArgsConstructor;
 import pl.pas.exceptions.NotFoundException;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.managers.BorrowManager;
-import pl.pas.model.Borrow;
+import pl.pas.data.model.Borrow;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

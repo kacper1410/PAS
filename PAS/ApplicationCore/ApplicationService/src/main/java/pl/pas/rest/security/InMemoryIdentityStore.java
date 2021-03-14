@@ -1,8 +1,8 @@
 package pl.pas.rest.security;
 
 import pl.pas.exceptions.NotFoundException;
-import pl.pas.model.user.User;
-import pl.pas.repositories.UserRepository;
+import pl.pas.data.model.user.User;
+import pl.pas.ports.infrastructure.user.ReadUserPort;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -18,7 +18,7 @@ import java.util.Set;
 public class InMemoryIdentityStore implements IdentityStore {
 
     @Inject
-    private UserRepository userRepository;
+    private ReadUserPort readUserPort;
 
     @Override
     public CredentialValidationResult validate(Credential credential) {
@@ -26,7 +26,7 @@ public class InMemoryIdentityStore implements IdentityStore {
             UsernamePasswordCredential usernamePasswordCredential = (UsernamePasswordCredential) credential;
             User user = null;
             try {
-                user = userRepository.getUserByLoginPasswordActive(usernamePasswordCredential.getCaller(),
+                user = readUserPort.readUserByLoginPasswordActive(usernamePasswordCredential.getCaller(),
                         usernamePasswordCredential.getPasswordAsString());
             } catch (NotFoundException ignored) {
 

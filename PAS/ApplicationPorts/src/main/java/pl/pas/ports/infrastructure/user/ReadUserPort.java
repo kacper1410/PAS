@@ -1,10 +1,10 @@
 package pl.pas.ports.infrastructure.user;
 
 import pl.pas.exceptions.NotFoundException;
-import pl.pas.model.user.Administrator;
-import pl.pas.model.user.Client;
-import pl.pas.model.user.Employee;
-import pl.pas.model.user.User;
+import pl.pas.data.model.user.Administrator;
+import pl.pas.data.model.user.Client;
+import pl.pas.data.model.user.Employee;
+import pl.pas.data.model.user.User;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package pl.pas.rest.services;
 
 import pl.pas.exceptions.NotFoundException;
 import pl.pas.managers.UserManager;
-import pl.pas.model.user.User;
+import pl.pas.data.model.user.User;
 import pl.pas.rest.security.JWTGenerator;
 
 import javax.enterprise.context.RequestScoped;
