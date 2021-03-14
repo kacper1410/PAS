@@ -25,6 +25,14 @@ public class UserRepositoryAdapter implements CreateUserPort, ReadUserPort, Upda
     @Inject
     private UserRepository userRepository;
 
+    public UserRepositoryAdapter() {
+
+    }
+
+    public UserRepositoryAdapter(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public void createUser(User user) throws UserAlreadyExistException {
         try {
@@ -85,7 +93,7 @@ public class UserRepositoryAdapter implements CreateUserPort, ReadUserPort, Upda
     }
 
     @Override
-    public User readUser(String login) throws NotFoundException{
+    public User readUser(String login) throws NotFoundException {
         try {
             return UserEntityMapper.userEntityToUser(userRepository.getUser(login));
         } catch (NotFoundExceptionEntity notFoundExceptionEntity) {
