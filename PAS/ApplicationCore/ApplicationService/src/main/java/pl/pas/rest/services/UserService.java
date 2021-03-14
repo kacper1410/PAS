@@ -5,12 +5,12 @@ import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.exceptions.NotFoundException;
 import pl.pas.managers.UserManager;
+import pl.pas.rest.IdentitySignVerifier;
+import pl.pas.rest.filters.SignatureValidatorFilterBinding;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;
 import pl.pas.model.user.User;
-import pl.pas.rest.filters.SignatureValidatorFilterBinding;
-import pl.pas.rest.IdentitySignVerifier;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

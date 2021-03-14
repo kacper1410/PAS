@@ -1,6 +1,7 @@
-package pl.pas.managers;
+package pl.pas;
 
 import org.junit.Test;
+import pl.pas.managers.BorrowManager;
 
 public class BorrowManagerTest {
     private BorrowManager borrowManager;

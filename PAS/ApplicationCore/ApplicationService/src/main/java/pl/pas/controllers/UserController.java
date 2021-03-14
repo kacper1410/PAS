@@ -1,10 +1,10 @@
 package pl.pas.controllers;
 
 import lombok.Data;
+import pl.pas.managers.UserManager;
 import pl.pas.exceptions.NotValidException;
 import pl.pas.exceptions.UserAlreadyExistException;
 import pl.pas.exceptions.NotFoundException;
-import pl.pas.managers.UserManager;
 import pl.pas.model.user.Administrator;
 import pl.pas.model.user.Client;
 import pl.pas.model.user.Employee;

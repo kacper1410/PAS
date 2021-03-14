@@ -1,10 +1,10 @@
 package pl.pas.controllers;
 
 import lombok.Data;
-import pl.pas.exceptions.NotFoundException;
-import pl.pas.logger.Logger;
-import pl.pas.logger.Priority;
 import pl.pas.managers.UserManager;
+import pl.pas.exceptions.NotFoundException;
+import pl.pas.logger.Priority;
+import pl.pas.logger.Logger;
 import pl.pas.model.user.User;
 
 import javax.enterprise.context.SessionScoped;
