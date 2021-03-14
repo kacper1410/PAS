@@ -13,12 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserRepositoryTest {
 
-    UserRepository userRepository;
-    ClientEntity client1;
-    ClientEntity client2;
-    ClientEntity client3;
-    EmployeeEntity employee;
-    AdministratorEntity administrator;
+    private final UserRepository userRepository;
+    private final ClientEntity client1;
+    private final ClientEntity client2;
+    private final ClientEntity client3;
+    private final EmployeeEntity employee;
+    private final AdministratorEntity administrator;
 
     public UserRepositoryTest() {
         userRepository = new UserRepository();
@@ -28,7 +28,6 @@ class UserRepositoryTest {
         employee = new EmployeeEntity("Martiego", "trykpa", "Patryk", "Kolanek");
         administrator = new AdministratorEntity("nero7410", "nielda", "Daniel", "Łondka");
     }
-
 
     @Test
     void addUser() {
@@ -298,6 +297,5 @@ class UserRepositoryTest {
                 () -> userRepository.getUserByLoginPasswordActive(
                         client1.getLogin(), client1.getPassword()
                 ));
-
     }
 }

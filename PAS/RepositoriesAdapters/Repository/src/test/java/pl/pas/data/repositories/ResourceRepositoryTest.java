@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ResourceRepositoryTest {
 
-    ResourceRepository resourceRepository;
-    BookEntity book1;
-    BookEntity book2;
-    AudioBookEntity audioBook1;
-    AudioBookEntity audioBook2;
+    private final ResourceRepository resourceRepository;
+    private final BookEntity book1;
+    private final BookEntity book2;
+    private final AudioBookEntity audioBook1;
+    private final AudioBookEntity audioBook2;
 
     public ResourceRepositoryTest() {
         resourceRepository = new ResourceRepository();

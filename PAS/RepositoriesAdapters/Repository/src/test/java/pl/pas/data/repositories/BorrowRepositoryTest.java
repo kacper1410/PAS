@@ -15,12 +15,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BorrowRepositoryTest {
 
-    BorrowRepository borrowRepository;
-    BorrowEntity borrow1;
-    BorrowEntity borrow2;
-    ClientEntity client;
-    BookEntity book;
-    AudioBookEntity audioBook;
+    private final BorrowRepository borrowRepository;
+    private final BorrowEntity borrow1;
+    private final BorrowEntity borrow2;
+    private final ClientEntity client;
+    private final BookEntity book;
+    private final AudioBookEntity audioBook;
 
     public BorrowRepositoryTest() {
         this.borrowRepository = new BorrowRepository();
