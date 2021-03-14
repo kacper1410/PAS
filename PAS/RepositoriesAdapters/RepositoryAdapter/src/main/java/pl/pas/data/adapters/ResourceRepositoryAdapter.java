@@ -1,11 +1,11 @@
 package pl.pas.data.adapters;
 
 import pl.pas.data.model.exceptions.NotFoundExceptionEntity;
-import pl.pas.data.exceptions.NotFoundException;
+import pl.pas.domain.exceptions.NotFoundException;
 import pl.pas.data.mappers.resource.ResourceEntityMapper;
-import pl.pas.data.model.resource.AudioBook;
-import pl.pas.data.model.resource.Book;
-import pl.pas.data.model.resource.Resource;
+import pl.pas.domain.model.resource.AudioBook;
+import pl.pas.domain.model.resource.Book;
+import pl.pas.domain.model.resource.Resource;
 import pl.pas.data.repositories.ResourceRepository;
 import pl.pas.ports.infrastructure.resource.CreateResourcePort;
 import pl.pas.ports.infrastructure.resource.DeleteResourcePort;

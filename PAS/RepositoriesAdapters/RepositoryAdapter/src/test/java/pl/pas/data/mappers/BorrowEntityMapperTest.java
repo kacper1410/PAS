@@ -6,9 +6,9 @@ import pl.pas.data.model.BorrowEntity;
 import pl.pas.data.model.resource.BookEntity;
 import pl.pas.data.model.user.ClientEntity;
 import pl.pas.data.mappers.resource.ResourceEntityMapper;
-import pl.pas.data.model.Borrow;
-import pl.pas.data.model.resource.Book;
-import pl.pas.data.model.user.Client;
+import pl.pas.domain.model.Borrow;
+import pl.pas.domain.model.resource.Book;
+import pl.pas.domain.model.user.Client;
 
 import java.util.Date;
 

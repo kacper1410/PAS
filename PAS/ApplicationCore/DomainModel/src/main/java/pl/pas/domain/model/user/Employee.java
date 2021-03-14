@@ -1,4 +1,4 @@
-package pl.pas.data.model.user;
+package pl.pas.domain.model.user;
 
 public class Employee extends User {
 

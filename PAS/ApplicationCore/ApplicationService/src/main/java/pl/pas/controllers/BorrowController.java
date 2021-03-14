@@ -1,11 +1,11 @@
 package pl.pas.controllers;
 
 import lombok.Data;
-import pl.pas.data.exceptions.NotFoundException;
-import pl.pas.data.exceptions.NotValidException;
+import pl.pas.domain.exceptions.NotFoundException;
+import pl.pas.domain.exceptions.NotValidException;
 import pl.pas.managers.BorrowManager;
 import pl.pas.managers.UserManager;
-import pl.pas.data.model.Borrow;
+import pl.pas.domain.model.Borrow;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;

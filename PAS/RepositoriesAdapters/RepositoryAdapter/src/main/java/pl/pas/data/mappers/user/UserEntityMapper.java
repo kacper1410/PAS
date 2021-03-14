@@ -4,10 +4,10 @@ import pl.pas.data.model.user.AdministratorEntity;
 import pl.pas.data.model.user.ClientEntity;
 import pl.pas.data.model.user.EmployeeEntity;
 import pl.pas.data.model.user.UserEntity;
-import pl.pas.data.model.user.Administrator;
-import pl.pas.data.model.user.Client;
-import pl.pas.data.model.user.Employee;
-import pl.pas.data.model.user.User;
+import pl.pas.domain.model.user.Administrator;
+import pl.pas.domain.model.user.Client;
+import pl.pas.domain.model.user.Employee;
+import pl.pas.domain.model.user.User;
 
 public class UserEntityMapper {
 

@@ -1,12 +1,12 @@
 package pl.pas.managers;
 
-import pl.pas.data.exceptions.NotValidException;
-import pl.pas.data.exceptions.UserAlreadyExistException;
-import pl.pas.data.exceptions.NotFoundException;
-import pl.pas.data.model.user.Administrator;
-import pl.pas.data.model.user.Client;
-import pl.pas.data.model.user.Employee;
-import pl.pas.data.model.user.User;
+import pl.pas.domain.exceptions.NotValidException;
+import pl.pas.domain.exceptions.UserAlreadyExistException;
+import pl.pas.domain.exceptions.NotFoundException;
+import pl.pas.domain.model.user.Administrator;
+import pl.pas.domain.model.user.Client;
+import pl.pas.domain.model.user.Employee;
+import pl.pas.domain.model.user.User;
 import pl.pas.ports.infrastructure.user.CreateUserPort;
 import pl.pas.ports.infrastructure.user.ReadUserPort;
 import pl.pas.ports.infrastructure.user.UpdateUserPort;

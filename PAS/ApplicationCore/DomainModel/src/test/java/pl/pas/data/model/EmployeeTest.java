@@ -1,7 +1,7 @@
 package pl.pas.data.model;
 
 import org.junit.Test;
-import pl.pas.data.model.user.Employee;
+import pl.pas.domain.model.user.Employee;
 
 import static org.junit.Assert.*;
 

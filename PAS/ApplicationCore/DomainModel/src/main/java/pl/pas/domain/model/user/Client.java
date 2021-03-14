@@ -1,4 +1,4 @@
-package pl.pas.data.model.user;
+package pl.pas.domain.model.user;
 
 import lombok.Getter;
 import lombok.Setter;

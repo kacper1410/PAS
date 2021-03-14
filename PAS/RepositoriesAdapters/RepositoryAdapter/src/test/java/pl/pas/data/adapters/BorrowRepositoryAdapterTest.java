@@ -2,14 +2,11 @@ package pl.pas.data.adapters;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pl.pas.data.model.Borrow;
-import pl.pas.data.model.resource.Book;
-import pl.pas.data.model.user.Client;
-import pl.pas.data.repositories.BorrowRepository;
+import pl.pas.domain.model.Borrow;
+import pl.pas.domain.model.resource.Book;
+import pl.pas.domain.model.user.Client;
 
 import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BorrowRepositoryAdapterTest {
 
