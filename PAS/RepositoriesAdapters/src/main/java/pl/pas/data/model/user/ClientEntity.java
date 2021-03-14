@@ -1,12 +1,10 @@
 package pl.pas.data.model.user;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 public class ClientEntity extends UserEntity {
 
     private int age;
